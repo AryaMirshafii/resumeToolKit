@@ -13,6 +13,8 @@
 		D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1E457951F5A175E00D1E030 /* resumeToolkit.xcdatamodeld */; };
 		D1E457991F5A175F00D1E030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1E457981F5A175F00D1E030 /* Assets.xcassets */; };
 		D1E4579C1F5A176000D1E030 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E4579A1F5A176000D1E030 /* LaunchScreen.storyboard */; };
+		D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */; };
+		D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		D1E457981F5A175F00D1E030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1E4579B1F5A176000D1E030 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1E4579D1F5A176000D1E030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
+		D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +62,13 @@
 			children = (
 				D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */,
 				D1E457901F5A175D00D1E030 /* ViewController.swift */,
+				D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */,
 				D1E457921F5A175E00D1E030 /* Main.storyboard */,
 				D1E457981F5A175F00D1E030 /* Assets.xcassets */,
 				D1E4579A1F5A176000D1E030 /* LaunchScreen.storyboard */,
 				D1E4579D1F5A176000D1E030 /* Info.plist */,
 				D1E457951F5A175E00D1E030 /* resumeToolkit.xcdatamodeld */,
+				D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */,
 			);
 			path = resumeToolkit;
 			sourceTree = "<group>";
@@ -139,9 +145,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */,
 				D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */,
 				D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */,
 				D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */,
+				D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        
+        
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let left = storyboard.instantiateViewController(withIdentifier: "left")
+        let middle = storyboard.instantiateViewController(withIdentifier: "middle")
+        let right = storyboard.instantiateViewController(withIdentifier: "right")
+        
+        
+        let snapContainer = SnapContainerViewController.containerViewWith(left,
+                                                                          middleVC: middle,
+                                                                          rightVC: right)
+        
+        
+        self.window?.rootViewController = snapContainer
+        self.window?.makeKeyAndVisible()
+        //UIApplication.shared.statusBarStyle = .lightContent
         return true
     }
 
