@@ -19,6 +19,7 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate {
     var middleVc: UIViewController!
     var rightVc: UIViewController!
     var bottomVc: UIViewController?
+    var viewArray: [UIViewController]!
     
     var directionLockDisabled: Bool!
     
@@ -31,36 +32,33 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate {
     var delegate: SnapContainerViewControllerDelegate?
     
     class func containerViewWith(_ leftVC: UIViewController,
-                                 middleVC: UIViewController,
+                                 //middleVC: UIViewController,
                                  rightVC: UIViewController,
+                                 viewArray: [UIViewController],
                                  topVC: UIViewController?=nil,
                                  bottomVC: UIViewController?=nil,
                                  directionLockDisabled: Bool?=false) -> SnapContainerViewController {
-        let container = SnapContainerViewController()
+        var container = SnapContainerViewController()
         
         container.directionLockDisabled = directionLockDisabled
         
         container.topVc = topVC
         container.leftVc = leftVC
-        container.middleVc = middleVC
+        //container.middleVc = middleVC
         container.rightVc = rightVC
         container.bottomVc = bottomVC
+        container.viewArray = viewArray
         return container
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        middleVc = viewArray[0]
         setupHorizontalScrollView()
     }
-    /**
-    func setupVerticalScrollView() {
-        middleVertScrollVc = VerticalScrollViewController.verticalScrollVcWith(middleVc: middleVc,
-                                                                               topVc: topVc,
-                                                                               bottomVc: bottomVc)
-        delegate = middleVertScrollVc
-    }
-     */
+    
+    
+    
     
     func setupHorizontalScrollView() {
         scrollView = UIScrollView()

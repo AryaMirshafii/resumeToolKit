@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D133C6A71F5A60600080B598 /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D133C6A61F5A60600080B598 /* dataManager.swift */; };
 		D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */; };
 		D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457901F5A175D00D1E030 /* ViewController.swift */; };
 		D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E457921F5A175E00D1E030 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D133C6A61F5A60600080B598 /* dataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
 		D1E4578B1F5A175D00D1E030 /* resumeToolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = resumeToolkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E457901F5A175D00D1E030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */,
 				D1E457901F5A175D00D1E030 /* ViewController.swift */,
 				D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */,
+				D133C6A61F5A60600080B598 /* dataManager.swift */,
 				D1E457921F5A175E00D1E030 /* Main.storyboard */,
 				D1E457981F5A175F00D1E030 /* Assets.xcassets */,
 				D1E4579A1F5A176000D1E030 /* LaunchScreen.storyboard */,
@@ -150,6 +153,7 @@
 				D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */,
 				D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */,
 				D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */,
+				D133C6A71F5A60600080B598 /* dataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

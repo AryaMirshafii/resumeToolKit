@@ -23,13 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let left = storyboard.instantiateViewController(withIdentifier: "left")
-        let middle = storyboard.instantiateViewController(withIdentifier: "middle")
+        var middle = storyboard.instantiateViewController(withIdentifier: "middle")
         let right = storyboard.instantiateViewController(withIdentifier: "right")
+        let login = storyboard.instantiateViewController(withIdentifier: "loginScreen")
+        let viewControllerArray = [login,middle]
         
-        
-        let snapContainer = SnapContainerViewController.containerViewWith(left,
-                                                                          middleVC: middle,
-                                                                          rightVC: right)
+        //let snapContainer = SnapContainerViewController.containerViewWith(left,
+                                                                          //rightVC: right, viewArray: viewControllerArray, topVC: middle)
+        let snapContainer = SnapContainerViewController.containerViewWith(left, rightVC: right, viewArray: viewControllerArray)
         
         
         self.window?.rootViewController = snapContainer
