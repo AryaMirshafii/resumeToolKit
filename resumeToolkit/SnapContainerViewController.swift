@@ -30,6 +30,7 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate {
     
     var scrollView: UIScrollView!
     var delegate: SnapContainerViewControllerDelegate?
+    var infoController = userInfo()
     
     class func containerViewWith(_ leftVC: UIViewController,
                                  //middleVC: UIViewController,
@@ -53,8 +54,28 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        middleVc = viewArray[0]
+        
+        
+        if(infoController.fetchData() == "main"){
+            self.middleVc = viewArray[1]
+            
+        } else {
+             self.middleVc = viewArray[0]
+        }
+        
+       
         setupHorizontalScrollView()
+        
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+    }
+    
+    @objc func userDefaultsDidChange() {
+        if(infoController.fetchData() == "main"){
+            self.middleVc = viewArray[1]
+            setupHorizontalScrollView()
+        }
     }
     
     

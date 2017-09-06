@@ -12,7 +12,7 @@ import UIKit
 
 class dataManager{
     var user: [NSManagedObject] = []
-    
+    var infoController = userInfo()
     
     init() {
         
@@ -96,7 +96,68 @@ class dataManager{
     
     
     
-    
+    func checkInfoComplete() -> Bool {
+        let aUser = user.last
+        
+        
+        
+        guard let firstName  = aUser?.value(forKeyPath: "firstName") as? String  else {
+            //print("nothing to see here")
+            return false
+            
+            
+            
+            
+        }
+        //var lastname = aUser.value(forKeyPath: "lastName") as? String
+        guard let lastname  = aUser?.value(forKeyPath: "lastName") as? String  else {
+            //print("nothing to see here")
+            return false
+            
+            
+            
+            
+        }
+        
+        
+        guard let email  = aUser?.value(forKeyPath: "emailAdress") as? String  else {
+            //print("nothing to see here")
+            return false
+            
+            
+            
+            
+        }
+        
+        guard let phoneNumber  = aUser?.value(forKeyPath: "phoneNumber") as? String  else {
+            //print("nothing to see here")
+            return false
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        guard let schoolName  = aUser?.value(forKeyPath: "schoolName") as? String  else {
+            //print("nothing to see here")
+            return false
+        }
+        
+        
+        guard let gradeLevel  = aUser?.value(forKeyPath: "gradeLevel") as? String  else {
+            //print("nothing to see here")
+            return false
+        }
+        
+        
+        infoController.save(screen: "main")
+        return true
+    }
     
     
     
@@ -128,7 +189,7 @@ class dataManager{
             user = try managedContext.fetch(userRequest)
             user.removeAll()
             user.append(savedObject)
-            print("it savd")
+            print("First name saved")
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
@@ -164,7 +225,7 @@ class dataManager{
             user = try managedContext.fetch(userRequest)
             user.removeAll()
             user.append(savedObject)
-            print("it savd")
+            print("Last name saved")
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
@@ -332,6 +393,79 @@ class dataManager{
             user.removeAll()
             user.append(savedObject)
             print("phone number Saved!")
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    
+    
+    func saveGradeLevel(gradeLevel: String) {
+        
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
+                                                        in: managedContext)!
+        //savedObject
+        let savedObject = NSManagedObject(entity: locationEntity,
+                                          insertInto: managedContext)
+        
+        savedObject.setValue(gradeLevel, forKeyPath: "gradeLevel")
+        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
+            print("No first name to submit")
+            return
+        }
+        
+        savedObject.setValue(firstName,forKeyPath: "firstName")
+        
+        
+        
+        
+        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
+            print("No last name to submit")
+            return
+        }
+        
+        savedObject.setValue(lastName,forKeyPath: "lastName")
+        
+        
+        
+        guard let email  = user.last?.value(forKeyPath: "emailAdress") else {
+            print("No email to submit")
+            return
+        }
+        
+        savedObject.setValue(email,forKeyPath: "emailAdress")
+        
+        
+        
+        guard let phoneNumber  = user.last?.value(forKeyPath: "phoneNumber") else {
+            print("No phoneNumber to submit")
+            return
+        }
+        
+        savedObject.setValue(phoneNumber,forKeyPath: "phoneNumber")
+        
+        guard let schoolName  = user.last?.value(forKeyPath: "schoolName") else {
+            print("No phoneNumber to submit")
+            return
+        }
+        
+        savedObject.setValue(schoolName,forKeyPath: "schoolName")
+        
+        
+        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+        do {
+            try managedContext.save()
+            user = try managedContext.fetch(userRequest)
+            user.removeAll()
+            user.append(savedObject)
+            print("grade level Saved!")
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
