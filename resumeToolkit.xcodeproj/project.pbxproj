@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D10628901F60678E001880AD /* Prime Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D106288F1F606780001880AD /* Prime Regular.otf */; };
+		D10628911F606791001880AD /* Prime Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D106288E1F60677E001880AD /* Prime Light.otf */; };
 		D133C6A71F5A60600080B598 /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D133C6A61F5A60600080B598 /* dataManager.swift */; };
 		D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */; };
 		D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457901F5A175D00D1E030 /* ViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D106288E1F60677E001880AD /* Prime Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Light.otf"; sourceTree = "<group>"; };
+		D106288F1F606780001880AD /* Prime Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Regular.otf"; sourceTree = "<group>"; };
 		D133C6A61F5A60600080B598 /* dataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
 		D1E4578B1F5A175D00D1E030 /* resumeToolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = resumeToolkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,9 +47,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D106288D1F6066FE001880AD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D106288E1F60677E001880AD /* Prime Light.otf */,
+				D106288F1F606780001880AD /* Prime Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		D1E457821F5A175C00D1E030 = {
 			isa = PBXGroup;
 			children = (
+				D106288D1F6066FE001880AD /* Fonts */,
 				D1E4578D1F5A175D00D1E030 /* resumeToolkit */,
 				D1E4578C1F5A175D00D1E030 /* Products */,
 			);
@@ -136,8 +150,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1E4579C1F5A176000D1E030 /* LaunchScreen.storyboard in Resources */,
+				D10628911F606791001880AD /* Prime Light.otf in Resources */,
 				D1E457991F5A175F00D1E030 /* Assets.xcassets in Resources */,
 				D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */,
+				D10628901F60678E001880AD /* Prime Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

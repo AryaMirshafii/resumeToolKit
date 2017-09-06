@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Prime Regular.otf">
+            <string>Prime-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--right-->
         <scene sceneID="tne-QT-ifu">
@@ -32,53 +37,130 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-K1-ez4">
-                                <rect key="frame" x="96" y="20" width="183" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basic Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-K1-ez4">
+                                <rect key="frame" x="38" y="20" width="299" height="33"/>
+                                <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="33"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please Enter Your First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lp9-4f-ykE">
-                                <rect key="frame" x="61" y="93" width="222" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Your First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lp9-4f-ykE">
+                                <rect key="frame" x="72" y="91" width="230" height="17"/>
+                                <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2SV-Dg-9pk">
-                                <rect key="frame" x="63" y="127" width="216" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2SV-Dg-9pk">
+                                <rect key="frame" x="82" y="116" width="213" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please Enter Your Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrH-oi-Mr7">
-                                <rect key="frame" x="61" y="225" width="221" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Your Last Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrH-oi-Mr7">
+                                <rect key="frame" x="72" y="173" width="229" height="17"/>
+                                <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZiD-kw-NLH">
-                                <rect key="frame" x="63" y="254" width="216" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZiD-kw-NLH">
+                                <rect key="frame" x="82" y="198" width="213" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Your Email Adress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOT-7x-BTf">
+                                <rect key="frame" x="64" y="255" width="247" height="17"/>
+                                <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Your Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jx6-vt-AFV">
+                                <rect key="frame" x="59" y="337" width="259" height="17"/>
+                                <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d8H-vP-zM9">
+                                <rect key="frame" x="82" y="280" width="213" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YS5-8P-OdY">
+                                <rect key="frame" x="82" y="366" width="213" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What School Do you Attend?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9P-co-xyU">
+                                <rect key="frame" x="75" y="425" width="225" height="17"/>
+                                <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KTN-Wd-e3m">
+                                <rect key="frame" x="82" y="454" width="213" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What Is Your Current Grade Level?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCV-yY-mg2">
+                                <rect key="frame" x="53" y="511" width="271" height="17"/>
+                                <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Tv-Lh-liO">
+                                <rect key="frame" x="82" y="540" width="213" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Jme-K1-ez4" firstAttribute="top" secondItem="cX7-tg-JIj" secondAttribute="top" id="AL3-y5-XO8"/>
-                            <constraint firstItem="cX7-tg-JIj" firstAttribute="bottom" secondItem="Jme-K1-ez4" secondAttribute="bottom" constant="610" id="Tw7-yQ-bDb"/>
-                            <constraint firstItem="Jme-K1-ez4" firstAttribute="centerX" secondItem="a8I-7u-uUP" secondAttribute="centerX" id="bxK-me-8ht"/>
-                            <constraint firstItem="Jme-K1-ez4" firstAttribute="leading" secondItem="cX7-tg-JIj" secondAttribute="leading" constant="96" id="pxt-eO-WZw"/>
+                            <constraint firstItem="KTN-Wd-e3m" firstAttribute="top" secondItem="M9P-co-xyU" secondAttribute="bottom" constant="12" id="0r4-he-qUR"/>
+                            <constraint firstItem="YS5-8P-OdY" firstAttribute="top" secondItem="Jx6-vt-AFV" secondAttribute="bottom" constant="12" id="1aJ-ZC-zW4"/>
+                            <constraint firstItem="KTN-Wd-e3m" firstAttribute="trailing" secondItem="2Tv-Lh-liO" secondAttribute="trailing" id="2Sy-Xu-6PB"/>
+                            <constraint firstItem="lp9-4f-ykE" firstAttribute="top" secondItem="Jme-K1-ez4" secondAttribute="bottom" constant="38" id="2gn-bl-uv0"/>
+                            <constraint firstItem="2SV-Dg-9pk" firstAttribute="leading" secondItem="cX7-tg-JIj" secondAttribute="leading" constant="82" id="3Go-O4-ey6"/>
+                            <constraint firstItem="ZiD-kw-NLH" firstAttribute="top" secondItem="KrH-oi-Mr7" secondAttribute="bottom" constant="8" symbolic="YES" id="3hu-8M-u4h"/>
+                            <constraint firstItem="d8H-vP-zM9" firstAttribute="top" secondItem="dOT-7x-BTf" secondAttribute="bottom" constant="8" symbolic="YES" id="6r1-sc-wS6"/>
+                            <constraint firstItem="lp9-4f-ykE" firstAttribute="leading" secondItem="KrH-oi-Mr7" secondAttribute="leading" id="74w-pv-Joh"/>
+                            <constraint firstItem="Jx6-vt-AFV" firstAttribute="top" secondItem="d8H-vP-zM9" secondAttribute="bottom" constant="27" id="9Oe-3N-KTV"/>
+                            <constraint firstItem="Jme-K1-ez4" firstAttribute="top" secondItem="cX7-tg-JIj" secondAttribute="top" id="AAa-ML-77t"/>
+                            <constraint firstItem="Jx6-vt-AFV" firstAttribute="centerX" secondItem="YS5-8P-OdY" secondAttribute="centerX" id="Jcx-l7-IXm"/>
+                            <constraint firstItem="Jme-K1-ez4" firstAttribute="leading" secondItem="cX7-tg-JIj" secondAttribute="leading" constant="38" id="LVl-ut-dhZ"/>
+                            <constraint firstItem="lp9-4f-ykE" firstAttribute="centerX" secondItem="dOT-7x-BTf" secondAttribute="centerX" id="MBv-Xu-tZX"/>
+                            <constraint firstItem="M9P-co-xyU" firstAttribute="top" secondItem="YS5-8P-OdY" secondAttribute="bottom" constant="29" id="Mcn-Oh-nrh"/>
+                            <constraint firstItem="d8H-vP-zM9" firstAttribute="trailing" secondItem="YS5-8P-OdY" secondAttribute="trailing" id="RRI-Sd-UZy"/>
+                            <constraint firstItem="ZiD-kw-NLH" firstAttribute="leading" secondItem="d8H-vP-zM9" secondAttribute="leading" id="VTe-aG-N7Q"/>
+                            <constraint firstItem="d8H-vP-zM9" firstAttribute="leading" secondItem="YS5-8P-OdY" secondAttribute="leading" id="WE1-81-YaH"/>
+                            <constraint firstItem="dOT-7x-BTf" firstAttribute="centerX" secondItem="M9P-co-xyU" secondAttribute="centerX" id="XjV-JD-0Xx"/>
+                            <constraint firstItem="2Tv-Lh-liO" firstAttribute="top" secondItem="KCV-yY-mg2" secondAttribute="bottom" constant="12" id="Ysc-zU-efq"/>
+                            <constraint firstItem="2SV-Dg-9pk" firstAttribute="leading" secondItem="ZiD-kw-NLH" secondAttribute="leading" id="Ytt-HS-6zI"/>
+                            <constraint firstItem="ZiD-kw-NLH" firstAttribute="trailing" secondItem="d8H-vP-zM9" secondAttribute="trailing" id="aEz-Ub-T6n"/>
+                            <constraint firstItem="KCV-yY-mg2" firstAttribute="top" secondItem="KTN-Wd-e3m" secondAttribute="bottom" constant="27" id="aaT-0O-rog"/>
+                            <constraint firstItem="Jme-K1-ez4" firstAttribute="centerX" secondItem="lp9-4f-ykE" secondAttribute="centerX" id="b1s-fq-xa3"/>
+                            <constraint firstItem="YS5-8P-OdY" firstAttribute="trailing" secondItem="KTN-Wd-e3m" secondAttribute="trailing" id="dZp-XJ-Rop"/>
+                            <constraint firstItem="lp9-4f-ykE" firstAttribute="centerX" secondItem="a8I-7u-uUP" secondAttribute="centerX" id="fu2-5y-EBB"/>
+                            <constraint firstItem="KCV-yY-mg2" firstAttribute="leading" secondItem="cX7-tg-JIj" secondAttribute="leading" constant="53" id="gGQ-HR-ar0"/>
+                            <constraint firstItem="KTN-Wd-e3m" firstAttribute="leading" secondItem="2Tv-Lh-liO" secondAttribute="leading" id="h8x-FN-ID0"/>
+                            <constraint firstItem="YS5-8P-OdY" firstAttribute="leading" secondItem="KTN-Wd-e3m" secondAttribute="leading" id="hdD-5f-XxE"/>
+                            <constraint firstItem="dOT-7x-BTf" firstAttribute="top" secondItem="ZiD-kw-NLH" secondAttribute="bottom" constant="27" id="iLI-Qc-Gah"/>
+                            <constraint firstItem="2SV-Dg-9pk" firstAttribute="trailing" secondItem="ZiD-kw-NLH" secondAttribute="trailing" id="jsW-LI-h3u"/>
+                            <constraint firstItem="KCV-yY-mg2" firstAttribute="centerX" secondItem="2Tv-Lh-liO" secondAttribute="centerX" id="wEK-Sa-hyw"/>
+                            <constraint firstItem="2SV-Dg-9pk" firstAttribute="top" secondItem="lp9-4f-ykE" secondAttribute="bottom" constant="8" symbolic="YES" id="wFy-kr-3EP"/>
+                            <constraint firstItem="KrH-oi-Mr7" firstAttribute="top" secondItem="2SV-Dg-9pk" secondAttribute="bottom" constant="27" id="xV2-FK-lbh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cX7-tg-JIj"/>
                     </view>
                     <connections>
+                        <outlet property="currentSchoolEntry" destination="KTN-Wd-e3m" id="aT7-G0-aUR"/>
+                        <outlet property="emailEntry" destination="d8H-vP-zM9" id="mJp-1b-jmx"/>
                         <outlet property="firstNameEntry" destination="2SV-Dg-9pk" id="TZh-06-CUe"/>
+                        <outlet property="gradeLevelEntry" destination="2Tv-Lh-liO" id="b0R-Pc-Dah"/>
                         <outlet property="lastNameEntry" destination="ZiD-kw-NLH" id="pf9-Pr-j1x"/>
+                        <outlet property="phoneEntry" destination="YS5-8P-OdY" id="Wma-rD-hq5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0I1-sp-Ins" userLabel="First Responder" sceneMemberID="firstResponder"/>
