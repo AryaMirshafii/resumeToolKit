@@ -50,4 +50,14 @@ class userInfo {
         
         
     }
+    
+    
+    func fetchChangeText()  -> String{
+        let defaults = UserDefaults.standard
+        if let stringOne = defaults.string(forKey: defaultsKeys.changeText) {
+            // Some String Value
+            return stringOne
+        }
+        return "login"
+    }
 }

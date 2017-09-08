@@ -187,7 +187,7 @@ class dataManager{
         do {
             try managedContext.save()
             user = try managedContext.fetch(userRequest)
-            user.removeAll()
+            
             user.append(savedObject)
             print("First name saved")
         } catch let error as NSError {
@@ -223,7 +223,7 @@ class dataManager{
         do {
             try managedContext.save()
             user = try managedContext.fetch(userRequest)
-            user.removeAll()
+            
             user.append(savedObject)
             print("Last name saved")
         } catch let error as NSError {
@@ -270,7 +270,7 @@ class dataManager{
         do {
             try managedContext.save()
             user = try managedContext.fetch(userRequest)
-            user.removeAll()
+            
             user.append(savedObject)
             print("email Saved!")
         } catch let error as NSError {
@@ -324,7 +324,7 @@ class dataManager{
         do {
             try managedContext.save()
             user = try managedContext.fetch(userRequest)
-            user.removeAll()
+            
             user.append(savedObject)
             print("phone number Saved!")
         } catch let error as NSError {
@@ -390,7 +390,7 @@ class dataManager{
         do {
             try managedContext.save()
             user = try managedContext.fetch(userRequest)
-            user.removeAll()
+            
             user.append(savedObject)
             print("phone number Saved!")
         } catch let error as NSError {
@@ -463,7 +463,7 @@ class dataManager{
         do {
             try managedContext.save()
             user = try managedContext.fetch(userRequest)
-            user.removeAll()
+            
             user.append(savedObject)
             print("grade level Saved!")
         } catch let error as NSError {
@@ -539,14 +539,19 @@ class dataManager{
         
         savedObject.setValue(gradeLevel,forKeyPath: "gradeLevel")
         
-        
+        if( user.last?.value(forKeyPath: "schoolWork") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "schoolWork") as! String ,forKeyPath: "schoolWork")
+        }
+        if( user.last?.value(forKeyPath: "experience") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
+        }
         
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
             try managedContext.save()
             user = try managedContext.fetch(userRequest)
-            user.removeAll()
+            
             user.append(savedObject)
             print("skills Saved!")
         } catch let error as NSError {
@@ -621,12 +626,12 @@ class dataManager{
         savedObject.setValue(gradeLevel,forKeyPath: "gradeLevel")
         
         
-        guard let skills  = user.last?.value(forKeyPath: "skills") else {
-            print("No skills to submit")
-            return
+        if( user.last?.value(forKeyPath: "schoolWork") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "schoolWork") as! String ,forKeyPath: "schoolWork")
         }
-        
-        savedObject.setValue(skills,forKeyPath: "skills")
+        if( user.last?.value(forKeyPath: "skills") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skils")
+        }
         
         
         
@@ -635,7 +640,7 @@ class dataManager{
         do {
             try managedContext.save()
             user = try managedContext.fetch(userRequest)
-            user.removeAll()
+            
             user.append(savedObject)
             print("experience Saved!")
         } catch let error as NSError {
@@ -716,20 +721,29 @@ class dataManager{
         
         savedObject.setValue(gradeLevel,forKeyPath: "gradeLevel")
         
-        
+        /**
         guard let skills  = user.last?.value(forKeyPath: "skills") else {
             print("No phoneNumber to submit")
             return
         }
         
         savedObject.setValue(skills,forKeyPath: "skills")
+        */
         
+        
+        /**
         guard let experience  = user.last?.value(forKeyPath: "experience") else {
             print("No experience to submit")
             return
         }
+        */
+        if( user.last?.value(forKeyPath: "skills") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
+        }
+        if( user.last?.value(forKeyPath: "experience") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
+        }
         
-        savedObject.setValue(experience,forKeyPath: "experience")
         
         
         
@@ -738,9 +752,9 @@ class dataManager{
         do {
             try managedContext.save()
             user = try managedContext.fetch(userRequest)
-            user.removeAll()
+            
             user.append(savedObject)
-            print("experience Saved!")
+            print("schoolWork Saved!")
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

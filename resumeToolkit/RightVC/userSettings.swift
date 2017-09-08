@@ -35,6 +35,8 @@ class userSettings: UIViewController,UITextFieldDelegate{
         self.currentSchoolEntry.delegate = self
         self.gradeLevelEntry.delegate = self
         
+ 
+        
         
         loadData()
         userDefaultsDidChange()
@@ -44,10 +46,22 @@ class userSettings: UIViewController,UITextFieldDelegate{
         
         let notificationCenter = NotificationCenter.default
         
-        notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+        
+        
+        
+        firstNameEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        lastNameEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        emailEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        phoneEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        currentSchoolEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        gradeLevelEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
     }
     
      @objc func userDefaultsDidChange() {
+        loadData()
+        print("USER DEFAULTS CHANGED")
         let aUser = user.last
         if(userInfoController.fetchData() == "main"){
             firstNameEntry.text = aUser?.value(forKeyPath: "firstName") as? String
@@ -69,13 +83,18 @@ class userSettings: UIViewController,UITextFieldDelegate{
     }
     
     
-    @objc func textFieldDidChange() {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         dataController.savefirstName(firstName: firstNameEntry.text!)
         dataController.saveLastName(lastName: lastNameEntry.text!)
         dataController.saveEmail(email: emailEntry.text!)
         dataController.savePhoneNumber(phoneNumber: phoneEntry.text!)
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
         dataController.saveGradeLevel(gradeLevel: gradeLevelEntry.text!)
+        
+        
+        let aRandomNumber = String(arc4random_uniform(100) + 1)
+        print("!!!" + aRandomNumber)
+        userInfoController.saveChangeText(text: aRandomNumber)
     }
     
     

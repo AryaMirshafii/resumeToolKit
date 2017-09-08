@@ -40,12 +40,12 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
         print(theCategory)
         if(theCategory == "Skill"){
-            dataController.saveSkills(skills: "Skill" + "_" + theCategory + "_" + entryDescription.text)
+            dataController.saveSkills(skills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(theCategory == "Experience"){
             
-            dataController.saveExperience(experience: "Experience" + "_" + theCategory + "_" + entryDescription.text)
+            dataController.saveExperience(experience: "Experience" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(theCategory == "Schoolwork"){
-            dataController.saveSchoolWork(schoolWork: "SchoolWork" + "_" + theCategory + "_" + entryDescription.text)
+            dataController.saveSchoolWork(schoolWork: "SchoolWork" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
@@ -65,11 +65,16 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        theCategory = pickerData[row]
-        return theCategory
+        
+        
+        return pickerData[row]
     }
     
-    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        theCategory = pickerData[row]
+        print("The category is" + theCategory + "___" + String(row))
+        //self.view.endEditing(true)
+    }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         

@@ -23,7 +23,7 @@ class testPDFGenerator {
     
     
     func createPDFFileAndReturnPath() -> String {
-        
+        loadData()
         let fileName = "pdffilename.pdf"
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0] as! NSString

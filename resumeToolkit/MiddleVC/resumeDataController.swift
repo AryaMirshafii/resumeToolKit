@@ -33,7 +33,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         
         
-        setUpData()
+        self.setUpData()
         
         
         let anExperience = resumeItem(name: "java",description: " I became proficient in java after taking cs1331")
@@ -58,6 +58,8 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     }
     
     @objc func userDefaultsDidChange() {
+        setUpData()
+        generateItemsDict()
         self.tableView.reloadData()
     }
     
@@ -80,15 +82,17 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     }
     var counter = 0
     func generateItemsDict(){
+        self.setUpData()
         let aUser = user.last
         for aSection in sections {
             let userExpereience = aUser?.value(forKeyPath: "experience") as? String
             let userSkills = aUser?.value(forKeyPath: "skills") as? String
             let userSchoolWork = aUser?.value(forKeyPath: "schoolWork") as? String
-            
+            let itemsArr = itemsDict[aSection]
             
             if(aSection == "Experience" && userExpereience != nil){
                 itemsDict[aSection] = [createResumeItem(description: userExpereience!)]
+                //itemsArr.append([createResumeItem(description: userExpereience!)])
                 counter += 1
             }
             
@@ -100,7 +104,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             if(aSection == "Schoolwork" && userSchoolWork != nil){
                 itemsDict[aSection] = [createResumeItem(description: userSchoolWork!)]
                 counter += 1
-                print("creating)
+                
             }
             
         }

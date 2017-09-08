@@ -19,15 +19,21 @@ class pdfView:UIViewController {
         userDefaultsDidChange()
         let notificationCenter = NotificationCenter.default
         
-        notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         webView.scalesPageToFit = true
         
     }
     
     @objc func userDefaultsDidChange() {
-        if(userInfoController.fetchData() == "main"){
+        print("I AM WORKING")
+        if(userInfoController.fetchData() == "main"  ){
             loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         }
+        
+        if(userInfoController.fetchChangeText() != "bbb"){
+            loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+        }
+        
         
     }
     override func didReceiveMemoryWarning() {

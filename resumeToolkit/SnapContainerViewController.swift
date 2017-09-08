@@ -72,7 +72,7 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func userDefaultsDidChange() {
-        if(infoController.fetchData() == "main"){
+        if(infoController.fetchData() == "main" && infoController.fetchChangeText() == "bbb"){
             self.middleVc = viewArray[1]
             setupHorizontalScrollView()
         }
