@@ -44,7 +44,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         } else if(theCategory == "Experience"){
             
             dataController.saveExperience(experience: "Experience" + "_" + theCategory + "_" + entryDescription.text)
-        } else if(theCategory == "SchoolWork"){
+        } else if(theCategory == "Schoolwork"){
             dataController.saveSchoolWork(schoolWork: "SchoolWork" + "_" + theCategory + "_" + entryDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
