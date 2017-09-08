@@ -14,6 +14,8 @@ class userInfo {
     //stores the keys for settings values
     struct defaultsKeys {
         static let screenToShow = "login"
+        static let changeText = "bbb"
+        
         
         
     }
@@ -35,6 +37,15 @@ class userInfo {
     func save(screen: String) {
         let defaults = UserDefaults.standard
         defaults.set(screen, forKey: defaultsKeys.screenToShow)
+        //defaults.set("Another String Value", forKey: defaultsKeys.keyTwo)
+        
+        
+    }
+    
+    
+    func saveChangeText(text: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(text, forKey: defaultsKeys.changeText)
         //defaults.set("Another String Value", forKey: defaultsKeys.keyTwo)
         
         

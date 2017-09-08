@@ -12,6 +12,14 @@
 		D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10628921F6080E7001880AD /* secondLoginScreen.swift */; };
 		D125BA821F608B3E0077C0BD /* userInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D125BA811F608B3E0077C0BD /* userInfo.swift */; };
 		D133C6A71F5A60600080B598 /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D133C6A61F5A60600080B598 /* dataManager.swift */; };
+		D152E3A61F61D741002F5F54 /* resumeDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3A51F61D741002F5F54 /* resumeDataController.swift */; };
+		D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3AF1F61DDC5002F5F54 /* SearchBarView.swift */; };
+		D152E3B21F61DE94002F5F54 /* resumeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B11F61DE94002F5F54 /* resumeItem.swift */; };
+		D152E3B81F620630002F5F54 /* entryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B71F620630002F5F54 /* entryCell.swift */; };
+		D152E3BA1F621B5C002F5F54 /* editViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B91F621B5C002F5F54 /* editViewController.swift */; };
+		D152E3BC1F624C15002F5F54 /* experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BB1F624C15002F5F54 /* experience.swift */; };
+		D152E3BE1F624C36002F5F54 /* skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BD1F624C36002F5F54 /* skill.swift */; };
+		D152E3C01F624C53002F5F54 /* schoolWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BF1F624C53002F5F54 /* schoolWork.swift */; };
 		D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286EC1F60A6B400CAD85A /* userSettings.swift */; };
 		D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */; };
 		D18286F31F618FC700CAD85A /* pdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F21F618FC700CAD85A /* pdfView.swift */; };
@@ -31,6 +39,14 @@
 		D10628921F6080E7001880AD /* secondLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondLoginScreen.swift; sourceTree = "<group>"; };
 		D125BA811F608B3E0077C0BD /* userInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userInfo.swift; sourceTree = "<group>"; };
 		D133C6A61F5A60600080B598 /* dataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
+		D152E3A51F61D741002F5F54 /* resumeDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resumeDataController.swift; sourceTree = "<group>"; };
+		D152E3AF1F61DDC5002F5F54 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		D152E3B11F61DE94002F5F54 /* resumeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resumeItem.swift; sourceTree = "<group>"; };
+		D152E3B71F620630002F5F54 /* entryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entryCell.swift; sourceTree = "<group>"; };
+		D152E3B91F621B5C002F5F54 /* editViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editViewController.swift; sourceTree = "<group>"; };
+		D152E3BB1F624C15002F5F54 /* experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = experience.swift; sourceTree = "<group>"; };
+		D152E3BD1F624C36002F5F54 /* skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skill.swift; sourceTree = "<group>"; };
+		D152E3BF1F624C53002F5F54 /* schoolWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = schoolWork.swift; sourceTree = "<group>"; };
 		D18286EC1F60A6B400CAD85A /* userSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userSettings.swift; sourceTree = "<group>"; };
 		D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testPDFGenerator.swift; sourceTree = "<group>"; };
 		D18286F21F618FC700CAD85A /* pdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdfView.swift; sourceTree = "<group>"; };
@@ -66,9 +82,49 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		D152E3AB1F61DD04002F5F54 /* MiddleVC */ = {
+			isa = PBXGroup;
+			children = (
+				D152E3AF1F61DDC5002F5F54 /* SearchBarView.swift */,
+				D152E3B71F620630002F5F54 /* entryCell.swift */,
+				D152E3A51F61D741002F5F54 /* resumeDataController.swift */,
+				D152E3B91F621B5C002F5F54 /* editViewController.swift */,
+			);
+			path = MiddleVC;
+			sourceTree = "<group>";
+		};
+		D152E3AC1F61DD14002F5F54 /* LeftVC */ = {
+			isa = PBXGroup;
+			children = (
+				D18286F21F618FC700CAD85A /* pdfView.swift */,
+			);
+			path = LeftVC;
+			sourceTree = "<group>";
+		};
+		D152E3AD1F61DD2A002F5F54 /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				D10628921F6080E7001880AD /* secondLoginScreen.swift */,
+				D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */,
+			);
+			path = LoginVC;
+			sourceTree = "<group>";
+		};
+		D152E3AE1F61DD65002F5F54 /* RightVC */ = {
+			isa = PBXGroup;
+			children = (
+				D18286EC1F60A6B400CAD85A /* userSettings.swift */,
+			);
+			path = RightVC;
+			sourceTree = "<group>";
+		};
 		D1E457821F5A175C00D1E030 = {
 			isa = PBXGroup;
 			children = (
+				D152E3B11F61DE94002F5F54 /* resumeItem.swift */,
+				D152E3BB1F624C15002F5F54 /* experience.swift */,
+				D152E3BD1F624C36002F5F54 /* skill.swift */,
+				D152E3BF1F624C53002F5F54 /* schoolWork.swift */,
 				D106288D1F6066FE001880AD /* Fonts */,
 				D1E4578D1F5A175D00D1E030 /* resumeToolkit */,
 				D1E4578C1F5A175D00D1E030 /* Products */,
@@ -86,15 +142,15 @@
 		D1E4578D1F5A175D00D1E030 /* resumeToolkit */ = {
 			isa = PBXGroup;
 			children = (
+				D152E3AB1F61DD04002F5F54 /* MiddleVC */,
 				D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */,
-				D18286F21F618FC700CAD85A /* pdfView.swift */,
+				D152E3AC1F61DD14002F5F54 /* LeftVC */,
 				D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */,
 				D1E457901F5A175D00D1E030 /* ViewController.swift */,
-				D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */,
+				D152E3AD1F61DD2A002F5F54 /* LoginVC */,
 				D133C6A61F5A60600080B598 /* dataManager.swift */,
 				D1E457921F5A175E00D1E030 /* Main.storyboard */,
-				D10628921F6080E7001880AD /* secondLoginScreen.swift */,
-				D18286EC1F60A6B400CAD85A /* userSettings.swift */,
+				D152E3AE1F61DD65002F5F54 /* RightVC */,
 				D125BA811F608B3E0077C0BD /* userInfo.swift */,
 				D1E457981F5A175F00D1E030 /* Assets.xcassets */,
 				D1E4579A1F5A176000D1E030 /* LaunchScreen.storyboard */,
@@ -181,14 +237,22 @@
 			files = (
 				D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */,
 				D18286F31F618FC700CAD85A /* pdfView.swift in Sources */,
+				D152E3C01F624C53002F5F54 /* schoolWork.swift in Sources */,
 				D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */,
+				D152E3BE1F624C36002F5F54 /* skill.swift in Sources */,
 				D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */,
+				D152E3A61F61D741002F5F54 /* resumeDataController.swift in Sources */,
 				D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */,
 				D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */,
 				D125BA821F608B3E0077C0BD /* userInfo.swift in Sources */,
+				D152E3BC1F624C15002F5F54 /* experience.swift in Sources */,
+				D152E3BA1F621B5C002F5F54 /* editViewController.swift in Sources */,
+				D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */,
+				D152E3B21F61DE94002F5F54 /* resumeItem.swift in Sources */,
 				D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */,
 				D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */,
 				D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */,
+				D152E3B81F620630002F5F54 /* entryCell.swift in Sources */,
 				D133C6A71F5A60600080B598 /* dataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
