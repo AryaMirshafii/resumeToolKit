@@ -100,6 +100,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             if(aSection == "Schoolwork" && userSchoolWork != nil){
                 itemsDict[aSection] = [createResumeItem(description: userSchoolWork!)]
                 counter += 1
+                print("creating)
             }
             
         }
@@ -109,14 +110,11 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         let entryInfo = description.components(separatedBy: "_")
         
         if(entryInfo[0] == "Skill"){
+            
             return skill(name: entryInfo[1], description: entryInfo[2])
-        }
-        
-        if(entryInfo[0] == "Experience"){
+        } else if(entryInfo[0] == "Experience"){
             return experience(name: entryInfo[1], description: entryInfo[2])
-        }
-        
-        if(entryInfo[0] == "Schoolwork"){
+        } else if(entryInfo[0] == "Schoolwork"){
             return schoolWork(name: entryInfo[1], description: entryInfo[2])
         }
         return resumeItem(name: entryInfo[1], description: entryInfo[2])
