@@ -155,7 +155,7 @@ class dataManager{
         }
         
         
-        infoController.save(screen: "main")
+        //ininfoController.save(screen: "main")
         return true
     }
     
@@ -392,7 +392,7 @@ class dataManager{
             user = try managedContext.fetch(userRequest)
             
             user.append(savedObject)
-            print("phone number Saved!")
+            print("school name Saved!")
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

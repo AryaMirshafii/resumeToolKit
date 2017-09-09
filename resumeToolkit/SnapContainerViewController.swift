@@ -75,6 +75,7 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate {
         if(infoController.fetchData() == "main" && infoController.fetchChangeText() == "bbb"){
             self.middleVc = viewArray[1]
             setupHorizontalScrollView()
+            //NotificationCenter.default.removeObserver(self)
         }
     }
     

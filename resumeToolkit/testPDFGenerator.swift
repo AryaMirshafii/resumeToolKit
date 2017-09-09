@@ -16,45 +16,41 @@ class testPDFGenerator {
     var user: [NSManagedObject] = []
     init() {
         loadData()
-        self.pdfFilePath = createPDFFileAndReturnPath()
+        //self.pdfFilePath = createPDFFileAndReturnPath()
         
     }
     
     
     
     func createPDFFileAndReturnPath() -> String {
-        loadData()
+        
         let fileName = "pdffilename.pdf"
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0] as! NSString
+        let documentsDirectory = paths[0] as NSString
         let pathForPDF = documentsDirectory.appending("/" + fileName)
         
-        UIGraphicsBeginPDFContextToFile(pathForPDF, CGRect.zero, nil)
-        
-        UIGraphicsBeginPDFPageWithInfo(CGRect(x: 0, y: 0, width: 2771, height: 3586), nil)
         
         
+        let text =  getText()
         
+        
+        
+        let A4paperSize = CGSize(width: 2771, height: 3586)
+        let pdf = SimplePDF(pageSize: A4paperSize)
         let font = UIFont(name: "Helvetica Bold", size: 60.0)
-       
-        let textRect = CGRect(x: 5, y: 3, width: 2766, height: 3583)
-        var paragraphStyle:NSMutableParagraphStyle = NSMutableParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-        paragraphStyle.alignment = NSTextAlignment.left
-        paragraphStyle.lineBreakMode = NSLineBreakMode.byTruncatingHead
         
-        let textColor = UIColor.black
+        pdf.setFont( font! )
+        pdf.addText(text)
         
-        let textFontAttributes = [
-            NSAttributedStringKey.font: font!,
-            NSAttributedStringKey.foregroundColor: textColor,
-            NSAttributedStringKey.paragraphStyle: paragraphStyle
-        ]
         
-        let text:NSString = getText()
+        let pdfData = pdf.generatePDFdata()
         
-        text.draw(in: textRect, withAttributes: textFontAttributes)
+        // save as a local file
         
-        UIGraphicsEndPDFContext()
+        
+        try? pdfData.write(to: URL(fileURLWithPath: pathForPDF), options: .atomic)
+        
+        
         
         return pathForPDF
     }
@@ -62,14 +58,15 @@ class testPDFGenerator {
     
     
     
-    func getText() -> NSString{
+    func getText() -> String{
+        loadData()
         let aUser = user.last
         
         
         
         guard let firstName  = aUser?.value(forKeyPath: "firstName") as? String  else {
             //print("nothing to see here")
-            return""
+            return ""
             
             
             
@@ -78,7 +75,7 @@ class testPDFGenerator {
         //var lastname = aUser.value(forKeyPath: "lastName") as? String
         guard let lastName  = aUser?.value(forKeyPath: "lastName") as? String  else {
             //print("nothing to see here")
-            return""
+            return ""
             
             
             
@@ -111,7 +108,7 @@ class testPDFGenerator {
         
         guard let schoolName  = aUser?.value(forKeyPath: "schoolName") as? String  else {
             //print("nothing to see here")
-            return""
+            return ""
         }
         
         
@@ -133,10 +130,12 @@ class testPDFGenerator {
         
         """
         */
-        let secondline = (firstName + " " + lastName) + "\n" + email  + "\n" + phoneNumber + "\n" + schoolName + "\n" + gradeLevel
+        //let secondline = NSString(firstName + " " + lastName) + "\n" + email  + "\n" + phoneNumber + "\n" + schoolName + "\n" + gradeLevel)
        
+        let secondline = ( ("\(firstName) \(lastName) \n\(email)") + " \n\(phoneNumber)\n\(schoolName)\n\(gradeLevel)")
+        //let aLine = [firstName,lastName,email,phoneNumber,schoolName,gradeLevel]
         
-        return secondline as NSString
+        return secondline
     }
     
     

@@ -58,6 +58,6 @@ class userInfo {
             // Some String Value
             return stringOne
         }
-        return "login"
+        return "bbb"
     }
 }

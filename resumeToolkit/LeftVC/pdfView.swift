@@ -26,11 +26,11 @@ class pdfView:UIViewController {
     
     @objc func userDefaultsDidChange() {
         print("I AM WORKING")
-        if(userInfoController.fetchData() == "main"  ){
+        if(userInfoController.fetchData() == "main" && userInfoController.fetchChangeText() == "bbb" ){
+            print("in1")
             loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
-        }
-        
-        if(userInfoController.fetchChangeText() != "bbb"){
+        }else if(userInfoController.fetchChangeText() != "bbb"){
+            print("in 2")
             loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         }
         

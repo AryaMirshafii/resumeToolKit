@@ -76,14 +76,6 @@ class userSettings: UIViewController,UITextFieldDelegate{
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        
-        view.endEditing(true)
-        
-        
-    }
-    
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
         dataController.savefirstName(firstName: firstNameEntry.text!)
         dataController.saveLastName(lastName: lastNameEntry.text!)
         dataController.saveEmail(email: emailEntry.text!)
@@ -95,6 +87,26 @@ class userSettings: UIViewController,UITextFieldDelegate{
         let aRandomNumber = String(arc4random_uniform(100) + 1)
         print("!!!" + aRandomNumber)
         userInfoController.saveChangeText(text: aRandomNumber)
+        view.endEditing(true)
+        
+        
+    }
+    
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        /**
+        dataController.savefirstName(firstName: firstNameEntry.text!)
+        dataController.saveLastName(lastName: lastNameEntry.text!)
+        dataController.saveEmail(email: emailEntry.text!)
+        dataController.savePhoneNumber(phoneNumber: phoneEntry.text!)
+        dataController.saveSchool(schoolName: currentSchoolEntry.text!)
+        dataController.saveGradeLevel(gradeLevel: gradeLevelEntry.text!)
+        
+        
+        let aRandomNumber = String(arc4random_uniform(100) + 1)
+        print("!!!" + aRandomNumber)
+        userInfoController.saveChangeText(text: aRandomNumber)
+ */
     }
     
     

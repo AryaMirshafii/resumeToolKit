@@ -23,6 +23,7 @@
 		D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286EC1F60A6B400CAD85A /* userSettings.swift */; };
 		D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */; };
 		D18286F31F618FC700CAD85A /* pdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F21F618FC700CAD85A /* pdfView.swift */; };
+		D18CF79A1F63A01C00C625E4 /* SimplePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18CF7991F63A01C00C625E4 /* SimplePDF.swift */; };
 		D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */; };
 		D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457901F5A175D00D1E030 /* ViewController.swift */; };
 		D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E457921F5A175E00D1E030 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		D18286EC1F60A6B400CAD85A /* userSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userSettings.swift; sourceTree = "<group>"; };
 		D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testPDFGenerator.swift; sourceTree = "<group>"; };
 		D18286F21F618FC700CAD85A /* pdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdfView.swift; sourceTree = "<group>"; };
+		D18CF7991F63A01C00C625E4 /* SimplePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePDF.swift; sourceTree = "<group>"; };
 		D1E4578B1F5A175D00D1E030 /* resumeToolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = resumeToolkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E457901F5A175D00D1E030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		D1E457821F5A175C00D1E030 = {
 			isa = PBXGroup;
 			children = (
+				D18CF7991F63A01C00C625E4 /* SimplePDF.swift */,
 				D152E3B11F61DE94002F5F54 /* resumeItem.swift */,
 				D152E3BB1F624C15002F5F54 /* experience.swift */,
 				D152E3BD1F624C36002F5F54 /* skill.swift */,
@@ -249,6 +252,7 @@
 				D152E3BA1F621B5C002F5F54 /* editViewController.swift in Sources */,
 				D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */,
 				D152E3B21F61DE94002F5F54 /* resumeItem.swift in Sources */,
+				D18CF79A1F63A01C00C625E4 /* SimplePDF.swift in Sources */,
 				D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */,
 				D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */,
 				D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */,
@@ -393,11 +397,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JK3GN4CAL;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = EngineeringforSocialInnovation.resumeToolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -408,11 +413,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JK3GN4CAL;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = EngineeringforSocialInnovation.resumeToolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
