@@ -38,7 +38,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     }
     @IBAction func goBack(_ sender: UIButton){
         
-        print(theCategory)
+        print("!!!" + theCategory!)
         if(theCategory == "Skill"){
             dataController.saveSkills(skills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(theCategory == "Experience"){

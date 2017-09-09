@@ -39,6 +39,8 @@ class testPDFGenerator {
         let pdf = SimplePDF(pageSize: A4paperSize)
         let font = UIFont(name: "Helvetica Bold", size: 60.0)
         
+        
+        
         pdf.setFont( font! )
         pdf.addText(text)
         
