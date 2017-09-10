@@ -117,8 +117,10 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             
             return skill(name: entryInfo[1], description: entryInfo[2])
         } else if(entryInfo[0] == "Experience"){
+            
             return experience(name: entryInfo[1], description: entryInfo[2])
         } else if(entryInfo[0] == "Schoolwork"){
+            
             return schoolWork(name: entryInfo[1], description: entryInfo[2])
         }
         return resumeItem(name: entryInfo[1], description: entryInfo[2])

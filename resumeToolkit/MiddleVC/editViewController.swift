@@ -17,11 +17,13 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var entryPicker: UIPickerView!
     @IBOutlet weak var entryName: UITextField!
     @IBOutlet weak var entryDescription: UITextView!
+    @IBOutlet weak var classList: UIView!
     
     var pickerData: [String] = [String]()
     var theCategory: String!
     
     var infoController = userInfo()
+    let skillPicker = UIPickerView()
     
     var reloadCounter = 0
     override func viewDidLoad() {
@@ -35,11 +37,23 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         pickerData.append("Schoolwork")
         self.entryPicker.delegate = self
         self.entryPicker.dataSource = self
+        self.entryPicker.layer.cornerRadius = 20
+        
+        
+        
+        
+        theCategory = pickerData[0]
+        if(theCategory == "Skill"){
+            classList.isHidden = true
+            entryName.frame = CGRect(x: 100, y: 11, width: entryName.frame.width, height: entryName.frame.height)
+        }
     }
     @IBAction func goBack(_ sender: UIButton){
         
         print("!!!" + theCategory!)
         if(theCategory == "Skill"){
+            classList.isHidden = true
+            
             dataController.saveSkills(skills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(theCategory == "Experience"){
             
@@ -72,8 +86,13 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         theCategory = pickerData[row]
-        print("The category is" + theCategory + "___" + String(row))
-        //self.view.endEditing(true)
+        if(theCategory == "Skill"){
+            classList.isHidden = true
+            entryName.frame = CGRect(x: 100, y: 11, width: entryName.frame.width, height: entryName.frame.height)
+        } else {
+            classList.isHidden = false
+            
+        }
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
