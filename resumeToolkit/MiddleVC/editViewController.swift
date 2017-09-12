@@ -19,11 +19,22 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var entryDescription: UITextView!
     @IBOutlet weak var classList: UIView!
     
+    @IBOutlet weak var nameView: UIView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+     @IBOutlet weak var classNamePicker: UIPickerView!
+    
+    
+    @IBOutlet weak var classNamesLabel: UILabel!
+    
     var pickerData: [String] = [String]()
-    var theCategory: String!
+    var entryType: String!
     
     var infoController = userInfo()
-    let skillPicker = UIPickerView()
+    
+    var skillData: [String] = [String]()
+    var selectedItem = " "
     
     var reloadCounter = 0
     override func viewDidLoad() {
@@ -35,30 +46,69 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         pickerData.append("Skill")
         pickerData.append("Experience")
         pickerData.append("Schoolwork")
+        loadSkills()
+        
         self.entryPicker.delegate = self
         self.entryPicker.dataSource = self
         self.entryPicker.layer.cornerRadius = 20
+        self.classNamePicker.layer.cornerRadius = 20
+        
+        self.classNamePicker.dataSource = self
+        self.classNamePicker.delegate = self
         
         
         
         
-        theCategory = pickerData[0]
-        if(theCategory == "Skill"){
-            classList.isHidden = true
-            entryName.frame = CGRect(x: 100, y: 11, width: entryName.frame.width, height: entryName.frame.height)
-        }
+        entryType = pickerData[0]
+        entryName.text = skillData[0]
+        nameLabel.text = "Skill Name:"
+        //classList.isHidden = true
+        //self.entryName.frame = CGRect(x: 126, y: 177, width: entryName.frame.width, height: entryName.frame.height)
+        
+    }
+    
+    func loadSkills(){
+        skillData.append("Active Learning")
+        skillData.append("Active Listening")
+        skillData.append("Critical Thinking")
+        skillData.append("Learning Strategies")
+        skillData.append("Mathematics")
+        skillData.append("Monitoring")
+        skillData.append("Reading Comprehension")
+        skillData.append("Science")
+        skillData.append("Speaking")
+        skillData.append("Writing")
+        skillData.append("Complex Problem Solving")
+        skillData.append("Time Management")
+        skillData.append("Coordination")
+        skillData.append("Instructing")
+        skillData.append("Negotiation")
+        skillData.append("Persuasion")
+        skillData.append("Service Orientation")
+        skillData.append("Social Perceptiveness")
+        skillData.append("Judgment and Decision Making")
+        skillData.append("Equipment Maintenance")
+        skillData.append("Equipment Selection")
+        skillData.append("Installation")
+        skillData.append("Operation and Control")
+        skillData.append("Programming")
+        skillData.append("Quality Control Analysis")
+        skillData.append("Repairing")
+        skillData.append("Technology Design")
+        skillData.append("Troubleshooting")
+        
     }
     @IBAction func goBack(_ sender: UIButton){
         
-        print("!!!" + theCategory!)
-        if(theCategory == "Skill"){
+        print("!!!" + entryType!)
+        if(entryType == "Skill"){
             classList.isHidden = true
             
             dataController.saveSkills(skills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
-        } else if(theCategory == "Experience"){
+        } else if(entryType == "Experience"){
             
             dataController.saveExperience(experience: "Experience" + "_" + entryName.text! + "_" + entryDescription.text)
-        } else if(theCategory == "Schoolwork"){
+        } else if(entryType == "Schoolwork"){
             dataController.saveSchoolWork(schoolWork: "SchoolWork" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
@@ -74,24 +124,91 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     // The number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
+        
+        
+        if pickerView == entryPicker {
+            return pickerData.count
+        } else if pickerView == classNamePicker{
+            return skillData.count
+        }
+        return 1
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         
-        return pickerData[row]
+        if pickerView == entryPicker {
+            return pickerData[row]
+        } else if pickerView == classNamePicker{
+            return skillData[row]
+        }
+        
+        return " "
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        theCategory = pickerData[row]
-        if(theCategory == "Skill"){
-            classList.isHidden = true
-            entryName.frame = CGRect(x: 100, y: 11, width: entryName.frame.width, height: entryName.frame.height)
-        } else {
-            classList.isHidden = false
+        if pickerView == entryPicker {
+            entryType = pickerData[row]
+            if(entryType == "Skill"){
+                classList.isHidden = false
+                nameLabel.text = "Skill Name:"
+                classList.frame = CGRect(x: 25, y: 161, width: classList.frame.width, height: classList.frame.height)
+                nameView.frame = CGRect(x: 25, y: 296, width: nameView.frame.width, height: nameView.frame.height)
+            } else if(entryType == "Experience"){
+                classList.isHidden = true
+                nameView.frame = CGRect(x: 25, y: 161, width: nameView.frame.width, height: nameView.frame.height)
+                nameLabel.text = "Experience Name:"
+            }else {
+                classList.isHidden = false
+                
+            }
+        } else if pickerView == classNamePicker {
+            selectedItem = skillData[row]
+            entryName.text = selectedItem
             
+            if(selectedItem == skillData[0]){
+                entryDescription.text = "Understanding the implications of new information for both current and future problem-solving and decision-making."
+            } else if (selectedItem == skillData[1]){
+                entryDescription.text = "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."
+            } else if (selectedItem == skillData[2]){
+                entryDescription.text = "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems."
+            } else if (selectedItem == skillData[3]){
+                entryDescription.text = "Selecting and using training/instructional methods and procedures appropriate for the situation when learning or teaching new things."
+            } else if (selectedItem == skillData[4]){
+                entryDescription.text = "Using mathematics to solve problems."
+            } else if (selectedItem == skillData[5]){
+                entryDescription.text = "Monitoring/Assessing performance of yourself, other individuals, or organizations to make improvements or take corrective action."
+            } else if (selectedItem == skillData[6]){
+                entryDescription.text = "Understanding written sentences and paragraphs in work related documents."
+            } else if (selectedItem == skillData[7]){
+                entryDescription.text = "Using scientific rules and methods to solve problems."
+            } else if (selectedItem == skillData[8]){
+                entryDescription.text =  "Talking to others to convey information effectively."
+            } else if (selectedItem == skillData[9]){
+                entryDescription.text = "Communicating effectively in writing as appropriate for the needs of the audience."
+            }
+            /**
+            else if (selectedItem == skillData[10]){
+                entryDescription.text
+            } else if (selectedItem == skillData[11]){
+                entryDescription.text
+            } else if (selectedItem == skillData[12]){
+                entryDescription.text
+            } else if (selectedItem == skillData[13]){
+                entryDescription.text
+            } else if (selectedItem == skillData[14]){
+                entryDescription.text
+            } else if (selectedItem == skillData[15]){
+                entryDescription.text
+            } else if (selectedItem == skillData[16]){
+                entryDescription.text
+            } else if (selectedItem == skillData[17]){
+                entryDescription.text
+            } else if (selectedItem == skillData[18]){
+                
+            }
+            */
         }
     }
     

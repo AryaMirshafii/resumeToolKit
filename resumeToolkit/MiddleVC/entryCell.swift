@@ -16,6 +16,6 @@ class entryCell : UITableViewCell{
     @IBOutlet weak var entryDescription: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+    self.entryDescription.layer.cornerRadius = 20
     }
 }

@@ -17,7 +17,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     
-    var resumeItems =  [resumeItem]()
+    
     
     var itemsDict = [String:[resumeItem]]()
     let sections = ["Experience", "Skills", "Schoolwork"]
@@ -28,29 +28,19 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         
         
         
-        
-        self.setUpData()
-        
-        
-        let anExperience = resumeItem(name: "java",description: " I became proficient in java after taking cs1331")
-        let aSkill = resumeItem(name: "Microsoft Office" , description: " I can create word documents as well as powerpoints and spreadsheets")
-        let schoolWork = resumeItem(name: "ECE2026" , description: "Introduction to signal processing")
+        //self.setUpData()
         
         
-        
-        
-        resumeItems.append(anExperience)
-        resumeItems.append(aSkill)
-        resumeItems.append(schoolWork)
         
         
         
         generateItemsDict()
-        super.viewDidLoad()
+        
         
         let notificationCenter = NotificationCenter.default
         
@@ -58,7 +48,6 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     }
     
     @objc func userDefaultsDidChange() {
-        setUpData()
         generateItemsDict()
         self.tableView.reloadData()
     }
@@ -82,23 +71,52 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     }
     var counter = 0
     func generateItemsDict(){
-        self.setUpData()
+        setUpData()
         let aUser = user.last
         for aSection in sections {
             let userExpereience = aUser?.value(forKeyPath: "experience") as? String
             let userSkills = aUser?.value(forKeyPath: "skills") as? String
             let userSchoolWork = aUser?.value(forKeyPath: "schoolWork") as? String
             let itemsArr = itemsDict[aSection]
-            
+            print("going here")
             if(aSection == "Experience" && userExpereience != nil){
-                itemsDict[aSection] = [createResumeItem(description: userExpereience!)]
-                //itemsArr.append([createResumeItem(description: userExpereience!)])
+                /**
+                //let updatedExperiences = itemsDict[aSection]! + [createResumeItem(description: userExpereience!)]
+               // itemsDict[aSection] = [createResumeItem(description: String(describing: userExpereience))]
+                
+                
+                
+                
+                if var itemValues = itemsDict[aSection] {
+                    //print(wordValues)
+                    //print(songsDict[lower])
+                    if(!itemValues.isEmpty){
+                        itemValues.append(createResumeItem(description: String(describing: userExpereience)))
+                    }
+                    
+                    //words.remove(at:indx)
+                    // print(wordValues)
+                    
+                    
+                    itemsDict[aSection] = itemValues
+                    
+                } else {
+                    
+                }
                 counter += 1
+             */
+                
+                itemsDict[aSection] = [createResumeItem(description: userExpereience!)]
+                counter += 1
+                    //[createResumeItem(description: String(describing: userExpereience))]
             }
             
             if(aSection == "Skills" && userSkills != nil){
                 itemsDict[aSection] = [createResumeItem(description: userSkills!)]
                 counter += 1
+                
+                
+                
             }
             
             if(aSection == "Schoolwork" && userSchoolWork != nil){
@@ -201,7 +219,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         //print(anItem.name)
         cell.entryName.text = items![indexPath.row].name
         cell.entryDescription.text = items![indexPath.row].description
-        self.tableView.rowHeight = 226
+        self.tableView.rowHeight = 180
         
        return cell
     }

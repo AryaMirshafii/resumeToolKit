@@ -630,7 +630,7 @@ class dataManager{
             savedObject.setValue(user.last?.value(forKeyPath: "schoolWork") as! String ,forKeyPath: "schoolWork")
         }
         if( user.last?.value(forKeyPath: "skills") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skils")
+            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
         }
         
         
