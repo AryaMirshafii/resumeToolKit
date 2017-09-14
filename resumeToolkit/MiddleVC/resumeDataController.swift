@@ -24,7 +24,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     var user: [NSManagedObject] = []
     var infoController = userInfo()
-    
+    var experrienceList = [resumeItem]()
     
     
     override func viewDidLoad() {
@@ -71,6 +71,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     }
     var counter = 0
     func generateItemsDict(){
+       
         setUpData()
         let aUser = user.last
         for aSection in sections {
@@ -79,35 +80,30 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             let userSchoolWork = aUser?.value(forKeyPath: "schoolWork") as? String
             let itemsArr = itemsDict[aSection]
             print("going here")
+            
+            var experienceArr = userExpereience?.components(separatedBy:"-")
+            if(experienceArr != nil){
+                //experienceArr = Array(Set(experienceArr!).subtracting([experienceArr![(experienceArr?.count)!]]))
+                 print(experienceArr)
+            }
+            
+           
             if(aSection == "Experience" && userExpereience != nil){
-                /**
-                //let updatedExperiences = itemsDict[aSection]! + [createResumeItem(description: userExpereience!)]
-               // itemsDict[aSection] = [createResumeItem(description: String(describing: userExpereience))]
+               
                 
-                
-                
-                
-                if var itemValues = itemsDict[aSection] {
-                    //print(wordValues)
-                    //print(songsDict[lower])
-                    if(!itemValues.isEmpty){
-                        itemValues.append(createResumeItem(description: String(describing: userExpereience)))
+                if(experienceArr != nil){
+                    for anExperience in experienceArr!{
+                        experrienceList.append(createResumeItem(description: anExperience))
                     }
-                    
-                    //words.remove(at:indx)
-                    // print(wordValues)
-                    
-                    
-                    itemsDict[aSection] = itemValues
+                    itemsDict[aSection]  = experrienceList
                     
                 } else {
-                    
+                    itemsDict[aSection] = [createResumeItem(description: userExpereience!)]
                 }
-                counter += 1
-             */
                 
-                itemsDict[aSection] = [createResumeItem(description: userExpereience!)]
                 counter += 1
+                
+                experrienceList.removeAll()
                     //[createResumeItem(description: String(describing: userExpereience))]
             }
             

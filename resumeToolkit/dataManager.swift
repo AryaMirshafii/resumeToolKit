@@ -563,7 +563,7 @@ class dataManager{
     
     func saveExperience(experience: String) {
         
-        
+        var anExperience = experience
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -576,7 +576,17 @@ class dataManager{
         let savedObject = NSManagedObject(entity: locationEntity,
                                           insertInto: managedContext)
         
-        savedObject.setValue(experience, forKeyPath: "experience")
+        
+        if( user.last?.value(forKeyPath: "experience") != nil){
+            anExperience += ("-" + (user.last?.value(forKeyPath: "experience") as! String))
+            savedObject.setValue(anExperience, forKeyPath: "experience")
+            
+        } else {
+            savedObject.setValue(( experience), forKeyPath: "experience")
+        }
+        
+        
+        
         guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
             print("No first name to submit")
             return
