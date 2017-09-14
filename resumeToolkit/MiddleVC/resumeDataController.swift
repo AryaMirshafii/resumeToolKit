@@ -112,8 +112,25 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             }
             
             if(aSection == "Skills" && userSkills != nil){
-                itemsDict[aSection] = [createResumeItem(description: userSkills!)]
-                counter += 1
+               // itemsDict[aSection] = [createResumeItem(description: userSkills!)]
+                //counter += 1
+                
+                
+                if var itemValues = itemsDict[aSection] {
+                    
+                    if(!itemValues.isEmpty){
+                        itemValues.append(createResumeItem(description: String(describing: userExpereience)))
+                    }
+                    
+                    //words.remove(at:indx)
+                    // print(wordValues)
+                    
+                    
+                    itemsDict[aSection] = itemValues
+                    
+                } else {
+                    itemsDict[aSection] = [createResumeItem(description: userSkills!)]
+                }
                 
                 
                 

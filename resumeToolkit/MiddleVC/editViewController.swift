@@ -43,8 +43,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.addGestureRecognizer(tap)
         
-        pickerData.append("Skill")
         pickerData.append("Experience")
+        pickerData.append("Skill")
         pickerData.append("Schoolwork")
         loadSkills()
         
