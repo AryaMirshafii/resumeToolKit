@@ -20,11 +20,12 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     var itemsDict = [String:[resumeItem]]()
-    let sections = ["Experience", "Skills", "Schoolwork"]
+    let sections = ["Experience", "Skills", "Courses"]
     
     var user: [NSManagedObject] = []
     var infoController = userInfo()
     var experrienceList = [resumeItem]()
+    var skillsList = [resumeItem]()
     
     
     override func viewDidLoad() {
@@ -77,11 +78,12 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         for aSection in sections {
             let userExpereience = aUser?.value(forKeyPath: "experience") as? String
             let userSkills = aUser?.value(forKeyPath: "skills") as? String
-            let userSchoolWork = aUser?.value(forKeyPath: "schoolWork") as? String
-            let itemsArr = itemsDict[aSection]
+            let usercourses = aUser?.value(forKeyPath: "courses") as? String
+           
             print("going here")
             
             var experienceArr = userExpereience?.components(separatedBy:"-")
+            var skillsArr = userSkills?.components(separatedBy:"-")
             if(experienceArr != nil){
                 //experienceArr = Array(Set(experienceArr!).subtracting([experienceArr![(experienceArr?.count)!]]))
                  print(experienceArr)
@@ -112,28 +114,29 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 //counter += 1
                 
                 
-                if var itemValues = itemsDict[aSection] {
-                    
-                    if(!itemValues.isEmpty){
-                        itemValues.append(createResumeItem(description: String(describing: userExpereience)))
+                
+                
+                
+                if(skillsArr != nil){
+                    for aSkill in skillsArr!{
+                        skillsList.append(createResumeItem(description: aSkill))
                     }
-                    
-                    //words.remove(at:indx)
-                    // print(wordValues)
-                    
-                    
-                    itemsDict[aSection] = itemValues
+                    itemsDict[aSection]  = skillsList
                     
                 } else {
                     itemsDict[aSection] = [createResumeItem(description: userSkills!)]
                 }
                 
+                counter += 1
+                
+                skillsList.removeAll()
+                
                 
                 
             }
             
-            if(aSection == "Schoolwork" && userSchoolWork != nil){
-                itemsDict[aSection] = [createResumeItem(description: userSchoolWork!)]
+            if(aSection == "courses" && usercourses != nil){
+                itemsDict[aSection] = [createResumeItem(description: usercourses!)]
                 counter += 1
                 
             }
@@ -150,9 +153,9 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         } else if(entryInfo[0] == "Experience"){
             
             return experience(name: entryInfo[1], description: entryInfo[2])
-        } else if(entryInfo[0] == "Schoolwork"){
+        } else if(entryInfo[0] == "courses"){
             
-            return schoolWork(name: entryInfo[1], description: entryInfo[2])
+            return course(name: entryInfo[1], description: entryInfo[2])
         }
         return resumeItem(name: entryInfo[1], description: entryInfo[2])
     }

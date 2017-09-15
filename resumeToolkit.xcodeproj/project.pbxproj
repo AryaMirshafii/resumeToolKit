@@ -32,6 +32,7 @@
 		D1E4579C1F5A176000D1E030 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E4579A1F5A176000D1E030 /* LaunchScreen.storyboard */; };
 		D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */; };
 		D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */; };
+		D1EF9D7F1F6C8B7300BEB77A /* course.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF9D7E1F6C8B7300BEB77A /* course.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		D1E4579D1F5A176000D1E030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginScreen.swift; sourceTree = "<group>"; };
+		D1EF9D7E1F6C8B7300BEB77A /* course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = course.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				D152E3BB1F624C15002F5F54 /* experience.swift */,
 				D152E3BD1F624C36002F5F54 /* skill.swift */,
 				D152E3BF1F624C53002F5F54 /* schoolWork.swift */,
+				D1EF9D7E1F6C8B7300BEB77A /* course.swift */,
 				D106288D1F6066FE001880AD /* Fonts */,
 				D1E4578D1F5A175D00D1E030 /* resumeToolkit */,
 				D1E4578C1F5A175D00D1E030 /* Products */,
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1EF9D7F1F6C8B7300BEB77A /* course.swift in Sources */,
 				D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */,
 				D18286F31F618FC700CAD85A /* pdfView.swift in Sources */,
 				D152E3C01F624C53002F5F54 /* schoolWork.swift in Sources */,

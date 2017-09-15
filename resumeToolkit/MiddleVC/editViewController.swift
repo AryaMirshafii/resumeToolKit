@@ -37,15 +37,17 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     var selectedItem = " "
     
     var reloadCounter = 0
+    var previousSkill = " "
     override func viewDidLoad() {
         super.viewDidLoad()
         entryDescription.text  = " "
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.addGestureRecognizer(tap)
         
-        pickerData.append("Experience")
+        
         pickerData.append("Skill")
-        pickerData.append("Schoolwork")
+        pickerData.append("Experience")
+        pickerData.append("Courses")
         loadSkills()
         
         self.entryPicker.delegate = self
@@ -62,6 +64,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         entryType = pickerData[0]
         entryName.text = skillData[0]
         nameLabel.text = "Skill Name:"
+        entryDescription.text = "Understanding the implications of new information for both current and future problem-solving and decision-making."
         //classList.isHidden = true
         //self.entryName.frame = CGRect(x: 126, y: 177, width: entryName.frame.width, height: entryName.frame.height)
         
@@ -108,8 +111,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         } else if(entryType == "Experience"){
             
             dataController.saveExperience(experience: "Experience" + "_" + entryName.text! + "_" + entryDescription.text)
-        } else if(entryType == "Schoolwork"){
-            dataController.saveSchoolWork(schoolWork: "SchoolWork" + "_" + entryName.text! + "_" + entryDescription.text)
+        } else if(entryType == "Course"){
+            dataController.saveCourses(courses: "Course" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
@@ -151,11 +154,16 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         if pickerView == entryPicker {
             entryType = pickerData[row]
             if(entryType == "Skill"){
+                
                 classList.isHidden = false
                 nameLabel.text = "Skill Name:"
                 classList.frame = CGRect(x: 25, y: 161, width: classList.frame.width, height: classList.frame.height)
                 nameView.frame = CGRect(x: 25, y: 296, width: nameView.frame.width, height: nameView.frame.height)
+                setDescriptions(slectedItem: previousSkill)
             } else if(entryType == "Experience"){
+                
+                entryName.text = " "
+                entryDescription.text = ""
                 classList.isHidden = true
                 nameView.frame = CGRect(x: 25, y: 161, width: nameView.frame.width, height: nameView.frame.height)
                 nameLabel.text = "Experience Name:"
@@ -165,51 +173,57 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             }
         } else if pickerView == classNamePicker {
             selectedItem = skillData[row]
+            previousSkill = selectedItem
             entryName.text = selectedItem
+            setDescriptions(slectedItem: selectedItem)
             
-            if(selectedItem == skillData[0]){
-                entryDescription.text = "Understanding the implications of new information for both current and future problem-solving and decision-making."
-            } else if (selectedItem == skillData[1]){
-                entryDescription.text = "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."
-            } else if (selectedItem == skillData[2]){
-                entryDescription.text = "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems."
-            } else if (selectedItem == skillData[3]){
-                entryDescription.text = "Selecting and using training/instructional methods and procedures appropriate for the situation when learning or teaching new things."
-            } else if (selectedItem == skillData[4]){
-                entryDescription.text = "Using mathematics to solve problems."
-            } else if (selectedItem == skillData[5]){
-                entryDescription.text = "Monitoring/Assessing performance of yourself, other individuals, or organizations to make improvements or take corrective action."
-            } else if (selectedItem == skillData[6]){
-                entryDescription.text = "Understanding written sentences and paragraphs in work related documents."
-            } else if (selectedItem == skillData[7]){
-                entryDescription.text = "Using scientific rules and methods to solve problems."
-            } else if (selectedItem == skillData[8]){
-                entryDescription.text =  "Talking to others to convey information effectively."
-            } else if (selectedItem == skillData[9]){
-                entryDescription.text = "Communicating effectively in writing as appropriate for the needs of the audience."
-            }
-            /**
-            else if (selectedItem == skillData[10]){
-                entryDescription.text
-            } else if (selectedItem == skillData[11]){
-                entryDescription.text
-            } else if (selectedItem == skillData[12]){
-                entryDescription.text
-            } else if (selectedItem == skillData[13]){
-                entryDescription.text
-            } else if (selectedItem == skillData[14]){
-                entryDescription.text
-            } else if (selectedItem == skillData[15]){
-                entryDescription.text
-            } else if (selectedItem == skillData[16]){
-                entryDescription.text
-            } else if (selectedItem == skillData[17]){
-                entryDescription.text
-            } else if (selectedItem == skillData[18]){
-                
-            }
-            */
+            
         }
+    }
+    
+    func setDescriptions(slectedItem: String){
+        if(selectedItem == "Active Learning"){
+            entryDescription.text = "Understanding the implications of new information for both current and future problem-solving and decision-making."
+        } else if (selectedItem == "Active Listening"){
+            entryDescription.text = "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."
+        } else if (selectedItem == "Critical Thinking"){
+            entryDescription.text = "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems."
+        } else if (selectedItem == "Learning Strategies"){
+            entryDescription.text = "Selecting and using training/instructional methods and procedures appropriate for the situation when learning or teaching new things."
+        } else if (selectedItem == "Mathematics"){
+            entryDescription.text = "Using mathematics to solve problems."
+        } else if (selectedItem == "Monitoring"){
+            entryDescription.text = "Monitoring/Assessing performance of yourself, other individuals, or organizations to make improvements or take corrective action."
+        } else if (selectedItem == "Reading Comprehension"){
+            entryDescription.text = "Understanding written sentences and paragraphs in work related documents."
+        } else if (selectedItem == "Science"){
+            entryDescription.text = "Using scientific rules and methods to solve problems."
+        } else if (selectedItem == "Speaking"){
+            entryDescription.text =  "Talking to others to convey information effectively."
+        } else if (selectedItem == "Writing"){
+            entryDescription.text = "Communicating effectively in writing as appropriate for the needs of the audience."
+        }
+        /**
+         else if (selectedItem == skillData[10]){
+         entryDescription.text
+         } else if (selectedItem == skillData[11]){
+         entryDescription.text
+         } else if (selectedItem == skillData[12]){
+         entryDescription.text
+         } else if (selectedItem == skillData[13]){
+         entryDescription.text
+         } else if (selectedItem == skillData[14]){
+         entryDescription.text
+         } else if (selectedItem == skillData[15]){
+         entryDescription.text
+         } else if (selectedItem == skillData[16]){
+         entryDescription.text
+         } else if (selectedItem == skillData[17]){
+         entryDescription.text
+         } else if (selectedItem == skillData[18]){
+         
+         }
+         */
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {

@@ -476,7 +476,7 @@ class dataManager{
     
     
     func saveSkills(skills: String) {
-        
+        var aSkill = skills
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -490,7 +490,19 @@ class dataManager{
         let savedObject = NSManagedObject(entity: locationEntity,
                                           insertInto: managedContext)
         
-        savedObject.setValue(skills, forKeyPath: "skills")
+        
+        if( user.last?.value(forKeyPath: "skills") != nil){
+            aSkill += ("-" + (user.last?.value(forKeyPath: "skills") as! String))
+            savedObject.setValue(aSkill, forKeyPath: "skills")
+            
+        } else {
+            savedObject.setValue(( skills), forKeyPath: "skills")
+        }
+        
+        
+        
+        
+        
         guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
             print("No first name to submit")
             return
@@ -539,8 +551,8 @@ class dataManager{
         
         savedObject.setValue(gradeLevel,forKeyPath: "gradeLevel")
         
-        if( user.last?.value(forKeyPath: "schoolWork") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "schoolWork") as! String ,forKeyPath: "schoolWork")
+        if( user.last?.value(forKeyPath: "courses") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
         }
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
@@ -636,8 +648,8 @@ class dataManager{
         savedObject.setValue(gradeLevel,forKeyPath: "gradeLevel")
         
         
-        if( user.last?.value(forKeyPath: "schoolWork") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "schoolWork") as! String ,forKeyPath: "schoolWork")
+        if( user.last?.value(forKeyPath: "courses") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
         }
         if( user.last?.value(forKeyPath: "skills") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
@@ -667,7 +679,7 @@ class dataManager{
     
     
     
-    func saveSchoolWork(schoolWork: String) {
+    func saveCourses(courses: String) {
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -682,7 +694,7 @@ class dataManager{
         let savedObject = NSManagedObject(entity: locationEntity,
                                           insertInto: managedContext)
         
-        savedObject.setValue(schoolWork, forKeyPath: "schoolWork")
+        savedObject.setValue(courses, forKeyPath: "courses")
         guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
             print("No first name to submit")
             return
@@ -764,7 +776,7 @@ class dataManager{
             user = try managedContext.fetch(userRequest)
             
             user.append(savedObject)
-            print("schoolWork Saved!")
+            print("courses Saved!")
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
