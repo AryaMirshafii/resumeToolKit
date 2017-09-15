@@ -34,6 +34,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     var infoController = userInfo()
     
     var skillData: [String] = [String]()
+    var courseData: [String] = [String]()
     var selectedItem = " "
     
     var reloadCounter = 0
@@ -67,6 +68,36 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         entryDescription.text = "Understanding the implications of new information for both current and future problem-solving and decision-making."
         //classList.isHidden = true
         //self.entryName.frame = CGRect(x: 126, y: 177, width: entryName.frame.width, height: entryName.frame.height)
+        
+    }
+    func loadCourses(){
+        courseData.append("PSYCH 2103")
+        courseData.append("MUSI 1202")
+        courseData.append("LMC 2500")
+        courseData.append("SPAN 3823")
+        courseData.append("MGT 4192")
+        courseData.append("MGT 4193")
+        courseData.append("APPH 1050")
+        courseData.append("PSYC 1101")
+        courseData.append("LMC 2500")
+        courseData.append("APPH 1040")
+        courseData.append("SPAN 2001")
+        courseData.append("HTS 2015")
+        courseData.append("MGT2200")
+        courseData.append("HIST 2112")
+        courseData.append("MUSI 1202")
+        courseData.append("PSYC 1101")
+        courseData.append("MGT 4193")
+        courseData.append("HIST 2112")
+        courseData.append("MUSI 3251")
+        courseData.append("LMC 3252")
+        courseData.append("JAP 1001")
+        courseData.append("PSYC 1101")
+        courseData.append("LMC 2600")
+        courseData.append("SPAN 2001")
+        courseData.append("PSYC 1101")
+        courseData.append("LMC 2500")
+        courseData.append("MGT 2200")
         
     }
     
@@ -111,7 +142,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         } else if(entryType == "Experience"){
             
             dataController.saveExperience(experience: "Experience" + "_" + entryName.text! + "_" + entryDescription.text)
-        } else if(entryType == "Course"){
+        } else if(entryType == "Courses"){
             dataController.saveCourses(courses: "Course" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
@@ -144,7 +175,12 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         if pickerView == entryPicker {
             return pickerData[row]
         } else if pickerView == classNamePicker{
-            return skillData[row]
+            if(entryType == "Skill"){
+                return skillData[row]
+            } else if(entryType == "Courses"){
+                return courseData[row]
+            }
+            
         }
         
         return " "
@@ -167,9 +203,12 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 classList.isHidden = true
                 nameView.frame = CGRect(x: 25, y: 161, width: nameView.frame.width, height: nameView.frame.height)
                 nameLabel.text = "Experience Name:"
-            }else {
+            }else if(entryType == "Courses") {
                 classList.isHidden = false
-                
+                nameLabel.text = "Course Name:"
+                classList.frame = CGRect(x: 25, y: 161, width: classList.frame.width, height: classList.frame.height)
+                nameView.frame = CGRect(x: 25, y: 296, width: nameView.frame.width, height: nameView.frame.height)
+                //setDescriptions(slectedItem: previousSkill)
             }
         } else if pickerView == classNamePicker {
             selectedItem = skillData[row]
