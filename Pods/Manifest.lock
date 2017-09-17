@@ -1,0 +1,15 @@
+PODS:
+  - pop (1.0.10)
+  - WYMaterialButton (2.0.2):
+    - pop (~> 1.0)
+
+DEPENDENCIES:
+  - WYMaterialButton
+
+SPEC CHECKSUMS:
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  WYMaterialButton: e7834149d5a8e073ea4424162c2e7c922b7a25c0
+
+PODFILE CHECKSUM: 3d5c65d92486fcd1f47c2804e13c266837e3937c
+
+COCOAPODS: 1.2.1
