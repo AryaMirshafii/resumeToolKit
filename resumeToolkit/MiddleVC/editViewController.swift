@@ -50,6 +50,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         pickerData.append("Experience")
         pickerData.append("Courses")
         loadSkills()
+        loadCourses()
         
         self.entryPicker.delegate = self
         self.entryPicker.dataSource = self
@@ -163,8 +164,16 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         if pickerView == entryPicker {
             return pickerData.count
         } else if pickerView == classNamePicker{
-            return skillData.count
+            if(entryType == "Skill"){
+                print("still ehre")
+                return skillData.count
+            } else if(entryType == "Courses"){
+                print("row size = coursedata")
+                return courseData.count
+            }
         }
+         
+        print("i got here")
         return 1
     }
     
@@ -173,12 +182,16 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
         
         if pickerView == entryPicker {
+            //entryType = pickerData[row]
             return pickerData[row]
         } else if pickerView == classNamePicker{
             if(entryType == "Skill"){
                 return skillData[row]
             } else if(entryType == "Courses"){
-                return courseData[row]
+                if(row <= courseData.count){
+                    return courseData[row]
+                }
+                
             }
             
         }
@@ -189,21 +202,23 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         if pickerView == entryPicker {
             entryType = pickerData[row]
+            print("the entry type is" +  entryType)
             if(entryType == "Skill"){
-                
+                classNamePicker.reloadAllComponents()
                 classList.isHidden = false
                 nameLabel.text = "Skill Name:"
                 classList.frame = CGRect(x: 25, y: 161, width: classList.frame.width, height: classList.frame.height)
                 nameView.frame = CGRect(x: 25, y: 296, width: nameView.frame.width, height: nameView.frame.height)
                 setDescriptions(slectedItem: previousSkill)
             } else if(entryType == "Experience"){
-                
+                classNamePicker.reloadAllComponents()
                 entryName.text = " "
                 entryDescription.text = ""
                 classList.isHidden = true
                 nameView.frame = CGRect(x: 25, y: 161, width: nameView.frame.width, height: nameView.frame.height)
                 nameLabel.text = "Experience Name:"
             }else if(entryType == "Courses") {
+                classNamePicker.reloadAllComponents()
                 classList.isHidden = false
                 nameLabel.text = "Course Name:"
                 classList.frame = CGRect(x: 25, y: 161, width: classList.frame.width, height: classList.frame.height)
@@ -211,10 +226,12 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 //setDescriptions(slectedItem: previousSkill)
             }
         } else if pickerView == classNamePicker {
+            /**
             selectedItem = skillData[row]
             previousSkill = selectedItem
             entryName.text = selectedItem
             setDescriptions(slectedItem: selectedItem)
+             */
             
             
         }

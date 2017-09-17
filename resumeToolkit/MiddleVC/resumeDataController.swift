@@ -95,7 +95,10 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 if(experienceArr != nil){
                     for anExperience in experienceArr!{
-                        experrienceList.append(createResumeItem(description: anExperience))
+                        if(!anExperience.isEmpty){
+                            experrienceList.append(createResumeItem(description: anExperience))
+                        }
+                        
                     }
                     itemsDict[aSection]  = experrienceList
                     
@@ -157,7 +160,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             
             return course(name: entryInfo[1], description: entryInfo[2])
         }
-        return resumeItem(name: entryInfo[1], description: entryInfo[2])
+        return resumeItem(name: "entryInfo[1]", description: "entryInfo[2]")
     }
     
     
