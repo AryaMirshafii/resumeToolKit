@@ -28,6 +28,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     @IBOutlet weak var classNamesLabel: UILabel!
     
+    
+    @IBOutlet weak var entryView: UIView!
+    
     var pickerData: [String] = [String]()
     var entryType: String!
     
@@ -207,9 +210,11 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 classNamePicker.reloadAllComponents()
                 classList.isHidden = false
                 nameLabel.text = "Skill Name:"
-                classList.frame = CGRect(x: 25, y: 161, width: classList.frame.width, height: classList.frame.height)
-                nameView.frame = CGRect(x: 25, y: 296, width: nameView.frame.width, height: nameView.frame.height)
-                setDescriptions(slectedItem: previousSkill)
+                classList.frame = CGRect(x: 159, y: 10, width: 209, height: 202)
+                nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
+                entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
+                entryDescription.frame = CGRect(x: 41, y: 280, width: 292, height: 95)
+                setDescriptions(slectedItem: entryType)
             } else if(entryType == "Experience"){
                 classNamePicker.reloadAllComponents()
                 entryName.text = " "
@@ -221,17 +226,19 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 classNamePicker.reloadAllComponents()
                 classList.isHidden = false
                 nameLabel.text = "Course Name:"
-                classList.frame = CGRect(x: 25, y: 161, width: classList.frame.width, height: classList.frame.height)
-                nameView.frame = CGRect(x: 25, y: 296, width: nameView.frame.width, height: nameView.frame.height)
+                classList.frame = CGRect(x: 159, y: 10, width: 209, height: 202)
+                nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
+                entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
+                entryDescription.frame = CGRect(x: 41, y: 280, width: 292, height: 95)
                 //setDescriptions(slectedItem: previousSkill)
             }
         } else if pickerView == classNamePicker {
-            /**
+            
             selectedItem = skillData[row]
-            previousSkill = selectedItem
+            //previousSkill = selectedItem
             entryName.text = selectedItem
             setDescriptions(slectedItem: selectedItem)
-             */
+            
             
             
         }
