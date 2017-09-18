@@ -147,7 +147,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             dataController.saveExperience(experience: "Experience" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(entryType == "Courses"){
-            dataController.saveCourses(courses: "Course" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.saveCourses(courses: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
@@ -209,7 +209,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             if(entryType == "Skill"){
                 classNamePicker.reloadAllComponents()
                 classList.isHidden = false
-                nameLabel.text = "Skill Name:"
+                nameLabel.text = "Skill Name"
+                classNamesLabel.text = "Skill Name"
                 classList.frame = CGRect(x: 159, y: 10, width: 209, height: 202)
                 nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
                 entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
@@ -225,7 +226,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             }else if(entryType == "Courses") {
                 classNamePicker.reloadAllComponents()
                 classList.isHidden = false
-                nameLabel.text = "Course Name:"
+                nameLabel.text = "Course Name"
+                classNamesLabel.text = "Course Name:"
+                entryDescription.text = ""
                 classList.frame = CGRect(x: 159, y: 10, width: 209, height: 202)
                 nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
                 entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
@@ -234,10 +237,20 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             }
         } else if pickerView == classNamePicker {
             
-            selectedItem = skillData[row]
+            //selectedItem = skillData[row]
             //previousSkill = selectedItem
-            entryName.text = selectedItem
-            setDescriptions(slectedItem: selectedItem)
+            //entryName.text = selectedItem
+            //setDescriptions(slectedItem: selectedItem)
+            
+            if(entryType == "Skill"){
+                selectedItem = skillData[row]
+                entryName.text = selectedItem
+                setDescriptions(slectedItem: selectedItem)
+            } else if(entryType == "Courses"){
+                
+                selectedItem = courseData[row]
+                entryName.text = selectedItem
+            }
             
             
             
