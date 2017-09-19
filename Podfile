@@ -7,4 +7,11 @@ target 'resumeToolkit' do
 
   # Pods for resumeToolkit
 
+pod 'Google'
+pod 'GoogleAPIClientForREST/Drive', '~> 1.2.1'
+
+pod 'GoogleSignIn'
+pod 'GTMOAuth2', '~> 1.1.0'
+pod 'Google/SignIn'
+
 end

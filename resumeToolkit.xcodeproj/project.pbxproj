@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		357A156A3CA0B28AA7E695A0 /* Pods_resumeToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82411673F2ECB91FE217AD0 /* Pods_resumeToolkit.framework */; };
 		D10628901F60678E001880AD /* Prime Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D106288F1F606780001880AD /* Prime Regular.otf */; };
 		D10628911F606791001880AD /* Prime Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D106288E1F60677E001880AD /* Prime Light.otf */; };
 		D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10628921F6080E7001880AD /* secondLoginScreen.swift */; };
@@ -24,6 +25,8 @@
 		D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */; };
 		D18286F31F618FC700CAD85A /* pdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F21F618FC700CAD85A /* pdfView.swift */; };
 		D18CF79A1F63A01C00C625E4 /* SimplePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18CF7991F63A01C00C625E4 /* SimplePDF.swift */; };
+		D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DB936F1F70A3EE00C210B4 /* userSetUp.m */; };
+		D1DB93711F70A53200C210B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D18F9B471F70645800FB48EA /* GoogleService-Info.plist */; };
 		D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */; };
 		D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457901F5A175D00D1E030 /* ViewController.swift */; };
 		D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E457921F5A175E00D1E030 /* Main.storyboard */; };
@@ -36,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55D0D61381F477683351FA7C /* Pods-resumeToolkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-resumeToolkit.release.xcconfig"; path = "Pods/Target Support Files/Pods-resumeToolkit/Pods-resumeToolkit.release.xcconfig"; sourceTree = "<group>"; };
+		ADDA04E2395D7BFF9E5CE745 /* Pods-resumeToolkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-resumeToolkit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-resumeToolkit/Pods-resumeToolkit.debug.xcconfig"; sourceTree = "<group>"; };
 		D106288E1F60677E001880AD /* Prime Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Light.otf"; sourceTree = "<group>"; };
 		D106288F1F606780001880AD /* Prime Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Regular.otf"; sourceTree = "<group>"; };
 		D10628921F6080E7001880AD /* secondLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondLoginScreen.swift; sourceTree = "<group>"; };
@@ -53,6 +58,10 @@
 		D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testPDFGenerator.swift; sourceTree = "<group>"; };
 		D18286F21F618FC700CAD85A /* pdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdfView.swift; sourceTree = "<group>"; };
 		D18CF7991F63A01C00C625E4 /* SimplePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePDF.swift; sourceTree = "<group>"; };
+		D18F9B471F70645800FB48EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D1DB936D1F70A3EB00C210B4 /* resumeToolkit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "resumeToolkit-Bridging-Header.h"; sourceTree = "<group>"; };
+		D1DB936E1F70A3ED00C210B4 /* userSetUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userSetUp.h; sourceTree = "<group>"; };
+		D1DB936F1F70A3EE00C210B4 /* userSetUp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userSetUp.m; sourceTree = "<group>"; };
 		D1E4578B1F5A175D00D1E030 /* resumeToolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = resumeToolkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E457901F5A175D00D1E030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +73,7 @@
 		D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginScreen.swift; sourceTree = "<group>"; };
 		D1EF9D7E1F6C8B7300BEB77A /* course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = course.swift; sourceTree = "<group>"; };
+		D82411673F2ECB91FE217AD0 /* Pods_resumeToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_resumeToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				357A156A3CA0B28AA7E695A0 /* Pods_resumeToolkit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,9 +133,21 @@
 			path = RightVC;
 			sourceTree = "<group>";
 		};
+		D1C02CEF5159EAB5F8BBB7CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ADDA04E2395D7BFF9E5CE745 /* Pods-resumeToolkit.debug.xcconfig */,
+				55D0D61381F477683351FA7C /* Pods-resumeToolkit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D1E457821F5A175C00D1E030 = {
 			isa = PBXGroup;
 			children = (
+				D1DB936E1F70A3ED00C210B4 /* userSetUp.h */,
+				D1DB936F1F70A3EE00C210B4 /* userSetUp.m */,
+				D18F9B471F70645800FB48EA /* GoogleService-Info.plist */,
 				D18CF7991F63A01C00C625E4 /* SimplePDF.swift */,
 				D152E3B11F61DE94002F5F54 /* resumeItem.swift */,
 				D152E3BB1F624C15002F5F54 /* experience.swift */,
@@ -134,6 +157,9 @@
 				D106288D1F6066FE001880AD /* Fonts */,
 				D1E4578D1F5A175D00D1E030 /* resumeToolkit */,
 				D1E4578C1F5A175D00D1E030 /* Products */,
+				D1C02CEF5159EAB5F8BBB7CE /* Pods */,
+				F8A1663397FED09FFF953958 /* Frameworks */,
+				D1DB936D1F70A3EB00C210B4 /* resumeToolkit-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,6 +193,14 @@
 			path = resumeToolkit;
 			sourceTree = "<group>";
 		};
+		F8A1663397FED09FFF953958 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D82411673F2ECB91FE217AD0 /* Pods_resumeToolkit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -174,9 +208,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D1E457A01F5A176000D1E030 /* Build configuration list for PBXNativeTarget "resumeToolkit" */;
 			buildPhases = (
+				E8F49C02CD7A0A514F2BC6A6 /* [CP] Check Pods Manifest.lock */,
 				D1E457871F5A175D00D1E030 /* Sources */,
 				D1E457881F5A175D00D1E030 /* Frameworks */,
 				D1E457891F5A175D00D1E030 /* Resources */,
+				DA0FFB5F9BDE27191FD636C7 /* [CP] Embed Pods Frameworks */,
+				3AFAD90DFCDE7BD2F91B00F4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -199,6 +236,7 @@
 				TargetAttributes = {
 					D1E4578A1F5A175D00D1E030 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -231,10 +269,59 @@
 				D1E457991F5A175F00D1E030 /* Assets.xcassets in Resources */,
 				D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */,
 				D10628901F60678E001880AD /* Prime Regular.otf in Resources */,
+				D1DB93711F70A53200C210B4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3AFAD90DFCDE7BD2F91B00F4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-resumeToolkit/Pods-resumeToolkit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA0FFB5F9BDE27191FD636C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-resumeToolkit/Pods-resumeToolkit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8F49C02CD7A0A514F2BC6A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D1E457871F5A175D00D1E030 /* Sources */ = {
@@ -245,6 +332,7 @@
 				D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */,
 				D18286F31F618FC700CAD85A /* pdfView.swift in Sources */,
 				D152E3C01F624C53002F5F54 /* schoolWork.swift in Sources */,
+				D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */,
 				D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */,
 				D152E3BE1F624C36002F5F54 /* skill.swift in Sources */,
 				D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */,
@@ -396,8 +484,10 @@
 		};
 		D1E457A11F5A176000D1E030 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADDA04E2395D7BFF9E5CE745 /* Pods-resumeToolkit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JK3GN4CAL;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
@@ -405,6 +495,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = EngineeringforSocialInnovation.resumeToolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "resumeToolkit-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -412,8 +504,10 @@
 		};
 		D1E457A21F5A176000D1E030 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55D0D61381F477683351FA7C /* Pods-resumeToolkit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6JK3GN4CAL;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
@@ -421,6 +515,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = EngineeringforSocialInnovation.resumeToolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "resumeToolkit-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
