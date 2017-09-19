@@ -16,6 +16,8 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate,GIDSignInDelegate
     @IBOutlet weak var currentSchoolEntry: UITextField!
     @IBOutlet weak var gradeLevelEntry: UITextField!
     
+    @IBOutlet weak var doneButton: UIButton!
+    
     
     
     
@@ -77,9 +79,10 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate,GIDSignInDelegate
        
         GIDSignIn.sharedInstance().clientID = "699945398009-sms6e0cpoam9cp6631nbi38v910s73rv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().signInSilently()
-        signInButton.frame = CGRect(x: view.frame.width/2 - signInButton.frame.width , y:  view.frame.height/2, width: signInButton.frame.width, height: signInButton.frame.height)
+        signInButton.frame = CGRect(x: 134, y:  358, width: 103, height: 43)
         // Add the sign-in button.
         view.addSubview(signInButton)
+        
         
        
         
@@ -116,6 +119,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate,GIDSignInDelegate
             self.service.authorizer = nil
         } else {
             self.signInButton.isHidden = true
+            //doneButton.frame = CGRect(x:  134, y:  362, width: doneButton.frame.width, height: doneButton.frame.height)
             self.output.isHidden = false
             self.service.authorizer = user.authentication.fetcherAuthorizer()
             
