@@ -79,7 +79,8 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate,GIDSignInDelegate
        
         GIDSignIn.sharedInstance().clientID = "699945398009-sms6e0cpoam9cp6631nbi38v910s73rv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().signInSilently()
-        signInButton.frame = CGRect(x: 134, y:  358, width: 103, height: 43)
+        signInButton.frame = CGRect(x: (view.frame.width - signInButton.frame.width)/2, y:  320, width: signInButton.frame.width, height: signInButton.frame.height)
+        doneButton.frame = CGRect(x: (view.frame.width - doneButton.frame.width)/2, y:  390, width: doneButton.frame.width, height: doneButton.frame.height)
         // Add the sign-in button.
         view.addSubview(signInButton)
         
