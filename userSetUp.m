@@ -9,15 +9,20 @@
 
 #import "userSetUp.h"
 #import <GoogleSignIn/GoogleSignIn.h>
+
+
 @import GoogleAPIClientForREST;
 
 
 @implementation userSetUp
 NSString *folderID;
--(id) initWithDriveService:(GTLRDriveService *)driveService{
+
+
+-(id) initWithDriveService:(GTLRDriveService *)driveService withFilePath: (NSString *)aFilePath{
     self = [ super init];
     if(self){
         self.driveService = driveService;
+        self.aFilePath = aFilePath;
         
     }
     return self;
@@ -27,7 +32,7 @@ NSString *folderID;
     
     
     GTLRDrive_File *metadata = [GTLRDrive_File object];
-    metadata.name = @"Arya Mirshafii";
+    metadata.name = @"ResumeToolkitDummy";
     metadata.mimeType = @"application/vnd.google-apps.folder";
     GTLRDriveQuery_FilesCreate *query = [GTLRDriveQuery_FilesCreate queryWithObject:metadata
                                                                    uploadParameters:nil];
@@ -38,9 +43,9 @@ NSString *folderID;
         if (error == nil) {
             folderID =  file.identifier;
             //[self shareToDrive:file.identifier];
-            [self shareToDrive:file.identifier];
+           // UPLOADS TO DRIVE [self shareToDrive:file.identifier];
             //printf("the folder id is" + file.identifier )
-            [self uploadToFolder: file.identifier];
+            [self uploadToFolder: file.identifier atFilePath: _aFilePath];
             NSLog(@" FOLDER File ID %@", file.identifier);
         } else {
             NSLog(@"An error occurred: %@", error);
@@ -51,10 +56,10 @@ NSString *folderID;
     
     
     }
-- (void) uploadToFolder:(NSString *) folderId {
+- (void ) uploadToFolder:(NSString *) folderId atFilePath:(NSString *)filePath {
     
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"apple" ofType:@"jpg"];
+    //NSString *filePath = ;
     NSData *fileData = [NSData dataWithContentsOfFile:filePath];
     GTLRDrive_File *metadata = [GTLRDrive_File object];
     metadata.name = @"apple.jpg";

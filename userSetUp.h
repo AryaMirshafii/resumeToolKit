@@ -11,9 +11,14 @@
 //#import <GoogleSignIn.h>
 @interface userSetUp:NSObject
 @property (nonatomic, strong) GTLRDriveService *driveService;
--(id) initWithDriveService:(GTLRDriveService *)driveService;
+@property (nonatomic, strong) NSString *aFilePath;
+
+
+
+-(id) initWithDriveService:(GTLRDriveService *)driveService withFilePath: (NSString *)aFilePath;
 - (void ) initSetup;
-- (void ) uploadToFolder:(NSString *) folderId;
+//- (void)insertObject:(id)anObject atIndex:(NSUInteger)index;
+- (void ) uploadToFolder:(NSString *) folderId atFilePath: (NSString *)filePath;
 - (void ) shareToDrive:(NSString *) fileId;
     //NSString *folderID;
     

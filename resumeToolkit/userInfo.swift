@@ -15,6 +15,7 @@ class userInfo {
     struct defaultsKeys {
         static let screenToShow = "login"
         static let changeText = "bbb"
+        static let resumeFilePath = "noFile"
         
         
         
@@ -59,5 +60,28 @@ class userInfo {
             return stringOne
         }
         return "bbb"
+    }
+    
+    
+    
+    
+    func saveResumeFilePath(filePath: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(filePath, forKey: defaultsKeys.resumeFilePath)
+        //defaults.set("Another String Value", forKey: defaultsKeys.keyTwo)
+        
+        
+        
+        
+        
+    }
+    
+    func getFilePath()  -> String{
+        let defaults = UserDefaults.standard
+        if let stringOne = defaults.string(forKey: defaultsKeys.resumeFilePath) {
+            // Some String Value
+            return stringOne
+        }
+        return "noFile"
     }
 }

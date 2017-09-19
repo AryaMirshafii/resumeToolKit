@@ -9,10 +9,14 @@
 import Foundation
 import UIKit
 import CoreData
+import GoogleAPIClientForREST
+import GoogleSignIn
 
 
 class testPDFGenerator {
+    let service = GTLRDriveService()
     var pdfFilePath = " "
+    var informationController = userInfo()
     var user: [NSManagedObject] = []
     init() {
         loadData()
@@ -39,6 +43,8 @@ class testPDFGenerator {
         let pdf = SimplePDF(pageSize: A4paperSize)
         let font = UIFont(name: "Helvetica Bold", size: 60.0)
         
+        var previousChangeTextString = "" 
+        
         
         
         pdf.setFont( font! )
@@ -47,13 +53,17 @@ class testPDFGenerator {
         
         let pdfData = pdf.generatePDFdata()
         
+        
         // save as a local file
         
         
         try? pdfData.write(to: URL(fileURLWithPath: pathForPDF), options: .atomic)
         
+        let setUpUser = userSetUp(driveService: service,withFilePath: pathForPDF)
+        setUpUser?.initSetup()
         
-        
+        ///informationController.saveResumeFilePath(filePath: pathForPDF)
+        print("the filepath is" + pathForPDF)
         return pathForPDF
     }
     

@@ -88,8 +88,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate,GIDSignInDelegate
        
         
         //UNCOMMENT
-        //let setUpUser = userSetUp(driveService: service)
-        //setUpUser?.initSetup()
+        
         
         
         
@@ -145,6 +144,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate,GIDSignInDelegate
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
         dataController.saveGradeLevel(gradeLevel: gradeLevelEntry.text!)
         infoController.save(screen: "main")
+       
         dismiss(animated: true, completion: nil)
     }
     
