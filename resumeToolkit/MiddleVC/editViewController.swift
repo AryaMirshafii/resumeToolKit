@@ -302,6 +302,10 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
          */
     }
     
+    @IBAction func exit(_ sender: UIButton){
+        dismiss(animated: true, completion: nil)
+    }
+    
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
         
