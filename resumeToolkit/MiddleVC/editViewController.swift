@@ -208,9 +208,13 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             print("the entry type is" +  entryType)
             if(entryType == "Skill"){
                 classNamePicker.reloadAllComponents()
+                classNamePicker.isUserInteractionEnabled = true
+                classList.isUserInteractionEnabled = true
                 classList.isHidden = false
                 nameLabel.text = "Skill Name"
                 classNamesLabel.text = "Skill Name"
+                
+                entryPicker.frame = CGRect(x: 0, y: 52, width: 132, height: 142)
                 classList.frame = CGRect(x: 159, y: 10, width: 209, height: 202)
                 nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
                 entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
@@ -221,14 +225,21 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 entryName.text = " "
                 entryDescription.text = ""
                 classList.isHidden = true
-                nameView.frame = CGRect(x: 25, y: 161, width: nameView.frame.width, height: nameView.frame.height)
-                nameLabel.text = "Experience Name:"
+                entryPicker.frame = CGRect(x: 26, y: 52, width: 298, height: 142)
+                //nameView.frame = CGRect(x: 25, y: 161, width: nameView.frame.width, height: nameView.frame.height)
+                nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
+                classNamesLabel.text = "Name:"
+                classList.isUserInteractionEnabled = false
+                classNamePicker.isUserInteractionEnabled = false
             }else if(entryType == "Courses") {
                 classNamePicker.reloadAllComponents()
                 classList.isHidden = false
+                classNamePicker.isUserInteractionEnabled = true
+                classList.isUserInteractionEnabled = true
                 nameLabel.text = "Course Name"
                 classNamesLabel.text = "Course Name:"
                 entryDescription.text = ""
+                entryPicker.frame = CGRect(x: 0, y: 52, width: 132, height: 142)
                 classList.frame = CGRect(x: 159, y: 10, width: 209, height: 202)
                 nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
                 entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
