@@ -47,6 +47,8 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+        self.tableView.backgroundColor = .black
+        self.view.backgroundColor = .black
     }
     
     @objc func userDefaultsDidChange() {
@@ -89,7 +91,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             
             
            
-            if(aSection == "Experience" && userExpereience != nil){
+            if(aSection == "Professional Development" && userExpereience != nil){
                
                 
                 if(experienceArr != nil){
@@ -170,7 +172,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         if(entryInfo[0] == "Skill"){
             
             return skill(name: entryInfo[1], description: entryInfo[2])
-        } else if(entryInfo[0] == "Experience"){
+        } else if(entryInfo[0] == "Professional Development"){
             
             return experience(name: entryInfo[1], description: entryInfo[2])
         } else if(entryInfo[0] == "Courses"){

@@ -490,7 +490,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i1X-xW-nCg">
-                                        <rect key="frame" x="162" y="3" width="171" height="30"/>
+                                        <rect key="frame" x="141" y="3" width="192" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="20"/>
@@ -527,7 +527,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYZ-si-M6e">
-                                <rect key="frame" x="201" y="396" width="157" height="56"/>
+                                <rect key="frame" x="218" y="396" width="157" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="30"/>
                                 <state key="normal" title="Save">
@@ -537,8 +537,13 @@
                                     <action selector="goBack:" destination="bQZ-hC-y7g" eventType="touchUpInside" id="Ozg-O6-SNO"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oCg-pi-Xaa" customClass="UIImageView">
+                                <rect key="frame" x="158" y="393" width="59" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUY-Ai-YWW" userLabel="Exit">
-                                <rect key="frame" x="12" y="396" width="157" height="56"/>
+                                <rect key="frame" x="0.0" y="396" width="157" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="30"/>
                                 <state key="normal" title="Exit">
@@ -559,11 +564,13 @@
                         <outlet property="classNamePicker" destination="v4g-EH-FdX" id="7w7-pq-vUF"/>
                         <outlet property="classNamesLabel" destination="148-gD-HeK" id="RHQ-S9-OfR"/>
                         <outlet property="entryDescription" destination="KOe-0R-5Re" id="2H4-hM-T0s"/>
+                        <outlet property="entryLabel" destination="epK-48-ghX" id="PuZ-pP-9Lj"/>
                         <outlet property="entryName" destination="i1X-xW-nCg" id="9Dk-cH-8LA"/>
                         <outlet property="entryPicker" destination="HW7-0j-M5n" id="KKa-WE-V1e"/>
                         <outlet property="entryView" destination="04T-2g-eUd" id="Jif-6x-utL"/>
                         <outlet property="nameLabel" destination="QoW-DY-Tdx" id="9ZW-ai-mJo"/>
                         <outlet property="nameView" destination="aZ8-Wg-igC" id="1tI-yl-NQ5"/>
+                        <outlet property="skillImage" destination="oCg-pi-Xaa" id="pMj-Ti-UWK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYf-8p-k5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
