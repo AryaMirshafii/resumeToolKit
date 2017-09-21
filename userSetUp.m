@@ -63,7 +63,7 @@ NSString *folderID;
     //NSString *filePath = ;
     NSData *fileData = [NSData dataWithContentsOfFile:filePath];
     GTLRDrive_File *metadata = [GTLRDrive_File object];
-    metadata.name = @"apple.jpg";
+    metadata.name = @"apple.pdf";
     
     //metadata.mimeType = @"application/vnd.google-apps.document";
     metadata.parents = [NSArray arrayWithObject:folderId];

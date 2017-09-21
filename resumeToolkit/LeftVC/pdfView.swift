@@ -13,6 +13,7 @@ class pdfView:UIViewController {
     var pdfGenerate = testPDFGenerator()
     var userInfoController = userInfo()
     var previousFilePath = " "
+    //getfilepath ==
     @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
@@ -23,6 +24,7 @@ class pdfView:UIViewController {
         notificationCenter.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         webView.scalesPageToFit = true
         previousFilePath = userInfoController.getFilePath()
+        loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         
     }
     var counter = 0
@@ -32,6 +34,7 @@ class pdfView:UIViewController {
             print("in1")
             loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         }else if(userInfoController.fetchChangeText() != "bbb"){
+            /**
             //might want to test for nill
             if(userInfoController.getFilePath().isEmpty){
                 //loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
@@ -47,6 +50,18 @@ class pdfView:UIViewController {
             } else {
                 print("no change")
                 //loadPDF(filePath: previousFilePath)
+            }
+         */
+            userInfoController.getFilePath()
+            print("the thing isss" +  userInfoController.getFilePath())
+            if( userInfoController.getFilePath() == "noFile"){
+                
+                print("rem")
+                 loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+            } else {
+                print("mer")
+                
+                loadPDF(filePath: userInfoController.getFilePath())
             }
             
         }

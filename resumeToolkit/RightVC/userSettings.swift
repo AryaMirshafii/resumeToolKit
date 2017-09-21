@@ -34,7 +34,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     let output = UITextView()
     
     
-    var driveFileManager: userSetUp?
+    var driveFileManager: userSetUp!
     
     private let scopes = ["https://www.googleapis.com/auth/drive.file"]
     
@@ -120,13 +120,22 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         print("!!!" + aRandomNumber)
         
         //driveFileManager?.initSetup()
-        for index in 1...3 {
-            driveFileManager?.initSetup()
-        }
         
-        if(userInfoController.getFolderID() == "noFolder" && String(describing: driveFileManager?.folderIdentification) != nil){
+        driveFileManager?.initSetup()
+        //driveFileManager?.initSetup()
+        
+        
+        driveFileManager = userSetUp(driveService: service, withFilePath: userInfoController.getFilePath())
+        print("ME FILE PATH IS" + userInfoController.getFilePath())
+        
+        // the issue is that the filepath is null
+        
+        
+        if(userInfoController.getFolderID() == "noFolder" && driveFileManager.folderIdentification != nil){
+            print("saving.........")
             userInfoController.saveFolderID(folderID: String(describing: driveFileManager?.folderIdentification))
         }
+        
         
         print(String(counter) + "the folder is located at" + String(describing: driveFileManager?.folderIdentification))
         counter += 1
