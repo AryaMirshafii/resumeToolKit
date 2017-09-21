@@ -23,8 +23,8 @@ class pdfView:UIViewController {
         
         notificationCenter.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         webView.scalesPageToFit = true
-        previousFilePath = userInfoController.getFilePath()
-        loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+        //previousFilePath = userInfoController.getFilePath()
+        //self.loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         
     }
     var counter = 0
@@ -34,35 +34,12 @@ class pdfView:UIViewController {
             print("in1")
             loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         }else if(userInfoController.fetchChangeText() != "bbb"){
-            /**
-            //might want to test for nill
-            if(userInfoController.getFilePath().isEmpty){
-                //loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
-            }
-            if(userInfoController.getFilePath() != previousFilePath ){
-                
-                print(String(counter) + "in 2")
-                counter += 1
-                
-                loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
-                //loadPDF(filePath: userInfoController.getFilePath())
-                previousFilePath = userInfoController.getFilePath()
-            } else {
-                print("no change")
-                //loadPDF(filePath: previousFilePath)
-            }
-         */
-            userInfoController.getFilePath()
-            print("the thing isss" +  userInfoController.getFilePath())
-            if( userInfoController.getFilePath() == "noFile"){
-                
-                print("rem")
-                 loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
-            } else {
-                print("mer")
-                
-                loadPDF(filePath: userInfoController.getFilePath())
-            }
+            
+            loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+            
+           
+            
+            
             
         }
         

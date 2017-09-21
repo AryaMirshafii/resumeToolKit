@@ -62,9 +62,9 @@ class userInfo {
         }
         return "bbb"
     }
+    // commented out since login screen does not work
     
-    
-    
+    /**
     
     func saveResumeFilePath(filePath: String) {
         let defaults = UserDefaults.standard
@@ -99,6 +99,6 @@ class userInfo {
         }
         return "noFolder"
     }
-    
+    */
     
 }

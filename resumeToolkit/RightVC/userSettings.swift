@@ -125,16 +125,17 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         //driveFileManager?.initSetup()
         
         
-        driveFileManager = userSetUp(driveService: service, withFilePath: userInfoController.getFilePath())
-        print("ME FILE PATH IS" + userInfoController.getFilePath())
+        //driveFileManager = userSetUp(driveService: service, withFilePath: userInfoController.getFilePath())
+        //print("ME FILE PATH IS" + userInfoController.getFilePath())
         
         // the issue is that the filepath is null
         
-        
+        /**
         if(userInfoController.getFolderID() == "noFolder" && driveFileManager.folderIdentification != nil){
             print("saving.........")
             userInfoController.saveFolderID(folderID: String(describing: driveFileManager?.folderIdentification))
-        }
+       }
+         */
         
         
         print(String(counter) + "the folder is located at" + String(describing: driveFileManager?.folderIdentification))
@@ -191,7 +192,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             self.signInButton.isHidden = true
             
             
-            driveFileManager = userSetUp(driveService: service, withFilePath: userInfoController.getFilePath())
+            //driveFileManager = userSetUp(driveService: service, withFilePath: userInfoController.getFilePath())
             // gets called so that  drivemanager doesnt output a nill file
             
             
