@@ -20,7 +20,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     var itemsDict = [String:[resumeItem]]()
-    let sections = ["Experience", "Skills", "Courses"]
+    let sections = ["Professional Development", "Skills", "Courses"]
     
     var user: [NSManagedObject] = []
     var infoController = userInfo()

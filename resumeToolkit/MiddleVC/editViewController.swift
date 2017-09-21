@@ -50,7 +50,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
         
         pickerData.append("Skill")
-        pickerData.append("Experience")
+        pickerData.append("Professional Development")
         pickerData.append("Courses")
         loadSkills()
         loadCourses()
@@ -143,7 +143,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             classList.isHidden = true
             
             dataController.saveSkills(skills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
-        } else if(entryType == "Experience"){
+        } else if(entryType == "Professional Development"){
             
             dataController.saveExperience(experience: "Experience" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(entryType == "Courses"){
@@ -216,7 +216,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
                 entryDescription.frame = CGRect(x: 41, y: 280, width: 292, height: 95)
                 setDescriptions(slectedItem: entryType)
-            } else if(entryType == "Experience"){
+            } else if(entryType == "Professional Development"){
                 classNamePicker.reloadAllComponents()
                 entryName.text = " "
                 entryDescription.text = ""
