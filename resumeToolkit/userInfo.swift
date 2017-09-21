@@ -16,6 +16,7 @@ class userInfo {
         static let screenToShow = "login"
         static let changeText = "bbb"
         static let resumeFilePath = "noFile"
+        static let folderID = "noFolder"
         
         
         
@@ -84,4 +85,20 @@ class userInfo {
         }
         return "noFile"
     }
+    
+    
+    func saveFolderID(folderID: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(folderID, forKey: defaultsKeys.folderID)
+    }
+    func getFolderID()  -> String{
+        let defaults = UserDefaults.standard
+        if let stringOne = defaults.string(forKey: defaultsKeys.folderID) {
+            // Some String Value
+            return stringOne
+        }
+        return "noFolder"
+    }
+    
+    
 }

@@ -9,7 +9,10 @@
 import Foundation
 import UIKit
 import CoreData
-class userSettings: UIViewController,UITextFieldDelegate{
+import GoogleAPIClientForREST
+import GoogleSignIn
+
+class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDSignInUIDelegate{
     var user: [NSManagedObject] = []
     var dataController = dataManager()
     
@@ -21,8 +24,20 @@ class userSettings: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var currentSchoolEntry: UITextField!
     @IBOutlet weak var gradeLevelEntry: UITextField!
     
+    @IBOutlet weak var tapToFinish: UIView!
+    
     
     var userInfoController = userInfo()
+    
+    let service = GTLRDriveService()
+    let signInButton = GIDSignInButton()
+    let output = UITextView()
+    
+    
+    var driveFileManager: userSetUp?
+    
+    private let scopes = ["https://www.googleapis.com/auth/drive.file"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +57,7 @@ class userSettings: UIViewController,UITextFieldDelegate{
         userDefaultsDidChange()
        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        view.addGestureRecognizer(tap)
+        tapToFinish.addGestureRecognizer(tap)
         
         let notificationCenter = NotificationCenter.default
         
@@ -57,9 +72,26 @@ class userSettings: UIViewController,UITextFieldDelegate{
         currentSchoolEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         gradeLevelEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
+        
+        
+        
+        // Configure Google Sign-in.
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().scopes = scopes
+        
+        GIDSignIn.sharedInstance().clientID = "699945398009-sms6e0cpoam9cp6631nbi38v910s73rv.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().signInSilently()
+        signInButton.frame = CGRect(x: (view.frame.width - signInButton.frame.width)/2, y:  320, width: signInButton.frame.width, height: signInButton.frame.height)
+        
+        // Add the sign-in button.
+        view.addSubview(signInButton)
+        
+        
     }
     
      @objc func userDefaultsDidChange() {
+        
         loadData()
         print("USER DEFAULTS CHANGED")
         let aUser = user.last
@@ -74,7 +106,7 @@ class userSettings: UIViewController,UITextFieldDelegate{
             
         }
     }
-    
+    var counter = 0
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         dataController.savefirstName(firstName: firstNameEntry.text!)
         dataController.saveLastName(lastName: lastNameEntry.text!)
@@ -86,7 +118,21 @@ class userSettings: UIViewController,UITextFieldDelegate{
         
         let aRandomNumber = String(arc4random_uniform(100) + 1)
         print("!!!" + aRandomNumber)
+        
+        //driveFileManager?.initSetup()
+        for index in 1...3 {
+            driveFileManager?.initSetup()
+        }
+        
+        if(userInfoController.getFolderID() == "noFolder" && String(describing: driveFileManager?.folderIdentification) != nil){
+            userInfoController.saveFolderID(folderID: String(describing: driveFileManager?.folderIdentification))
+        }
+        
+        print(String(counter) + "the folder is located at" + String(describing: driveFileManager?.folderIdentification))
+        counter += 1
         userInfoController.saveChangeText(text: aRandomNumber)
+        
+        
         view.endEditing(true)
         
         
@@ -108,6 +154,50 @@ class userSettings: UIViewController,UITextFieldDelegate{
         userInfoController.saveChangeText(text: aRandomNumber)
  */
     }
+    
+    
+    
+    func showAlert(title : String, message: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertControllerStyle.alert
+        )
+        let ok = UIAlertAction(
+            title: "OK",
+            style: UIAlertActionStyle.default,
+            handler: nil
+        )
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+        if let error = error {
+            //showAlert(title: "Authentication Error", message: error.localizedDescription)
+            self.service.authorizer = nil
+        } else {
+            self.signInButton.isHidden = true
+            
+            
+            driveFileManager = userSetUp(driveService: service, withFilePath: userInfoController.getFilePath())
+            // gets called so that  drivemanager doesnt output a nill file
+            
+            
+            
+            
+            
+            //doneButton.frame = CGRect(x:  134, y:  362, width: doneButton.frame.width, height: doneButton.frame.height)
+            self.output.isHidden = false
+            self.service.authorizer = user.authentication.fetcherAuthorizer()
+            
+            
+        }
+    }
+    
+    
     
     
     func loadData(){

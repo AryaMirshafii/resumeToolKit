@@ -16,15 +16,16 @@
 
 @implementation userSetUp
 NSString *folderID;
-
+@synthesize folderIdentification;
 
 -(id) initWithDriveService:(GTLRDriveService *)driveService withFilePath: (NSString *)aFilePath{
     self = [ super init];
     if(self){
         self.driveService = driveService;
         self.aFilePath = aFilePath;
-        
+       
     }
+    //[self initSetup];
     return self;
 }
 - (void) initSetup{
@@ -41,7 +42,7 @@ NSString *folderID;
                                                          GTLRDrive_File *file,
                                                          NSError *error) {
         if (error == nil) {
-            folderID =  file.identifier;
+            self.folderIdentification =  file.identifier;
             //[self shareToDrive:file.identifier];
            // UPLOADS TO DRIVE [self shareToDrive:file.identifier];
             //printf("the folder id is" + file.identifier )
@@ -71,7 +72,7 @@ NSString *folderID;
     //metadata.sha
     
     GTLRUploadParameters *uploadParameters = [GTLRUploadParameters uploadParametersWithData:fileData
-                                                                                   MIMEType:@"image/jpeg"];
+                                                                                   MIMEType:@"image/pdf"];
     uploadParameters.shouldUploadWithSingleRequest = TRUE;
     GTLRDriveQuery_FilesCreate *query = [GTLRDriveQuery_FilesCreate queryWithObject:metadata
                                                                    uploadParameters:uploadParameters];

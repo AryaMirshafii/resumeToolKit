@@ -13,7 +13,7 @@
 @property (nonatomic, strong) GTLRDriveService *driveService;
 @property (nonatomic, strong) NSString *aFilePath;
 
-
+@property(nonatomic, strong) NSString *folderIdentification;
 
 -(id) initWithDriveService:(GTLRDriveService *)driveService withFilePath: (NSString *)aFilePath;
 - (void ) initSetup;

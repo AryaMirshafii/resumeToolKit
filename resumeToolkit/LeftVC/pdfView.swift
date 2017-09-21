@@ -12,6 +12,7 @@ import UIKit
 class pdfView:UIViewController {
     var pdfGenerate = testPDFGenerator()
     var userInfoController = userInfo()
+    var previousFilePath = " "
     @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
@@ -21,17 +22,33 @@ class pdfView:UIViewController {
         
         notificationCenter.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         webView.scalesPageToFit = true
+        previousFilePath = userInfoController.getFilePath()
         
     }
-    
+    var counter = 0
     @objc func userDefaultsDidChange() {
         print("I AM WORKING")
         if(userInfoController.fetchData() == "main" && userInfoController.fetchChangeText() == "bbb" ){
             print("in1")
             loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         }else if(userInfoController.fetchChangeText() != "bbb"){
-            print("in 2")
-            loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+            //might want to test for nill
+            if(userInfoController.getFilePath().isEmpty){
+                //loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+            }
+            if(userInfoController.getFilePath() != previousFilePath ){
+                
+                print(String(counter) + "in 2")
+                counter += 1
+                
+                loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+                //loadPDF(filePath: userInfoController.getFilePath())
+                previousFilePath = userInfoController.getFilePath()
+            } else {
+                print("no change")
+                //loadPDF(filePath: previousFilePath)
+            }
+            
         }
         
         

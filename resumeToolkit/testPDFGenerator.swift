@@ -62,7 +62,7 @@ class testPDFGenerator {
         let setUpUser = userSetUp(driveService: service,withFilePath: pathForPDF)
         setUpUser?.initSetup()
         
-        ///informationController.saveResumeFilePath(filePath: pathForPDF)
+        informationController.saveResumeFilePath(filePath: pathForPDF)
         print("the filepath is" + pathForPDF)
         return pathForPDF
     }
