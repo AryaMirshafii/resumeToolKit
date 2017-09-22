@@ -18,6 +18,10 @@ class testPDFGenerator {
     var pdfFilePath = " "
     var informationController = userInfo()
     var user: [NSManagedObject] = []
+    var skills:String! = " "
+    var professionalDevelopment:String! = " "
+    var courses:String! = " "
+    var awards:String! = " "
     init() {
         loadData()
         //self.pdfFilePath = createPDFFileAndReturnPath()
@@ -144,11 +148,36 @@ class testPDFGenerator {
         */
         //let secondline = NSString(firstName + " " + lastName) + "\n" + email  + "\n" + phoneNumber + "\n" + schoolName + "\n" + gradeLevel)
        
-        let secondline = ( ("\(firstName) \(lastName) \n\(email)") + " \n\(phoneNumber)\n\(schoolName)\n\(gradeLevel)")
-        //let aLine = [firstName,lastName,email,phoneNumber,schoolName,gradeLevel]
+        skills = aUser?.value(forKeyPath: "skills") as? String
+        
+        let tempProfessionalDevelopment  = aUser?.value(forKeyPath: "experience") as? String
+        let tempCourses = aUser?.value(forKeyPath: "courses") as? String
+        let tempAwards = aUser?.value(forKeyPath: "awards") as? String
+        
+        
+        let secondline = ( ("\(firstName) \(lastName) \n\(email)") + " \n\(phoneNumber)\n\(schoolName)\n\(gradeLevel)\n\(loadEntryItems(anEntry: skills))")
+        //let entryItems = loadEntryItems()
+        
+       
+        //print("the first thing is" + EntryItems[0])
         
         return secondline
     }
+    var restultantString = "\n"
+    func loadEntryItems(anEntry: String?) -> String{
+        if let testVar = anEntry{
+            
+        } else {
+            return " "
+        }
+        var separatedArr = anEntry?.components(separatedBy:"_")
+        for index in 1...((separatedArr?.count)!-1){
+            restultantString += "\n" + String(repeating: " ", count: index) + separatedArr![index]
+        }
+        
+        return restultantString
+    }
+    //func separateInto
     
     
     func loadData(){

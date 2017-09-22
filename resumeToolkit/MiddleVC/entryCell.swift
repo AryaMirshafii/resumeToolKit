@@ -17,5 +17,6 @@ class entryCell : UITableViewCell{
     override func awakeFromNib() {
         super.awakeFromNib()
     self.entryDescription.layer.cornerRadius = 20
+        entryDescription.isUserInteractionEnabled = false
     }
 }

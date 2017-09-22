@@ -99,7 +99,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 if(experienceArr != nil){
                     for anExperience in experienceArr!{
-                        if(!anExperience.isEmpty){
+                        if(!anExperience.isEmpty && anExperience != "entryInfo[1]_entryInfo[2]"){
                             experrienceList.append(createResumeItem(description: anExperience))
                         }
                         
@@ -126,7 +126,13 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 if(skillsArr != nil){
                     for aSkill in skillsArr!{
-                        skillsList.append(createResumeItem(description: aSkill))
+                        let aResumeItem = createResumeItem(description: aSkill)
+                        if(aResumeItem.name != "entryInfo[1]" ){
+                            skillsList.append(aResumeItem)
+                        }
+                        
+                        
+                        
                     }
                     itemsDict[aSection]  = skillsList
                     

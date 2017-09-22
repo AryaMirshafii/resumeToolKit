@@ -581,7 +581,7 @@
         <scene sceneID="pgy-22-ek2">
             <objects>
                 <tableViewController storyboardIdentifier="middle" title="middle" id="im1-C9-LZf" customClass="resumeDataController" customModule="resumeToolkit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="k7R-LZ-X9z">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="k7R-LZ-X9z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -608,7 +608,7 @@
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="entryCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryCell" rowHeight="169" id="jfL-Ef-K86" customClass="entryCell" customModule="resumeToolkit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="entryCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="entryCell" rowHeight="169" id="jfL-Ef-K86" customClass="entryCell" customModule="resumeToolkit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="99.5" width="375" height="169"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jfL-Ef-K86" id="gfE-lV-N3c">
