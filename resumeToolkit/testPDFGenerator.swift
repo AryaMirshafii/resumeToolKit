@@ -150,12 +150,12 @@ class testPDFGenerator {
        
         skills = aUser?.value(forKeyPath: "skills") as? String
         
-        let tempProfessionalDevelopment  = aUser?.value(forKeyPath: "experience") as? String
-        let tempCourses = aUser?.value(forKeyPath: "courses") as? String
-        let tempAwards = aUser?.value(forKeyPath: "awards") as? String
+        professionalDevelopment  = aUser?.value(forKeyPath: "experience") as? String
+        courses = aUser?.value(forKeyPath: "courses") as? String
+        awards = aUser?.value(forKeyPath: "awards") as? String
         
         
-        let secondline = ( ("\(firstName) \(lastName) \n\(email)") + " \n\(phoneNumber)\n\(schoolName)\n\(gradeLevel)\n\(loadEntryItems(anEntry: skills))")
+        let secondline = ( ("\(firstName) \(lastName) \n\(email)") + " \n\(phoneNumber)\n\(schoolName)\n\(gradeLevel)\n\("SKILLS")\n\(loadEntryItems(anEntry: skills))\n\("PROFESSIONAL DEVELOPMENT")\n\(loadEntryItems(anEntry: professionalDevelopment))\n\("COURSES TAKEN")\n\(loadEntryItems(anEntry: courses))\n\("AWARDS")\n\(loadEntryItems(anEntry: awards))")
         //let entryItems = loadEntryItems()
         
        
@@ -163,8 +163,9 @@ class testPDFGenerator {
         
         return secondline
     }
-    var restultantString = "\n"
+    var restultantString = " "
     func loadEntryItems(anEntry: String?) -> String{
+        restultantString = " "
         if let testVar = anEntry{
             
         } else {
