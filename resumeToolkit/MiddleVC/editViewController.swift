@@ -56,6 +56,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         pickerData.append("Skill")
         pickerData.append("Professional Development")
         pickerData.append("Courses")
+        pickerData.append("Awards")
         loadSkills()
         loadCourses()
         
@@ -158,6 +159,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             dataController.saveExperience(experience: "Professional Development" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(entryType == "Courses"){
             dataController.saveCourses(courses: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
+        } else if(entryType == "Awards"){
+            // call the save function
         }
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
@@ -264,6 +267,20 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
                 entryDescription.frame = CGRect(x: 41, y: 280, width: 292, height: 95)
                 //setDescriptions(slectedItem: previousSkill)
+            } else if(entryType == "Awards"){
+                entryLabel.frame = CGRect(x: 114, y: 7, width: 146, height: 37)
+                entryLabel.textAlignment = .center
+                skillImage.isHidden = true
+                classNamePicker.reloadAllComponents()
+                entryName.text = " "
+                entryDescription.text = ""
+                classList.isHidden = true
+                entryPicker.frame = CGRect(x: 26, y: 52, width: 298, height: 142)
+                //nameView.frame = CGRect(x: 25, y: 161, width: nameView.frame.width, height: nameView.frame.height)
+                nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
+                classNamesLabel.text = "Award Name:"
+                classList.isUserInteractionEnabled = false
+                classNamePicker.isUserInteractionEnabled = false
             }
         } else if pickerView == classNamePicker {
             
@@ -288,6 +305,10 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 entryName.text = selectedItem
                 setClassDescriptions(orClass: selectedItem)
             } else if(entryType == "Professional Development"){
+                classList.isUserInteractionEnabled = false
+                self.skillImage.image = UIImage()
+                self.skillImage.isHidden = true
+            } else if(entryType == "Awards"){
                 classList.isUserInteractionEnabled = false
                 self.skillImage.image = UIImage()
                 self.skillImage.isHidden = true
