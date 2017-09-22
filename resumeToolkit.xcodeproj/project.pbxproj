@@ -25,6 +25,7 @@
 		D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */; };
 		D18286F31F618FC700CAD85A /* pdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F21F618FC700CAD85A /* pdfView.swift */; };
 		D18CF79A1F63A01C00C625E4 /* SimplePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18CF7991F63A01C00C625E4 /* SimplePDF.swift */; };
+		D18DCD391F74946300F9E7DB /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DCD381F74946300F9E7DB /* Award.swift */; };
 		D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DB936F1F70A3EE00C210B4 /* userSetUp.m */; };
 		D1DB93711F70A53200C210B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D18F9B471F70645800FB48EA /* GoogleService-Info.plist */; };
 		D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */; };
@@ -58,6 +59,7 @@
 		D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testPDFGenerator.swift; sourceTree = "<group>"; };
 		D18286F21F618FC700CAD85A /* pdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdfView.swift; sourceTree = "<group>"; };
 		D18CF7991F63A01C00C625E4 /* SimplePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePDF.swift; sourceTree = "<group>"; };
+		D18DCD381F74946300F9E7DB /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		D18F9B471F70645800FB48EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1DB936D1F70A3EB00C210B4 /* resumeToolkit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "resumeToolkit-Bridging-Header.h"; sourceTree = "<group>"; };
 		D1DB936E1F70A3ED00C210B4 /* userSetUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userSetUp.h; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		D1E457821F5A175C00D1E030 = {
 			isa = PBXGroup;
 			children = (
+				D18DCD381F74946300F9E7DB /* Award.swift */,
 				D1DB936E1F70A3ED00C210B4 /* userSetUp.h */,
 				D1DB936F1F70A3EE00C210B4 /* userSetUp.m */,
 				D18F9B471F70645800FB48EA /* GoogleService-Info.plist */,
@@ -328,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D18DCD391F74946300F9E7DB /* Award.swift in Sources */,
 				D1EF9D7F1F6C8B7300BEB77A /* course.swift in Sources */,
 				D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */,
 				D18286F31F618FC700CAD85A /* pdfView.swift in Sources */,

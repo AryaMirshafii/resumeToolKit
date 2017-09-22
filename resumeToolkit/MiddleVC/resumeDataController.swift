@@ -20,13 +20,14 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     var itemsDict = [String:[resumeItem]]()
-    let sections = ["Professional Development", "Skills", "Courses"]
+    let sections = ["Professional Development", "Skills", "Courses","Awards"]
     
     var user: [NSManagedObject] = []
     var infoController = userInfo()
     var experrienceList = [resumeItem]()
     var skillsList = [resumeItem]()
     var courseList = [resumeItem]()
+    var awardsList = [resumeItem]()
     
     
     override func viewDidLoad() {
@@ -82,12 +83,14 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             let userExpereience = aUser?.value(forKeyPath: "experience") as? String
             let userSkills = aUser?.value(forKeyPath: "skills") as? String
             let userCourses = aUser?.value(forKeyPath: "courses") as? String
+            let userAwards = aUser?.value(forKeyPath: "awards") as? String
            
             print("going here")
             
             var experienceArr = userExpereience?.components(separatedBy:"-")
             var skillsArr = userSkills?.components(separatedBy:"-")
             var coursesArr = userCourses?.components(separatedBy:"-")
+            var awardsArr = userAwards?.components(separatedBy:"-")
             
             
            
@@ -163,6 +166,30 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
             }
             
+            if(aSection == "Awards" && userAwards != nil){
+                //itemsDict[aSection] = [createResumeItem(description: usercourses!)]
+                //counter += 1
+                
+                
+                if(awardsArr != nil){
+                    for anAward in awardsArr!{
+                        if(!anAward.isEmpty){
+                            awardsList.append(createResumeItem(description: anAward))
+                        }
+                        
+                    }
+                    itemsDict[aSection]  = awardsList
+                    
+                } else {
+                    itemsDict[aSection] = [createResumeItem(description: userAwards!)]
+                }
+                
+                counter += 1
+                
+                awardsList.removeAll()
+                
+            }
+            
         }
     }
     
@@ -178,6 +205,8 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         } else if(entryInfo[0] == "Courses"){
             
             return course(name: entryInfo[1], description: entryInfo[2])
+        } else if(entryInfo[0] == "Awards"){
+            return Award(name: entryInfo[1], description: entryInfo[2])
         }
         return resumeItem(name: "entryInfo[1]", description: "entryInfo[2]")
     }

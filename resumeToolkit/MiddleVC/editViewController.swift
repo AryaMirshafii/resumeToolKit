@@ -160,7 +160,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         } else if(entryType == "Courses"){
             dataController.saveCourses(courses: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(entryType == "Awards"){
-            // call the save function
+            dataController.saveAwards(awardName: "Awards" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
