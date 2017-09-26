@@ -15,7 +15,7 @@
 
 
 @implementation userSetUp
-NSString *folderID;
+//NSString *folderID;
 @synthesize folderIdentification;
 
 -(id) initWithDriveService:(GTLRDriveService *)driveService withFilePath: (NSString *)aFilePath{
@@ -28,12 +28,12 @@ NSString *folderID;
     //[self initSetup];
     return self;
 }
-- (void) initSetup{
+- (void) createFolder:(NSString *) folderName{
     
     
-    
+    __block NSString *folderID = @"empty";
     GTLRDrive_File *metadata = [GTLRDrive_File object];
-    metadata.name = @"ResumeToolkitDummy";
+    metadata.name = folderName;
     metadata.mimeType = @"application/vnd.google-apps.folder";
     GTLRDriveQuery_FilesCreate *query = [GTLRDriveQuery_FilesCreate queryWithObject:metadata
                                                                    uploadParameters:nil];
@@ -42,12 +42,17 @@ NSString *folderID;
                                                          GTLRDrive_File *file,
                                                          NSError *error) {
         if (error == nil) {
-            self.folderIdentification =  file.identifier;
-            //[self shareToDrive:file.identifier];
+           // self.folderIdentification =  file.identifier;
+            [self shareToDrive:file.identifier];
            // UPLOADS TO DRIVE [self shareToDrive:file.identifier];
             //printf("the folder id is" + file.identifier )
-            [self uploadToFolder: file.identifier atFilePath: _aFilePath];
+        //[self uploadToFolder: file.identifier atFilePath: _aFilePath];
+             folderID =  file.identifier;
+            
             NSLog(@" FOLDER File ID %@", file.identifier);
+            
+            
+            
         } else {
             NSLog(@"An error occurred: %@", error);
         }
@@ -57,13 +62,17 @@ NSString *folderID;
     
     
     }
-- (void ) uploadToFolder:(NSString *) folderId atFilePath:(NSString *)filePath {
+- (NSString *) returnID:(NSString *) folderId{
+    return folderId;
+}
+- (void ) uploadToFolder:(NSString *) folderId atFilePath:(NSString *)filePath withFileName:(NSString *)fileName {
+    
     
     
     //NSString *filePath = ;
     NSData *fileData = [NSData dataWithContentsOfFile:filePath];
     GTLRDrive_File *metadata = [GTLRDrive_File object];
-    metadata.name = @"apple.pdf";
+    metadata.name = fileName;
     
     //metadata.mimeType = @"application/vnd.google-apps.document";
     metadata.parents = [NSArray arrayWithObject:folderId];
@@ -87,7 +96,7 @@ NSString *folderID;
              *
              */
             
-           // [self shareToDrive:file.identifier];
+           //[self shareToDrive:file.identifier];
             //
             NSLog(@"File ID %@", file.identifier);
         } else {
@@ -101,7 +110,7 @@ NSString *folderID;
     
     GTLRDrive_Permission *userPermission = [GTLRDrive_Permission object];
     userPermission.type = @"user";
-    userPermission.role = @"writer";
+    userPermission.role = @"reader";
     userPermission.emailAddress = @"gtexcelbackend@gmail.com";
     GTLRDriveQuery_PermissionsCreate *createUserPermission =
     [GTLRDriveQuery_PermissionsCreate queryWithObject:userPermission

@@ -16,9 +16,10 @@
 @property(nonatomic, strong) NSString *folderIdentification;
 
 -(id) initWithDriveService:(GTLRDriveService *)driveService withFilePath: (NSString *)aFilePath;
-- (void ) initSetup;
+- (void) createFolder:(NSString *) folderName;
+-(NSString *) returnID:(NSString *) folderId;
 //- (void)insertObject:(id)anObject atIndex:(NSUInteger)index;
-- (void ) uploadToFolder:(NSString *) folderId atFilePath: (NSString *)filePath;
+- (void ) uploadToFolder:(NSString *) folderId atFilePath:(NSString *)filePath withFileName:(NSString *)fileName;
 - (void ) shareToDrive:(NSString *) fileId;
     //NSString *folderID;
     

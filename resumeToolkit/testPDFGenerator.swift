@@ -63,8 +63,7 @@ class testPDFGenerator {
         
         try? pdfData.write(to: URL(fileURLWithPath: pathForPDF), options: .atomic)
         
-        let setUpUser = userSetUp(driveService: service,withFilePath: pathForPDF)
-        setUpUser?.initSetup()
+       
         
         //informationController.saveResumeFilePath(filePath: pathForPDF)
         print("the filepath is" + pathForPDF)

@@ -87,6 +87,9 @@ class userInfo {
     }
     
     
+    
+    */
+    
     func saveFolderID(folderID: String) {
         let defaults = UserDefaults.standard
         defaults.set(folderID, forKey: defaultsKeys.folderID)
@@ -99,6 +102,5 @@ class userInfo {
         }
         return "noFolder"
     }
-    */
     
 }

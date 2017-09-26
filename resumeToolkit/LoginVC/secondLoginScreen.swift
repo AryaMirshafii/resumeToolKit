@@ -77,7 +77,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         
         
         
-        
+       currentSchoolEntry.text = "Georgia Tech Excel Program"
     }
     
     

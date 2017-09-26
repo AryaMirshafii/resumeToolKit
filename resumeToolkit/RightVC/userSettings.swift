@@ -13,9 +13,9 @@ import GoogleAPIClientForREST
 import GoogleSignIn
 
 class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDSignInUIDelegate{
-    var user: [NSManagedObject] = []
+    var userData: [NSManagedObject] = []
     var dataController = dataManager()
-    
+    var pdfGenerate = testPDFGenerator()
     
     @IBOutlet weak var firstNameEntry: UITextField!
     @IBOutlet weak var lastNameEntry: UITextField!
@@ -35,10 +35,13 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     
     
     var driveFileManager: userSetUp!
+    let pdfGenerator = testPDFGenerator()
+    var userFirstName:String?
+    var userLastName:String?
     
+    //private let scopes = ["https://www.googleapis.com/auth/drive.file"]
     private let scopes = ["https://www.googleapis.com/auth/drive.file"]
-    
-    
+    var signedIn = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,6 +89,15 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         // Add the sign-in button.
         view.addSubview(signInButton)
+            
+        driveFileManager = userSetUp(driveService: service, withFilePath: pdfGenerator.createPDFFileAndReturnPath())
+        print("the current id is" + userInfoController.getFolderID())
+        
+        
+            
+        
+        
+        
         
         
     }
@@ -94,7 +106,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         loadData()
         print("USER DEFAULTS CHANGED")
-        let aUser = user.last
+        let aUser = userData.last
         if(userInfoController.fetchData() == "main"){
             firstNameEntry.text = aUser?.value(forKeyPath: "firstName") as? String
             lastNameEntry.text = aUser?.value(forKeyPath: "lastName") as? String
@@ -102,6 +114,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             phoneEntry.text = aUser?.value(forKeyPath: "phoneNumber") as? String
             currentSchoolEntry.text = aUser?.value(forKeyPath: "schoolName") as? String
             gradeLevelEntry.text = aUser?.value(forKeyPath: "gradeLevel") as? String
+            
             
             
         }
@@ -119,32 +132,20 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         let aRandomNumber = String(arc4random_uniform(100) + 1)
         print("!!!" + aRandomNumber)
         
-        //driveFileManager?.initSetup()
-        
-        driveFileManager?.initSetup()
-        //driveFileManager?.initSetup()
         
         
-        //driveFileManager = userSetUp(driveService: service, withFilePath: userInfoController.getFilePath())
-        //print("ME FILE PATH IS" + userInfoController.getFilePath())
-        
-        // the issue is that the filepath is null
-        
-        /**
-        if(userInfoController.getFolderID() == "noFolder" && driveFileManager.folderIdentification != nil){
-            print("saving.........")
-            userInfoController.saveFolderID(folderID: String(describing: driveFileManager?.folderIdentification))
-       }
-         */
         
         
-        print(String(counter) + "the folder is located at" + String(describing: driveFileManager?.folderIdentification))
-        counter += 1
-        userInfoController.saveChangeText(text: aRandomNumber)
+            
+         fetchFolder()
+        
+        
+        driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: pdfGenerate.createPDFFileAndReturnPath(), withFileName: generateResumeName())
         
         
         view.endEditing(true)
-        
+        print("else it is located at" + userInfoController.getFolderID() )
+        //print("THE DATE IS" + generateResumeName())
         
     }
     
@@ -163,6 +164,70 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         print("!!!" + aRandomNumber)
         userInfoController.saveChangeText(text: aRandomNumber)
  */
+    }
+    
+    func generateResumeName() -> String{
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        var dateString = userLastName! + "_" + userFirstName!
+            
+            
+        dateString += dateFormatter.string(from:Date())
+        dateString += "_" + String(hour) + ":" + String(minutes)
+        dateString += ".pdf"
+        
+        
+        print(dateString)
+        
+        return dateString
+    }
+    
+    
+    func fetchFolder() {
+        loadData()
+        let query = GTLRDriveQuery_FilesList.query()
+        query.pageSize = 10
+        service.executeQuery(query,
+                             delegate: self,
+                             didFinish: #selector(returnFolderName(ticket:finishedWithObject:error:))
+        )
+    }
+    
+    // Process the response and display output
+    @objc func returnFolderName(ticket: GTLRServiceTicket,
+                          finishedWithObject result : GTLRDrive_FileList,
+                          error : NSError?){
+        
+        if let error = error {
+            showAlert(title: "Error", message: error.localizedDescription)
+            return
+        }
+        
+        var text = "";
+        if let files = result.files, !files.isEmpty {
+            //text += "Files:\n"
+            for file in files {
+                if(file.name == userLastName! + "_" + userFirstName!){
+                    text = file.identifier!
+                    print("the identifier is" + text)
+                }
+                //text += "\(file.name!) (\(file.identifier!))\n"
+            }
+        } else {
+            text = "No files found."
+        }
+        if(text != "No files found." || userInfoController.getFolderID() != "noFolder" ){
+            userInfoController.saveFolderID(folderID: text)
+        }
+        
+        
     }
     
     
@@ -185,25 +250,27 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
               withError error: Error!) {
+        loadData()
         if let error = error {
             //showAlert(title: "Authentication Error", message: error.localizedDescription)
             self.service.authorizer = nil
+            signedIn = false
         } else {
+            signedIn = true
+            
+            
             self.signInButton.isHidden = true
             
-            
-            //driveFileManager = userSetUp(driveService: service, withFilePath: userInfoController.getFilePath())
-            // gets called so that  drivemanager doesnt output a nill file
-            
-            
-            
-            
-            
-            //doneButton.frame = CGRect(x:  134, y:  362, width: doneButton.frame.width, height: doneButton.frame.height)
             self.output.isHidden = false
             self.service.authorizer = user.authentication.fetcherAuthorizer()
             
+            userLastName = userData.last?.value(forKeyPath: "lastName") as? String
+            userFirstName = userData.last?.value(forKeyPath: "firstName") as? String
             
+            if(userFirstName != nil && userInfoController.getFolderID() == "noFolder" ){
+                driveFileManager.createFolder(userLastName! + "_" + userFirstName!)
+            }
+            fetchFolder()
         }
     }
     
@@ -220,7 +287,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")
         do {
-            user = try managedContext.fetch(userRequest)
+            userData = try managedContext.fetch(userRequest)
             
             
         } catch let error as NSError {
