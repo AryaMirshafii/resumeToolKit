@@ -57,7 +57,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         
         loadData()
-        userDefaultsDidChange()
+        //userDefaultsDidChange()
        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         tapToFinish.addGestureRecognizer(tap)
@@ -118,6 +118,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             
             
         }
+        if(userInfoController.getFolderID() != "noFolder"){
+             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: pdfGenerate.createPDFFileAndReturnPath(), withFileName: generateResumeName())
+        }
     }
     var counter = 0
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -167,7 +170,10 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     }
     
     func generateResumeName() -> String{
-        
+        var dateString = ""
+        if(userLastName != nil){
+            dateString += userLastName! + "_" + userFirstName!
+        }
         let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
@@ -176,7 +182,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
-        var dateString = userLastName! + "_" + userFirstName!
+        
             
             
         dateString += dateFormatter.string(from:Date())
