@@ -168,6 +168,7 @@ class dataManager{
     
     //saves first name of user
     func savefirstName(firstName: String) {
+        loadData()
         
         //var firstNameCapitalized = firstName.replaceRange(firstName.startIndex...firstName.startIndex, with: String(firstName[firstName.startIndex]).capitalizedString)
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -198,6 +199,7 @@ class dataManager{
     
     
     func saveLastName(lastName: String) {
+        loadData()
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -235,6 +237,7 @@ class dataManager{
     
     
     func saveEmail(email: String) {
+        loadData()
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -280,6 +283,7 @@ class dataManager{
     
     
     func savePhoneNumber(phoneNumber: String) {
+        loadData()
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -335,6 +339,7 @@ class dataManager{
     
     
     func saveSchool(schoolName: String) {
+        loadData()
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -401,6 +406,7 @@ class dataManager{
     
     
     func saveGradeLevel(gradeLevel: String) {
+        loadData()
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -476,6 +482,8 @@ class dataManager{
     
     
     func saveSkills(skills: String) {
+        
+        loadData()
         var aSkill = skills
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -574,6 +582,7 @@ class dataManager{
     
     
     func saveExperience(experience: String) {
+        loadData()
         
         var anExperience = experience
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -680,6 +689,8 @@ class dataManager{
     
     
     func saveCourses(courses: String) {
+        loadData()
+        
         
         var aCourse = courses
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -806,6 +817,7 @@ class dataManager{
     
     
     func saveAwards(awardName: String) {
+        loadData()
         
         var anAwardName = awardName
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -905,6 +917,25 @@ class dataManager{
         }
     }
     
+    
+    
+    func loadData(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+        //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")
+        do {
+            user = try managedContext.fetch(userRequest)
+            
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
     
     
     

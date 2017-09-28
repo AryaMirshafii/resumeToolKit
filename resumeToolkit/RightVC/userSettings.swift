@@ -216,7 +216,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             return
         }
         
-        var text = "";
+        var text = ""
         if let files = result.files, !files.isEmpty {
             //text += "Files:\n"
             for file in files {
@@ -229,7 +229,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         } else {
             text = "No files found."
         }
-        if(text != "No files found." || userInfoController.getFolderID() != "noFolder" ){
+        if(text != "No files found." || userInfoController.getFolderID() != "noFolder"  || text != nil ||  text != "" || !text.isEmpty){
             userInfoController.saveFolderID(folderID: text)
         }
         

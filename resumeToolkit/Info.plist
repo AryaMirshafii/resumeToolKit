@@ -33,6 +33,9 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Infinity.ttf</string>
+		<string>CODE Light.otf</string>
+		<string>CODE Bold.otf</string>
 		<string>Prime Light.otf</string>
 		<string>Prime Regular.otf</string>
 	</array>
