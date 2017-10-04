@@ -37,6 +37,8 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         self.phoneEntry.delegate = self
         self.phoneEntry.clearButtonMode = .whileEditing
         self.phoneEntry.layer.cornerRadius = self.phoneEntry.frame.height/2
+        phoneEntry.layer.borderWidth = 2
+        phoneEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
         phoneEntry.clipsToBounds = true
         
         
@@ -44,6 +46,8 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         self.currentSchoolEntry.delegate = self
         self.currentSchoolEntry.clearButtonMode = .whileEditing
         self.currentSchoolEntry.layer.cornerRadius = self.currentSchoolEntry.frame.height/2
+        currentSchoolEntry.layer.borderWidth = 2
+        currentSchoolEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
         currentSchoolEntry.clipsToBounds = true
         
         
@@ -60,6 +64,8 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         self.gradeLevelEntry.delegate = self
         self.gradeLevelEntry.clearButtonMode = .whileEditing
         self.gradeLevelEntry.layer.cornerRadius = self.gradeLevelEntry.frame.height/2
+        gradeLevelEntry.layer.borderWidth = 2
+        gradeLevelEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
         gradeLevelEntry.clipsToBounds = true
         
         
@@ -74,7 +80,9 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         
         //UNCOMMENT
         
-        
+        doneButton.layer.backgroundColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
+        self.doneButton.layer.cornerRadius = self.doneButton.frame.height/2
+        doneButton.clipsToBounds = true
         
         
        currentSchoolEntry.text = "Georgia Tech Excel Program"

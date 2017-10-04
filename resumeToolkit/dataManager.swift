@@ -31,8 +31,30 @@ class dataManager{
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
+        //checkNillObjects()
         
-        self.printStuff()
+        //self.printStuff()
+    }
+    func checkNillObjects(){
+        loadData()
+        let appDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDel.persistentContainer.viewContext
+        if(user != nil && user.count > 2){
+            for anIndex in 0...(user.count-1){
+                print(String(anIndex))
+                if((anIndex <= (user.count - 1)) && (String(describing: user[anIndex].value(forKeyPath: "firstName")) == "" || String(describing: user[anIndex].value(forKeyPath: "lastName")) == "" || user[anIndex].value(forKeyPath: "phoneNumber") == nil || user[anIndex].value(forKeyPath: "schoolName") == nil || user[anIndex].value(forKeyPath: "emailAdress") == nil )){
+                    context.delete(self.user[anIndex])
+                    self.user.remove(at: anIndex)
+                    
+                }
+            }
+            
+            do {
+                try context.save()
+            } catch _ {
+            }
+            
+        }
     }
     
     
@@ -94,69 +116,33 @@ class dataManager{
         print(firstname! + " ______ " + lastname  + "______" + email + "_____" + phoneNumber)
     }
     
+    var acounter = 0
     
-    
-    func checkInfoComplete() -> Bool {
-        let aUser = user.last
+    func printData(){
+        loadData()
+        //checkNillObjects()
         
-        
-        
-        guard let firstName  = aUser?.value(forKeyPath: "firstName") as? String  else {
-            //print("nothing to see here")
-            return false
+        for aUser in user{
             
+            var courses = aUser.value(forKeyPath: "courses") as? String
+            var awards = aUser.value(forKeyPath: "awards") as? String
+            var experience = aUser.value(forKeyPath: "experience") as? String
+            var skills = aUser.value(forKeyPath: "skills") as? String
             
+            //print(String(acounter) + "courses: " + courses + "****" + "awards: " + awards +  "****" + "experience: " + experience + "****" + "Skills: " + skills)
             
-            
-        }
-        //var lastname = aUser.value(forKeyPath: "lastName") as? String
-        guard let lastname  = aUser?.value(forKeyPath: "lastName") as? String  else {
-            //print("nothing to see here")
-            return false
-            
-            
-            
-            
+            var printString = String(acounter) + "courses: "
+            //printString.append(courses! + "****" + "awards: " + awards!)
+           // printString += "****" + "experience: " + experience!
+            //printString.append( "****" + "Skills: " + skills!)
+            print(aUser)
+            print("the length is" + String(user.count))
+            acounter += 1
         }
         
-        
-        guard let email  = aUser?.value(forKeyPath: "emailAdress") as? String  else {
-            //print("nothing to see here")
-            return false
-            
-            
-            
-            
-        }
-        
-        guard let phoneNumber  = aUser?.value(forKeyPath: "phoneNumber") as? String  else {
-            //print("nothing to see here")
-            return false
-            
-            
-            
-            
-        }
-        
-        
-        
-        
-        
-        
-        guard let schoolName  = aUser?.value(forKeyPath: "schoolName") as? String  else {
-            //print("nothing to see here")
-            return false
-        }
-        
-        
-        guard let gradeLevel  = aUser?.value(forKeyPath: "gradeLevel") as? String  else {
-            //print("nothing to see here")
-            return false
-        }
-        
-        
+        acounter = 0
         //ininfoController.save(screen: "main")
-        return true
+        
     }
     
     
@@ -168,7 +154,7 @@ class dataManager{
     
     //saves first name of user
     func savefirstName(firstName: String) {
-        loadData()
+        
         
         //var firstNameCapitalized = firstName.replaceRange(firstName.startIndex...firstName.startIndex, with: String(firstName[firstName.startIndex]).capitalizedString)
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -199,7 +185,7 @@ class dataManager{
     
     
     func saveLastName(lastName: String) {
-        loadData()
+        
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -237,7 +223,7 @@ class dataManager{
     
     
     func saveEmail(email: String) {
-        loadData()
+        
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -283,7 +269,7 @@ class dataManager{
     
     
     func savePhoneNumber(phoneNumber: String) {
-        loadData()
+        
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -339,7 +325,7 @@ class dataManager{
     
     
     func saveSchool(schoolName: String) {
-        loadData()
+        
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -406,7 +392,7 @@ class dataManager{
     
     
     func saveGradeLevel(gradeLevel: String) {
-        loadData()
+        
         
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -479,13 +465,13 @@ class dataManager{
     
     
     
+    //the one to change
     
-    
-    func saveSkills(skills: String) {
+    func saveSkills(theSkills: String) {
         
         loadData()
-        var aSkill = skills
         
+        var aSkill = theSkills
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -499,14 +485,17 @@ class dataManager{
                                           insertInto: managedContext)
         
         
+        
+        
+        
+        
         if( user.last?.value(forKeyPath: "skills") != nil){
             aSkill += ("-" + (user.last?.value(forKeyPath: "skills") as! String))
             savedObject.setValue(aSkill, forKeyPath: "skills")
             
         } else {
-            savedObject.setValue(( skills), forKeyPath: "skills")
+            savedObject.setValue(( theSkills), forKeyPath: "skills")
         }
-        
         
         
         
@@ -550,8 +539,8 @@ class dataManager{
             print("No phoneNumber to submit")
             return
         }
-        savedObject.setValue(schoolName,forKeyPath: "schoolName")
         
+        savedObject.setValue(schoolName,forKeyPath: "schoolName")
         guard let gradeLevel  = user.last?.value(forKeyPath: "gradeLevel") else {
             print("No phoneNumber to submit")
             return
@@ -559,12 +548,21 @@ class dataManager{
         
         savedObject.setValue(gradeLevel,forKeyPath: "gradeLevel")
         
+        
+        
+        
         if( user.last?.value(forKeyPath: "courses") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
         }
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
+        if( user.last?.value(forKeyPath: "awards") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        }
+        
+        
+        
         
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
@@ -577,13 +575,14 @@ class dataManager{
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+        print(user.count)
     }
     
     
     
     func saveExperience(experience: String) {
-        loadData()
         
+        loadData()
         var anExperience = experience
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -677,6 +676,7 @@ class dataManager{
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+         print(user.count)
     }
     
     
@@ -689,8 +689,8 @@ class dataManager{
     
     
     func saveCourses(courses: String) {
-        loadData()
         
+        loadData()
         
         var aCourse = courses
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -806,6 +806,7 @@ class dataManager{
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+         print(user.count)
     }
     
     
@@ -915,6 +916,7 @@ class dataManager{
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
+        print(user.count)
     }
     
     
@@ -935,6 +937,10 @@ class dataManager{
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
+        
+        
+        
+        
     }
     
     

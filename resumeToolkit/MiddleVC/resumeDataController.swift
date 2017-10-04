@@ -31,9 +31,12 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        
-        
+        let backgroundImage = UIImageView(image: #imageLiteral(resourceName: "tableviewBlue"))
+        self.tableView.backgroundView = backgroundImage
+        self.tableView.separatorStyle = .none
+        //self.tableView.backgroundColor = .white
         
         
         //self.setUpData()
@@ -48,8 +51,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
-        self.tableView.backgroundColor = .black
-        self.view.backgroundColor = .black
+        
     }
     
     @objc func userDefaultsDidChange() {
@@ -292,7 +294,23 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         //print(anItem.name)
         cell.entryName.text = items![indexPath.row].name
         cell.entryDescription.text = items![indexPath.row].description
-        self.tableView.rowHeight = 180
+        self.tableView.rowHeight = 160
+        
+        
+        
+        
+        cell.contentView.backgroundColor = UIColor.clear
+        
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 160))
+        
+        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 2.0
+        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        whiteRoundedView.layer.shadowOpacity = 0.2
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubview(toBack: whiteRoundedView)
         
        return cell
     }
@@ -305,6 +323,26 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.white
+        
+        let headerLabel = UILabel(frame: CGRect(x: 5, y: 0, width:
+            tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.font = UIFont(name: "Prime", size: 20)
+        headerLabel.textColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0)
+        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
     }
     
     

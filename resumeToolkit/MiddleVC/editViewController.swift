@@ -74,7 +74,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         entryType = pickerData[0]
         entryName.text = skillData[0]
         nameLabel.text = "Skill Name:"
-        entryDescription.text = "Understanding the implications of new information for both current and future problem-solving and decision making."
+        entryDescription.text = "Understanding the implications of new information for both current and future problem solving and decision making."
         //classList.isHidden = true
         //self.entryName.frame = CGRect(x: 126, y: 177, width: entryName.frame.width, height: entryName.frame.height)
         self.skillImage.layer.cornerRadius = skillImage.frame.width/2
@@ -153,7 +153,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         if(entryType == "Skill"){
             classList.isHidden = true
             
-            dataController.saveSkills(skills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.saveSkills(theSkills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(entryType == "Professional Development"){
             
             dataController.saveExperience(experience: "Professional Development" + "_" + entryName.text! + "_" + entryDescription.text)
@@ -324,7 +324,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     func setDescriptions(slectedItem: String){
         if(selectedItem == "Active Learning"){
-            entryDescription.text = "Understanding the implications of new information for both current and future problem-solving and decision-making."
+            entryDescription.text = "Understanding the implications of new information for both current and future problem solving and decision making."
             entryName.text = "Active Learning"
         } else if (selectedItem == "Active Listening"){
             entryDescription.text = "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."

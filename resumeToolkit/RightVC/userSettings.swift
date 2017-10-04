@@ -54,10 +54,68 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         self.gradeLevelEntry.delegate = self
         
  
+        self.firstNameEntry.delegate = self
+        self.firstNameEntry.clearButtonMode = .whileEditing
+        self.firstNameEntry.layer.cornerRadius = self.firstNameEntry.frame.height/2
+        firstNameEntry.layer.borderWidth = 2
+        firstNameEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
+        firstNameEntry.clipsToBounds = true
+        
+        
+        
+        
+        
+        
+        self.lastNameEntry.delegate = self
+        self.lastNameEntry.clearButtonMode = .whileEditing
+        self.lastNameEntry.layer.cornerRadius = self.lastNameEntry.frame.height/2
+        lastNameEntry.layer.borderWidth = 2
+        lastNameEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
+        lastNameEntry.clipsToBounds = true
+        
+        
+        
+        self.emailEntry.delegate = self
+        self.emailEntry.clearButtonMode = .whileEditing
+        self.emailEntry.layer.cornerRadius = self.emailEntry.frame.height/2
+        emailEntry.layer.borderWidth = 2
+        emailEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
+        emailEntry.clipsToBounds = true
+        
+        
+        
+        self.phoneEntry.delegate = self
+        self.phoneEntry.clearButtonMode = .whileEditing
+        self.phoneEntry.layer.cornerRadius = self.phoneEntry.frame.height/2
+        phoneEntry.layer.borderWidth = 2
+        phoneEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
+        phoneEntry.clipsToBounds = true
+        
+        
+        
+        self.gradeLevelEntry.delegate = self
+        self.gradeLevelEntry.clearButtonMode = .whileEditing
+        self.gradeLevelEntry.layer.cornerRadius = self.gradeLevelEntry.frame.height/2
+        gradeLevelEntry.layer.borderWidth = 2
+        gradeLevelEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
+        gradeLevelEntry.clipsToBounds = true
+        
+        
+        
+        self.currentSchoolEntry.delegate = self
+        self.currentSchoolEntry.clearButtonMode = .whileEditing
+        self.currentSchoolEntry.layer.cornerRadius = self.currentSchoolEntry.frame.height/2
+        currentSchoolEntry.layer.borderWidth = 2
+        currentSchoolEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
+        currentSchoolEntry.clipsToBounds = true
+        
+        
+        
+        
         
         
         loadData()
-        //userDefaultsDidChange()
+        userDefaultsDidChange()
        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         tapToFinish.addGestureRecognizer(tap)
@@ -124,6 +182,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     }
     var counter = 0
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        /**
         dataController.savefirstName(firstName: firstNameEntry.text!)
         dataController.saveLastName(lastName: lastNameEntry.text!)
         dataController.saveEmail(email: emailEntry.text!)
@@ -140,15 +199,17 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         
             
-         fetchFolder()
+        fetchFolder()
         
         
         driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: pdfGenerate.createPDFFileAndReturnPath(), withFileName: generateResumeName())
         
-        
+        */
         view.endEditing(true)
         print("else it is located at" + userInfoController.getFolderID() )
         //print("THE DATE IS" + generateResumeName())
+ 
+        dataController.printData()
         
     }
     
@@ -231,6 +292,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         }
         if(text != "No files found." || userInfoController.getFolderID() != "noFolder"  || text != nil ||  text != "" || !text.isEmpty){
             userInfoController.saveFolderID(folderID: text)
+            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: pdfGenerate.createPDFFileAndReturnPath(), withFileName: generateResumeName())
         }
         
         
