@@ -33,7 +33,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        let backgroundImage = UIImageView(image: #imageLiteral(resourceName: "tableviewBlue"))
+        let backgroundImage = UIImageView(image: #imageLiteral(resourceName: "lightBlue"))
         self.tableView.backgroundView = backgroundImage
         self.tableView.separatorStyle = .none
         //self.tableView.backgroundColor = .white
@@ -303,7 +303,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 160))
         
-        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        whiteRoundedView.layer.backgroundColor = UIColor(red:0.77, green:0.79, blue:0.83, alpha:1.0).cgColor
         whiteRoundedView.layer.masksToBounds = false
         whiteRoundedView.layer.cornerRadius = 2.0
         whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
@@ -328,13 +328,17 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.white
+        headerView.backgroundColor = UIColor.clear
         
-        let headerLabel = UILabel(frame: CGRect(x: 5, y: 0, width:
+        let headerLabel = UILabel(frame: CGRect(x: 6, y: 0, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
-        headerLabel.font = UIFont(name: "Prime", size: 20)
-        headerLabel.textColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0)
+        headerLabel.font = UIFont(name: "Prime", size: 30)
+        //headerLabel.textColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0)
+        headerLabel.textColor = .white
+       
+        
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.textAlignment = NSTextAlignment.center
         headerLabel.sizeToFit()
         headerView.addSubview(headerLabel)
         
@@ -342,7 +346,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return 50
     }
     
     

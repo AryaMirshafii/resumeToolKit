@@ -26,7 +26,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     
     @IBOutlet weak var tapToFinish: UIView!
     
-    
+    @IBOutlet weak var welcomeLabel: UILabel!
     var userInfoController = userInfo()
     
     let service = GTLRDriveService()
@@ -154,7 +154,12 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
             
         
-        
+        if( userData.last?.value(forKeyPath: "firstName") != nil){
+            let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
+            welcomeLabel.text = "Welcome " +  nameString + ","
+        } else {
+             welcomeLabel.text = "Welcome,"
+        }
         
         
         
@@ -182,7 +187,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     }
     var counter = 0
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        /**
+        
         dataController.savefirstName(firstName: firstNameEntry.text!)
         dataController.saveLastName(lastName: lastNameEntry.text!)
         dataController.saveEmail(email: emailEntry.text!)
@@ -204,7 +209,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: pdfGenerate.createPDFFileAndReturnPath(), withFileName: generateResumeName())
         
-        */
+        
         view.endEditing(true)
         print("else it is located at" + userInfoController.getFolderID() )
         //print("THE DATE IS" + generateResumeName())
