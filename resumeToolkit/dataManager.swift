@@ -1025,6 +1025,96 @@ class dataManager{
     }
     
     
+    func saveImpactStatement(statement: String) {
+        loadData()
+        
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
+                                                        in: managedContext)!
+        //savedObject
+        let savedObject = NSManagedObject(entity: locationEntity,
+                                          insertInto: managedContext)
+        
+        
+        savedObject.setValue(statement,forKeyPath: "impactStatement")
+        
+        
+        
+        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
+            print("No first name to submit")
+            return
+        }
+        savedObject.setValue(firstName,forKeyPath: "firstName")
+        
+        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
+            print("No last name to submit")
+            return
+        }
+        savedObject.setValue(lastName,forKeyPath: "lastName")
+        
+        guard let email  = user.last?.value(forKeyPath: "emailAdress") else {
+            print("No email to submit")
+            return
+        }
+        savedObject.setValue(email,forKeyPath: "emailAdress")
+        
+        guard let phoneNumber  = user.last?.value(forKeyPath: "phoneNumber") else {
+            print("No phoneNumber to submit")
+            return
+        }
+        savedObject.setValue(phoneNumber,forKeyPath: "phoneNumber")
+        
+        guard let schoolName  = user.last?.value(forKeyPath: "schoolName") else {
+            print("No phoneNumber to submit")
+            return
+        }
+        savedObject.setValue(schoolName,forKeyPath: "schoolName")
+        
+        guard let gradeLevel  = user.last?.value(forKeyPath: "gradeLevel") else {
+            print("No phoneNumber to submit")
+            return
+        }
+        
+        savedObject.setValue(gradeLevel,forKeyPath: "gradeLevel")
+        
+        
+        if( user.last?.value(forKeyPath: "courses") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
+        }
+        if( user.last?.value(forKeyPath: "skills") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
+        }
+        if( user.last?.value(forKeyPath: "experience") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
+        }
+        if( user.last?.value(forKeyPath: "awards") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        }
+        
+        
+        
+        
+        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+        do {
+            try managedContext.save()
+            user = try managedContext.fetch(userRequest)
+            
+            user.append(savedObject)
+            print("Award Saved!")
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        print(user.count)
+    }
+    
+    
+    
     
     func loadData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {

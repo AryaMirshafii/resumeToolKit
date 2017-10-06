@@ -14,7 +14,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     let dataController = dataManager()
     
-    @IBOutlet weak var entryPicker: UIPickerView!
+    
     @IBOutlet weak var entryName: UITextField!
     @IBOutlet weak var entryDescription: UITextView!
     @IBOutlet weak var classList: UIView!
@@ -29,10 +29,18 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var classNamesLabel: UILabel!
     
     
-    @IBOutlet weak var entryView: UIView!
+    
     
     @IBOutlet weak var skillImage: UIImageView!
     @IBOutlet weak var entryLabel: UILabel!
+    @IBOutlet weak var entrySwiper: UIView!
+    
+    
+    //company experience stuff
+    @IBOutlet weak var timelineView: UIView!
+    @IBOutlet weak var companyView: UIView!
+    @IBOutlet weak var contactView: UIView!
+    @IBOutlet weak var yearReceivedView: UIView!
     
     
     var pickerData: [String] = [String]()
@@ -48,6 +56,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     var previousSkill = " "
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpGestures()
         entryDescription.text  = " "
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.addGestureRecognizer(tap)
@@ -57,12 +66,12 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         pickerData.append("Professional Development")
         pickerData.append("Courses")
         pickerData.append("Awards")
+        entryLabel.text = pickerData[0]
+        setAlignment(row:0)
         loadSkills()
         loadCourses()
         
-        self.entryPicker.delegate = self
-        self.entryPicker.dataSource = self
-        self.entryPicker.layer.cornerRadius = 20
+        
         self.classNamePicker.layer.cornerRadius = 20
         
         self.classNamePicker.dataSource = self
@@ -177,9 +186,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         
-        if pickerView == entryPicker {
-            return pickerData.count
-        } else if pickerView == classNamePicker{
+        if pickerView == classNamePicker{
             if(entryType == "Skill"){
                 print("still ehre")
                 return skillData.count
@@ -197,10 +204,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         
-        if pickerView == entryPicker {
-            //entryType = pickerData[row]
-            return pickerData[row]
-        } else if pickerView == classNamePicker{
+        if pickerView == classNamePicker{
             if(entryType == "Skill"){
                 return skillData[row]
             } else if(entryType == "Courses"){
@@ -216,73 +220,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        if pickerView == entryPicker {
-            entryType = pickerData[row]
-            print("the entry type is" +  entryType)
-            if(entryType == "Skill"){
-                entryLabel.frame = CGRect(x: 2, y: 7, width: 146, height: 37)
-                entryLabel.textAlignment = .left
-                classNamePicker.reloadAllComponents()
-                classNamePicker.isUserInteractionEnabled = true
-                classList.isUserInteractionEnabled = true
-                classList.isHidden = false
-                nameLabel.text = "Skill Name"
-                classNamesLabel.text = "Skill Name"
-                
-                entryPicker.frame = CGRect(x: 0, y: 52, width: 132, height: 142)
-                classList.frame = CGRect(x: 159, y: 10, width: 209, height: 202)
-                nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
-                entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
-                entryDescription.frame = CGRect(x: 41, y: 280, width: 292, height: 95)
-                setDescriptions(slectedItem: entryType)
-                setPicture(slectedItem: entryType)
-            } else if(entryType == "Professional Development"){
-                entryLabel.frame = CGRect(x: 114, y: 7, width: 146, height: 37)
-                entryLabel.textAlignment = .center
-                skillImage.isHidden = true
-                classNamePicker.reloadAllComponents()
-                entryName.text = " "
-                entryDescription.text = ""
-                classList.isHidden = true
-                entryPicker.frame = CGRect(x: 26, y: 52, width: 298, height: 142)
-                //nameView.frame = CGRect(x: 25, y: 161, width: nameView.frame.width, height: nameView.frame.height)
-                nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
-                classNamesLabel.text = "Name:"
-                classList.isUserInteractionEnabled = false
-                classNamePicker.isUserInteractionEnabled = false
-            }else if(entryType == "Courses") {
-                entryLabel.frame = CGRect(x: 2, y: 7, width: 146, height: 37)
-                entryLabel.textAlignment = .left
-                skillImage.isHidden = true
-                classNamePicker.reloadAllComponents()
-                classList.isHidden = false
-                classNamePicker.isUserInteractionEnabled = true
-                classList.isUserInteractionEnabled = true
-                nameLabel.text = "Course Name"
-                classNamesLabel.text = "Course"
-                entryDescription.text = ""
-                entryPicker.frame = CGRect(x: 0, y: 52, width: 132, height: 142)
-                classList.frame = CGRect(x: 159, y: 10, width: 209, height: 202)
-                nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
-                entryView.frame = CGRect(x: 15, y: 10, width: 150, height: 202)
-                entryDescription.frame = CGRect(x: 41, y: 280, width: 292, height: 95)
-                //setDescriptions(slectedItem: previousSkill)
-            } else if(entryType == "Awards"){
-                entryLabel.frame = CGRect(x: 114, y: 7, width: 146, height: 37)
-                entryLabel.textAlignment = .center
-                skillImage.isHidden = true
-                classNamePicker.reloadAllComponents()
-                entryName.text = " "
-                entryDescription.text = ""
-                classList.isHidden = true
-                entryPicker.frame = CGRect(x: 26, y: 52, width: 298, height: 142)
-                //nameView.frame = CGRect(x: 25, y: 161, width: nameView.frame.width, height: nameView.frame.height)
-                nameView.frame = CGRect(x: 17, y: 220, width: 341, height: 52)
-                classNamesLabel.text = "Award Name:"
-                classList.isUserInteractionEnabled = false
-                classNamePicker.isUserInteractionEnabled = false
-            }
-        } else if pickerView == classNamePicker {
+        if pickerView == classNamePicker {
             
             //selectedItem = skillData[row]
             //previousSkill = selectedItem
@@ -537,6 +475,177 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBAction func exit(_ sender: UIButton){
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    func setUpGestures(){
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        
+        swipeRight.addTarget(self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        swipeRight.cancelsTouchesInView = false
+        self.entrySwiper.addGestureRecognizer(swipeRight)
+        //self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.cancelsTouchesInView = false
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.entrySwiper.addGestureRecognizer(swipeLeft)
+        
+    }
+    
+    
+    
+    
+    var indx = 0
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        
+        
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.left:
+                indx += 1
+                if (indx > (pickerData.count - 1)){
+                    indx = 0
+                } else if (indx < 0) {
+                    indx = pickerData.count - 1
+                }
+                entryLabel.text = pickerData[indx]
+                setAlignment(row: indx)
+                
+            case UISwipeGestureRecognizerDirection.right:
+                indx -= 1
+                if (indx > (pickerData.count - 1)){
+                    indx = 0
+                } else if (indx < 0) {
+                    indx = pickerData.count - 1
+                }
+                
+                entryLabel.text = pickerData[indx]
+                setAlignment(row: indx)
+                
+            default:
+                break
+            }
+        }
+    }
+    
+    
+    func setAlignment(row: Int){
+        entryType = pickerData[row]
+        print("the entry type is" +  entryType)
+        if(entryType == "Skill"){
+            classNamePicker.reloadAllComponents()
+            classNamePicker.isUserInteractionEnabled = true
+            classList.isUserInteractionEnabled = true
+            classList.isHidden = false
+            nameLabel.text = "Skill Name"
+            classNamesLabel.text = "Skill Name"
+            classNamesLabel.textAlignment = .left
+            setDescriptions(slectedItem: entryType)
+            setPicture(slectedItem: entryType)
+            
+            classList.frame = CGRect(x: 16, y: 133, width: 343, height: 134)
+            nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
+            
+            entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
+            
+            
+            timelineView.isHidden = true
+            companyView.isHidden = true
+            contactView.isHidden = true
+            yearReceivedView.isHidden = true
+            timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+        } else if(entryType == "Professional Development"){
+            
+            skillImage.isHidden = true
+            classNamePicker.reloadAllComponents()
+            entryName.text = " "
+            entryDescription.text = ""
+            classNamesLabel.text = "Job Title"
+            classList.isUserInteractionEnabled = false
+            classNamePicker.isUserInteractionEnabled = false
+            classList.isHidden = true
+            
+            timelineView.isHidden = false
+            companyView.isHidden = false
+            contactView.isHidden = false
+            yearReceivedView.isHidden = true
+            nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
+            timelineView.frame = CGRect(x: 16, y: 135, width: 343, height: 52)
+            companyView.frame = CGRect(x: 16, y: 189, width: 343, height: 52)
+            contactView.frame = CGRect(x: 16, y: 242, width: 343, height: 52)
+            entryDescription.frame = CGRect(x: 16, y: 294, width: 343, height: 94)
+            classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            
+        }else if(entryType == "Courses") {
+            
+            
+            skillImage.isHidden = true
+            classNamePicker.reloadAllComponents()
+            classList.isHidden = false
+            classNamePicker.isUserInteractionEnabled = true
+            classList.isUserInteractionEnabled = true
+            nameLabel.text = "Course Name"
+            classNamesLabel.text = "Course"
+            entryDescription.text = ""
+            
+            classList.frame = CGRect(x: 16, y: 133, width: 343, height: 134)
+            nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
+            
+            entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
+            //setDescriptions(slectedItem: previousSkill)
+            
+            timelineView.isHidden = true
+            companyView.isHidden = true
+            contactView.isHidden = true
+            yearReceivedView.isHidden = true
+            timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+        } else if(entryType == "Awards"){
+            
+            skillImage.isHidden = true
+            classNamePicker.reloadAllComponents()
+            entryName.text = " "
+            entryDescription.text = ""
+            classList.isHidden = true
+            
+            
+            classNamesLabel.text = "Award Name:"
+            classList.isUserInteractionEnabled = false
+            classNamePicker.isUserInteractionEnabled = false
+            yearReceivedView.isHidden = false
+            
+            
+            nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
+            yearReceivedView.frame = CGRect(x: 16, y: 154, width: 343, height: 52)
+            entryDescription.frame = CGRect(x: 16, y: 240, width: 343, height: 94)
+            
+            
+            
+            timelineView.isHidden = true
+            companyView.isHidden = true
+            contactView.isHidden = true
+            classList.isHidden = true
+            timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            
+        }
+        
+        
+    }
+    
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
