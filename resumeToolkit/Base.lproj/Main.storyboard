@@ -28,13 +28,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74h-g7-is2">
-                                <rect key="frame" x="16" y="20" width="176.5" height="33"/>
+                                <rect key="frame" x="16" y="20" width="171.5" height="38.5"/>
                                 <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="33"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58s-8i-vrT">
-                                <rect key="frame" x="16" y="61" width="161" height="23"/>
+                                <rect key="frame" x="16" y="66.5" width="161" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="vOY-9G-lzl"/>
                                 </constraints>
@@ -43,7 +43,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F7N-tu-ljK">
-                                <rect key="frame" x="16" y="92" width="343" height="300"/>
+                                <rect key="frame" x="16" y="97.5" width="343" height="294.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oJM-8H-52U" userLabel="firstNameView">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
@@ -605,8 +605,11 @@
                         <outlet property="classList" destination="WaR-av-PpJ" id="t5e-uV-YcC"/>
                         <outlet property="classNamePicker" destination="v4g-EH-FdX" id="7w7-pq-vUF"/>
                         <outlet property="classNamesLabel" destination="148-gD-HeK" id="RHQ-S9-OfR"/>
+                        <outlet property="companyField" destination="wbO-Cd-T6z" id="zml-sk-tCS"/>
                         <outlet property="companyView" destination="FmA-g6-YrA" id="Q8S-m8-zCk"/>
+                        <outlet property="contactField" destination="WRH-Wh-fIR" id="VRO-FZ-YpC"/>
                         <outlet property="contactView" destination="yqY-b8-Zmv" id="qvh-hH-R7b"/>
+                        <outlet property="endEntry" destination="qih-Qs-bcC" id="laF-ka-tIC"/>
                         <outlet property="entryDescription" destination="KOe-0R-5Re" id="2H4-hM-T0s"/>
                         <outlet property="entryLabel" destination="epK-48-ghX" id="PuZ-pP-9Lj"/>
                         <outlet property="entryName" destination="i1X-xW-nCg" id="9Dk-cH-8LA"/>
@@ -614,6 +617,7 @@
                         <outlet property="nameLabel" destination="QoW-DY-Tdx" id="9ZW-ai-mJo"/>
                         <outlet property="nameView" destination="aZ8-Wg-igC" id="1tI-yl-NQ5"/>
                         <outlet property="skillImage" destination="oCg-pi-Xaa" id="pMj-Ti-UWK"/>
+                        <outlet property="startEntry" destination="Tyu-E3-VED" id="uJR-pz-nb8"/>
                         <outlet property="timelineView" destination="cMa-K0-kbc" id="n6z-yV-EQv"/>
                         <outlet property="yearReceivedView" destination="rIA-f8-UXM" id="Ask-ju-Hfk"/>
                     </connections>

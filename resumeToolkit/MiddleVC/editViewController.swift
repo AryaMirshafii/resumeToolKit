@@ -42,6 +42,13 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var contactView: UIView!
     @IBOutlet weak var yearReceivedView: UIView!
     
+    //textfields for professional development
+    @IBOutlet weak var startEntry: UITextField!
+    @IBOutlet weak var endEntry: UITextField!
+    @IBOutlet weak var companyField: UITextField!
+    @IBOutlet weak var contactField: UITextField!
+    
+    
     
     var pickerData: [String] = [String]()
     var entryType: String!
@@ -164,8 +171,12 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             dataController.saveSkills(theSkills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(entryType == "Professional Development"){
-            
-            dataController.saveExperience(experience: "Professional Development" + "_" + entryName.text! + "_" + entryDescription.text)
+            var experienceString =  "Professional Development" + "_" + entryName.text! + "_"
+            experienceString += startEntry.text! + "  " + endEntry.text! + " "
+                
+            experienceString += companyField.text! + " " + contactField.text!
+            experienceString +=   " " + entryDescription.text
+            dataController.saveExperience(experience: experienceString)
         } else if(entryType == "Courses"){
             dataController.saveCourses(courses: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(entryType == "Awards"){
