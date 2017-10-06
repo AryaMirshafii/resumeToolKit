@@ -12,6 +12,15 @@ import CoreData
 import GoogleAPIClientForREST
 import GoogleSignIn
 
+
+extension String {
+    var firstUppercased: String {
+        guard let first = first else { return "" }
+        return String(first).uppercased() + dropFirst()
+    }
+}
+
+
 class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDSignInUIDelegate{
     var userData: [NSManagedObject] = []
     var dataController = dataManager()
@@ -56,10 +65,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
  
         self.firstNameEntry.delegate = self
         self.firstNameEntry.clearButtonMode = .whileEditing
-        self.firstNameEntry.layer.cornerRadius = self.firstNameEntry.frame.height/2
-        firstNameEntry.layer.borderWidth = 2
-        firstNameEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
-        firstNameEntry.clipsToBounds = true
+        
         
         
         
@@ -68,46 +74,31 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         self.lastNameEntry.delegate = self
         self.lastNameEntry.clearButtonMode = .whileEditing
-        self.lastNameEntry.layer.cornerRadius = self.lastNameEntry.frame.height/2
-        lastNameEntry.layer.borderWidth = 2
-        lastNameEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
-        lastNameEntry.clipsToBounds = true
+       
         
         
         
         self.emailEntry.delegate = self
         self.emailEntry.clearButtonMode = .whileEditing
-        self.emailEntry.layer.cornerRadius = self.emailEntry.frame.height/2
-        emailEntry.layer.borderWidth = 2
-        emailEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
-        emailEntry.clipsToBounds = true
+        
         
         
         
         self.phoneEntry.delegate = self
         self.phoneEntry.clearButtonMode = .whileEditing
-        self.phoneEntry.layer.cornerRadius = self.phoneEntry.frame.height/2
-        phoneEntry.layer.borderWidth = 2
-        phoneEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
-        phoneEntry.clipsToBounds = true
+        
         
         
         
         self.gradeLevelEntry.delegate = self
         self.gradeLevelEntry.clearButtonMode = .whileEditing
-        self.gradeLevelEntry.layer.cornerRadius = self.gradeLevelEntry.frame.height/2
-        gradeLevelEntry.layer.borderWidth = 2
-        gradeLevelEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
-        gradeLevelEntry.clipsToBounds = true
+        
         
         
         
         self.currentSchoolEntry.delegate = self
         self.currentSchoolEntry.clearButtonMode = .whileEditing
-        self.currentSchoolEntry.layer.cornerRadius = self.currentSchoolEntry.frame.height/2
-        currentSchoolEntry.layer.borderWidth = 2
-        currentSchoolEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
-        currentSchoolEntry.clipsToBounds = true
+        
         
         
         
@@ -118,7 +109,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         userDefaultsDidChange()
        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        tapToFinish.addGestureRecognizer(tap)
+        view.addGestureRecognizer(tap)
         
         let notificationCenter = NotificationCenter.default
         
@@ -143,10 +134,10 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         GIDSignIn.sharedInstance().clientID = "699945398009-sms6e0cpoam9cp6631nbi38v910s73rv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().signInSilently()
-        signInButton.frame = CGRect(x: (view.frame.width - signInButton.frame.width)/2, y:  320, width: signInButton.frame.width, height: signInButton.frame.height)
+        signInButton.frame = CGRect(x: (view.frame.width - signInButton.frame.width)/2, y:  0, width: signInButton.frame.width, height: signInButton.frame.height)
         
         // Add the sign-in button.
-        view.addSubview(signInButton)
+        tapToFinish.addSubview(signInButton)
             
         driveFileManager = userSetUp(driveService: service, withFilePath: pdfGenerator.createPDFFileAndReturnPath())
         print("the current id is" + userInfoController.getFolderID())
@@ -156,7 +147,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         if( userData.last?.value(forKeyPath: "firstName") != nil){
             let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
-            welcomeLabel.text = "Welcome " +  nameString + ","
+            welcomeLabel.text = "Welcome " +  nameString.firstUppercased + ","
         } else {
              welcomeLabel.text = "Welcome,"
         }
@@ -179,6 +170,12 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             gradeLevelEntry.text = aUser?.value(forKeyPath: "gradeLevel") as? String
             
             
+            if( userData.last?.value(forKeyPath: "firstName") != nil){
+                let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
+                welcomeLabel.text = "Welcome " +  nameString.firstUppercased + ","
+            } else {
+                welcomeLabel.text = "Welcome,"
+            }
             
         }
         if(userInfoController.getFolderID() != "noFolder"){

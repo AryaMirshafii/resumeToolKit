@@ -29,32 +29,37 @@ class loginScreen: UIViewController, UITextFieldDelegate {
         
         self.firstNameEntry.delegate = self
         self.firstNameEntry.clearButtonMode = .whileEditing
+        /**
         firstNameEntry.layer.cornerRadius = firstNameEntry.frame.height/2
         firstNameEntry.layer.borderWidth = 2
         firstNameEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
         firstNameEntry.clipsToBounds = true
-        
+        */
         
         
         self.lastNameEntry.delegate = self
         self.lastNameEntry.clearButtonMode = .whileEditing
+        /**
         self.lastNameEntry.layer.cornerRadius = self.lastNameEntry.frame.height/2
         lastNameEntry.layer.borderWidth = 2
-        lastNameEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
+       lastNameEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
         lastNameEntry.clipsToBounds = true
+         */
         
         
         
         self.emailEntry.delegate = self
         self.emailEntry.clearButtonMode = .whileEditing
+        /**
         self.emailEntry.layer.cornerRadius = self.emailEntry.frame.height/2
         emailEntry.layer.borderWidth = 2
         emailEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
         emailEntry.clipsToBounds = true
+         */
         
         
         
-        doneButton.layer.backgroundColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
+        //doneButton.layer.backgroundColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
         self.doneButton.layer.cornerRadius = self.doneButton.frame.height/2
         doneButton.clipsToBounds = true
         

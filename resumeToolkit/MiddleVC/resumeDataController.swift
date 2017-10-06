@@ -279,7 +279,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
    
     
     
-    
+    var colorCounter = 0
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "entryCell"
@@ -311,6 +311,15 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubview(toBack: whiteRoundedView)
+        cell.getColor(aNumber: colorCounter)
+        
+        if(colorCounter < 3){
+            colorCounter += 1
+        }
+        if (colorCounter == 3) {
+            colorCounter += -3
+        }
+        
         
        return cell
     }

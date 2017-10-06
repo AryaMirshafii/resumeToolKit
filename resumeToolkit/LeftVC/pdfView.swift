@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class pdfView:UIViewController {
+class pdfView: UIViewController {
     var pdfGenerate = testPDFGenerator()
     var userInfoController = userInfo()
     var previousFilePath = " "
@@ -25,6 +25,8 @@ class pdfView:UIViewController {
         webView.scalesPageToFit = true
         //previousFilePath = userInfoController.getFilePath()
         //self.loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+        self.webView.isOpaque = true
+        self.webView.backgroundColor = UIColor.clear
         
     }
     var counter = 0

@@ -154,7 +154,7 @@ class dataManager{
     
     //saves first name of user
     func savefirstName(firstName: String) {
-        
+        loadData()
         
         //var firstNameCapitalized = firstName.replaceRange(firstName.startIndex...firstName.startIndex, with: String(firstName[firstName.startIndex]).capitalizedString)
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -204,7 +204,7 @@ class dataManager{
     func saveLastName(lastName: String) {
         
         
-        
+        loadData()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -257,7 +257,7 @@ class dataManager{
     
     func saveEmail(email: String) {
         
-        
+        loadData()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -320,7 +320,7 @@ class dataManager{
     
     func savePhoneNumber(phoneNumber: String) {
         
-        
+        loadData()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -394,7 +394,7 @@ class dataManager{
     
     func saveSchool(schoolName: String) {
         
-        
+        loadData()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -473,7 +473,7 @@ class dataManager{
     
     func saveGradeLevel(gradeLevel: String) {
         
-        
+        loadData()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
