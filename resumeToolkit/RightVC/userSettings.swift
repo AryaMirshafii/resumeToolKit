@@ -36,6 +36,8 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     @IBOutlet weak var tapToFinish: UIView!
     
     @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var tapFinishZone: UIView!
+    
     var userInfoController = userInfo()
     
     let service = GTLRDriveService()
@@ -106,10 +108,10 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         
         loadData()
-        userDefaultsDidChange()
+        
        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        view.addGestureRecognizer(tap)
+        tapFinishZone.addGestureRecognizer(tap)
         
         let notificationCenter = NotificationCenter.default
         
@@ -134,12 +136,13 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         GIDSignIn.sharedInstance().clientID = "699945398009-sms6e0cpoam9cp6631nbi38v910s73rv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().signInSilently()
-        signInButton.frame = CGRect(x: (view.frame.width - signInButton.frame.width)/2, y:  0, width: signInButton.frame.width, height: signInButton.frame.height)
+        //signInButton.frame = CGRect(x: (view.frame.width - signInButton.frame.width)/2, y:  0, width: signInButton.frame.width, height: signInButton.frame.height)
         
         // Add the sign-in button.
         tapToFinish.addSubview(signInButton)
             
         driveFileManager = userSetUp(driveService: service, withFilePath: pdfGenerator.createPDFFileAndReturnPath())
+        userDefaultsDidChange()
         print("the current id is" + userInfoController.getFolderID())
         
         
@@ -178,9 +181,13 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             }
             
         }
-        if(userInfoController.getFolderID() != "noFolder"){
+        
+        if(userInfoController.getFolderID() != "noFolder" && userInfoController.getFolderID() != nil){
+            print("FOLDER ID OF" + pdfGenerate.createPDFFileAndReturnPath())
+            
              driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: pdfGenerate.createPDFFileAndReturnPath(), withFileName: generateResumeName())
         }
+        
     }
     var counter = 0
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -203,7 +210,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             
         fetchFolder()
         
-        
+        print("ARYA ID IS" + userInfoController.getFolderID())
         driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: pdfGenerate.createPDFFileAndReturnPath(), withFileName: generateResumeName())
         
         
@@ -263,6 +270,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         loadData()
         let query = GTLRDriveQuery_FilesList.query()
         query.pageSize = 10
+        
         service.executeQuery(query,
                              delegate: self,
                              didFinish: #selector(returnFolderName(ticket:finishedWithObject:error:))
@@ -292,7 +300,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         } else {
             text = "No files found."
         }
-        if(text != "No files found." || userInfoController.getFolderID() != "noFolder"  || text != nil ||  text != "" || !text.isEmpty){
+        if(text != "No files found." && userInfoController.getFolderID() == "noFolder"  || text != nil ||  text != "" || !text.isEmpty){
             userInfoController.saveFolderID(folderID: text)
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: pdfGenerate.createPDFFileAndReturnPath(), withFileName: generateResumeName())
         }

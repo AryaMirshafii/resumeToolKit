@@ -172,10 +172,10 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             dataController.saveSkills(theSkills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(entryType == "Professional Development"){
             var experienceString =  "Professional Development" + "_" + entryName.text! + "_"
-            experienceString += startEntry.text! + "  " + endEntry.text! + " "
+            experienceString += startEntry.text! + "_" + endEntry.text! + "_"
                 
-            experienceString += companyField.text! + " " + contactField.text!
-            experienceString +=   " " + entryDescription.text
+            experienceString += companyField.text! + "_" + contactField.text!
+            experienceString +=   "_" + entryDescription.text
             dataController.saveExperience(experience: experienceString)
         } else if(entryType == "Courses"){
             dataController.saveCourses(courses: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
