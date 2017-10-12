@@ -9,13 +9,16 @@
 import Foundation
 import UIKit
 import CoreData
+import Device_swift
+
 
 class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopoverPresentationControllerDelegate {
     
     
     
     
-    
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addView: UIView!
     
     
     
@@ -348,8 +351,21 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
        
         
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
-        headerLabel.textAlignment = NSTextAlignment.center
+        //headerLabel.textAlignment = NSTextAlignment.center
         headerLabel.sizeToFit()
+        //headerLabel.adjustsFontSizeToFitWidth = true
+        let deviceType = UIDevice.current.deviceType
+        
+        switch deviceType {
+        case .iPhone5:
+            headerLabel.font = UIFont(name: "Prime", size: 27)
+            self.addButton.frame = CGRect(x: 92, y: 7, width: 136, height: 44)
+            self.addView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
+        case .iPadMini: print("Do stuff for iPad mini")
+        default: print("Check other available cases of DeviceType")
+        }
+        
+        
         headerView.addSubview(headerLabel)
         
         return headerView

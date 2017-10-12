@@ -13,5 +13,6 @@ pod 'GoogleAPIClientForREST/Drive', '~> 1.2.1'
 pod 'GoogleSignIn'
 pod 'GTMOAuth2', '~> 1.1.0'
 pod 'Google/SignIn'
+pod 'Device.swift'
 
 end

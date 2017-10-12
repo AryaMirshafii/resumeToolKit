@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,19 +23,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="resumeStartscreen" translatesAutoresizingMaskIntoConstraints="NO" id="L5D-5a-Y19">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="resumeStartscreen" translatesAutoresizingMaskIntoConstraints="NO" id="L5D-5a-Y19">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ResumeWriter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSi-Pr-Iig">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ResumeWriter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gSi-Pr-Iig">
                                 <rect key="frame" x="41" y="154" width="292" height="118"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="36"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="L5D-5a-Y19" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="1JX-MO-PHy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gSi-Pr-Iig" secondAttribute="bottom" constant="395" id="OYX-RT-Zg1"/>
+                            <constraint firstItem="gSi-Pr-Iig" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XCD-bd-ypZ"/>
+                            <constraint firstItem="L5D-5a-Y19" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="fLm-UX-O7M"/>
+                            <constraint firstItem="gSi-Pr-Iig" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="gOh-1J-5Zs"/>
+                            <constraint firstItem="gSi-Pr-Iig" firstAttribute="centerX" secondItem="L5D-5a-Y19" secondAttribute="centerX" id="gbu-N9-yx0"/>
+                            <constraint firstItem="L5D-5a-Y19" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="nO8-uc-jDP"/>
+                            <constraint firstItem="gSi-Pr-Iig" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="134" id="wV8-V9-EFq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

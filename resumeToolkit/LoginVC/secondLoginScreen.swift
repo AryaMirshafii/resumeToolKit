@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import Device_swift
 class secondLoginScreen: UIViewController, UITextFieldDelegate  {
     @IBOutlet weak var phoneEntry: UITextField!
     @IBOutlet weak var currentSchoolEntry: UITextField!
@@ -19,6 +19,11 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
     
     
     
+    @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var schoolLabel: UILabel!
+    @IBOutlet weak var gradeLevelLabel: UILabel!
+    
+    
     
     
     var dataController = dataManager()
@@ -26,7 +31,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.getID()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -81,7 +86,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         
         
         
-        doneButton.frame = CGRect(x: (view.frame.width - doneButton.frame.width)/2, y:  390, width: doneButton.frame.width, height: doneButton.frame.height)
+        
        
         
         //UNCOMMENT
@@ -91,7 +96,44 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         doneButton.clipsToBounds = true
         
         
+        
        currentSchoolEntry.text = "Georgia Tech Excel Program"
+    }
+    
+    
+    
+    
+    func getID(){
+        let deviceType = UIDevice.current.deviceType
+        
+        switch deviceType {
+        case .iPhone5: positionViews(deviceID: "iphone5")
+        case .iPadMini: print("Do stuff for iPad mini")
+        default: print("Check other available cases of DeviceType")
+        }
+    }
+    
+    func positionViews(deviceID: String) {
+        if(deviceID == "iphone5"){
+            self.phoneNumberLabel.font = UIFont(name: "Prime-Regular", size: 18)
+            self.schoolLabel.font = UIFont(name: "Prime-Regular", size: 18)
+            self.gradeLevelLabel.font = UIFont(name: "Prime-Regular", size: 18)
+            
+            self.phoneNumberLabel.frame = CGRect(x: 11, y: 34, width: 298, height: 32)
+            self.phoneEntry.frame = CGRect(x: 76, y: 64, width: 169, height: 30)
+            
+            
+            self.schoolLabel.frame = CGRect(x: 11, y: 108, width: 298, height: 32)
+            self.currentSchoolEntry.frame = CGRect(x: 76, y: 138, width: 169, height: 30)
+            
+            
+            self.gradeLevelLabel.frame = CGRect(x: 11, y: 182, width: 298, height: 32)
+            self.gradeLevelEntry.frame = CGRect(x: 76, y: 212, width: 169, height: 30)
+            
+            self.doneButton.frame = CGRect(x: 80, y: 257, width: 161, height: 54)
+        }
+        
+        
     }
     
     

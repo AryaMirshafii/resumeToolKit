@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import GoogleAPIClientForREST
 import GoogleSignIn
-
+import Device_swift
 
 extension String {
     var firstUppercased: String {
@@ -220,7 +220,20 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
  
         dataController.printData()
         
+        let deviceType = UIDevice.current.deviceType
+        
+        switch deviceType {
+            case .iPhone6: print("Do stuff for iPhone6 Plus")
+            case .iPadMini: print("Do stuff for iPad mini")
+            default: print("Check other available cases of DeviceType")
+        }
+        
+        
+        
     }
+    
+    
+    
     
     
     @objc func textFieldDidChange(_ textField: UITextField) {
