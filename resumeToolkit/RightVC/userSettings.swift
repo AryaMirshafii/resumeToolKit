@@ -31,7 +31,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     @IBOutlet weak var emailEntry: UITextField!
     @IBOutlet weak var phoneEntry: UITextField!
     @IBOutlet weak var currentSchoolEntry: UITextField!
-    @IBOutlet weak var gradeLevelEntry: UITextField!
+    
     
     @IBOutlet weak var tapToFinish: UIView!
     
@@ -62,7 +62,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         self.emailEntry.delegate = self
         self.phoneEntry.delegate = self
         self.currentSchoolEntry.delegate = self
-        self.gradeLevelEntry.delegate = self
+        
         
  
         self.firstNameEntry.delegate = self
@@ -91,9 +91,6 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         
         
-        
-        self.gradeLevelEntry.delegate = self
-        self.gradeLevelEntry.clearButtonMode = .whileEditing
         
         
         
@@ -124,7 +121,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         emailEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         phoneEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         currentSchoolEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        gradeLevelEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
         
         
         
@@ -170,7 +167,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             emailEntry.text = aUser?.value(forKeyPath: "emailAdress") as? String
             phoneEntry.text = aUser?.value(forKeyPath: "phoneNumber") as? String
             currentSchoolEntry.text = aUser?.value(forKeyPath: "schoolName") as? String
-            gradeLevelEntry.text = aUser?.value(forKeyPath: "gradeLevel") as? String
+            
             
             
             if( userData.last?.value(forKeyPath: "firstName") != nil){
@@ -197,7 +194,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         dataController.saveEmail(email: emailEntry.text!)
         dataController.savePhoneNumber(phoneNumber: phoneEntry.text!)
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
-        dataController.saveGradeLevel(gradeLevel: gradeLevelEntry.text!)
+        
         
         
         let aRandomNumber = String(arc4random_uniform(100) + 1)

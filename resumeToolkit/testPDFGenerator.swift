@@ -127,10 +127,7 @@ class testPDFGenerator {
         }
         
         
-        guard let gradeLevel  = aUser?.value(forKeyPath: "gradeLevel") as? String  else {
-            //print("nothing to see here")
-            return ""
-        }
+        let gradeLevel = "  "
         
         
         

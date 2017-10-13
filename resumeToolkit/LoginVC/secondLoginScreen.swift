@@ -12,7 +12,7 @@ import Device_swift
 class secondLoginScreen: UIViewController, UITextFieldDelegate  {
     @IBOutlet weak var phoneEntry: UITextField!
     @IBOutlet weak var currentSchoolEntry: UITextField!
-    @IBOutlet weak var gradeLevelEntry: UITextField!
+    
     
     @IBOutlet weak var doneButton: UIButton!
     
@@ -21,7 +21,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var schoolLabel: UILabel!
-    @IBOutlet weak var gradeLevelLabel: UILabel!
+    
     
     
     
@@ -69,16 +69,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         
         
         
-        
-        self.gradeLevelEntry.delegate = self
-        self.gradeLevelEntry.clearButtonMode = .whileEditing
-        /**
-        self.gradeLevelEntry.layer.cornerRadius = self.gradeLevelEntry.frame.height/2
-        gradeLevelEntry.layer.borderWidth = 2
-        gradeLevelEntry.layer.borderColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0).cgColor
-        gradeLevelEntry.clipsToBounds = true
-         */
-        
+       
         
         
         
@@ -117,7 +108,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         if(deviceID == "iphone5"){
             self.phoneNumberLabel.font = UIFont(name: "Prime-Regular", size: 18)
             self.schoolLabel.font = UIFont(name: "Prime-Regular", size: 18)
-            self.gradeLevelLabel.font = UIFont(name: "Prime-Regular", size: 18)
+            
             
             self.phoneNumberLabel.frame = CGRect(x: 11, y: 34, width: 298, height: 32)
             self.phoneEntry.frame = CGRect(x: 76, y: 64, width: 169, height: 30)
@@ -127,8 +118,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
             self.currentSchoolEntry.frame = CGRect(x: 76, y: 138, width: 169, height: 30)
             
             
-            self.gradeLevelLabel.frame = CGRect(x: 11, y: 182, width: 298, height: 32)
-            self.gradeLevelEntry.frame = CGRect(x: 76, y: 212, width: 169, height: 30)
+            
             
             self.doneButton.frame = CGRect(x: 80, y: 257, width: 161, height: 54)
         }
@@ -145,7 +135,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         
         dataController.savePhoneNumber(phoneNumber: phoneEntry.text!)
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
-        dataController.saveGradeLevel(gradeLevel: gradeLevelEntry.text!)
+        
         textField.resignFirstResponder()
         return false
     }
@@ -154,7 +144,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
     @IBAction func returnHome(_ sender: UIButton){
         dataController.savePhoneNumber(phoneNumber: phoneEntry.text!)
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
-        dataController.saveGradeLevel(gradeLevel: gradeLevelEntry.text!)
+        
         infoController.save(screen: "main")
        
         dismiss(animated: true, completion: nil)

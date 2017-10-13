@@ -42,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F7N-tu-ljK">
-                                <rect key="frame" x="16" y="92" width="343" height="300"/>
+                                <rect key="frame" x="16" y="92" width="343" height="262"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oJM-8H-52U" userLabel="firstNameView">
@@ -150,39 +150,18 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.75013880079999995" green="0.75013880079999995" blue="0.75013880079999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7uw-ia-Psc" userLabel="rankView">
-                                        <rect key="frame" x="0.0" y="250" width="343" height="42"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RLF-dg-xtl">
-                                                <rect key="frame" x="8" y="10" width="45" height="23"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="20"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KmX-jS-oV1">
-                                                <rect key="frame" x="146" y="6" width="189" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.75013880079999995" green="0.75013880079999995" blue="0.75013880079999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLM-2q-shY">
-                                <rect key="frame" x="16" y="400" width="177" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMe-GO-qVL">
-                                <rect key="frame" x="201" y="400" width="157" height="66"/>
+                                <rect key="frame" x="201" y="362" width="157" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLM-2q-shY">
+                                <rect key="frame" x="16" y="366" width="177" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -192,7 +171,6 @@
                         <outlet property="currentSchoolEntry" destination="y8D-Tx-D9J" id="lG9-M7-IbA"/>
                         <outlet property="emailEntry" destination="yjU-af-mPT" id="SW8-Ap-Cgc"/>
                         <outlet property="firstNameEntry" destination="4lc-0X-IJz" id="yq7-2V-H9w"/>
-                        <outlet property="gradeLevelEntry" destination="KmX-jS-oV1" id="bSu-Cs-aJV"/>
                         <outlet property="lastNameEntry" destination="wcz-cn-N0m" id="dKh-my-cVY"/>
                         <outlet property="phoneEntry" destination="bTt-qS-VC9" id="YR9-xI-CPv"/>
                         <outlet property="tapFinishZone" destination="gMe-GO-qVL" id="lbu-lq-Qkc"/>
@@ -317,13 +295,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Tv-Lh-liO">
-                                <rect key="frame" x="75" y="296" width="224" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What Is Your Phone Number?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jx6-vt-AFV">
                                 <rect key="frame" x="5" y="76" width="365" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -338,15 +309,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What Is Your Current Grade Level?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="KCV-yY-mg2">
-                                <rect key="frame" x="2" y="256" width="370" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="23"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5U-8c-99c">
-                                <rect key="frame" x="107" y="368" width="161" height="54"/>
+                                <rect key="frame" x="107" y="306" width="161" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.75013880079999995" green="0.75013880079999995" blue="0.75013880079999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="40"/>
@@ -366,8 +330,6 @@
                     <connections>
                         <outlet property="currentSchoolEntry" destination="KTN-Wd-e3m" id="XgZ-97-163"/>
                         <outlet property="doneButton" destination="b5U-8c-99c" id="dFS-2z-mKj"/>
-                        <outlet property="gradeLevelEntry" destination="2Tv-Lh-liO" id="fJ2-jK-hkw"/>
-                        <outlet property="gradeLevelLabel" destination="KCV-yY-mg2" id="aib-NG-Wje"/>
                         <outlet property="phoneEntry" destination="YS5-8P-OdY" id="AjS-P0-Ygu"/>
                         <outlet property="phoneNumberLabel" destination="Jx6-vt-AFV" id="GNj-ik-6Ml"/>
                         <outlet property="schoolLabel" destination="M9P-co-xyU" id="3aO-Dr-ADe"/>
@@ -557,13 +519,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E7n-q4-7nm">
-                                <rect key="frame" x="38" y="33" width="295" height="42"/>
+                                <rect key="frame" x="60" y="33" width="255" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Testing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epK-48-ghX">
-                                        <rect key="frame" x="0.0" y="3" width="295" height="37"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="255" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="18"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -591,6 +553,24 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtd-88-gP8">
+                                <rect key="frame" x="315" y="33" width="42" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.75013880079999995" green="0.75013880079999995" blue="0.75013880079999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="realRight"/>
+                                <connections>
+                                    <action selector="rightTap:" destination="bQZ-hC-y7g" eventType="touchUpInside" id="FrB-Pb-owu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wp-vl-xYu">
+                                <rect key="frame" x="18" y="33" width="42" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.75013880079999995" green="0.75013880079999995" blue="0.75013880079999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="realLeft"/>
+                                <connections>
+                                    <action selector="leftTap:" destination="bQZ-hC-y7g" eventType="touchUpInside" id="hn5-13-gXr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <viewLayoutGuide key="safeArea" id="NpU-DF-7Rh"/>
@@ -780,5 +760,7 @@
     </scenes>
     <resources>
         <image name="lightBlue" width="1024" height="576"/>
+        <image name="realLeft" width="32" height="32"/>
+        <image name="realRight" width="32" height="32"/>
     </resources>
 </document>

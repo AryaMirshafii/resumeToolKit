@@ -23,7 +23,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     var itemsDict = [String:[resumeItem]]()
-    let sections = ["Professional Development", "Skills", "Courses","Awards"]
+    let sections = ["Internship & Job Experience", "Skills", "Courses","Awards & Certifications"]
     
     var user: [NSManagedObject] = []
     var infoController = userInfo()
@@ -99,7 +99,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             
             
            
-            if(aSection == "Professional Development" && userExpereience != nil){
+            if(aSection == "Internship & Job Experience" && userExpereience != nil){
                
                 
                 if(experienceArr != nil){
@@ -177,7 +177,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
             }
             
-            if(aSection == "Awards" && userAwards != nil){
+            if(aSection == "Awards & Certifications" && userAwards != nil){
                 //itemsDict[aSection] = [createResumeItem(description: usercourses!)]
                 //counter += 1
                 
@@ -345,7 +345,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         let headerLabel = UILabel(frame: CGRect(x: 6, y: 10, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
-        headerLabel.font = UIFont(name: "Prime", size: 30)
+        headerLabel.font = UIFont(name: "Prime", size: 28)
         //headerLabel.textColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0)
         headerLabel.textColor = .white
        
@@ -353,7 +353,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
         //headerLabel.textAlignment = NSTextAlignment.center
         headerLabel.sizeToFit()
-        //headerLabel.adjustsFontSizeToFitWidth = true
+        headerLabel.adjustsFontSizeToFitWidth = true
         let deviceType = UIDevice.current.deviceType
         
         switch deviceType {

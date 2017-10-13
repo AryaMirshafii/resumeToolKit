@@ -71,9 +71,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
         
         pickerData.append("Skill")
-        pickerData.append("Professional Development")
+        pickerData.append("Internships & Job Experience")
         pickerData.append("Courses")
-        pickerData.append("Awards")
+        pickerData.append("Awards & Certifications")
         entryLabel.text = pickerData[0]
         setAlignment(row:0)
         loadSkills()
@@ -171,7 +171,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             classList.isHidden = true
             
             dataController.saveSkills(theSkills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
-        } else if(entryType == "Professional Development"){
+        } else if(entryType == "Internships & Job Experience"){
             var experienceString =  "Professional Development" + "_" + entryName.text! + "_"
             experienceString += startEntry.text! + "_" + endEntry.text! + "_"
                 
@@ -180,7 +180,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             dataController.saveExperience(experience: experienceString)
         } else if(entryType == "Courses"){
             dataController.saveCourses(courses: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
-        } else if(entryType == "Awards"){
+        } else if(entryType == "Awards & Certifications"){
             dataController.saveAwards(awardName: "Awards" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
@@ -254,11 +254,11 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 selectedItem = courseData[row]
                 entryName.text = selectedItem
                 setClassDescriptions(orClass: selectedItem)
-            } else if(entryType == "Professional Development"){
+            } else if(entryType == "Internships & Job Experience"){
                 classList.isUserInteractionEnabled = false
                 self.skillImage.image = UIImage()
                 self.skillImage.isHidden = true
-            } else if(entryType == "Awards"){
+            } else if(entryType == "Awards & Certifications"){
                 classList.isUserInteractionEnabled = false
                 self.skillImage.image = UIImage()
                 self.skillImage.isHidden = true
@@ -505,10 +505,34 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
     }
     
-    
-    
-    
     var indx = 0
+    
+    @IBAction func rightTap(_ sender: UIButton){
+        indx += 1
+        if (indx > (pickerData.count - 1)){
+            indx = 0
+        } else if (indx < 0) {
+            indx = pickerData.count - 1
+        }
+        entryLabel.text = pickerData[indx]
+        setAlignment(row: indx)
+    }
+    
+    
+    @IBAction func leftTap(_ sender: UIButton){
+        indx += 1
+        if (indx > (pickerData.count - 1)){
+            indx = 0
+        } else if (indx < 0) {
+            indx = pickerData.count - 1
+        }
+        entryLabel.text = pickerData[indx]
+        setAlignment(row: indx)
+    }
+    
+    
+    
+    
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
         
@@ -565,7 +589,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
             entryDescription.autoresizesSubviews = true
-            self.entrySwiper.frame = CGRect(x: 40, y: 33, width: 295, height: 42)
+            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
             
             timelineView.isHidden = true
             companyView.isHidden = true
@@ -575,7 +599,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-        } else if(entryType == "Professional Development"){
+        } else if(entryType == "Internships & Job Experience"){
             
             skillImage.isHidden = true
             classNamePicker.reloadAllComponents()
@@ -595,7 +619,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             companyView.frame = CGRect(x: 16, y: 189, width: 343, height: 52)
             contactView.frame = CGRect(x: 16, y: 242, width: 343, height: 52)
             entryDescription.frame = CGRect(x: 16, y: 294, width: 343, height: 94)
-            self.entrySwiper.frame = CGRect(x: 40, y: 33, width: 295, height: 42)
+            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
             
             
             
@@ -620,7 +644,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
             //setDescriptions(slectedItem: previousSkill)
-            self.entrySwiper.frame = CGRect(x: 40, y: 33, width: 295, height: 42)
+            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
             timelineView.isHidden = true
             companyView.isHidden = true
             contactView.isHidden = true
@@ -629,7 +653,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-        } else if(entryType == "Awards"){
+        } else if(entryType == "Awards & Certifications"){
             
             skillImage.isHidden = true
             classNamePicker.reloadAllComponents()
@@ -647,7 +671,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
             yearReceivedView.frame = CGRect(x: 16, y: 154, width: 343, height: 52)
             entryDescription.frame = CGRect(x: 16, y: 240, width: 343, height: 94)
-            self.entrySwiper.frame = CGRect(x: 40, y: 33, width: 295, height: 42)
+            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
             
             timelineView.isHidden = true
             companyView.isHidden = true
