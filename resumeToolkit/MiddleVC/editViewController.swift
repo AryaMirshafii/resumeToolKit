@@ -90,7 +90,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
         entryType = pickerData[0]
         entryName.text = skillData[0]
-        nameLabel.text = "Skill Name:"
+        nameLabel.text = "Name:"
         entryDescription.text = "Understanding the implications of new information for both current and future problem solving and decision making."
         //classList.isHidden = true
         //self.entryName.frame = CGRect(x: 126, y: 177, width: entryName.frame.width, height: entryName.frame.height)
