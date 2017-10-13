@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Device_swift
 
 
 class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
@@ -563,7 +564,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
             
             entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
-            
+            entryDescription.autoresizesSubviews = true
+            self.entrySwiper.frame = CGRect(x: 40, y: 33, width: 295, height: 42)
             
             timelineView.isHidden = true
             companyView.isHidden = true
@@ -593,6 +595,11 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             companyView.frame = CGRect(x: 16, y: 189, width: 343, height: 52)
             contactView.frame = CGRect(x: 16, y: 242, width: 343, height: 52)
             entryDescription.frame = CGRect(x: 16, y: 294, width: 343, height: 94)
+            self.entrySwiper.frame = CGRect(x: 40, y: 33, width: 295, height: 42)
+            
+            
+            
+            
             classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             
@@ -613,7 +620,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
             //setDescriptions(slectedItem: previousSkill)
-            
+            self.entrySwiper.frame = CGRect(x: 40, y: 33, width: 295, height: 42)
             timelineView.isHidden = true
             companyView.isHidden = true
             contactView.isHidden = true
@@ -640,8 +647,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
             yearReceivedView.frame = CGRect(x: 16, y: 154, width: 343, height: 52)
             entryDescription.frame = CGRect(x: 16, y: 240, width: 343, height: 94)
-            
-            
+            self.entrySwiper.frame = CGRect(x: 40, y: 33, width: 295, height: 42)
             
             timelineView.isHidden = true
             companyView.isHidden = true
@@ -651,6 +657,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            
+            
+            
             
         }
         

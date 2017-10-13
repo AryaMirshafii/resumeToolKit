@@ -343,7 +343,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         
-        let headerLabel = UILabel(frame: CGRect(x: 6, y: 0, width:
+        let headerLabel = UILabel(frame: CGRect(x: 6, y: 10, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.font = UIFont(name: "Prime", size: 30)
         //headerLabel.textColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0)
