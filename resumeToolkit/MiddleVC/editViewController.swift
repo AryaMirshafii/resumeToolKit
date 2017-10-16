@@ -64,6 +64,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     var previousSkill = " "
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpGestures()
         entryDescription.text  = " "
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
@@ -102,6 +103,56 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         self.skillImage.image = #imageLiteral(resourceName: "chalkboard")
         
     }
+    
+    
+    override var preferredStatusBarStyle:UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.becomeFirstResponder()
+    }
+    
+    override var canBecomeFirstResponder:Bool {
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent!) {
+        var alert = UIAlertController(title: "Clear Text??",
+                                      message: "Are you sure you want to clear the text?",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        
+        
+        let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        
+        subview.backgroundColor = UIColor(red:0.91, green:0.38, blue:0.50, alpha:1.0)
+        alert.view.tintColor = .black
+        
+        
+        
+        
+        alert.addAction(UIAlertAction(title: "Yes",
+                                      style: UIAlertActionStyle.default, handler: self.clearText))
+        alert.addAction(UIAlertAction(title: "No",
+                                      style: UIAlertActionStyle.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func clearText(alert: UIAlertAction!){
+        entryName.text = ""
+        entryDescription.text = ""
+        endEntry.text = ""
+        startEntry.text = ""
+        companyField.text = ""
+        contactField.text = ""
+    }
+   
+    
+    
     func loadCourses(){
         courseData.append("PSYCH 2103")
         courseData.append("MUSI 1202")

@@ -36,6 +36,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.becomeFirstResponder()
         let backgroundImage = UIImageView(image: #imageLiteral(resourceName: "lightBlue"))
         self.tableView.backgroundView = backgroundImage
         self.tableView.separatorStyle = .none
@@ -279,7 +280,18 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         performSegue(withIdentifier: "goEdit", sender: self)
     }
     
+    override var canBecomeFirstResponder: Bool {
+        get {
+            return true
+        }
+    }
     
+    // Enable detection of shake motion
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        
+        print("Why are you shaking me?")
+        
+    }
    
     
     
