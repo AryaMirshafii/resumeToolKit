@@ -184,7 +184,9 @@ class dataManager{
         if( user.last?.value(forKeyPath: "awards") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
         }
-        
+        if( user.last?.value(forKeyPath: "objective") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
+        }
         
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
@@ -238,7 +240,9 @@ class dataManager{
         if( user.last?.value(forKeyPath: "awards") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
         }
-        
+        if( user.last?.value(forKeyPath: "objective") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
+        }
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
@@ -302,7 +306,9 @@ class dataManager{
         if( user.last?.value(forKeyPath: "awards") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
         }
-        
+        if( user.last?.value(forKeyPath: "objective") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
+        }
         
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
@@ -375,7 +381,9 @@ class dataManager{
         if( user.last?.value(forKeyPath: "awards") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
         }
-        
+        if( user.last?.value(forKeyPath: "objective") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
+        }
         
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
@@ -455,6 +463,9 @@ class dataManager{
         }
         if( user.last?.value(forKeyPath: "awards") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        }
+        if( user.last?.value(forKeyPath: "objective") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
         }
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
@@ -565,7 +576,9 @@ class dataManager{
         if( user.last?.value(forKeyPath: "awards") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
         }
-        
+        if( user.last?.value(forKeyPath: "objective") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
+        }
         
         
         
@@ -665,7 +678,9 @@ class dataManager{
         if( user.last?.value(forKeyPath: "awards") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
         }
-        
+        if( user.last?.value(forKeyPath: "objective") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
+        }
         
         
         
@@ -792,7 +807,9 @@ class dataManager{
         if( user.last?.value(forKeyPath: "awards") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
         }
-        
+        if( user.last?.value(forKeyPath: "objective") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
+        }
         
         
         
@@ -904,6 +921,9 @@ class dataManager{
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
+        if( user.last?.value(forKeyPath: "objective") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
+        }
         
         
         
@@ -922,7 +942,7 @@ class dataManager{
     }
     
     
-    func saveImpactStatement(statement: String) {
+    func saveObjective(statement: String) {
         loadData()
         
         
@@ -939,7 +959,7 @@ class dataManager{
                                           insertInto: managedContext)
         
         
-        savedObject.setValue(statement,forKeyPath: "impactStatement")
+        savedObject.setValue(statement,forKeyPath: "objective")
         
         
         
