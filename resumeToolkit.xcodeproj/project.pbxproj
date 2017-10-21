@@ -29,6 +29,7 @@
 		D18286F31F618FC700CAD85A /* pdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F21F618FC700CAD85A /* pdfView.swift */; };
 		D18CF79A1F63A01C00C625E4 /* SimplePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18CF7991F63A01C00C625E4 /* SimplePDF.swift */; };
 		D18DCD391F74946300F9E7DB /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DCD381F74946300F9E7DB /* Award.swift */; };
+		D198172B1F9987EF00DE38A5 /* resume1.html in Resources */ = {isa = PBXBuildFile; fileRef = D198172A1F9981F500DE38A5 /* resume1.html */; };
 		D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DB936F1F70A3EE00C210B4 /* userSetUp.m */; };
 		D1DB93711F70A53200C210B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D18F9B471F70645800FB48EA /* GoogleService-Info.plist */; };
 		D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		D18CF7991F63A01C00C625E4 /* SimplePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePDF.swift; sourceTree = "<group>"; };
 		D18DCD381F74946300F9E7DB /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		D18F9B471F70645800FB48EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D198172A1F9981F500DE38A5 /* resume1.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = resume1.html; path = ../../Documents/pdfTest/resume1.html; sourceTree = "<group>"; };
 		D1DB936D1F70A3EB00C210B4 /* resumeToolkit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "resumeToolkit-Bridging-Header.h"; sourceTree = "<group>"; };
 		D1DB936E1F70A3ED00C210B4 /* userSetUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userSetUp.h; sourceTree = "<group>"; };
 		D1DB936F1F70A3EE00C210B4 /* userSetUp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userSetUp.m; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		D1E457821F5A175C00D1E030 = {
 			isa = PBXGroup;
 			children = (
+				D198172A1F9981F500DE38A5 /* resume1.html */,
 				D18DCD381F74946300F9E7DB /* Award.swift */,
 				D1DB936E1F70A3ED00C210B4 /* userSetUp.h */,
 				D1DB936F1F70A3EE00C210B4 /* userSetUp.m */,
@@ -276,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D198172B1F9987EF00DE38A5 /* resume1.html in Resources */,
 				D13FA6B51F7DB88500AB567C /* CODE Light.otf in Resources */,
 				D1E4579C1F5A176000D1E030 /* LaunchScreen.storyboard in Resources */,
 				D13FA6B71F7DBB6C00AB567C /* Infinity.ttf in Resources */,
@@ -508,7 +512,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 6JK3GN4CAL;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = EngineeringforSocialInnovation.resumeToolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -529,7 +533,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 6JK3GN4CAL;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = EngineeringforSocialInnovation.resumeToolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -8,13 +8,14 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class pdfView: UIViewController {
     var pdfGenerate = testPDFGenerator()
     var userInfoController = userInfo()
     var previousFilePath = " "
     //getfilepath ==
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var webView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,7 @@ class pdfView: UIViewController {
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
-        webView.scalesPageToFit = true
+       
         //previousFilePath = userInfoController.getFilePath()
         //self.loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         self.webView.isOpaque = true
@@ -34,10 +35,11 @@ class pdfView: UIViewController {
         print("I AM WORKING")
         if(userInfoController.fetchData() == "main" && userInfoController.fetchChangeText() == "bbb" ){
             print("in1")
-            loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+            let pdfResult = pdfGenerate.createPDFFileAndReturnPath()
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
         }else if(userInfoController.fetchChangeText() != "bbb"){
-            
-            loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+            let pdfResult = pdfGenerate.createPDFFileAndReturnPath()
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
             
            
             
@@ -52,11 +54,12 @@ class pdfView: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadPDF(filePath: String) {
+    func loadPDF(html: String,filePath:String) {
         
         let url = NSURL(fileURLWithPath: filePath)
         let urlRequest = NSURLRequest(url: url as URL)
-        webView.loadRequest(urlRequest as URLRequest)
+        //webView.load(urlRequest as URLRequest)
+        webView.loadHTMLString(html, baseURL: url as URL)
     }
     
     

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DAm-JK-7EM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="im1-C9-LZf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -338,21 +337,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiI-sv-1x8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1728.8" y="-744.3778110944528"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="dFp-tv-6Yy">
-            <objects>
-                <viewController id="DAm-JK-7EM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jyj-fQ-iFu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.11183061346261558" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="ANr-3G-xBg"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wsO-YZ-hrb" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2615" y="645"/>
         </scene>
         <!--editView-->
         <scene sceneID="104-I1-37K">
@@ -730,22 +714,21 @@
                                 <rect key="frame" x="0.0" y="-20" width="375" height="859"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OB7-c4-feB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uDE-iI-rhK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="493"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.14433013756816804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="OB7-c4-feB" firstAttribute="top" secondItem="ilC-GI-oI2" secondAttribute="top" id="B5t-tO-Maw"/>
-                            <constraint firstAttribute="trailing" secondItem="OB7-c4-feB" secondAttribute="trailing" id="aX4-Xg-iab"/>
-                            <constraint firstItem="OB7-c4-feB" firstAttribute="bottom" secondItem="wvf-y3-rbU" secondAttribute="bottom" id="tcF-Pj-o2N"/>
-                            <constraint firstItem="OB7-c4-feB" firstAttribute="leading" secondItem="ilC-GI-oI2" secondAttribute="leading" id="ye7-fF-DkW"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="wvf-y3-rbU"/>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="OB7-c4-feB" id="04v-ai-YIL"/>
+                        <outlet property="webView" destination="uDE-iI-rhK" id="Rlj-N4-nOi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhO-VA-T0g" sceneMemberID="firstResponder"/>
