@@ -67,7 +67,7 @@ class testPDFGenerator {
         
         //ADDS DATA TO PDF VERY IMPORTANT
         html = addDataToPDF(oldHTML: html)
-        html = "<b>Hello <i>World!</i></b>"
+        //html = "<b>Hello <i>World!</i></b>"
         let fmt = UIMarkupTextPrintFormatter(markupText: html)
         
         // 2. Assign print formatter to UIPrintPageRenderer
@@ -77,7 +77,7 @@ class testPDFGenerator {
         // 3. Assign paperRect and printableRect
         //let A4paperSize = CGSize(width: 2771, height: 3586)
         //let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
-        let page = CGRect(x: 0, y: 0, width: 612, height: 792)
+        let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
         let printable = page.insetBy(dx: 0, dy: 0)
         render.setValue(page, forKey: "paperRect")
         render.setValue(printable, forKey: "printableRect")

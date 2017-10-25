@@ -61,6 +61,26 @@ class pdfView: UIViewController {
         //webView.load(urlRequest as URLRequest)
         webView.loadHTMLString(html, baseURL: url as URL)
         
+        
+    }
+    
+    
+    func createPdfFromView(aView: UIView, saveToDocumentsWithFileName fileName: String)
+    {
+        let pdfData = NSMutableData()
+        UIGraphicsBeginPDFContextToData(pdfData, aView.bounds, nil)
+        UIGraphicsBeginPDFPage()
+        
+        guard let pdfContext = UIGraphicsGetCurrentContext() else { return }
+        
+        aView.layer.render(in: pdfContext)
+        UIGraphicsEndPDFContext()
+        
+        if let documentDirectories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
+            let documentsFileName = documentDirectories + "/" + fileName
+            debugPrint(documentsFileName)
+            pdfData.write(toFile: documentsFileName, atomically: true)
+        }
     }
     
     
