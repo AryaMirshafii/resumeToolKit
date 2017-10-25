@@ -147,7 +147,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.75013880079999995" green="0.75013880079999995" blue="0.75013880079999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -696,6 +696,7 @@
                         <outlet property="addButton" destination="qQg-8Q-xvX" id="tKl-kn-5s3"/>
                         <outlet property="addView" destination="bNr-p0-xGP" id="zZt-Xc-CSF"/>
                         <outlet property="objectiveField" destination="lsg-Zk-Dd8" id="G9i-I7-fLy"/>
+                        <outlet property="searchBar" destination="d2z-wj-eUb" id="Pbr-JK-z6M"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0CN-tg-3Tp" userLabel="First Responder" sceneMemberID="firstResponder"/>

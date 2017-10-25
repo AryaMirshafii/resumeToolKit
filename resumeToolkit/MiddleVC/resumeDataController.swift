@@ -22,8 +22,10 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     @IBOutlet weak var objectiveField: UITextView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var itemsDict = [String:[resumeItem]]()
+    var searchDict = [String:[resumeItem]]()
     let sections = ["Internship & Job Experience", "Skills", "Courses","Awards & Certifications"]
     
     var user: [NSManagedObject] = []
@@ -34,7 +36,8 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     var awardsList = [resumeItem]()
     var dataController = dataManager()
     
-    
+    var searchText = " "
+    var isSearching = false
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -67,7 +70,132 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.addGestureRecognizer(tap)
+        
+        
+        self.objectiveField.layer.cornerRadius = 10
+        objectiveField.clipsToBounds = true
+        
+        
+        self.setUpSearchBar()
+        
     }
+    
+    
+    func setUpSearchBar(){
+        self.searchBar.barTintColor =  UIColor(red:0.75, green:0.75, blue:0.75, alpha:1.0)
+        self.searchBar.layer.borderColor = UIColor.clear.cgColor
+        self.searchBar.placeholder = "Search For An Item"
+        self.searchBar.delegate = self
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("call me")
+        if searchText.isEmpty {
+            
+            isSearching = false
+            generateItemsDict()
+            print("ARYA SEARCHING")
+            
+        }else {
+            generateItemsDict()
+            isSearching = true
+            print("ARYA NOT SEARCHING")
+            filterTableView(text: searchText)
+            
+        }
+        
+        if searchBar.text == nil || searchBar.text == ""
+        {
+            
+            searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0.1)
+        }
+        
+        
+    }
+    
+    
+    func filterTableView(text: String) {
+        
+        
+        
+        /**
+        var artistAppend = [MPMediaItem]()
+        artistAppend = songs.filter({ (mod) -> Bool in
+            //return mod.imageName.lowercased().contains(text.lowercased())
+            wordsSearchSection = [key]
+            
+            
+            if(mod.albumArtist != nil){
+                return mod.albumArtist!.lowercased().contains(text.lowercased())
+            }
+            return false
+            
+            
+            
+        })
+         */
+        
+        print("searching for" + text)
+        
+        searchDict["Skills"] = skillsList.filter({ (mod) -> Bool in
+            
+           return mod.name.lowercased().contains(text.lowercased())
+        })
+        
+        
+        
+        //let sections = ["Internship & Job Experience", "Skills", "Courses","Awards & Certifications"]
+        
+        
+        searchDict["Courses"] = courseList.filter({ (mod) -> Bool in
+            
+            return mod.name.lowercased().contains(text.lowercased())
+        })
+        
+        
+        searchDict["Internship & Job Experience"] = experrienceList.filter({ (mod) -> Bool in
+            
+            return mod.name.lowercased().contains(text.lowercased())
+        })
+        
+        
+        searchDict["Awards & Certifications"] = courseList.filter({ (mod) -> Bool in
+            
+            return mod.name.lowercased().contains(text.lowercased())
+        })
+        
+        
+        
+        
+        
+        
+        
+        print("IT IS" + String(describing: (searchDict["results"]?.count)))
+        
+        
+        
+        
+        
+        self.tableView.reloadData()
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
@@ -146,6 +274,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 
                 if(skillsArr != nil){
+                    skillsList.removeAll()
                     for aSkill in skillsArr!{
                         let aResumeItem = createResumeItem(description: aSkill)
                         if(aResumeItem.name != "entryInfo[1]" ){
@@ -163,7 +292,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 counter += 1
                 
-                skillsList.removeAll()
+                //skillsList.removeAll()
                 
                 
                 
@@ -218,6 +347,10 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             }
             
         }
+        for aSkill in skillsList {
+            
+            print("NNNN " + aSkill.name)
+        }
     }
     
     func createResumeItem(description: String) -> resumeItem{
@@ -263,6 +396,9 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let wordKey = sections[section]
+        if(isSearching){
+            return searchDict[wordKey]!.count
+        }
         if(itemsDict[wordKey] == nil){
             return 0
         }
@@ -324,9 +460,19 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         }
         
         // Fetches the appropriate meal for the data source layout.
+        if(isSearching){
+            itemsDict = searchDict
+            
+        }
+        
         let aSection = sections[indexPath.section]
-        let items = itemsDict[aSection]
+        var items = itemsDict[aSection]
+        
+        
+        
+        
         //print(anItem.name)
+        print("your row is" + String(indexPath.row))
         cell.entryName.text = items![indexPath.row].name
         cell.entryDescription.text = items![indexPath.row].description
         self.tableView.rowHeight = 160
