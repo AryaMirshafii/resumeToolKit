@@ -180,10 +180,21 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             }
             
         }
-        
+        driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
         if(userInfoController.getFolderID() != "noFolder" && userInfoController.getFolderID() != nil){
             print("FOLDER ID OF" + String(describing: pdfGenerate.createPDFFileAndReturnPath().output))
             
+            
+            print("EL es tu" + userInfoController.getFolderID())
+            let meFile =  pdfGenerate.createPDFFileAndReturnPath().output
+            
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: String(describing: meFile)) {
+                print("FILE AVAILABLE")
+            } else {
+                print("FILE NOT AVAILABLE")
+            }
+            driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath().output), withFileName: generateResumeName())
         }
         
@@ -315,7 +326,8 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         } else {
             text = "No files found."
         }
-        if(text != "No files found." && userInfoController.getFolderID() == "noFolder"  || text != nil ||  text != "" || !text.isEmpty){
+        //|| text != nil ||  text != "" || !text.isEmpty
+        if(text != "No files found." && userInfoController.getFolderID() == "noFolder" || text != nil ||  text != "" || !text.isEmpty){
             userInfoController.saveFolderID(folderID: text)
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath().output), withFileName: generateResumeName())
         }
@@ -359,10 +371,16 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             
             userLastName = userData.last?.value(forKeyPath: "lastName") as? String
             userFirstName = userData.last?.value(forKeyPath: "firstName") as? String
-            
-            if(userFirstName != nil && userInfoController.getFolderID() == "noFolder" ){
+            driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
+           
+            if(userFirstName != nil && userFirstName != nil &&  userInfoController.getFolderID() == "noFolder" ){
+               // print(userLastName!)
+                print(userInfoController.getFolderID())
+                //print(userData)
                 driveFileManager.createFolder(userLastName! + "_" + userFirstName!)
+                //driveFileManager.createFolder("Mirshafii_Arya")
             }
+ 
             fetchFolder()
         }
     }

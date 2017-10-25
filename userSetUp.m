@@ -43,6 +43,7 @@
                                                          NSError *error) {
         if (error == nil) {
            // self.folderIdentification =  file.identifier;
+            
             [self shareToDrive:file.identifier];
            // UPLOADS TO DRIVE [self shareToDrive:file.identifier];
             //printf("the folder id is" + file.identifier )

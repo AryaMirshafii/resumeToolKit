@@ -59,7 +59,7 @@ class testPDFGenerator {
     
     
     var html = ""
-    func createPDFFileAndReturnPath() -> (html: String, output: URL){
+    func createPDFFileAndReturnPath() -> (html: String, output: String){
         var htmlFile = Bundle.main.path(forResource: "resume1", ofType: "html")
         html = try! String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
         //let html = "<b>Hello <i>World!</i></b>"
@@ -67,6 +67,7 @@ class testPDFGenerator {
         
         //ADDS DATA TO PDF VERY IMPORTANT
         html = addDataToPDF(oldHTML: html)
+        html = "<b>Hello <i>World!</i></b>"
         let fmt = UIMarkupTextPrintFormatter(markupText: html)
         
         // 2. Assign print formatter to UIPrintPageRenderer
@@ -75,9 +76,11 @@ class testPDFGenerator {
         
         // 3. Assign paperRect and printableRect
         //let A4paperSize = CGSize(width: 2771, height: 3586)
-        let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
+        //let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
+        let page = CGRect(x: 0, y: 0, width: 612, height: 792)
+        let printable = page.insetBy(dx: 0, dy: 0)
         render.setValue(page, forKey: "paperRect")
-        render.setValue(page, forKey: "printableRect")
+        render.setValue(printable, forKey: "printableRect")
         
         // 4. Create PDF context and draw
         let pdfData = NSMutableData()
@@ -92,11 +95,27 @@ class testPDFGenerator {
         
         
         // 5. Save PDF file
-        guard let outputURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("output").appendingPathExtension("pdf")
-            else { fatalError("Destination URL not created") }
+        //guard let outputURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("output").appendingPathExtension("pdf")
+            //else { fatalError("Destination URL not created") }
         
-        pdfData.write(to: outputURL, atomically: true)
-        print("open \(outputURL.path)")
+        
+        let fileName = "pdffilename.pdf"
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0] as! NSString
+        let outputURL = documentsDirectory.appending("/" + fileName)
+        //let outputURL = URL()
+        
+        //URL(fileURLWithPath: <#T##String#>)
+        
+        let newData = pdfData.copy() as! NSData
+        
+        newData.write(to: URL(fileURLWithPath: outputURL), atomically: true)
+        print("DATA")
+        print(newData)
+        
+        print("open \(outputURL)")
+        print("ARYA ME" + String(describing: outputURL))
+        
         //webView.loadHTMLString(html!, baseURL: outputURL)
      
     return (html, outputURL)
@@ -137,7 +156,8 @@ class testPDFGenerator {
         
         
     }
-     */
+ */
+    
     var newHTML = " "
     func addDataToPDF(oldHTML: String) ->String {
         loadData()

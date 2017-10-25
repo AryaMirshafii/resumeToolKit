@@ -149,6 +149,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         startEntry.text = ""
         companyField.text = ""
         contactField.text = ""
+        
+        
     }
    
     

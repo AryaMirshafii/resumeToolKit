@@ -54,12 +54,13 @@ class pdfView: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadPDF(html: String,filePath:String) {
+    func loadPDF(html: String, filePath:String) {
         
         let url = NSURL(fileURLWithPath: filePath)
         let urlRequest = NSURLRequest(url: url as URL)
         //webView.load(urlRequest as URLRequest)
         webView.loadHTMLString(html, baseURL: url as URL)
+        
     }
     
     

@@ -20,6 +20,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var addView: UIView!
     
+    @IBOutlet weak var objectiveField: UITextView!
     
     
     var itemsDict = [String:[resumeItem]]()
@@ -31,6 +32,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     var skillsList = [resumeItem]()
     var courseList = [resumeItem]()
     var awardsList = [resumeItem]()
+    var dataController = dataManager()
     
     
     override func viewDidLoad() {
@@ -56,6 +58,18 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         
+        setUpData()
+        let aUser = user.last
+        let objectiveText = aUser?.value(forKeyPath: "objective") as? String
+        if(objectiveText != nil){
+            objectiveField.text = objectiveText
+        }
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        view.addGestureRecognizer(tap)
+    }
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     @objc func userDefaultsDidChange() {
@@ -86,6 +100,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         setUpData()
         let aUser = user.last
         for aSection in sections {
+            
             let userExpereience = aUser?.value(forKeyPath: "experience") as? String
             let userSkills = aUser?.value(forKeyPath: "skills") as? String
             let userCourses = aUser?.value(forKeyPath: "courses") as? String
@@ -228,6 +243,10 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     
+    @IBAction func saveObjective(_ sender: Any) {
+        dataController.saveObjective(statement: objectiveField.text)
+        view.endEditing(true)
+    }
     
     
     
