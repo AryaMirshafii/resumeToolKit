@@ -14,6 +14,7 @@ class fourthLoginScreen: UIViewController,UITextFieldDelegate {
     var infoController = userInfo()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -28,12 +29,14 @@ class fourthLoginScreen: UIViewController,UITextFieldDelegate {
         textField.resignFirstResponder()
         //dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "4to5", sender: self)
+       
         
         
         
         
         return true
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "4to5" {

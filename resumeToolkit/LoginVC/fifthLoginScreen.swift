@@ -28,13 +28,25 @@ class fifthLoginScreen: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
         infoController.save(screen: "main")
-        //textField.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
+        textField.resignFirstResponder()
+        performSegue(withIdentifier: "unwindto1", sender: self)
+        
+        
+       
         
         
         return true
     }
     
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "5to1" {
+            
+            
+            
+        }
+    }
     
     
     

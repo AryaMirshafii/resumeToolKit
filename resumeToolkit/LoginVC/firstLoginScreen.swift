@@ -44,5 +44,9 @@ class firstLoginScreen:UIViewController,UITextFieldDelegate {
         }
     }
     
+    @IBAction func unwindToVC1(segue:UIStoryboardSegue) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
 }
