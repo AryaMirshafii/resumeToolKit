@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let left = storyboard.instantiateViewController(withIdentifier: "left")
         var middle = storyboard.instantiateViewController(withIdentifier: "middle")
         let right = storyboard.instantiateViewController(withIdentifier: "right")
-        let login = storyboard.instantiateViewController(withIdentifier: "loginScreen")
+        let login = storyboard.instantiateViewController(withIdentifier: "startScreen")
         
         let viewControllerArray = [login,middle]
         

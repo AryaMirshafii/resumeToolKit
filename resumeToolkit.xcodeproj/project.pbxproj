@@ -24,6 +24,11 @@
 		D152E3BC1F624C15002F5F54 /* experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BB1F624C15002F5F54 /* experience.swift */; };
 		D152E3BE1F624C36002F5F54 /* skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BD1F624C36002F5F54 /* skill.swift */; };
 		D152E3C01F624C53002F5F54 /* schoolWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BF1F624C53002F5F54 /* schoolWork.swift */; };
+		D182367C1FA16EF000801E00 /* fifthLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182367B1FA16EF000801E00 /* fifthLoginScreen.swift */; };
+		D182367E1FA171B400801E00 /* fourthLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182367D1FA171B400801E00 /* fourthLoginScreen.swift */; };
+		D18236801FA1736E00801E00 /* thirdLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182367F1FA1736E00801E00 /* thirdLoginScreen.swift */; };
+		D18236821FA1750600801E00 /* secondLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18236811FA1750600801E00 /* secondLogin.swift */; };
+		D18236841FA175C200801E00 /* firstLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18236831FA175C200801E00 /* firstLoginScreen.swift */; };
 		D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286EC1F60A6B400CAD85A /* userSettings.swift */; };
 		D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */; };
 		D18286F31F618FC700CAD85A /* pdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F21F618FC700CAD85A /* pdfView.swift */; };
@@ -62,6 +67,11 @@
 		D152E3BB1F624C15002F5F54 /* experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = experience.swift; sourceTree = "<group>"; };
 		D152E3BD1F624C36002F5F54 /* skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skill.swift; sourceTree = "<group>"; };
 		D152E3BF1F624C53002F5F54 /* schoolWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = schoolWork.swift; sourceTree = "<group>"; };
+		D182367B1FA16EF000801E00 /* fifthLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fifthLoginScreen.swift; sourceTree = "<group>"; };
+		D182367D1FA171B400801E00 /* fourthLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fourthLoginScreen.swift; sourceTree = "<group>"; };
+		D182367F1FA1736E00801E00 /* thirdLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thirdLoginScreen.swift; sourceTree = "<group>"; };
+		D18236811FA1750600801E00 /* secondLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondLogin.swift; sourceTree = "<group>"; };
+		D18236831FA175C200801E00 /* firstLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstLoginScreen.swift; sourceTree = "<group>"; };
 		D18286EC1F60A6B400CAD85A /* userSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userSettings.swift; sourceTree = "<group>"; };
 		D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testPDFGenerator.swift; sourceTree = "<group>"; };
 		D18286F21F618FC700CAD85A /* pdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdfView.swift; sourceTree = "<group>"; };
@@ -132,7 +142,12 @@
 		D152E3AD1F61DD2A002F5F54 /* LoginVC */ = {
 			isa = PBXGroup;
 			children = (
+				D182367B1FA16EF000801E00 /* fifthLoginScreen.swift */,
+				D182367D1FA171B400801E00 /* fourthLoginScreen.swift */,
+				D182367F1FA1736E00801E00 /* thirdLoginScreen.swift */,
+				D18236811FA1750600801E00 /* secondLogin.swift */,
 				D10628921F6080E7001880AD /* secondLoginScreen.swift */,
+				D18236831FA175C200801E00 /* firstLoginScreen.swift */,
 				D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */,
 			);
 			path = LoginVC;
@@ -348,6 +363,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D18DCD391F74946300F9E7DB /* Award.swift in Sources */,
+				D18236801FA1736E00801E00 /* thirdLoginScreen.swift in Sources */,
+				D18236821FA1750600801E00 /* secondLogin.swift in Sources */,
 				D1EF9D7F1F6C8B7300BEB77A /* course.swift in Sources */,
 				D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */,
 				D18286F31F618FC700CAD85A /* pdfView.swift in Sources */,
@@ -363,11 +380,14 @@
 				D152E3BC1F624C15002F5F54 /* experience.swift in Sources */,
 				D152E3BA1F621B5C002F5F54 /* editViewController.swift in Sources */,
 				D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */,
+				D18236841FA175C200801E00 /* firstLoginScreen.swift in Sources */,
 				D152E3B21F61DE94002F5F54 /* resumeItem.swift in Sources */,
 				D18CF79A1F63A01C00C625E4 /* SimplePDF.swift in Sources */,
 				D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */,
+				D182367C1FA16EF000801E00 /* fifthLoginScreen.swift in Sources */,
 				D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */,
 				D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */,
+				D182367E1FA171B400801E00 /* fourthLoginScreen.swift in Sources */,
 				D152E3B81F620630002F5F54 /* entryCell.swift in Sources */,
 				D133C6A71F5A60600080B598 /* dataManager.swift in Sources */,
 			);
