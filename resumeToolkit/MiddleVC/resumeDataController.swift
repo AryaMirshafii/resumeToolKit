@@ -24,6 +24,9 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    
+    @IBOutlet weak var topView: UIView!
+    
     var itemsDict = [String:[resumeItem]]()
     var searchDict = [String:[resumeItem]]()
     let sections = ["Internship & Job Experience", "Skills", "Courses","Awards & Certifications"]
@@ -35,6 +38,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     var courseList = [resumeItem]()
     var awardsList = [resumeItem]()
     var dataController = dataManager()
+    
     
     var searchText = " "
     var isSearching = false
@@ -84,11 +88,13 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     func setUpSearchBar(){
         self.searchBar.barTintColor =  UIColor(red:0.75, green:0.75, blue:0.75, alpha:1.0)
         self.searchBar.layer.borderColor = UIColor.clear.cgColor
-        self.searchBar.placeholder = "Search For An Item"
+        self.searchBar.placeholder = "Search by name or description"
         self.searchBar.delegate = self
     }
     
-    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        view.endEditing(true)
+    }
     
     
     
@@ -98,12 +104,17 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("call me")
         if searchText.isEmpty {
-            
+            //self.addView.frame = CGRect(x: 0, y: 0, width: 357, height: 194)
             isSearching = false
             generateItemsDict()
+            self.tableView.reloadData()
             print("ARYA SEARCHING")
+            self.topView.frame = CGRect(x: 0, y: 0, width: 375, height: 200)
+            self.addView.frame = CGRect(x: 0, y: 53, width: 375, height: 147)
             
         }else {
+            self.addView.frame = CGRect(x: 900, y: -900, width: 375, height: 194)
+            self.topView.frame = CGRect(x: 0, y: 0, width: 375, height: 56)
             generateItemsDict()
             isSearching = true
             print("ARYA NOT SEARCHING")
@@ -146,7 +157,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         searchDict["Skills"] = skillsList.filter({ (mod) -> Bool in
             
-           return mod.name.lowercased().contains(text.lowercased())
+           return mod.name.lowercased().contains(text.lowercased()) || mod.description.lowercased().contains(text.lowercased())
         })
         
         
@@ -156,19 +167,19 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         searchDict["Courses"] = courseList.filter({ (mod) -> Bool in
             
-            return mod.name.lowercased().contains(text.lowercased())
+            return mod.name.lowercased().contains(text.lowercased()) || mod.description.lowercased().contains(text.lowercased())
         })
         
         
         searchDict["Internship & Job Experience"] = experrienceList.filter({ (mod) -> Bool in
             
-            return mod.name.lowercased().contains(text.lowercased())
+            return mod.name.lowercased().contains(text.lowercased()) || mod.description.lowercased().contains(text.lowercased())
         })
         
         
-        searchDict["Awards & Certifications"] = courseList.filter({ (mod) -> Bool in
+        searchDict["Awards & Certifications"] = awardsList.filter({ (mod) -> Bool in
             
-            return mod.name.lowercased().contains(text.lowercased())
+            return mod.name.lowercased().contains(text.lowercased()) || mod.description.lowercased().contains(text.lowercased())
         })
         
         
@@ -244,7 +255,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             
            
             if(aSection == "Internship & Job Experience" && userExpereience != nil){
-               
+               experrienceList.removeAll()
                 
                 if(experienceArr != nil){
                     for anExperience in experienceArr!{
@@ -261,7 +272,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 counter += 1
                 
-                experrienceList.removeAll()
+                
                     //[createResumeItem(description: String(describing: userExpereience))]
             }
             
@@ -299,11 +310,13 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             }
             
             if(aSection == "Courses" && userCourses != nil){
+                
                 //itemsDict[aSection] = [createResumeItem(description: usercourses!)]
                 //counter += 1
                 
                 
                 if(coursesArr != nil){
+                    courseList.removeAll()
                     for aCourse in coursesArr!{
                         if(!aCourse.isEmpty){
                             courseList.append(createResumeItem(description: aCourse))
@@ -318,16 +331,17 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 counter += 1
                 
-                courseList.removeAll()
+                
                 
             }
             
             if(aSection == "Awards & Certifications" && userAwards != nil){
-                //itemsDict[aSection] = [createResumeItem(description: usercourses!)]
-                //counter += 1
+                
+                
                 
                 
                 if(awardsArr != nil){
+                    awardsList.removeAll()
                     for anAward in awardsArr!{
                         if(!anAward.isEmpty){
                             awardsList.append(createResumeItem(description: anAward))
@@ -342,7 +356,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 counter += 1
                 
-                awardsList.removeAll()
+               
                 
             }
             
