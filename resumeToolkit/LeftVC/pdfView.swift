@@ -9,14 +9,18 @@
 import Foundation
 import UIKit
 import WebKit
+import ASHorizontalScrollView
 
 class pdfView: UIViewController {
     var pdfGenerate = testPDFGenerator()
     var userInfoController = userInfo()
     var previousFilePath = " "
+    
     //getfilepath ==
     @IBOutlet weak var webView: WKWebView!
     
+    
+    @IBOutlet weak var userSelect: ASHorizontalScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         userDefaultsDidChange()
@@ -28,7 +32,41 @@ class pdfView: UIViewController {
         //self.loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         self.webView.isOpaque = true
         self.webView.backgroundColor = UIColor.clear
+        let button1 = UIButton(frame: CGRect.zero)
+        let button2 = UIButton(frame: CGRect.zero)
+        let button3 = UIButton(frame: CGRect.zero)
+        let button4 = UIButton(frame: CGRect.zero)
+        button1.backgroundColor = UIColor.purple
+        button2.backgroundColor = UIColor.red
         
+        button3.backgroundColor = UIColor.purple
+        button4.backgroundColor = UIColor.red
+        
+        userSelect.addItems([button1,button2,button3,button4])
+        
+        let scrollDetect = UITapGestureRecognizer(target: self, action: #selector(self.enableTouches(_:)))
+        let mainviewTouches = UITapGestureRecognizer(target: self, action: #selector(self.cancelTouchesInMainView(_:)))
+        self.view.addGestureRecognizer(scrollDetect)
+        self.userSelect.addGestureRecognizer(mainviewTouches)
+        
+        userSelect.showsHorizontalScrollIndicator = true
+        self.userSelect.clipsToBounds = true
+        
+        
+        
+        
+    }
+    
+    
+    @objc func cancelTouchesInMainView(_ sender: UITapGestureRecognizer) {
+        print("trying to scroll view")
+        //self.view.isUserInteractionEnabled = false
+        
+    }
+    
+    @objc func enableTouches(_ sender: UITapGestureRecognizer) {
+        print("main view")
+        //self.view.isUserInteractionEnabled = true
     }
     var counter = 0
     @objc func userDefaultsDidChange() {
