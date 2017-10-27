@@ -736,9 +736,9 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vrx-te-wer" customClass="ASHorizontalScrollView" customModule="ASHorizontalScrollView">
-                                <rect key="frame" x="16" y="517" width="343" height="130"/>
+                                <rect key="frame" x="29" y="515" width="316" height="132"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.14433013756816804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

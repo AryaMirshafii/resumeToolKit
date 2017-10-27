@@ -32,41 +32,35 @@ class pdfView: UIViewController {
         //self.loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         self.webView.isOpaque = true
         self.webView.backgroundColor = UIColor.clear
-        let button1 = UIButton(frame: CGRect.zero)
-        let button2 = UIButton(frame: CGRect.zero)
-        let button3 = UIButton(frame: CGRect.zero)
-        let button4 = UIButton(frame: CGRect.zero)
+        let button1 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button2 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button3 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button4 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
         button1.backgroundColor = UIColor.purple
         button2.backgroundColor = UIColor.red
         
         button3.backgroundColor = UIColor.purple
         button4.backgroundColor = UIColor.red
+        userSelect.uniformItemSize = CGSize(width: 90, height: 140)
+        userSelect.setItemsMarginOnce()
+        
+        
         
         userSelect.addItems([button1,button2,button3,button4])
+       
+        //userSelect.marginSettings = MarginSettings(leftMargin: <#T##CGFloat#>, numberOfItemsPerScreen: <#T##Float#>)
         
-        let scrollDetect = UITapGestureRecognizer(target: self, action: #selector(self.enableTouches(_:)))
-        let mainviewTouches = UITapGestureRecognizer(target: self, action: #selector(self.cancelTouchesInMainView(_:)))
-        self.view.addGestureRecognizer(scrollDetect)
-        self.userSelect.addGestureRecognizer(mainviewTouches)
         
-        userSelect.showsHorizontalScrollIndicator = true
+        
+        
+       
+        
+        //userSelect.showsHorizontalScrollIndicator = true
         self.userSelect.clipsToBounds = true
         
         
         
         
-    }
-    
-    
-    @objc func cancelTouchesInMainView(_ sender: UITapGestureRecognizer) {
-        print("trying to scroll view")
-        //self.view.isUserInteractionEnabled = false
-        
-    }
-    
-    @objc func enableTouches(_ sender: UITapGestureRecognizer) {
-        print("main view")
-        //self.view.isUserInteractionEnabled = true
     }
     var counter = 0
     @objc func userDefaultsDidChange() {

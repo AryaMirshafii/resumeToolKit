@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '28189471E4F97895BCE73629539C3F2D'
-               BlueprintName = 'WYMaterialButton'
+               BlueprintIdentifier = '7314180BE9DF7EC9AED878748EC34864'
+               BlueprintName = 'ASHorizontalScrollView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'WYMaterialButton.framework'>
+               BuildableName = 'ASHorizontalScrollView.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
