@@ -600,13 +600,13 @@ class dataManager{
     
     
     func overwriteSkill(previousText: String, skillName: String) {
-        loadData()
+        self.loadData()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = appDelegate.managedObjectContext
         var previousSkills = user.last?.value(forKeyPath: "skills") as! String
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         fetchrequest.predicate = NSPredicate(format: "skills == %@", previousSkills)

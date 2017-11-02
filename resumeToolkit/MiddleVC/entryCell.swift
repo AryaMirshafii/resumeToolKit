@@ -79,7 +79,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
             
             
             dataController.overwriteSkill(previousText: originalSkillText, skillName: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
-            self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
+            //self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
         } else if(self.cellType == "Internships & Job Experience"){
             
             //dataController.saveExperience(experience: experienceString)
