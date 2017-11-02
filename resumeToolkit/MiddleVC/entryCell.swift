@@ -25,6 +25,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
     
     var dataController = dataManager()
     var infoController = userInfo()
+    var originalSkillText = ""
     override func awakeFromNib() {
         super.awakeFromNib()
         /**
@@ -45,6 +46,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         self.addGestureRecognizer(longPressRecognizer)
         self.saveButton.isHidden = true
         self.cancelButton.isHidden = true
+        self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
     }
     
     
@@ -62,11 +64,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         }
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if touches.first != nil {
-            print("finger is not touching.")
-        }
-    }
+    
     
     
     @IBAction func cancelEntry(_ sender: Any) {
@@ -80,7 +78,8 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         if(self.cellType == "Skill"){
             
             
-            dataController.saveSkills(theSkills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.overwriteSkill(previousText: originalSkillText, skillName: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
+            self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
         } else if(self.cellType == "Internships & Job Experience"){
             
             //dataController.saveExperience(experience: experienceString)
@@ -104,14 +103,17 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         if(aNumber == 0){
             colorView.backgroundColor = UIColor(red:0.23, green:0.42, blue:0.86, alpha:1.0)
             saveButton.setTitleColor(UIColor(red:0.23, green:0.42, blue:0.86, alpha:1.0), for: .normal)
+            cancelButton.setTitleColor(UIColor(red:0.23, green:0.42, blue:0.86, alpha:1.0), for: .normal)
         }
         if(aNumber == 1){
             colorView.backgroundColor = UIColor(red:0.71, green:0.38, blue:0.50, alpha:1.0)
             saveButton.setTitleColor(UIColor(red:0.71, green:0.38, blue:0.50, alpha:1.0), for: .normal)
+            cancelButton.setTitleColor(UIColor(red:0.71, green:0.38, blue:0.50, alpha:1.0), for: .normal)
         }
         if(aNumber == 2){
             colorView.backgroundColor = UIColor(red:0.71, green:0.38, blue:0.50, alpha:1.0)
             saveButton.setTitleColor(UIColor(red:0.71, green:0.38, blue:0.50, alpha:1.0), for: .normal)
+            cancelButton.setTitleColor(UIColor(red:0.71, green:0.38, blue:0.50, alpha:1.0), for: .normal)
         }
     }
 }

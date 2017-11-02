@@ -594,6 +594,39 @@ class dataManager{
             print("Could not save. \(error), \(error.userInfo)")
         }
         print(user.count)
+    
+    }
+    
+    
+    
+    func overwriteSkill(previousText: String, skillName: String) {
+        loadData()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        var previousSkills = user.last?.value(forKeyPath: "skills") as! String
+        let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        fetchrequest.predicate = NSPredicate(format: "skills == %@", previousSkills)
+        do {
+            let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
+            if fetchResults?.count != 0{
+                let toSave = previousSkills.replacingOccurrences(of: previousText, with: skillName)
+                var managedObject = fetchResults?[0]
+                
+                managedObject?.setValue(skillName, forKey: "skills")
+                
+                
+                ///
+                
+                 print("UPDATED")
+            };try managedContext.save()
+           
+        } catch {
+            print(error)
+        }
     }
     
     
