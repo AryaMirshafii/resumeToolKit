@@ -93,9 +93,9 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //if(isSearching){
-             view.endEditing(true)
-        //}
+        if(isSearching){
+            view.endEditing(true)
+        }
        
     }
     

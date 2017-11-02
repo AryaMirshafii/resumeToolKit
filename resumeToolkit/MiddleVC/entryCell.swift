@@ -26,6 +26,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
     var dataController = dataManager()
     var infoController = userInfo()
     var originalSkillText = ""
+    var originalColor: UIColor!
     override func awakeFromNib() {
         super.awakeFromNib()
         /**
@@ -47,6 +48,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         self.saveButton.isHidden = true
         self.cancelButton.isHidden = true
         self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
+        self.originalColor = entryDescription.backgroundColor!
     }
     
     
@@ -60,6 +62,9 @@ class entryCell : UITableViewCell,UITextViewDelegate{
             self.entryDescription.isUserInteractionEnabled = true
             self.saveButton.isHidden = false
             self.cancelButton.isHidden = false
+            self.entryDescription.becomeFirstResponder()
+            self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
+            entryDescription.backgroundColor = UIColor(red:0.36, green:0.35, blue:0.35, alpha:1.0)
             
         }
     }
@@ -71,6 +76,9 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         self.saveButton.isHidden = true
         self.cancelButton.isHidden = true
         self.entryDescription.endEditing(true)
+        self.entryDescription.isUserInteractionEnabled = false
+        self.entryDescription.backgroundColor = self.originalColor
+        
     }
     
     var reloadCounter = 0
@@ -78,7 +86,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         if(self.cellType == "Skill"){
             
             
-            dataController.overwriteSkill(previousText: originalSkillText, skillName: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.overwriteSkill(previousText: originalSkillText, skillName: "Skill" + "_" + self.entryName.text! + "_" + self.entryDescription.text)
             //self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
         } else if(self.cellType == "Internships & Job Experience"){
             
@@ -88,9 +96,11 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         } else if(self.cellType == "Extracurriculars"){
             dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + entryName.text! + "_" + entryDescription.text)
         }
-        entryDescription.endEditing(true)
         self.saveButton.isHidden = true
         self.cancelButton.isHidden = true
+        self.entryDescription.endEditing(true)
+        self.entryDescription.isUserInteractionEnabled = false
+        self.entryDescription.backgroundColor = self.originalColor
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
         

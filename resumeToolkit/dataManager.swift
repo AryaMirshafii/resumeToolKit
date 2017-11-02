@@ -601,29 +601,31 @@ class dataManager{
     
     func overwriteSkill(previousText: String, skillName: String) {
         self.loadData()
-        
+        print("previous text is" + previousText)
+        print("new text is" + skillName)
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
-        let managedContext = appDelegate.managedObjectContext
+        let managedContext = appDelegate.persistentContainer.viewContext
         var previousSkills = user.last?.value(forKeyPath: "skills") as! String
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        print(user.last)
         fetchrequest.predicate = NSPredicate(format: "skills == %@", previousSkills)
         do {
             let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
             if fetchResults?.count != 0{
                 let toSave = previousSkills.replacingOccurrences(of: previousText, with: skillName)
                 var managedObject = fetchResults?[0]
-                
-                managedObject?.setValue(skillName, forKey: "skills")
+                print(toSave)
+                managedObject?.setValue(toSave, forKey: "skills")
                 
                 
                 ///
                 
                  print("UPDATED")
             };try managedContext.save()
-           
+           print(user.last)
         } catch {
             print(error)
         }

@@ -112,7 +112,7 @@ class testPDFGenerator {
         
         newData.write(to: URL(fileURLWithPath: outputURL), atomically: true)
         print("DATA")
-        print(newData)
+        
         
         print("open \(outputURL)")
         print("ARYA ME" + String(describing: outputURL))
