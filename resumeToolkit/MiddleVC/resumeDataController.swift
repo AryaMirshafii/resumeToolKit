@@ -29,14 +29,14 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     var itemsDict = [String:[resumeItem]]()
     var searchDict = [String:[resumeItem]]()
-    let sections = ["Internship & Job Experience", "Skills", "Courses","Awards & Certifications"]
+    let sections = ["Internship & Job Experience", "Skills", "Courses","Extracurriculars"]
     
     var user: [NSManagedObject] = []
     var infoController = userInfo()
     var experrienceList = [resumeItem]()
     var skillsList = [resumeItem]()
     var courseList = [resumeItem]()
-    var awardsList = [resumeItem]()
+    var ExtracurricularsList = [resumeItem]()
     var dataController = dataManager()
     
     
@@ -162,7 +162,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         
         
-        //let sections = ["Internship & Job Experience", "Skills", "Courses","Awards & Certifications"]
+        //let sections = ["Internship & Job Experience", "Skills", "Courses","Extracurriculars"]
         
         
         searchDict["Courses"] = courseList.filter({ (mod) -> Bool in
@@ -177,7 +177,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         })
         
         
-        searchDict["Awards & Certifications"] = awardsList.filter({ (mod) -> Bool in
+        searchDict["Extracurriculars"] = ExtracurricularsList.filter({ (mod) -> Bool in
             
             return mod.name.lowercased().contains(text.lowercased()) || mod.description.lowercased().contains(text.lowercased())
         })
@@ -243,14 +243,14 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             let userExpereience = aUser?.value(forKeyPath: "experience") as? String
             let userSkills = aUser?.value(forKeyPath: "skills") as? String
             let userCourses = aUser?.value(forKeyPath: "courses") as? String
-            let userAwards = aUser?.value(forKeyPath: "awards") as? String
+            let userExtracurriculars = aUser?.value(forKeyPath: "extracurriculars") as? String
            
             print("going here")
             
             var experienceArr = userExpereience?.components(separatedBy:"-")
             var skillsArr = userSkills?.components(separatedBy:"-")
             var coursesArr = userCourses?.components(separatedBy:"-")
-            var awardsArr = userAwards?.components(separatedBy:"-")
+            var ExtracurricularsArr = userExtracurriculars?.components(separatedBy:"-")
             
             
            
@@ -335,23 +335,23 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
             }
             
-            if(aSection == "Awards & Certifications" && userAwards != nil){
+            if(aSection == "Extracurriculars" && userExtracurriculars != nil){
                 
                 
                 
                 
-                if(awardsArr != nil){
-                    awardsList.removeAll()
-                    for anAward in awardsArr!{
+                if(ExtracurricularsArr != nil){
+                    ExtracurricularsList.removeAll()
+                    for anAward in ExtracurricularsArr!{
                         if(!anAward.isEmpty){
-                            awardsList.append(createResumeItem(description: anAward))
+                            ExtracurricularsList.append(createResumeItem(description: anAward))
                         }
                         
                     }
-                    itemsDict[aSection]  = awardsList
+                    itemsDict[aSection]  = ExtracurricularsList
                     
                 } else {
-                    itemsDict[aSection] = [createResumeItem(description: userAwards!)]
+                    itemsDict[aSection] = [createResumeItem(description: userExtracurriculars!)]
                 }
                 
                 counter += 1
@@ -372,18 +372,18 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         if(entryInfo[0] == "Skill"){
             
-            return skill(name: entryInfo[1], description: entryInfo[2])
+            return skill(name: entryInfo[1], description: entryInfo[2],entryType: entryInfo[0])
         } else if(entryInfo[0] == "Professional Development"){
             
             //return experience(name: entryInfo[1], description: entryInfo[2])
-            return experience(name: entryInfo[1], dateStarted: entryInfo[2], dateEnded: entryInfo[3], companyName: entryInfo[4], companyContact: entryInfo[5], description: entryInfo[6])
+            return experience(name: entryInfo[1], dateStarted: entryInfo[2], dateEnded: entryInfo[3], companyName: entryInfo[4], companyContact: entryInfo[5], description: entryInfo[6], entryType:entryInfo[0] )
         } else if(entryInfo[0] == "Courses"){
             
-            return course(name: entryInfo[1], description: entryInfo[2])
-        } else if(entryInfo[0] == "Awards"){
-            return Award(name: entryInfo[1], description: entryInfo[2])
+            return course(name: entryInfo[1], description: entryInfo[2],entryType:entryInfo[0])
+        } else if(entryInfo[0] == "Extracurriculars"){
+            return Award(name: entryInfo[1], description: entryInfo[2],entryType:entryInfo[0])
         }
-        return resumeItem(name: "entryInfo[1]", description: "entryInfo[2]")
+        return resumeItem(name: "entryInfo[1]", description: "entryInfo[2]", entryType:"None")
     }
     
     
@@ -490,6 +490,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         cell.entryName.text = items![indexPath.row].name
         cell.entryDescription.text = items![indexPath.row].description
         self.tableView.rowHeight = 160
+        cell.cellType = items![indexPath.row].entryType
         
         
         

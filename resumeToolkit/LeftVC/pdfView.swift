@@ -58,7 +58,7 @@ class pdfView: UIViewController {
         //userSelect.showsHorizontalScrollIndicator = true
         self.userSelect.clipsToBounds = true
         
-        
+        self.webView.scrollView.zoomScale = 0
         
         
     }

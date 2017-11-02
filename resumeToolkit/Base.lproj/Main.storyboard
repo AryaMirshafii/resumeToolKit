@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="im1-C9-LZf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="im1-C9-LZf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -579,6 +579,7 @@
                         <outlet property="skillImage" destination="oCg-pi-Xaa" id="pMj-Ti-UWK"/>
                         <outlet property="startEntry" destination="Tyu-E3-VED" id="uJR-pz-nb8"/>
                         <outlet property="timelineView" destination="cMa-K0-kbc" id="n6z-yV-EQv"/>
+                        <outlet property="yearLabel" destination="7Rd-qg-VjG" id="mgC-Sg-Tuv"/>
                         <outlet property="yearReceivedView" destination="rIA-f8-UXM" id="Ask-ju-Hfk"/>
                     </connections>
                 </viewController>
@@ -672,7 +673,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BuS-GF-4O2">
-                                            <rect key="frame" x="34" y="44" width="322" height="116"/>
+                                            <rect key="frame" x="34" y="44" width="322" height="78"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="0.75013880079999995" green="0.75013880079999995" blue="0.75013880079999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -685,14 +686,34 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCr-dp-tOJ">
+                                            <rect key="frame" x="34" y="130" width="90" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="30"/>
+                                            <state key="normal" title="Cancel"/>
+                                            <connections>
+                                                <action selector="cancelEntry:" destination="jfL-Ef-K86" eventType="touchUpInside" id="dQY-Rr-lnL"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaP-in-RYM">
+                                            <rect key="frame" x="285" y="130" width="71" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Prime-Regular" family="Prime" pointSize="30"/>
+                                            <state key="normal" title="Save"/>
+                                            <connections>
+                                                <action selector="saveEntry:" destination="jfL-Ef-K86" eventType="touchUpInside" id="3EO-CO-S1a"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.75013880076142136" green="0.75013880076142136" blue="0.75013880076142136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
+                                    <outlet property="cancelButton" destination="FCr-dp-tOJ" id="fvh-lm-Bva"/>
                                     <outlet property="colorView" destination="M5x-zd-HEj" id="EfL-fc-bhN"/>
-                                    <outlet property="entryDescription" destination="BuS-GF-4O2" id="Km1-jE-SJU"/>
+                                    <outlet property="entryDescription" destination="BuS-GF-4O2" id="oKk-nm-BJ8"/>
                                     <outlet property="entryName" destination="sU3-qM-iyO" id="zy8-KE-pPS"/>
+                                    <outlet property="saveButton" destination="DaP-in-RYM" id="Hpr-Ae-Cmc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

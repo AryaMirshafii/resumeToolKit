@@ -154,7 +154,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
              welcomeLabel.text = "Welcome,"
         }
         
-        
+        signInButton.clipsToBounds = true
         
     }
     

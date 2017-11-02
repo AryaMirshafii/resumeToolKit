@@ -125,14 +125,14 @@ class dataManager{
         for aUser in user{
             
             var courses = aUser.value(forKeyPath: "courses") as? String
-            var awards = aUser.value(forKeyPath: "awards") as? String
+            var extracurriculars = aUser.value(forKeyPath: "extracurriculars") as? String
             var experience = aUser.value(forKeyPath: "experience") as? String
             var skills = aUser.value(forKeyPath: "skills") as? String
             
-            //print(String(acounter) + "courses: " + courses + "****" + "awards: " + awards +  "****" + "experience: " + experience + "****" + "Skills: " + skills)
+            //print(String(acounter) + "courses: " + courses + "****" + "extracurriculars: " + extracurriculars +  "****" + "experience: " + experience + "****" + "Skills: " + skills)
             
             var printString = String(acounter) + "courses: "
-            //printString.append(courses! + "****" + "awards: " + awards!)
+            //printString.append(courses! + "****" + "extracurriculars: " + extracurriculars!)
            // printString += "****" + "experience: " + experience!
             //printString.append( "****" + "Skills: " + skills!)
             print(aUser)
@@ -181,8 +181,8 @@ class dataManager{
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
         }
         if( user.last?.value(forKeyPath: "objective") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
@@ -237,8 +237,8 @@ class dataManager{
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
         }
         if( user.last?.value(forKeyPath: "objective") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
@@ -303,8 +303,8 @@ class dataManager{
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
         }
         if( user.last?.value(forKeyPath: "objective") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
@@ -378,8 +378,8 @@ class dataManager{
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
         }
         if( user.last?.value(forKeyPath: "objective") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
@@ -461,8 +461,8 @@ class dataManager{
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
         }
         if( user.last?.value(forKeyPath: "objective") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
@@ -573,8 +573,8 @@ class dataManager{
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
         }
         if( user.last?.value(forKeyPath: "objective") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
@@ -675,8 +675,8 @@ class dataManager{
         if( user.last?.value(forKeyPath: "skills") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
         }
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
         }
         if( user.last?.value(forKeyPath: "objective") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
@@ -804,8 +804,8 @@ class dataManager{
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
         }
         if( user.last?.value(forKeyPath: "objective") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
@@ -841,10 +841,10 @@ class dataManager{
     
     
     
-    func saveAwards(awardName: String) {
+    func saveExtracurriculars(extracurricular: String) {
         loadData()
         
-        var anAwardName = awardName
+        var extracurricularName = extracurricular
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -858,12 +858,12 @@ class dataManager{
                                           insertInto: managedContext)
         
         
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            anAwardName += ("-" + (user.last?.value(forKeyPath: "awards") as! String))
-            savedObject.setValue(anAwardName, forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            extracurricularName += ("-" + (user.last?.value(forKeyPath: "extracurriculars") as! String))
+            savedObject.setValue(extracurricularName, forKeyPath: "extracurriculars")
             
         } else {
-            savedObject.setValue(( awardName), forKeyPath: "awards")
+            savedObject.setValue(( extracurricular), forKeyPath: "extracurriculars")
         }
         
         
@@ -1005,8 +1005,8 @@ class dataManager{
         if( user.last?.value(forKeyPath: "experience") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
         }
-        if( user.last?.value(forKeyPath: "awards") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "awards") as! String ,forKeyPath: "awards")
+        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
         }
         
         

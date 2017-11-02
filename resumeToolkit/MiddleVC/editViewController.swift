@@ -31,6 +31,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     
     
+    @IBOutlet weak var yearLabel: UILabel!
     
     @IBOutlet weak var skillImage: UIImageView!
     @IBOutlet weak var entryLabel: UILabel!
@@ -74,7 +75,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         pickerData.append("Skill")
         pickerData.append("Internships & Job Experience")
         pickerData.append("Courses")
-        pickerData.append("Awards & Certifications")
+        pickerData.append("Extracurriculars")
         entryLabel.text = pickerData[0]
         setAlignment(row:0)
         loadSkills()
@@ -233,8 +234,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             dataController.saveExperience(experience: experienceString)
         } else if(entryType == "Courses"){
             dataController.saveCourses(courses: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
-        } else if(entryType == "Awards & Certifications"){
-            dataController.saveAwards(awardName: "Awards" + "_" + entryName.text! + "_" + entryDescription.text)
+        } else if(entryType == "Extracurriculars"){
+            dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
@@ -311,7 +312,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 classList.isUserInteractionEnabled = false
                 self.skillImage.image = UIImage()
                 self.skillImage.isHidden = true
-            } else if(entryType == "Awards & Certifications"){
+            } else if(entryType == "Extracurriculars"){
                 classList.isUserInteractionEnabled = false
                 self.skillImage.image = UIImage()
                 self.skillImage.isHidden = true
@@ -706,7 +707,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
             yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-        } else if(entryType == "Awards & Certifications"){
+        } else if(entryType == "Extracurriculars"){
             
             skillImage.isHidden = true
             classNamePicker.reloadAllComponents()
@@ -715,11 +716,11 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             classList.isHidden = true
             
             
-            classNamesLabel.text = "Award Name:"
+            classNamesLabel.text = "Name:"
             classList.isUserInteractionEnabled = false
             classNamePicker.isUserInteractionEnabled = false
             yearReceivedView.isHidden = false
-            
+            yearLabel.text = "Year:"
             
             nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
             yearReceivedView.frame = CGRect(x: 16, y: 154, width: 343, height: 52)

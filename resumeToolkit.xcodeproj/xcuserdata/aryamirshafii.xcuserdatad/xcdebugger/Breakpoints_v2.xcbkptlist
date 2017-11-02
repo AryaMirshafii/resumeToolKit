@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "resumeToolkit/MiddleVC/editViewController.swift"
-            timestampString = "530636791.038413"
+            timestampString = "531277915.354778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "goBack(_:)"
             landmarkType = "7">
          </BreakpointContent>

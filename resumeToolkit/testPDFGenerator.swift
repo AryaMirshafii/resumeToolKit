@@ -21,7 +21,8 @@ class testPDFGenerator {
     var skills:String! = " "
     var professionalDevelopment:String! = " "
     var courses:String! = " "
-    var awards:String! = " "
+    var extracurriculars:String! = " "
+    var objective:String! = " "
     init() {
         loadData()
         //self.createPDFFileAndReturnPath()
@@ -216,11 +217,13 @@ class testPDFGenerator {
         
         
         
+        
         skills = aUser?.value(forKeyPath: "skills") as? String
         
         professionalDevelopment  = aUser?.value(forKeyPath: "experience") as? String
         courses = aUser?.value(forKeyPath: "courses") as? String
-        awards = aUser?.value(forKeyPath: "awards") as? String
+        extracurriculars = aUser?.value(forKeyPath: "extracurriculars") as? String
+        objective = aUser?.value(forKeyPath: "objective") as? String
         
         
         
@@ -237,6 +240,25 @@ class testPDFGenerator {
         
         
         let skillSring = "Skill_Science_Using scientific rules and methods to solve problems.-Skill_Critical Thinking_Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or whatever.-Skill_Being Handsome_Being SO good looking."
+        
+        //OBJECTIVE GOES HERE ObjectiveGoHere
+        
+        if(objective != nil){
+             newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: (String(format: "<dt>%@</dt>",objective)))
+           
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ///SKIlls GO here
+        
         
         if(skills != nil){
             var skillArr = skills.components(separatedBy:"-")
@@ -272,22 +294,22 @@ class testPDFGenerator {
         
         
         
-        //STUFF FOR AWARDS
-        if(awards != nil){
-            var awardsArr = awards.components(separatedBy:"-")
+        //STUFF FOR extracurriculars
+        if(extracurriculars != nil){
+            var extracurricularsArr = extracurriculars.components(separatedBy:"-")
             
             var awardHTML = ""
-            for anAward in awardsArr{
+            for anAward in extracurricularsArr{
                 let awardDescription = anAward.components(separatedBy:"_")
                 
                 awardHTML += (String(format: "<dt>%@</dt><dd>%@</dd>", awardDescription[1],awardDescription[2]))
                 
             }
-            newHTML = newHTML.replacingOccurrences(of: "AwardsGoHere", with: awardHTML)
+            newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: awardHTML)
         }
        
         
-        
+        //Courses loaded here
         if(courses != nil){
             var coursesArr = courses.components(separatedBy:"-")
             
@@ -372,10 +394,10 @@ class testPDFGenerator {
         
         professionalDevelopment  = aUser?.value(forKeyPath: "experience") as? String
         courses = aUser?.value(forKeyPath: "courses") as? String
-        awards = aUser?.value(forKeyPath: "awards") as? String
+        extracurriculars = aUser?.value(forKeyPath: "extracurriculars") as? String
         
         let gradeLevel = ""
-        let secondline = ( ("\(firstName) \(lastName) \n\(email)") + " \n\(phoneNumber)\n\(schoolName)\n\(gradeLevel)\n\("SKILLS")\n\(loadEntryItems(anEntry: skills))\n\("PROFESSIONAL DEVELOPMENT")\n\(loadEntryItems(anEntry: professionalDevelopment))\n\("COURSES TAKEN")\n\(loadEntryItems(anEntry: courses))\n\("AWARDS")\n\(loadEntryItems(anEntry: awards))")
+        let secondline = ( ("\(firstName) \(lastName) \n\(email)") + " \n\(phoneNumber)\n\(schoolName)\n\(gradeLevel)\n\("SKILLS")\n\(loadEntryItems(anEntry: skills))\n\("PROFESSIONAL DEVELOPMENT")\n\(loadEntryItems(anEntry: professionalDevelopment))\n\("COURSES TAKEN")\n\(loadEntryItems(anEntry: courses))\n\("extracurriculars")\n\(loadEntryItems(anEntry: extracurriculars))")
         //let entryItems = loadEntryItems()
         
        
