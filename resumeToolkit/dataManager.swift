@@ -617,13 +617,15 @@ class dataManager{
             if fetchResults?.count != 0{
                 let toSave = previousSkills.replacingOccurrences(of: previousText, with: skillName)
                 var managedObject = fetchResults?[0]
-                print(toSave)
-                managedObject?.setValue(toSave, forKey: "skills")
+                
+                user.last?.setValue(toSave, forKey: "skills")
+                
+               
+                
+            
                 
                 
-                ///
-                
-                 print("UPDATED")
+                 print("updated skills")
             };try managedContext.save()
            print(user.last)
         } catch {
@@ -733,6 +735,40 @@ class dataManager{
     }
     
     
+    func overwriteExperience(previousText: String, experienceName: String) {
+        self.loadData()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        var previousExperience = user.last?.value(forKeyPath: "experience") as! String
+        let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        
+        fetchrequest.predicate = NSPredicate(format: "experience == %@", previousExperience)
+        do {
+            let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
+            if fetchResults?.count != 0{
+                let toSave = previousExperience.replacingOccurrences(of: previousText, with: experienceName)
+                var managedObject = fetchResults?[0]
+                
+                user.last?.setValue(toSave, forKey: "experience")
+                
+                
+                
+                
+                
+                
+                print("experience Update")
+            };try managedContext.save()
+            print(user.last)
+        } catch {
+            print(error)
+        }
+    }
+    
+    
     
     
     
@@ -817,22 +853,7 @@ class dataManager{
         savedObject.setValue(schoolName,forKeyPath: "schoolName")
   
         
-        /**
-        guard let skills  = user.last?.value(forKeyPath: "skills") else {
-            print("No phoneNumber to submit")
-            return
-        }
         
-        savedObject.setValue(skills,forKeyPath: "skills")
-        */
-        
-        
-        /**
-        guard let experience  = user.last?.value(forKeyPath: "experience") else {
-            print("No experience to submit")
-            return
-        }
-        */
         if( user.last?.value(forKeyPath: "skills") != nil){
             savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
         }
@@ -866,6 +887,44 @@ class dataManager{
             print("Could not save. \(error), \(error.userInfo)")
         }
          print(user.count)
+    }
+    
+    
+    
+    
+    func overwriteCourses(previousText: String, courseName: String) {
+        self.loadData()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        var previousCourses = user.last?.value(forKeyPath: "courses") as! String
+        let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        print(user.last)
+        fetchrequest.predicate = NSPredicate(format: "courses == %@", previousCourses)
+        do {
+            let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
+            if fetchResults?.count != 0{
+                let toSave = previousCourses.replacingOccurrences(of: previousText, with: courseName)
+                var managedObject = fetchResults?[0]
+                
+                user.last?.setValue(toSave, forKey: "courses")
+                
+                
+                
+                
+                
+                
+               
+                
+                print("courses Updated")
+            };try managedContext.save()
+            print(user.last)
+        } catch {
+            print(error)
+        }
     }
     
     
@@ -975,6 +1034,43 @@ class dataManager{
         }
         print(user.count)
     }
+    
+    
+    
+    func overwriteExtracurriculars(previousText: String, extracurricularName: String) {
+        self.loadData()
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        var previousExtracurriculars = user.last?.value(forKeyPath: "extracurriculars") as! String
+        let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        print(user.last)
+        fetchrequest.predicate = NSPredicate(format: "extracurriculars == %@", previousExtracurriculars)
+        do {
+            let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
+            if fetchResults?.count != 0{
+                let toSave = previousExtracurriculars.replacingOccurrences(of: previousText, with: extracurricularName)
+                var managedObject = fetchResults?[0]
+                
+                user.last?.setValue(toSave, forKey: "extracurriculars")
+                
+               
+                
+                
+                print("extracurriculars Updated")
+            };try managedContext.save()
+            print(user.last)
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    
+    
     
     
     func saveObjective(statement: String) {

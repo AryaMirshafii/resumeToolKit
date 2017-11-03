@@ -17,6 +17,7 @@ class userInfo {
         static let changeText = "bbb"
         static let resumeFilePath = "noFile"
         static let folderID = "noFolder"
+        static let resumeIndex = "0"
         
         
         
@@ -101,6 +102,19 @@ class userInfo {
             return stringOne
         }
         return "noFolder"
+    }
+    
+    func saveResumeIndex(resumeIndexAt: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(resumeIndexAt, forKey: defaultsKeys.resumeIndex)
+    }
+    func getResumeIndex()  -> String{
+        let defaults = UserDefaults.standard
+        if let stringOne = defaults.string(forKey: defaultsKeys.resumeIndex) {
+            // Some String Value
+            return stringOne
+        }
+        return "0"
     }
     
 }

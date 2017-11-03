@@ -11,10 +11,11 @@ import UIKit
 import WebKit
 import ASHorizontalScrollView
 
-class pdfView: UIViewController {
+class pdfView: UIViewController,UIScrollViewDelegate {
     var pdfGenerate = testPDFGenerator()
     var userInfoController = userInfo()
     var previousFilePath = " "
+    
     
     //getfilepath ==
     @IBOutlet weak var webView: WKWebView!
@@ -60,17 +61,56 @@ class pdfView: UIViewController {
         
         self.webView.scrollView.zoomScale = 0
         
-        
+        self.userSelect.delegate = self
+        self.userSelect.bounces = true
+       
     }
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        perform(#selector(self.actionOnFinishedScrolling), with: nil, afterDelay: Double(velocity.x))
+    }
+    @objc func actionOnFinishedScrolling() {
+        print("scrolling is finished")
+        let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/4)))))
+        print("THE INDEX IS" + resumeToPick + userInfoController.getResumeIndex())
+        userInfoController.saveResumeIndex(resumeIndexAt: resumeToPick)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let touch = touches.first
+        print("you are here")
+        let tag = touch?.view?.tag
+        if tag == 5{
+            let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/4)))))
+            print("THE INDEX IS" + resumeToPick + userInfoController.getResumeIndex())
+            userInfoController.saveResumeIndex(resumeIndexAt: resumeToPick)
+        }
+        super.touchesEnded(touches, with: event)
+    }
+    
+    
+    
+    
     var counter = 0
     @objc func userDefaultsDidChange() {
         print("I AM WORKING")
         if(userInfoController.fetchData() == "main" && userInfoController.fetchChangeText() == "bbb" ){
             print("in1")
-            let pdfResult = pdfGenerate.createPDFFileAndReturnPath()
+            
+            let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
             loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
         }else if(userInfoController.fetchChangeText() != "bbb"){
-            let pdfResult = pdfGenerate.createPDFFileAndReturnPath()
+            let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
             loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
             
            

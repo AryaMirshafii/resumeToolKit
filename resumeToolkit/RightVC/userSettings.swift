@@ -139,7 +139,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         tapToFinish.addSubview(signInButton)
          //uncomment THIS IS A TEMP FIX FOR A TEMP ERROR ASSERTIon
         if(signedIn){
-            driveFileManager = userSetUp(driveService: service, withFilePath: String(describing: pdfGenerator.createPDFFileAndReturnPath().output))
+            driveFileManager = userSetUp(driveService: service, withFilePath: String(describing: pdfGenerator.createPDFFileAndReturnPath(indexAt:userInfoController.getResumeIndex()).output))
         }
         userDefaultsDidChange()
         print("the current id is" + userInfoController.getFolderID())
@@ -182,11 +182,11 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         }
         driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
         if(userInfoController.getFolderID() != "noFolder" && userInfoController.getFolderID() != nil){
-            print("FOLDER ID OF" + String(describing: pdfGenerate.createPDFFileAndReturnPath().output))
+            print("FOLDER ID OF" + String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output))
             
             
             print("EL es tu" + userInfoController.getFolderID())
-            let meFile =  pdfGenerate.createPDFFileAndReturnPath().output
+            let meFile =  pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output
             
             let fileManager = FileManager.default
             if fileManager.fileExists(atPath: String(describing: meFile)) {
@@ -195,7 +195,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
                 print("FILE NOT AVAILABLE")
             }
             driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
-            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath().output), withFileName: generateResumeName())
+            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
         
     }
@@ -222,7 +222,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         print("ARYA ID IS" + userInfoController.getFolderID())
         if(signedIn){
-             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath().output), withFileName: generateResumeName())
+            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
        
         
@@ -329,7 +329,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         //|| text != nil ||  text != "" || !text.isEmpty
         if(text != "No files found." && userInfoController.getFolderID() == "noFolder" || text != nil ||  text != "" || !text.isEmpty){
             userInfoController.saveFolderID(folderID: text)
-            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath().output), withFileName: generateResumeName())
+            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
         
         

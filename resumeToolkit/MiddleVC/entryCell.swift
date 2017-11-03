@@ -25,7 +25,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
     
     var dataController = dataManager()
     var infoController = userInfo()
-    var originalSkillText = ""
+    var originalText = ""
     var originalColor: UIColor!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,7 +47,6 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         self.addGestureRecognizer(longPressRecognizer)
         self.saveButton.isHidden = true
         self.cancelButton.isHidden = true
-        self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
         self.originalColor = entryDescription.backgroundColor!
     }
     
@@ -63,10 +62,26 @@ class entryCell : UITableViewCell,UITextViewDelegate{
             self.saveButton.isHidden = false
             self.cancelButton.isHidden = false
             self.entryDescription.becomeFirstResponder()
-            self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
+            self.originalText =  getOriginalText()
             entryDescription.backgroundColor = UIColor(red:0.36, green:0.35, blue:0.35, alpha:1.0)
             
         }
+    }
+    
+    func getOriginalText() -> String {
+        if(self.cellType == "Skill"){
+            return "Skill" + "_" + entryName.text! + "_" + entryDescription.text
+            
+            
+        } else if(self.cellType == "Internships & Job Experience"){
+            
+            return " "
+        } else if(self.cellType == "Courses"){
+            return "Courses" + "_" + entryName.text! + "_" + entryDescription.text
+        } else if(self.cellType == "Extracurriculars"){
+            return "Extracurriculars" + "_" + entryName.text! + "_" + entryDescription.text
+        }
+        return "this didnt work"
     }
     
     
@@ -86,15 +101,15 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         if(self.cellType == "Skill"){
             
             
-            dataController.overwriteSkill(previousText: originalSkillText, skillName: "Skill" + "_" + self.entryName.text! + "_" + self.entryDescription.text)
+            dataController.overwriteSkill(previousText: originalText, skillName: "Skill" + "_" + self.entryName.text! + "_" + self.entryDescription.text)
             //self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
         } else if(self.cellType == "Internships & Job Experience"){
             
             //dataController.saveExperience(experience: experienceString)
         } else if(self.cellType == "Courses"){
-            dataController.saveCourses(courses: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.overwriteCourses(previousText: originalText,courseName: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(self.cellType == "Extracurriculars"){
-            dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.overwriteExtracurriculars(previousText: originalText, extracurricularName: "Extracurriculars" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         self.saveButton.isHidden = true
         self.cancelButton.isHidden = true

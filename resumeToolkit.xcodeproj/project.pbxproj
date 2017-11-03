@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		357A156A3CA0B28AA7E695A0 /* Pods_resumeToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82411673F2ECB91FE217AD0 /* Pods_resumeToolkit.framework */; };
+		D102D4B11FACFBC30098E287 /* resume2.html in Resources */ = {isa = PBXBuildFile; fileRef = D102D4B01FACFBC30098E287 /* resume2.html */; };
 		D10628901F60678E001880AD /* Prime Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D106288F1F606780001880AD /* Prime Regular.otf */; };
 		D10628911F606791001880AD /* Prime Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D106288E1F60677E001880AD /* Prime Light.otf */; };
 		D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10628921F6080E7001880AD /* secondLoginScreen.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		55D0D61381F477683351FA7C /* Pods-resumeToolkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-resumeToolkit.release.xcconfig"; path = "Pods/Target Support Files/Pods-resumeToolkit/Pods-resumeToolkit.release.xcconfig"; sourceTree = "<group>"; };
 		ADDA04E2395D7BFF9E5CE745 /* Pods-resumeToolkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-resumeToolkit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-resumeToolkit/Pods-resumeToolkit.debug.xcconfig"; sourceTree = "<group>"; };
+		D102D4B01FACFBC30098E287 /* resume2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = resume2.html; sourceTree = "<group>"; };
 		D106288E1F60677E001880AD /* Prime Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Light.otf"; sourceTree = "<group>"; };
 		D106288F1F606780001880AD /* Prime Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Regular.otf"; sourceTree = "<group>"; };
 		D10628921F6080E7001880AD /* secondLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondLoginScreen.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		D1E457821F5A175C00D1E030 = {
 			isa = PBXGroup;
 			children = (
+				D102D4B01FACFBC30098E287 /* resume2.html */,
 				D198172A1F9981F500DE38A5 /* resume1.html */,
 				D18DCD381F74946300F9E7DB /* Award.swift */,
 				D1DB936E1F70A3ED00C210B4 /* userSetUp.h */,
@@ -296,6 +299,7 @@
 			files = (
 				D198172B1F9987EF00DE38A5 /* resume1.html in Resources */,
 				D13FA6B51F7DB88500AB567C /* CODE Light.otf in Resources */,
+				D102D4B11FACFBC30098E287 /* resume2.html in Resources */,
 				D1E4579C1F5A176000D1E030 /* LaunchScreen.storyboard in Resources */,
 				D13FA6B71F7DBB6C00AB567C /* Infinity.ttf in Resources */,
 				D13FA6B41F7DB88500AB567C /* CODE Bold.otf in Resources */,

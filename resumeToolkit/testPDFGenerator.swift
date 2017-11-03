@@ -23,6 +23,7 @@ class testPDFGenerator {
     var courses:String! = " "
     var extracurriculars:String! = " "
     var objective:String! = " "
+    var resumeIndex = 1
     init() {
         loadData()
         //self.createPDFFileAndReturnPath()
@@ -60,14 +61,76 @@ class testPDFGenerator {
     
     
     var html = ""
-    func createPDFFileAndReturnPath() -> (html: String, output: String){
-        var htmlFile = Bundle.main.path(forResource: "resume1", ofType: "html")
-        html = try! String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
-        //let html = "<b>Hello <i>World!</i></b>"
+    func createPDFFileAndReturnPath(indexAt:String) -> (html: String, output: String){
+        var htmlFile = ""
+        if(indexAt == "0"){
+            htmlFile = Bundle.main.path(forResource: "resume1", ofType: "html")!
+            
+        } else if(indexAt == "1"){
+            htmlFile = Bundle.main.path(forResource: "resume2", ofType: "html")!
+            html = try! String(contentsOfFile: htmlFile, encoding: String.Encoding.utf8)
+            
+            //ADDS DATA TO PDF VERY IMPORTANT
+            html = addDataToPDF(oldHTML: html,resumeNumber: "resume2")
+            //html = "<b>Hello <i>World!</i></b>"
+            let fmt = UIMarkupTextPrintFormatter(markupText: html)
+            
+            // 2. Assign print formatter to UIPrintPageRenderer
+            let render = UIPrintPageRenderer()
+            render.addPrintFormatter(fmt, startingAtPageAt: 0)
+            
+            // 3. Assign paperRect and printableRect
+            //let A4paperSize = CGSize(width: 2771, height: 3586)
+            //let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
+            let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
+            let printable = page.insetBy(dx: 0, dy: 0)
+            render.setValue(page, forKey: "paperRect")
+            render.setValue(printable, forKey: "printableRect")
+            
+            // 4. Create PDF context and draw
+            let pdfData = NSMutableData()
+            UIGraphicsBeginPDFContextToData(pdfData, .zero, nil)
+            
+            for i in 0..<render.numberOfPages {
+                UIGraphicsBeginPDFPage();
+                render.drawPage(at: i, in: UIGraphicsGetPDFContextBounds())
+            }
+            
+            UIGraphicsEndPDFContext();
+            
+            
+            
+            
+            
+            let fileName = "pdffilename.pdf"
+            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+            let documentsDirectory = paths[0] as! NSString
+            let outputURL = documentsDirectory.appending("/" + fileName)
+            //let outputURL = URL()
+            
+            //URL(fileURLWithPath: <#T##String#>)
+            
+            let newData = pdfData.copy() as! NSData
+            
+            newData.write(to: URL(fileURLWithPath: outputURL), atomically: true)
+            print("DATA")
+            
+            
+            print("open \(outputURL)")
+            print("ARYA ME" + String(describing: outputURL))
+            
+            //webView.loadHTMLString(html!, baseURL: outputURL)
+            //ece 3811
+            return (html, outputURL)
+            
+        } else {
+            htmlFile = Bundle.main.path(forResource: "resume1", ofType: "html")!
+        }
         
+        html = try! String(contentsOfFile: htmlFile, encoding: String.Encoding.utf8)
         
         //ADDS DATA TO PDF VERY IMPORTANT
-        html = addDataToPDF(oldHTML: html)
+        html = addDataToPDF(oldHTML: html,resumeNumber: "resume1")
         //html = "<b>Hello <i>World!</i></b>"
         let fmt = UIMarkupTextPrintFormatter(markupText: html)
         
@@ -95,9 +158,7 @@ class testPDFGenerator {
         UIGraphicsEndPDFContext();
         
         
-        // 5. Save PDF file
-        //guard let outputURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("output").appendingPathExtension("pdf")
-            //else { fatalError("Destination URL not created") }
+        
         
         
         let fileName = "pdffilename.pdf"
@@ -125,42 +186,10 @@ class testPDFGenerator {
         
     }
     
-    /**
-    func saveAsPDF(){
-        let sixzevid = CGSize(width: 2771, height: 3586)
-        
-        UIGraphicsBeginImageContext(sixzevid);
-        
-        webView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        
-        let viewImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
-        
-        var imageData = NSData()
-        
-        imageData = UIImagePNGRepresentation(viewImage!)! as NSData
-        
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        
-        let pathFolder = String(String(format:"%@", "new.png"))
-        
-        let defaultDBPathURL = NSURL(fileURLWithPath: documentsPath).appendingPathComponent(pathFolder)
-        
-        let defaultDBPath = "\(defaultDBPathURL)"
-        
-        
-        let url = NSURL(fileURLWithPath: defaultDBPath)
-        let urlRequest = NSURLRequest(url: url as URL)
-        
-        
-        
-        
-    }
- */
+   
     
     var newHTML = " "
-    func addDataToPDF(oldHTML: String) ->String {
+    func addDataToPDF(oldHTML: String, resumeNumber: String) ->String {
         loadData()
         let aUser = user.last
         
@@ -169,52 +198,28 @@ class testPDFGenerator {
         guard let firstName  = aUser?.value(forKeyPath: "firstName") as? String  else {
             //print("nothing to see here")
             return ""
-            
-            
-            
-            
         }
-        //var lastname = aUser.value(forKeyPath: "lastName") as? String
+        
         guard let lastName  = aUser?.value(forKeyPath: "lastName") as? String  else {
             //print("nothing to see here")
             return ""
-            
-            
-            
-            
         }
         
         
         guard let email  = aUser?.value(forKeyPath: "emailAdress") as? String  else {
             //print("nothing to see here")
             return ""
-            
-            
-            
-            
         }
         
         guard let phoneNumber  = aUser?.value(forKeyPath: "phoneNumber") as? String  else {
             //print("nothing to see here")
             return ""
-            
-            
-            
-            
         }
-        
-        
-        
-        
-        
-        
+       
         guard let schoolName  = aUser?.value(forKeyPath: "schoolName") as? String  else {
             //print("nothing to see here")
             return ""
         }
-        
-        
-        
         
         
         
@@ -231,34 +236,95 @@ class testPDFGenerator {
         
         //let phoneNumber
         
-        newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: firstName + " " + lastName)
+        let myFirstName = aUser?.value(forKeyPath: "firstName") as? String
+        let myLastName = aUser?.value(forKeyPath: "lastName") as? String
+        
+        professionalDevelopment  = aUser?.value(forKeyPath: "experience") as? String
+        
+        newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName! + " " + myLastName!)
         newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with: "Phone Number: " + phoneNumber)
         newHTML = newHTML.replacingOccurrences(of: "YourEmailHere", with: "Email: " + email)
         
         
         
-        
-        
-        let skillSring = "Skill_Science_Using scientific rules and methods to solve problems.-Skill_Critical Thinking_Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or whatever.-Skill_Being Handsome_Being SO good looking."
-        
-        //OBJECTIVE GOES HERE ObjectiveGoHere
+        if(resumeNumber == "resume2"){
+            
+            newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName! + " " + myLastName!)
+            newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with: phoneNumber)
+            newHTML = newHTML.replacingOccurrences(of: "YourEmailHere", with: email)
+            if(objective != nil){
+                newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objective)
+                
+            }
+            
+            if(skills != nil){
+                var skillArr = skills.components(separatedBy:"-")
+                
+                var skillHTML = ""
+                for aSkill in skillArr{
+                    let skillDescription = aSkill.components(separatedBy:"_")
+                    
+                    skillHTML += (String(format: "<h2>%@</h2><p>%@</p>", skillDescription[1],skillDescription[2]))
+                    
+                }
+                newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
+            }
+            
+            if(professionalDevelopment != nil){
+                var experienceArr = professionalDevelopment.components(separatedBy:"-")
+                
+                var experienceHTML = ""
+                for anExperience in experienceArr{
+                    let experienceDescription = anExperience.components(separatedBy:"_")
+                    print(experienceDescription)
+                    experienceHTML += (String(format: "<dt>%@</dt><dd>%@</dd>", experienceDescription[1] + "                   " + experienceDescription[2] + "to" +   experienceDescription[3] , experienceDescription[4] + "-" + experienceDescription[6]))
+                    
+                }
+                newHTML = newHTML.replacingOccurrences(of: "ExperienceGoHere", with: experienceHTML)
+                
+            }
+            
+            
+            if(extracurriculars != nil){
+                var extracurricularsArr = extracurriculars.components(separatedBy:"-")
+                
+                var awardHTML = ""
+                for anAward in extracurricularsArr{
+                    let awardDescription = anAward.components(separatedBy:"_")
+                    
+                    awardHTML += (String(format: "<dt>%@</dt><dd>%@</dd>", awardDescription[1],awardDescription[2]))
+                    
+                }
+                newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: awardHTML)
+            }
+            
+            
+            //Courses loaded here
+            if(courses != nil){
+                var coursesArr = courses.components(separatedBy:"-")
+                
+                var courseHTML = ""
+                for aCourse in coursesArr{
+                    let courseDescription = aCourse.components(separatedBy:"_")
+                    
+                    courseHTML += (String(format: "<dt>%@</dt><dd>%@</dd>", courseDescription[1],courseDescription[2]))
+                    
+                }
+                newHTML = newHTML.replacingOccurrences(of: "CoursesGoHere", with: courseHTML)
+            }
+            
+            
+            
+            
+            return newHTML
+        } else {
+            
+        }
         
         if(objective != nil){
              newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: (String(format: "<dt>%@</dt>",objective)))
            
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        ///SKIlls GO here
-        
         
         if(skills != nil){
             var skillArr = skills.components(separatedBy:"-")
@@ -273,10 +339,6 @@ class testPDFGenerator {
             newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
         }
         
-        
-        
-        
-        // PROFESSIONAL DEVELOPMENT LOADED
         if(professionalDevelopment != nil){
             var experienceArr = professionalDevelopment.components(separatedBy:"-")
             
@@ -292,9 +354,6 @@ class testPDFGenerator {
         }
        
         
-        
-        
-        //STUFF FOR extracurriculars
         if(extracurriculars != nil){
             var extracurricularsArr = extracurriculars.components(separatedBy:"-")
             
