@@ -36,6 +36,7 @@
 		D18CF79A1F63A01C00C625E4 /* SimplePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18CF7991F63A01C00C625E4 /* SimplePDF.swift */; };
 		D18DCD391F74946300F9E7DB /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DCD381F74946300F9E7DB /* Award.swift */; };
 		D198172B1F9987EF00DE38A5 /* resume1.html in Resources */ = {isa = PBXBuildFile; fileRef = D198172A1F9981F500DE38A5 /* resume1.html */; };
+		D1C90EB91FAE45D8003D9671 /* resume3.html in Resources */ = {isa = PBXBuildFile; fileRef = D1C90EB81FAE45D6003D9671 /* resume3.html */; };
 		D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DB936F1F70A3EE00C210B4 /* userSetUp.m */; };
 		D1DB93711F70A53200C210B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D18F9B471F70645800FB48EA /* GoogleService-Info.plist */; };
 		D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 		D18DCD381F74946300F9E7DB /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		D18F9B471F70645800FB48EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D198172A1F9981F500DE38A5 /* resume1.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = resume1.html; path = ../../Documents/pdfTest/resume1.html; sourceTree = "<group>"; };
+		D1C90EB81FAE45D6003D9671 /* resume3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = resume3.html; sourceTree = "<group>"; };
 		D1DB936D1F70A3EB00C210B4 /* resumeToolkit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "resumeToolkit-Bridging-Header.h"; sourceTree = "<group>"; };
 		D1DB936E1F70A3ED00C210B4 /* userSetUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userSetUp.h; sourceTree = "<group>"; };
 		D1DB936F1F70A3EE00C210B4 /* userSetUp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userSetUp.m; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		D1E457821F5A175C00D1E030 = {
 			isa = PBXGroup;
 			children = (
+				D1C90EB81FAE45D6003D9671 /* resume3.html */,
 				D102D4B01FACFBC30098E287 /* resume2.html */,
 				D198172A1F9981F500DE38A5 /* resume1.html */,
 				D18DCD381F74946300F9E7DB /* Award.swift */,
@@ -304,6 +307,7 @@
 				D13FA6B71F7DBB6C00AB567C /* Infinity.ttf in Resources */,
 				D13FA6B41F7DB88500AB567C /* CODE Bold.otf in Resources */,
 				D10628911F606791001880AD /* Prime Light.otf in Resources */,
+				D1C90EB91FAE45D8003D9671 /* resume3.html in Resources */,
 				D1E457991F5A175F00D1E030 /* Assets.xcassets in Resources */,
 				D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */,
 				D10628901F60678E001880AD /* Prime Regular.otf in Resources */,
