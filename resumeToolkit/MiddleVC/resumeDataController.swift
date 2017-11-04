@@ -392,10 +392,29 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     
-    
+    var reloadCounter = 0
     @IBAction func saveObjective(_ sender: Any) {
         dataController.saveObjective(statement: objectiveField.text)
+        infoController.saveChangeText(text: String(reloadCounter))
+        reloadCounter += 1
         view.endEditing(true)
+        var alert = UIAlertController(title: "Saved!",
+                                      message: "Your objective has been saved.",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        
+        
+        let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        
+        subview.backgroundColor = UIColor(red:0.91, green:0.38, blue:0.50, alpha:1.0)
+        alert.view.tintColor = .black
+        
+        alert.addAction(UIAlertAction(title: "Ok",
+                                      style: UIAlertActionStyle.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     

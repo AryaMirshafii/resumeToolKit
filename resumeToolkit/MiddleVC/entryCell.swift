@@ -58,12 +58,14 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         
         if(sender.state == .began){
             print("longpressed")
-            self.entryDescription.isUserInteractionEnabled = true
-            self.saveButton.isHidden = false
-            self.cancelButton.isHidden = false
-            self.entryDescription.becomeFirstResponder()
-            self.originalText =  getOriginalText()
-            entryDescription.backgroundColor = UIColor(red:0.36, green:0.35, blue:0.35, alpha:1.0)
+            if(self.cellType != "Internships & Job Experience"){
+                self.entryDescription.isUserInteractionEnabled = true
+                self.saveButton.isHidden = false
+                self.cancelButton.isHidden = false
+                self.entryDescription.becomeFirstResponder()
+                self.originalText =  getOriginalText()
+                entryDescription.backgroundColor = UIColor(red:0.36, green:0.35, blue:0.35, alpha:1.0)
+            }
             
         }
     }

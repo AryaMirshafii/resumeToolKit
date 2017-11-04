@@ -253,7 +253,10 @@ class testPDFGenerator {
             newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with: phoneNumber)
             newHTML = newHTML.replacingOccurrences(of: "YourEmailHere", with: email)
             if(objective != nil){
-                newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objective)
+                var objectiveHTML = ""
+                objectiveHTML += (String(format: "<h2>%@</h2><p>%@</p>","Objectives", objective))
+                newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objectiveHTML)
+               
                 
             }
             
@@ -275,9 +278,10 @@ class testPDFGenerator {
                 
                 var experienceHTML = ""
                 for anExperience in experienceArr{
+                    print(anExperience)
                     let experienceDescription = anExperience.components(separatedBy:"_")
                     print(experienceDescription)
-                    experienceHTML += (String(format: "<dt>%@</dt><dd>%@</dd>", experienceDescription[1] + "                   " + experienceDescription[2] + "to" +   experienceDescription[3] , experienceDescription[4] + "-" + experienceDescription[6]))
+                    experienceHTML += (String(format: "<h2>%@<span>%@</span></h2><ul><li>%@</li></ul>", experienceDescription[4],experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[6]))
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "ExperienceGoHere", with: experienceHTML)
@@ -288,14 +292,14 @@ class testPDFGenerator {
             if(extracurriculars != nil){
                 var extracurricularsArr = extracurriculars.components(separatedBy:"-")
                 
-                var awardHTML = ""
+                var extracurricularHTML = ""
                 for anAward in extracurricularsArr{
-                    let awardDescription = anAward.components(separatedBy:"_")
+                    let extracurricularDescription = anAward.components(separatedBy:"_")
                     
-                    awardHTML += (String(format: "<dt>%@</dt><dd>%@</dd>", awardDescription[1],awardDescription[2]))
+                    extracurricularHTML += (String(format: "<h2>%@</h2><p>%@</p>", extracurricularDescription[1],extracurricularDescription[2]))
                     
                 }
-                newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: awardHTML)
+                newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
             }
             
             
@@ -307,7 +311,7 @@ class testPDFGenerator {
                 for aCourse in coursesArr{
                     let courseDescription = aCourse.components(separatedBy:"_")
                     
-                    courseHTML += (String(format: "<dt>%@</dt><dd>%@</dd>", courseDescription[1],courseDescription[2]))
+                     courseHTML += (String(format: "<h2>%@</h2><p>%@</p>", courseDescription[1],courseDescription[2]))
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "CoursesGoHere", with: courseHTML)
@@ -317,6 +321,20 @@ class testPDFGenerator {
             
             
             return newHTML
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
         } else {
             
         }
@@ -357,14 +375,14 @@ class testPDFGenerator {
         if(extracurriculars != nil){
             var extracurricularsArr = extracurriculars.components(separatedBy:"-")
             
-            var awardHTML = ""
-            for anAward in extracurricularsArr{
-                let awardDescription = anAward.components(separatedBy:"_")
+            var extracurricularHTML = ""
+            for anEcxtracurricular in extracurricularsArr{
+                let extracurricularDescription = anEcxtracurricular.components(separatedBy:"_")
                 
-                awardHTML += (String(format: "<dt>%@</dt><dd>%@</dd>", awardDescription[1],awardDescription[2]))
+                extracurricularHTML += (String(format: "<dt>%@</dt><dd>%@</dd>", extracurricularDescription[1],extracurricularDescription[2]))
                 
             }
-            newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: awardHTML)
+            newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
         }
        
         

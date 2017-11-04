@@ -218,6 +218,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         skillData.append("Troubleshooting")
         
     }
+    
     @IBAction func goBack(_ sender: UIButton){
         
         print("!!!" + entryType!)
