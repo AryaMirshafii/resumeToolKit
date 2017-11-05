@@ -31,31 +31,9 @@ class dataManager{
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        //checkNillObjects()
         
-        //self.printStuff()
     }
-    func checkNillObjects(){
-        loadData()
-        let appDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDel.persistentContainer.viewContext
-        if(user != nil && user.count > 2){
-            for anIndex in 0...(user.count-1){
-                print(String(anIndex))
-                if((anIndex <= (user.count - 1)) && (String(describing: user[anIndex].value(forKeyPath: "firstName")) == "" || String(describing: user[anIndex].value(forKeyPath: "lastName")) == "" || user[anIndex].value(forKeyPath: "phoneNumber") == nil || user[anIndex].value(forKeyPath: "schoolName") == nil || user[anIndex].value(forKeyPath: "emailAdress") == nil )){
-                    context.delete(self.user[anIndex])
-                    self.user.remove(at: anIndex)
-                    
-                }
-            }
-            
-            do {
-                try context.save()
-            } catch _ {
-            }
-            
-        }
-    }
+    
     
     
     func checkNameExistence() -> Bool{
@@ -120,7 +98,7 @@ class dataManager{
     
     func printData(){
         loadData()
-        //checkNillObjects()
+        
         
         for aUser in user{
             
@@ -205,54 +183,21 @@ class dataManager{
     
     func saveLastName(lastName: String) {
         
-        
-        loadData()
+        self.loadData()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
-                                                        in: managedContext)!
-        //savedObject
-        let savedObject = NSManagedObject(entity: locationEntity,
-                                          insertInto: managedContext)
-        
-        savedObject.setValue(lastName, forKeyPath: "lastName")
-        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
-            print("No name to submit")
-            return
-        }
-        
-        savedObject.setValue(firstName,forKeyPath: "firstName")
-        
-        
-        if( user.last?.value(forKeyPath: "courses") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
-        }
-        if( user.last?.value(forKeyPath: "skills") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
-        }
-        if( user.last?.value(forKeyPath: "experience") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
-        }
-        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
-        }
-        if( user.last?.value(forKeyPath: "objective") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
-        }
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
-            try managedContext.save()
-            user = try managedContext.fetch(userRequest)
             
-            user.append(savedObject)
-            print("Last name saved")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            user.last?.setValue(lastName, forKey: "lastName")
+           try managedContext.save()
+            
+        }catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
         }
     }
     
@@ -261,140 +206,42 @@ class dataManager{
     
     func saveEmail(email: String) {
         
-        loadData()
-        
+        self.loadData()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
-                                                        in: managedContext)!
-        //savedObject
-        let savedObject = NSManagedObject(entity: locationEntity,
-                                          insertInto: managedContext)
-        
-        savedObject.setValue(email, forKeyPath: "emailAdress")
-        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
-            print("No first name to submit")
-            return
-        }
-        
-        savedObject.setValue(firstName,forKeyPath: "firstName")
-        
-        
-        
-        
-        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
-            print("No last name to submit")
-            return
-        }
-        
-        savedObject.setValue(lastName,forKeyPath: "lastName")
-        
-        
-        if( user.last?.value(forKeyPath: "courses") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
-        }
-        if( user.last?.value(forKeyPath: "skills") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
-        }
-        if( user.last?.value(forKeyPath: "experience") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
-        }
-        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
-        }
-        if( user.last?.value(forKeyPath: "objective") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
-        }
-        
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
-            try managedContext.save()
-            user = try managedContext.fetch(userRequest)
             
-            user.append(savedObject)
-            print("email Saved!")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            user.last?.setValue(email, forKey: "emailAdress")
+            try managedContext.save()
+            
+        }catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
         }
     }
     
     
     func savePhoneNumber(phoneNumber: String) {
         
-        loadData()
-        
+        self.loadData()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
-                                                        in: managedContext)!
-        //savedObject
-        let savedObject = NSManagedObject(entity: locationEntity,
-                                          insertInto: managedContext)
-        
-        savedObject.setValue(phoneNumber, forKeyPath: "phoneNumber")
-        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
-            print("No first name to submit")
-            return
-        }
-        
-        savedObject.setValue(firstName,forKeyPath: "firstName")
-        
-        
-        
-        
-        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
-            print("No last name to submit")
-            return
-        }
-        
-        savedObject.setValue(lastName,forKeyPath: "lastName")
-        
-        
-        
-        guard let email  = user.last?.value(forKeyPath: "emailAdress") else {
-            print("No email to submit")
-            return
-        }
-        
-        savedObject.setValue(email,forKeyPath: "emailAdress")
-        
-        
-        
-        if( user.last?.value(forKeyPath: "courses") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
-        }
-        if( user.last?.value(forKeyPath: "skills") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
-        }
-        if( user.last?.value(forKeyPath: "experience") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
-        }
-        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
-        }
-        if( user.last?.value(forKeyPath: "objective") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
-        }
-        
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
-            try managedContext.save()
-            user = try managedContext.fetch(userRequest)
             
-            user.append(savedObject)
-            print("phone number Saved!")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            user.last?.setValue(phoneNumber, forKey: "phoneNumber")
+            try managedContext.save()
+            
+        }catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
         }
     }
     
@@ -402,81 +249,21 @@ class dataManager{
     
     func saveSchool(schoolName: String) {
         
-        loadData()
-        
+        self.loadData()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
-                                                        in: managedContext)!
-        //savedObject
-        let savedObject = NSManagedObject(entity: locationEntity,
-                                          insertInto: managedContext)
-        
-        savedObject.setValue(schoolName, forKeyPath: "schoolName")
-        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
-            print("No first name to submit")
-            return
-        }
-        
-        savedObject.setValue(firstName,forKeyPath: "firstName")
-        
-        
-        
-        
-        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
-            print("No last name to submit")
-            return
-        }
-        
-        savedObject.setValue(lastName,forKeyPath: "lastName")
-        
-        
-        
-        guard let email  = user.last?.value(forKeyPath: "emailAdress") else {
-            print("No email to submit")
-            return
-        }
-        
-        savedObject.setValue(email,forKeyPath: "emailAdress")
-        
-        
-        
-        guard let phoneNumber  = user.last?.value(forKeyPath: "phoneNumber") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        
-        savedObject.setValue(phoneNumber,forKeyPath: "phoneNumber")
-        
-        if( user.last?.value(forKeyPath: "courses") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
-        }
-        if( user.last?.value(forKeyPath: "skills") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
-        }
-        if( user.last?.value(forKeyPath: "experience") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
-        }
-        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
-        }
-        if( user.last?.value(forKeyPath: "objective") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
-        }
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
-            try managedContext.save()
-            user = try managedContext.fetch(userRequest)
             
-            user.append(savedObject)
-            print("school name Saved!")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            user.last?.setValue(schoolName, forKey: "schoolName")
+            try managedContext.save()
+            
+        }catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
         }
     }
     
@@ -488,112 +275,26 @@ class dataManager{
     
     func saveSkills(theSkills: String) {
         
-        loadData()
-        
-        var aSkill = theSkills
+        self.loadData()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
-                                                        in: managedContext)!
-        //savedObject
-        let savedObject = NSManagedObject(entity: locationEntity,
-                                          insertInto: managedContext)
-        
-        
-        
-        
-        
-        
-        if( user.last?.value(forKeyPath: "skills") != nil){
-            aSkill += ("-" + (user.last?.value(forKeyPath: "skills") as! String))
-            savedObject.setValue(aSkill, forKeyPath: "skills")
-            
-        } else {
-            savedObject.setValue(( theSkills), forKeyPath: "skills")
-        }
-        
-        
-        
-        
-        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
-            print("No first name to submit")
-            return
-        }
-        
-        savedObject.setValue(firstName,forKeyPath: "firstName")
-        
-        
-        
-        
-        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
-            print("No last name to submit")
-            return
-        }
-        
-        savedObject.setValue(lastName,forKeyPath: "lastName")
-        
-        
-        
-        guard let email  = user.last?.value(forKeyPath: "emailAdress") else {
-            print("No email to submit")
-            return
-        }
-        
-        savedObject.setValue(email,forKeyPath: "emailAdress")
-        
-        
-        
-        guard let phoneNumber  = user.last?.value(forKeyPath: "phoneNumber") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        
-        savedObject.setValue(phoneNumber,forKeyPath: "phoneNumber")
-        
-        guard let schoolName  = user.last?.value(forKeyPath: "schoolName") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        
-        savedObject.setValue(schoolName,forKeyPath: "schoolName")
-        
-        
-       
-        
-        
-        
-        
-        if( user.last?.value(forKeyPath: "courses") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
-        }
-        if( user.last?.value(forKeyPath: "experience") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
-        }
-        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
-        }
-        if( user.last?.value(forKeyPath: "objective") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
-        }
-        
-        
-        
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
+            if( user.last?.value(forKeyPath: "skills") != nil){
+                user.last?.setValue(user.last?.value(forKeyPath: "skills") as! String + "-" + theSkills ,forKeyPath: "skills")
+            } else {
+                user.last?.setValue(theSkills, forKey: "skills")
+            }
             try managedContext.save()
-            user = try managedContext.fetch(userRequest)
             
-            user.append(savedObject)
-            print("skills Saved!")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+        }catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
         }
-        print(user.count)
+        print(user.last)
     
     }
     
@@ -621,10 +322,6 @@ class dataManager{
                 user.last?.setValue(toSave, forKey: "skills")
                 
                
-                
-            
-                
-                
                  print("updated skills")
             };try managedContext.save()
            print(user.last)
@@ -637,101 +334,25 @@ class dataManager{
     
     func saveExperience(experience: String) {
         
-        loadData()
-        var anExperience = experience
+        self.loadData()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
-                                                        in: managedContext)!
-        //savedObject
-        let savedObject = NSManagedObject(entity: locationEntity,
-                                          insertInto: managedContext)
-        
-        
-        if( user.last?.value(forKeyPath: "experience") != nil){
-            anExperience += ("-" + (user.last?.value(forKeyPath: "experience") as! String))
-            savedObject.setValue(anExperience, forKeyPath: "experience")
-            
-        } else {
-            savedObject.setValue(( experience), forKeyPath: "experience")
-        }
-        
-        
-        
-        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
-            print("No first name to submit")
-            return
-        }
-        
-        savedObject.setValue(firstName,forKeyPath: "firstName")
-        
-        
-        
-        
-        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
-            print("No last name to submit")
-            return
-        }
-        
-        savedObject.setValue(lastName,forKeyPath: "lastName")
-        
-        
-        
-        guard let email  = user.last?.value(forKeyPath: "emailAdress") else {
-            print("No email to submit")
-            return
-        }
-        
-        savedObject.setValue(email,forKeyPath: "emailAdress")
-        
-        
-        
-        guard let phoneNumber  = user.last?.value(forKeyPath: "phoneNumber") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        
-        savedObject.setValue(phoneNumber,forKeyPath: "phoneNumber")
-        
-        guard let schoolName  = user.last?.value(forKeyPath: "schoolName") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        
-        savedObject.setValue(schoolName,forKeyPath: "schoolName")
-        
-        
-        
-        if( user.last?.value(forKeyPath: "courses") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
-        }
-        if( user.last?.value(forKeyPath: "skills") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
-        }
-        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
-        }
-        if( user.last?.value(forKeyPath: "objective") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
-        }
-        
-        
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
+            if( user.last?.value(forKeyPath: "experience") != nil){
+                user.last?.setValue(user.last?.value(forKeyPath: "experience") as! String + "-" +  experience,forKeyPath: "experience")
+            } else {
+                user.last?.setValue(experience, forKey: "experience")
+            }
             try managedContext.save()
-            user = try managedContext.fetch(userRequest)
             
-            user.append(savedObject)
-            print("experience Saved!")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+        }catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
         }
-         print(user.count)
     }
     
     
@@ -756,10 +377,6 @@ class dataManager{
                 user.last?.setValue(toSave, forKey: "experience")
                 
                 
-                
-                
-                
-                
                 print("experience Update")
             };try managedContext.save()
             print(user.last)
@@ -780,113 +397,25 @@ class dataManager{
     func saveCourses(courses: String) {
         
         loadData()
-        
-        var aCourse = courses
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
-                                                        in: managedContext)!
-        //savedObject
-        let savedObject = NSManagedObject(entity: locationEntity,
-                                          insertInto: managedContext)
-        
-        
-        
-        
-        
-        
-        if( user.last?.value(forKeyPath: "courses") != nil){
-            aCourse += ("-" + (user.last?.value(forKeyPath: "courses") as! String))
-            savedObject.setValue(aCourse, forKeyPath: "courses")
-            
-        } else {
-            savedObject.setValue(( courses), forKeyPath: "courses")
-        }
-        
-        
-        
-        
-        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
-            print("No first name to submit")
-            return
-        }
-        
-        savedObject.setValue(firstName,forKeyPath: "firstName")
-        
-        
-        
-        
-        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
-            print("No last name to submit")
-            return
-        }
-        
-        savedObject.setValue(lastName,forKeyPath: "lastName")
-        
-        
-        
-        guard let email  = user.last?.value(forKeyPath: "emailAdress") else {
-            print("No email to submit")
-            return
-        }
-        
-        savedObject.setValue(email,forKeyPath: "emailAdress")
-        
-        
-        
-        guard let phoneNumber  = user.last?.value(forKeyPath: "phoneNumber") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        
-        savedObject.setValue(phoneNumber,forKeyPath: "phoneNumber")
-        
-        guard let schoolName  = user.last?.value(forKeyPath: "schoolName") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        
-        savedObject.setValue(schoolName,forKeyPath: "schoolName")
-  
-        
-        
-        if( user.last?.value(forKeyPath: "skills") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
-        }
-        if( user.last?.value(forKeyPath: "experience") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
-        }
-        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
-        }
-        if( user.last?.value(forKeyPath: "objective") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
-            try managedContext.save()
-            user = try managedContext.fetch(userRequest)
+            if( user.last?.value(forKeyPath: "courses") != nil){
+                user.last?.setValue(user.last?.value(forKeyPath: "courses") as! String + "-" + courses,forKeyPath: "courses")
+            } else {
+                user.last?.setValue(courses, forKey: "courses")
+            }
             
-            user.append(savedObject)
-            print("courses Saved!")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            try managedContext.save()
+            
+        }catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
         }
-         print(user.count)
     }
     
     
@@ -913,12 +442,6 @@ class dataManager{
                 user.last?.setValue(toSave, forKey: "courses")
                 
                 
-                
-                
-                
-                
-               
-                
                 print("courses Updated")
             };try managedContext.save()
             print(user.last)
@@ -936,103 +459,26 @@ class dataManager{
     
     
     func saveExtracurriculars(extracurricular: String) {
-        loadData()
-        
-        var extracurricularName = extracurricular
+        self.loadData()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
-                                                        in: managedContext)!
-        //savedObject
-        let savedObject = NSManagedObject(entity: locationEntity,
-                                          insertInto: managedContext)
-        
-        
-        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
-            extracurricularName += ("-" + (user.last?.value(forKeyPath: "extracurriculars") as! String))
-            savedObject.setValue(extracurricularName, forKeyPath: "extracurriculars")
-            
-        } else {
-            savedObject.setValue(( extracurricular), forKeyPath: "extracurriculars")
-        }
-        
-        
-        
-        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
-            print("No first name to submit")
-            return
-        }
-        
-        savedObject.setValue(firstName,forKeyPath: "firstName")
-        
-        
-        
-        
-        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
-            print("No last name to submit")
-            return
-        }
-        
-        savedObject.setValue(lastName,forKeyPath: "lastName")
-        
-        
-        
-        guard let email  = user.last?.value(forKeyPath: "emailAdress") else {
-            print("No email to submit")
-            return
-        }
-        
-        savedObject.setValue(email,forKeyPath: "emailAdress")
-        
-        
-        
-        guard let phoneNumber  = user.last?.value(forKeyPath: "phoneNumber") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        
-        savedObject.setValue(phoneNumber,forKeyPath: "phoneNumber")
-        
-        guard let schoolName  = user.last?.value(forKeyPath: "schoolName") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        
-        savedObject.setValue(schoolName,forKeyPath: "schoolName")
-        
-        
-        
-        if( user.last?.value(forKeyPath: "courses") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
-        }
-        if( user.last?.value(forKeyPath: "skills") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
-        }
-        if( user.last?.value(forKeyPath: "experience") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
-        }
-        if( user.last?.value(forKeyPath: "objective") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "objective") as! String ,forKeyPath: "objective")
-        }
-        
-        
-        
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
-            try managedContext.save()
-            user = try managedContext.fetch(userRequest)
+            if( user.last?.value(forKeyPath: "extracurriculars") != nil){
+                user.last?.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String + "-" + extracurricular,forKeyPath: "extracurriculars")
+            } else {
+                user.last?.setValue(extracurricular, forKey: "extracurriculars")
+            }
             
-            user.append(savedObject)
-            print("Award Saved!")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            try managedContext.save()
+            
+        }catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
         }
-        print(user.count)
     }
     
     
@@ -1075,88 +521,24 @@ class dataManager{
     
     func saveObjective(statement: String) {
         loadData()
-        
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let locationEntity = NSEntityDescription.entity(forEntityName: "User",
-                                                        in: managedContext)!
-        //savedObject
-        let savedObject = NSManagedObject(entity: locationEntity,
-                                          insertInto: managedContext)
-        
-        
-        savedObject.setValue(statement,forKeyPath: "objective")
-        
-        
-        
-        guard let firstName  = user.last?.value(forKeyPath: "firstName") else {
-            print("No first name to submit")
-            return
-        }
-        savedObject.setValue(firstName,forKeyPath: "firstName")
-        
-        guard let lastName  = user.last?.value(forKeyPath: "lastName") else {
-            print("No last name to submit")
-            return
-        }
-        savedObject.setValue(lastName,forKeyPath: "lastName")
-        
-        guard let email  = user.last?.value(forKeyPath: "emailAdress") else {
-            print("No email to submit")
-            return
-        }
-        savedObject.setValue(email,forKeyPath: "emailAdress")
-        
-        guard let phoneNumber  = user.last?.value(forKeyPath: "phoneNumber") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        savedObject.setValue(phoneNumber,forKeyPath: "phoneNumber")
-        
-        guard let schoolName  = user.last?.value(forKeyPath: "schoolName") else {
-            print("No phoneNumber to submit")
-            return
-        }
-        savedObject.setValue(schoolName,forKeyPath: "schoolName")
-        
-       
-        
-        
-        if( user.last?.value(forKeyPath: "courses") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "courses") as! String ,forKeyPath: "courses")
-        }
-        if( user.last?.value(forKeyPath: "skills") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "skills") as! String ,forKeyPath: "skills")
-        }
-        if( user.last?.value(forKeyPath: "experience") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "experience") as! String ,forKeyPath: "experience")
-        }
-        if( user.last?.value(forKeyPath: "extracurriculars") != nil){
-            savedObject.setValue(user.last?.value(forKeyPath: "extracurriculars") as! String ,forKeyPath: "extracurriculars")
-        }
-        
-        
-        
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         do {
-            try managedContext.save()
-            user = try managedContext.fetch(userRequest)
             
-            user.append(savedObject)
-            print("Award Saved!")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            user.last?.setValue(statement, forKey: "objective")
+            try managedContext.save()
+            
+        }catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
         }
-        print(user.count)
+        
+        
     }
-    
-    
     
     
     func loadData(){
@@ -1175,10 +557,6 @@ class dataManager{
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        
-        
-        
-        
     }
     
     
