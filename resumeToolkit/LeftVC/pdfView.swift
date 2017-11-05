@@ -20,6 +20,7 @@ class pdfView: UIViewController,UIScrollViewDelegate {
     //getfilepath ==
     @IBOutlet weak var webView: WKWebView!
     
+    @IBOutlet weak var resumeNameLabel: UILabel!
     
     @IBOutlet weak var userSelect: ASHorizontalScrollView!
     override func viewDidLoad() {
@@ -72,31 +73,25 @@ class pdfView: UIViewController,UIScrollViewDelegate {
     }
     @objc func actionOnFinishedScrolling() {
         print("scrolling is finished")
-        let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/4)))))
+        let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/3.5)))))
         print("THE INDEX IS" + resumeToPick + userInfoController.getResumeIndex())
         userInfoController.saveResumeIndex(resumeIndexAt: resumeToPick)
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        let touch = touches.first
-        print("you are here")
-        let tag = touch?.view?.tag
-        if tag == 5{
-            let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/4)))))
-            print("THE INDEX IS" + resumeToPick + userInfoController.getResumeIndex())
-            userInfoController.saveResumeIndex(resumeIndexAt: resumeToPick)
+        if(resumeToPick == "0"){
+            resumeNameLabel.text = "Plain"
+            
+        } else if(resumeToPick == "1"){
+            resumeNameLabel.text = "Industrial"
+            
+        } else if(resumeToPick == "2") {
+            resumeNameLabel.text = "Modern Minimalist"
         }
-        super.touchesEnded(touches, with: event)
+        else if(resumeToPick == "3") {
+            resumeNameLabel.text = "Vibrant Modern"
+        }
     }
+    
+    
+    
     
     
     
