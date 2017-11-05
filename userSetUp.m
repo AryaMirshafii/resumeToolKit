@@ -75,14 +75,14 @@
     GTLRDrive_File *metadata = [GTLRDrive_File object];
     metadata.name = fileName;
     
-    //metadata.mimeType = @"application/vnd.google-apps.document";
+    
     metadata.parents = [NSArray arrayWithObject:folderId];
     metadata.writersCanShare;
     //metadata.writersCanShare = true;
     //metadata.sha
     
     GTLRUploadParameters *uploadParameters = [GTLRUploadParameters uploadParametersWithData:fileData
-                                                                                   MIMEType:@"image/pdf"];
+                                                                                   MIMEType:@"image/pdff"];
     uploadParameters.shouldUploadWithSingleRequest = TRUE;
     GTLRDriveQuery_FilesCreate *query = [GTLRDriveQuery_FilesCreate queryWithObject:metadata
                                                                    uploadParameters:uploadParameters];

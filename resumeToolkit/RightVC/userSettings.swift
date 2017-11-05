@@ -327,11 +327,16 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             text = "No files found."
         }
         //|| text != nil ||  text != "" || !text.isEmpty
+        /**
         if(text != "No files found." && userInfoController.getFolderID() == "noFolder" || text != nil ||  text != "" || !text.isEmpty){
             userInfoController.saveFolderID(folderID: text)
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
-        
+     */
+        if(text != "No files found." && userInfoController.getFolderID() == "noFolder" &&  text != "" && !text.isEmpty){
+            userInfoController.saveFolderID(folderID: text)
+            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
+        }
         
     }
     
