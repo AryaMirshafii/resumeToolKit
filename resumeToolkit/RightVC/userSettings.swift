@@ -26,6 +26,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     var dataController = dataManager()
     var pdfGenerate = testPDFGenerator()
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var firstNameEntry: UITextField!
     @IBOutlet weak var lastNameEntry: UITextField!
     @IBOutlet weak var emailEntry: UITextField!
@@ -43,6 +44,12 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     let service = GTLRDriveService()
     let signInButton = GIDSignInButton()
     let output = UITextView()
+    
+    @IBOutlet weak var firstNameView: UIView!
+    @IBOutlet weak var lastNameView: UIView!
+    @IBOutlet weak var emailView: UIView!
+    @IBOutlet weak var phoneView: UIView!
+    @IBOutlet weak var schoolView: UIView!
     
     
     var driveFileManager: userSetUp!
@@ -109,6 +116,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         tapFinishZone.addGestureRecognizer(tap)
+        containerView.addGestureRecognizer(tap)
+       
+        
         
         let notificationCenter = NotificationCenter.default
         
@@ -155,6 +165,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         }
         
         signInButton.clipsToBounds = true
+        print("THE BOUNDS ARE" + String(describing: signInButton.frame))
         
     }
     

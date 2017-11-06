@@ -64,8 +64,15 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         
         self.userSelect.delegate = self
         self.userSelect.bounces = true
+        
+        self.webView.scrollView.zoomScale = 0.5
+    
+        //let notificationCenter = NotificationCenter.default
+        //notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
        
     }
+    
+    
     
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -99,6 +106,10 @@ class pdfView: UIViewController,UIScrollViewDelegate {
     var counter = 0
     @objc func userDefaultsDidChange() {
         print("I AM WORKING")
+        
+        
+        
+        
         if(userInfoController.fetchData() == "main" && userInfoController.fetchChangeText() == "bbb" ){
             print("in1")
             
@@ -108,11 +119,44 @@ class pdfView: UIViewController,UIScrollViewDelegate {
             let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
             loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
             
-           
-            
-            
-            
         }
+        
+        
+        let pdfData = NSMutableData()
+        //self.webView.frame = CGRect(x: 0, y: -154, width: 375, height: 608)
+        
+        
+        
+        UIGraphicsBeginPDFContextToData(pdfData, webView.bounds, nil)
+        UIGraphicsBeginPDFPage()
+        
+        guard let pdfContext = UIGraphicsGetCurrentContext() else { return }
+        
+        
+        
+        
+        
+        
+        
+        let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
+        
+        
+        
+        
+        
+        
+        pdfContext.interpolationQuality = .high
+        webView.layer.render(in: pdfContext)
+        UIGraphicsEndPDFContext()
+        self.webView.frame = CGRect(x: 0, y: 0, width: 375, height: 462)
+        let fileName = "pdffilename.pdf"
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0] as! NSString
+        let outputURL = documentsDirectory.appending("/" + fileName)
+        if(pdfData != nil){
+             pdfData.write(toFile: outputURL, atomically: true)
+        }
+       
         
         
     }
@@ -123,10 +167,13 @@ class pdfView: UIViewController,UIScrollViewDelegate {
     
     func loadPDF(html: String, filePath:String) {
         
+        
         let url = NSURL(fileURLWithPath: filePath)
         let urlRequest = NSURLRequest(url: url as URL)
-        //webView.load(urlRequest as URLRequest)
+        
+        
         webView.loadHTMLString(html, baseURL: url as URL)
+        
         
         
     }

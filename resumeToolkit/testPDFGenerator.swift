@@ -33,7 +33,7 @@ class testPDFGenerator {
     
     
     
-    
+    var reloadCounter = 0
     var html = ""
     func createPDFFileAndReturnPath(indexAt:String) -> (html: String, output: String){
         var htmlFile = ""
@@ -66,8 +66,11 @@ class testPDFGenerator {
             html = addDataToPDF(oldHTML: html,resumeNumber: "resume4")
         }
         
-       
+        //informationController.saveChangeText(text: String(reloadCounter))
+        //reloadCounter += 1
+        
         //html = "<b>Hello <i>World!</i></b>"
+        /**
         let fmt = UIMarkupTextPrintFormatter(markupText: html)
         
         // 2. Assign print formatter to UIPrintPageRenderer
@@ -94,7 +97,7 @@ class testPDFGenerator {
         UIGraphicsEndPDFContext();
         
         
-        
+        */
         
         
         let fileName = "pdffilename.pdf"
@@ -105,11 +108,15 @@ class testPDFGenerator {
         
         //URL(fileURLWithPath: <#T##String#>)
         
+        
+        
+        //IMPORTANT SAVING
+        /**
         let newData = pdfData.copy() as! NSData
         
         newData.write(to: URL(fileURLWithPath: outputURL), atomically: true)
         print("DATA")
-        
+        */
         
         print("open \(outputURL)")
         print("ARYA ME" + String(describing: outputURL))
