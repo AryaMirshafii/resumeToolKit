@@ -154,27 +154,54 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
         
         UIGraphicsBeginPDFContextToData(pdfData, webView.bounds, nil)
+        defer { UIGraphicsEndPDFContext() }
         UIGraphicsBeginPDFPage()
         
         guard let pdfContext = UIGraphicsGetCurrentContext() else { return }
         
+        let rescale: CGFloat = 6
         
+        func scaler(v: UIView) {
+            if !v.isKind(of:UIStackView.self) {
+                v.contentScaleFactor = 8
+            }
+            for sv in v.subviews {
+                scaler(v: sv)
+            }
+        }
+        scaler(v: self.webView)
         
+        let bigSize = CGSize(width: webView.frame.size.width*rescale, height: webView.frame.size.height*rescale)
+        UIGraphicsBeginImageContextWithOptions(bigSize, true, 1)
+        let context = UIGraphicsGetCurrentContext()!
         
+        context.setFillColor(UIColor.white.cgColor)
+        context.fill(CGRect(origin: CGPoint(x: 0, y: 0), size: bigSize))
         
+        // Must increase the transform scale
+        //CGContextScaleCTM(context, rescale, rescale)
+        context.scaleBy(x: rescale, y: rescale)
+        webView.layer.render(in: context)
         
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
         //let page = CGRect(x: 0, y: -300, width: 612, height: 792)
         
         
+        pdfContext.saveGState()
+        //CGContextTranslateCTM(pdfContext, webView.frame.origin.x, webView.frame.origin.x) // where the view should be shown
+        pdfContext.translateBy(x: webView.frame.origin.x, y: webView.frame.origin.x)
+        //CGContextScaleCTM(pdfContext, 1/rescale, 1/rescale)
+        pdfContext.scaleBy(x: 1/rescale, y: 1/rescale)
+        let frame = CGRect(origin: CGPoint(x: 0, y: 0), size: bigSize)
+        image?.draw(in: frame)
         
+        pdfContext.restoreGState()
         
        
-        
-        pdfContext.interpolationQuality = .high
-        webView.layer.render(in: pdfContext)
-        
         UIGraphicsEndPDFContext()
+       
         
        
         let fileName = "pdffilename.pdf"
