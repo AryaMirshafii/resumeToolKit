@@ -70,7 +70,7 @@ class testPDFGenerator {
         //reloadCounter += 1
         
         //html = "<b>Hello <i>World!</i></b>"
-        /**
+        
         let fmt = UIMarkupTextPrintFormatter(markupText: html)
         
         // 2. Assign print formatter to UIPrintPageRenderer
@@ -80,6 +80,9 @@ class testPDFGenerator {
         // 3. Assign paperRect and printableRect
         //let A4paperSize = CGSize(width: 2771, height: 3586)
         //let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
+        
+        
+        /**
         let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
         let printable = page.insetBy(dx: 0, dy: 0)
         render.setValue(page, forKey: "paperRect")
@@ -97,8 +100,8 @@ class testPDFGenerator {
         UIGraphicsEndPDFContext();
         
         
-        */
         
+        */
         
         let fileName = "pdffilename.pdf"
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -198,7 +201,7 @@ class testPDFGenerator {
                 for aSkill in skillArr{
                     let skillDescription = aSkill.components(separatedBy:"_")
                     
-                    skillHTML += (String(format: "<h2>%@</h2><p>%@</p>", skillDescription[1],skillDescription[2]))
+                    skillHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", skillDescription[1],skillDescription[2]))
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
@@ -212,7 +215,7 @@ class testPDFGenerator {
                     print(anExperience)
                     let experienceDescription = anExperience.components(separatedBy:"_")
                     print(experienceDescription)
-                    experienceHTML += (String(format: "<div class=job><h2>%@</h2><h3>%@</h3><h4>%@</h4><p>%@</p></div>",experienceDescription[4],experienceDescription[1],experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[6]))
+                    experienceHTML += (String(format: "<h3>%@</h3><h4>%@</h4><ul><li>%@</li></ul>",experienceDescription[4], experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[6]))
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "ExperienceGoHere", with: experienceHTML)
@@ -227,7 +230,7 @@ class testPDFGenerator {
                 for anAward in extracurricularsArr{
                     let extracurricularDescription = anAward.components(separatedBy:"_")
                     
-                    extracurricularHTML += (String(format: "<h2>%@</h2><p>%@</p>", extracurricularDescription[1],extracurricularDescription[2]))
+                    extracurricularHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", extracurricularDescription[1],extracurricularDescription[2]))
                     
                 }
                 //newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
@@ -242,7 +245,7 @@ class testPDFGenerator {
                 for aCourse in coursesArr{
                     let courseDescription = aCourse.components(separatedBy:"_")
                     
-                    courseHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", courseDescription[1],courseDescription[2]))
+                    courseHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", courseDescription[1],courseDescription[2]))
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "CoursesGoHere", with: courseHTML)

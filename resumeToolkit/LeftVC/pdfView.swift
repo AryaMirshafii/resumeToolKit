@@ -60,16 +60,39 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         //userSelect.showsHorizontalScrollIndicator = true
         self.userSelect.clipsToBounds = true
         
-        self.webView.scrollView.zoomScale = 0
+       // self.webView.scrollView.zoomScale = -2.0
+        
+        //self.webView.scrollView.setZoomScale( 5.0, animated: false)
+        
+        var contentRect = CGRect.zero
+        for view in self.webView.scrollView.subviews {
+            contentRect = contentRect.union(view.frame) }
+        self.webView.scrollView.contentSize = contentRect.size
         
         self.userSelect.delegate = self
         self.userSelect.bounces = true
         
-        self.webView.scrollView.zoomScale = 0.5
+        
     
         //let notificationCenter = NotificationCenter.default
         //notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
-       
+        
+        if(userInfoController.getResumeIndex() == "0"){
+            resumeNameLabel.text = "Plain"
+            userSelect.contentOffset.x = 0 * (userSelect.frame.size.width/3.5)
+            
+        } else if(userInfoController.getResumeIndex() == "1"){
+            resumeNameLabel.text = "Industrial"
+            userSelect.contentOffset.x = 1 * (userSelect.frame.size.width/3.5)
+            
+        } else if(userInfoController.getResumeIndex() == "2") {
+            resumeNameLabel.text = "Modern Minimalist"
+            userSelect.contentOffset.x = 2 * (userSelect.frame.size.width/3.5)
+        }
+        else if(userInfoController.getResumeIndex() == "3") {
+            resumeNameLabel.text = "Vibrant Modern"
+            userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.5)
+        }
     }
     
     
@@ -109,23 +132,26 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         
         
         
-        
+        let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
         if(userInfoController.fetchData() == "main" && userInfoController.fetchChangeText() == "bbb" ){
             print("in1")
             
-            let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
             loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
         }else if(userInfoController.fetchChangeText() != "bbb"){
-            let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
             loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
             
         }
         
         
         let pdfData = NSMutableData()
-        //self.webView.frame = CGRect(x: 0, y: -154, width: 375, height: 608)
-        self.webView.frame =  CGRect(x: 0, y: -300, width: 612, height: 792)
-        
+        self.webView.frame = CGRect(x: 0, y: -154, width: 375, height: 608)
+        //self.webView.frame =  CGRect(x: -237, y: -300, width: 612, height: 792)
+        //self.webView.bounds =  CGRect(x:0, y: 0, width: 612, height: 792)
+        //webView.layoutIfNeeded()
+        //self.webView.bounds =  CGRect(x: 0, y: 0, width: 612, height: 792)
+        loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
         
         UIGraphicsBeginPDFContextToData(pdfData, webView.bounds, nil)
         UIGraphicsBeginPDFPage()
@@ -138,7 +164,7 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         
         
         
-        let page = CGRect(x: 0, y: -300, width: 612, height: 792)
+        //let page = CGRect(x: 0, y: -300, width: 612, height: 792)
         
         
         
@@ -150,14 +176,17 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         
         UIGraphicsEndPDFContext()
         
-        self.webView.frame = CGRect(x: 0, y: 0, width: 375, height: 462)
+       
         let fileName = "pdffilename.pdf"
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0] as! NSString
         let outputURL = documentsDirectory.appending("/" + fileName)
-        if(pdfData != nil){
-             pdfData.write(toFile: outputURL, atomically: true)
+        pdfData.write(toFile: outputURL, atomically: true)
+        if(pdfData != NSData()){
+            
         }
+        self.webView.frame = CGRect(x: 0, y: 0, width: 375, height: 462)
+       // self.webView.bounds =  CGRect(x: 0, y: 0, width: 375, height: 462)
        
         
         
@@ -175,6 +204,12 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         
         
         webView.loadHTMLString(html, baseURL: url as URL)
+        
+        
+        var contentRect = CGRect.zero
+        for view in self.webView.scrollView.subviews {
+            contentRect = contentRect.union(view.frame) }
+        self.webView.scrollView.contentSize = contentRect.size
         
         
         
