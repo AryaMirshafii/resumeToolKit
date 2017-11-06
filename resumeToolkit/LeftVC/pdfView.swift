@@ -124,7 +124,7 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         
         let pdfData = NSMutableData()
         //self.webView.frame = CGRect(x: 0, y: -154, width: 375, height: 608)
-        
+        self.webView.frame =  CGRect(x: 0, y: -300, width: 612, height: 792)
         
         
         UIGraphicsBeginPDFContextToData(pdfData, webView.bounds, nil)
@@ -138,16 +138,18 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         
         
         
-        let page = CGRect(x: 0, y: 0, width: 2771, height: 3586)
+        let page = CGRect(x: 0, y: -300, width: 612, height: 792)
         
         
         
         
-        
+       
         
         pdfContext.interpolationQuality = .high
         webView.layer.render(in: pdfContext)
+        
         UIGraphicsEndPDFContext()
+        
         self.webView.frame = CGRect(x: 0, y: 0, width: 375, height: 462)
         let fileName = "pdffilename.pdf"
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
