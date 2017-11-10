@@ -12,7 +12,9 @@ import CoreData
 import GoogleAPIClientForREST
 import GoogleSignIn
 import Device_swift
-
+/*
+Uppercases a string. Helpful for saving a user's name/updating the name textfields properly
+*/
 extension String {
     var firstUppercased: String {
         guard let first = first else { return "" }
@@ -20,7 +22,11 @@ extension String {
     }
 }
 
-
+/*
+This class controlls the user settings of the app.
+It also connects the app to google drive.
+ This is done because the google drive service needs to be in the same viewcontroller as the GIDSignInButton, since the sign in button authorizes it.
+*/
 class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDSignInUIDelegate{
     var userData: [NSManagedObject] = []
     var dataController = dataManager()
@@ -57,7 +63,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     var userFirstName:String?
     var userLastName:String?
     
-    //private let scopes = ["https://www.googleapis.com/auth/drive.file"]
+    
     private let scopes = ["https://www.googleapis.com/auth/drive.file"]
     var signedIn = false
     override func viewDidLoad() {
@@ -118,22 +124,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         tapFinishZone.addGestureRecognizer(tap)
         containerView.addGestureRecognizer(tap)
        
-        
-        
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
-        
-        
-        
-        firstNameEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        lastNameEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        emailEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        phoneEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        currentSchoolEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
-        
-        
         
         
         // Configure Google Sign-in.
@@ -143,20 +136,16 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         GIDSignIn.sharedInstance().clientID = "699945398009-sms6e0cpoam9cp6631nbi38v910s73rv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().signInSilently()
-        //signInButton.frame = CGRect(x: (view.frame.width - signInButton.frame.width)/2, y:  0, width: signInButton.frame.width, height: signInButton.frame.height)
+        
         
         // Add the sign-in button.
         tapToFinish.addSubview(signInButton)
-         //uncomment THIS IS A TEMP FIX FOR A TEMP ERROR ASSERTIon
+        
         if(signedIn){
             driveFileManager = userSetUp(driveService: service, withFilePath: String(describing: pdfGenerator.createPDFFileAndReturnPath(indexAt:userInfoController.getResumeIndex()).output))
         }
         userDefaultsDidChange()
-        print("the current id is" + userInfoController.getFolderID())
-        
-        
-            
-        
+       
         if( userData.last?.value(forKeyPath: "firstName") != nil){
             let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
             welcomeLabel.text = "Welcome " +  nameString.firstUppercased + ","
@@ -165,16 +154,30 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         }
         
         signInButton.clipsToBounds = true
-        print("THE BOUNDS ARE" + String(describing: signInButton.frame))
+       
+        
+        if(userInfoController.fetchData() == "main2"){
+            
+            let aUser = userData.last
+            firstNameEntry.text = aUser?.value(forKeyPath: "firstName") as? String
+            lastNameEntry.text = aUser?.value(forKeyPath: "lastName") as? String
+            emailEntry.text = aUser?.value(forKeyPath: "emailAdress") as? String
+            phoneEntry.text = aUser?.value(forKeyPath: "phoneNumber") as? String
+            currentSchoolEntry.text = aUser?.value(forKeyPath: "schoolName") as? String
+        }
+        
+        
         
     }
-    
+    /*
+    Detects if the settings in userInfo.swift has changed.
+    */
      @objc func userDefaultsDidChange() {
         
         loadData()
         print("USER DEFAULTS CHANGED")
         let aUser = userData.last
-        if(userInfoController.fetchData() == "main"){
+        if(userInfoController.fetchData() == "main" || userInfoController.fetchData() == "main2"){
             firstNameEntry.text = aUser?.value(forKeyPath: "firstName") as? String
             lastNameEntry.text = aUser?.value(forKeyPath: "lastName") as? String
             emailEntry.text = aUser?.value(forKeyPath: "emailAdress") as? String
@@ -195,7 +198,6 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         if(userInfoController.getFolderID() != "noFolder" && userInfoController.getFolderID() != nil){
             print("FOLDER ID OF" + String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output))
             
-            
             print("EL es tu" + userInfoController.getFolderID())
             let meFile =  pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output
             
@@ -210,7 +212,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         }
         
     }
-    var counter = 0
+    
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
         dataController.savefirstName(firstName: firstNameEntry.text!)
@@ -220,18 +222,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
         
         
-        
-        let aRandomNumber = String(arc4random_uniform(100) + 1)
-        print("!!!" + aRandomNumber)
-        
-        
-        
-        
-        
-            
         fetchFolder()
         
-        print("ARYA ID IS" + userInfoController.getFolderID())
+        
         if(signedIn){
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
@@ -240,9 +233,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         view.endEditing(true)
         print("else it is located at" + userInfoController.getFolderID() )
-        //print("THE DATE IS" + generateResumeName())
- 
-        //dataController.printData()
+        
         
         let deviceType = UIDevice.current.deviceType
         
@@ -256,25 +247,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
     }
     
-    
-    
-    
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        /**
-        dataController.savefirstName(firstName: firstNameEntry.text!)
-        dataController.saveLastName(lastName: lastNameEntry.text!)
-        dataController.saveEmail(email: emailEntry.text!)
-        dataController.savePhoneNumber(phoneNumber: phoneEntry.text!)
-        dataController.saveSchool(schoolName: currentSchoolEntry.text!)
-        dataController.saveGradeLevel(gradeLevel: gradeLevelEntry.text!)
-        
-        
-        let aRandomNumber = String(arc4random_uniform(100) + 1)
-        print("!!!" + aRandomNumber)
-        userInfoController.saveChangeText(text: aRandomNumber)
- */
-    }
+    /*
+    Sets the name for the file to be uploaded to google drive.
+    */
     
     func generateResumeName() -> String{
         var dateString = ""
@@ -302,7 +277,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         return dateString
     }
     
-    
+    /*
+    Returns the folder ID if it isnt already saved by calling returnFoldername.
+    */
     func fetchFolder() {
         loadData()
         let query = GTLRDriveQuery_FilesList.query()
@@ -314,7 +291,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         )
     }
     
-    // Process the response and display output
+    /*
+    Gathers a list of file names on the user's drive, and if it finds a folder matching the user's name it saves the google drive fileID.
+    */
     @objc func returnFolderName(ticket: GTLRServiceTicket,
                           finishedWithObject result : GTLRDrive_FileList,
                           error : NSError?){
@@ -337,13 +316,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         } else {
             text = "No files found."
         }
-        //|| text != nil ||  text != "" || !text.isEmpty
-        /**
-        if(text != "No files found." && userInfoController.getFolderID() == "noFolder" || text != nil ||  text != "" || !text.isEmpty){
-            userInfoController.saveFolderID(folderID: text)
-            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
-        }
-     */
+        
         if(text != "No files found." && userInfoController.getFolderID() == "noFolder" &&  text != "" && !text.isEmpty){
             userInfoController.saveFolderID(folderID: text)
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
@@ -351,7 +324,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
     }
     
-    
+    /*
+    Shows any error messages as an alert.
+    */
     
     func showAlert(title : String, message: String) {
         let alert = UIAlertController(
@@ -368,7 +343,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         present(alert, animated: true, completion: nil)
     }
     
-    
+    /*
+    Signs the user in, using the googleSignIDButton.
+    */
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
               withError error: Error!) {
         loadData()
@@ -390,11 +367,10 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
            
             if(userFirstName != nil && userFirstName != nil &&  userInfoController.getFolderID() == "noFolder" ){
-               // print(userLastName!)
+               
                 print(userInfoController.getFolderID())
-                //print(userData)
                 driveFileManager.createFolder(userLastName! + "_" + userFirstName!)
-                //driveFileManager.createFolder("Mirshafii_Arya")
+                
             }
  
             fetchFolder()
@@ -403,7 +379,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     
     
     
-    
+    /*
+    Loads the data to be used by the uitextfields/labels of the settings viewcontroller
+    */
     func loadData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return

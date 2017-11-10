@@ -34,17 +34,18 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         //self.loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
         self.webView.isOpaque = true
         self.webView.backgroundColor = UIColor.clear
-        let button1 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
-        let button2 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
-        let button3 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
-        let button4 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
-        button1.backgroundColor = UIColor.purple
-        button2.backgroundColor = UIColor.red
         
-        button3.backgroundColor = UIColor.purple
-        button4.backgroundColor = UIColor.red
+        let button1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button3 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button4 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        
         userSelect.uniformItemSize = CGSize(width: 90, height: 140)
         userSelect.setItemsMarginOnce()
+        button1.image = #imageLiteral(resourceName: "resume1Icon")
+        button2.image = #imageLiteral(resourceName: "resume2Icon")
+        button3.image = #imageLiteral(resourceName: "resume3Icon")
+        button4.image = #imageLiteral(resourceName: "resume4Icon")
         
         
         
@@ -146,11 +147,23 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         
         
         let pdfData = NSMutableData()
-        self.webView.frame = CGRect(x: 0, y: -154, width: 375, height: 608)
+        
+        
+       // self.webView.frame = CGRect(x: 0, y: -154, width: 375, height: 608)
+        
+        
+        
+        
         //self.webView.frame =  CGRect(x: -237, y: -300, width: 612, height: 792)
         //self.webView.bounds =  CGRect(x:0, y: 0, width: 612, height: 792)
         //webView.layoutIfNeeded()
         //self.webView.bounds =  CGRect(x: 0, y: 0, width: 612, height: 792)
+        
+        
+        
+        self.webView.frame = CGRect(x: 0, y: self.webView.frame.height - webView.scrollView.contentSize.height, width: 375, height: webView.scrollView.contentSize.height)
+
+        
         loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
         
         UIGraphicsBeginPDFContextToData(pdfData, webView.bounds, nil)

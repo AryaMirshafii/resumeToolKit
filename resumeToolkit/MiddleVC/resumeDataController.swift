@@ -39,7 +39,6 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     var ExtracurricularsList = [resumeItem]()
     var dataController = dataManager()
     
-    
     var searchText = " "
     var isSearching = false
     override func viewDidLoad() {
@@ -110,7 +109,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             //self.addView.frame = CGRect(x: 0, y: 0, width: 357, height: 194)
             isSearching = false
             generateItemsDict()
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
             print("ARYA SEARCHING")
             self.topView.frame = CGRect(x: 0, y: 0, width: 375, height: 200)
             self.addView.frame = CGRect(x: 0, y: 53, width: 375, height: 147)
@@ -139,22 +138,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         
         
-        /**
-        var artistAppend = [MPMediaItem]()
-        artistAppend = songs.filter({ (mod) -> Bool in
-            //return mod.imageName.lowercased().contains(text.lowercased())
-            wordsSearchSection = [key]
-            
-            
-            if(mod.albumArtist != nil){
-                return mod.albumArtist!.lowercased().contains(text.lowercased())
-            }
-            return false
-            
-            
-            
-        })
-         */
+       
         
         print("searching for" + text)
         
@@ -165,7 +149,6 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         
         
-        //let sections = ["Internship & Job Experience", "Skills", "Courses","Extracurriculars"]
         
         
         searchDict["Courses"] = courseList.filter({ (mod) -> Bool in
@@ -186,28 +169,12 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         })
         
         
-        
-        
-        
-        
-        
-        print("IT IS" + String(describing: (searchDict["results"]?.count)))
-        
-        
-        
-        
-        
-        self.tableView.reloadData()
-        
-        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
         
         
     }
-    
-    
-    
-    
-    
     
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -216,7 +183,9 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     @objc func userDefaultsDidChange() {
         generateItemsDict()
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func setUpData(){
@@ -227,7 +196,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
-        //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")
+       
         do {
             user = try managedContext.fetch(userRequest)
             
@@ -276,16 +245,10 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 counter += 1
                 
                 
-                    //[createResumeItem(description: String(describing: userExpereience))]
+                
             }
             
             if(aSection == "Skills" && userSkills != nil){
-               // itemsDict[aSection] = [createResumeItem(description: userSkills!)]
-                //counter += 1
-                
-                
-                
-                
                 
                 if(skillsArr != nil){
                     skillsList.removeAll()
@@ -294,8 +257,6 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                         if(aResumeItem.name != "entryInfo[1]" ){
                             skillsList.append(aResumeItem)
                         }
-                        
-                        
                         
                     }
                     itemsDict[aSection]  = skillsList
@@ -306,17 +267,11 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 counter += 1
                 
-                //skillsList.removeAll()
-                
                 
                 
             }
             
             if(aSection == "Courses" && userCourses != nil){
-                
-                //itemsDict[aSection] = [createResumeItem(description: usercourses!)]
-                //counter += 1
-                
                 
                 if(coursesArr != nil){
                     courseList.removeAll()
@@ -334,14 +289,9 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
                 
                 counter += 1
                 
-                
-                
             }
             
             if(aSection == "Extracurriculars" && userExtracurriculars != nil){
-                
-                
-                
                 
                 if(ExtracurricularsArr != nil){
                     ExtracurricularsList.removeAll()
@@ -364,10 +314,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             }
             
         }
-        for aSkill in skillsList {
-            
-            print("NNNN " + aSkill.name)
-        }
+        
     }
     
     func createResumeItem(description: String) -> resumeItem{
@@ -444,16 +391,8 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
-    
-    //MARK: - Table view data source
-    
-    
-    
-    
-    
-    
     
     
     
@@ -477,12 +416,8 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         }
     }
     
-    // Enable detection of shake motion
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        
-        print("Why are you shaking me?")
-        
-    }
+    
+    
    
     
     
@@ -495,20 +430,19 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             fatalError("The dequeued cell is not an instance of entryCell.")
         }
         
-        // Fetches the appropriate meal for the data source layout.
-        if(isSearching){
-            itemsDict = searchDict
+        if(self.isSearching){
+            self.itemsDict = self.searchDict
             
         }
         
-        let aSection = sections[indexPath.section]
-        var items = itemsDict[aSection]
+        let aSection = self.sections[indexPath.section]
+        var items = self.itemsDict[aSection]
         
         
         
         
-        //print(anItem.name)
-        print("your row is" + String(indexPath.row))
+        
+        
         cell.entryName.text = items![indexPath.row].name
         cell.entryDescription.text = items![indexPath.row].description
         self.tableView.rowHeight = 160
@@ -529,14 +463,21 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubview(toBack: whiteRoundedView)
-        cell.getColor(aNumber: colorCounter)
+        cell.getColor(aNumber: self.colorCounter)
         
-        if(colorCounter < 3){
-            colorCounter += 1
+        if(self.colorCounter < 3){
+            self.colorCounter += 1
         }
-        if (colorCounter == 3) {
-            colorCounter += -3
+        if (self.colorCounter == 3) {
+            self.colorCounter += -3
         }
+        
+        
+        
+        
+        
+        
+        
         
         
        return cell
@@ -560,12 +501,12 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         let headerLabel = UILabel(frame: CGRect(x: 6, y: 10, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.font = UIFont(name: "Prime", size: 28)
-        //headerLabel.textColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0)
+        
         headerLabel.textColor = .white
        
         
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
-        //headerLabel.textAlignment = NSTextAlignment.center
+       
         headerLabel.sizeToFit()
         headerLabel.adjustsFontSizeToFitWidth = true
         let deviceType = UIDevice.current.deviceType

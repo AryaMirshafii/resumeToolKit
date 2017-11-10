@@ -233,7 +233,7 @@ class testPDFGenerator {
                     extracurricularHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", extracurricularDescription[1],extracurricularDescription[2]))
                     
                 }
-                //newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
+                newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
             }
             
             
@@ -394,7 +394,7 @@ class testPDFGenerator {
                     extracurricularHTML += (String(format: "<h2>%@</h2><p>%@</p>", extracurricularDescription[1],extracurricularDescription[2]))
                     
                 }
-                //newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
+                newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
             }
             
             
