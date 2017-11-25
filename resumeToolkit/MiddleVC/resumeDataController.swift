@@ -17,6 +17,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     
+    @IBOutlet weak var saveObjectiveButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var addView: UIView!
     
@@ -516,7 +517,11 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             headerLabel.font = UIFont(name: "Prime", size: 27)
             self.addButton.frame = CGRect(x: 92, y: 7, width: 136, height: 44)
             self.addView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
-        case .iPadMini: print("Do stuff for iPad mini")
+        case .iPadAir2:
+            self.addView.frame = CGRect(x: 0, y: 53, width: 768, height: 147)
+            self.addButton.frame = CGRect(x: 8, y: 95, width: 136, height: 44)
+            self.saveObjectiveButton.frame = CGRect(x: 593, y: 95, width: 165, height: 44)
+            
         default: print("Check other available cases of DeviceType")
         }
         

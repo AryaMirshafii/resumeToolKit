@@ -32,6 +32,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     var dataController = dataManager()
     var pdfGenerate = testPDFGenerator()
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var firstNameEntry: UITextField!
     @IBOutlet weak var lastNameEntry: UITextField!
@@ -166,7 +167,22 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             currentSchoolEntry.text = aUser?.value(forKeyPath: "schoolName") as? String
         }
         
+        let deviceType = UIDevice.current.deviceType
         
+        switch deviceType {
+        case .iPhone5:
+            print("iphone 5")
+        case .iPadAir2:
+            self.backgroundImage.frame = CGRect(x: 0, y: 0, width: 768, height: 1024)
+            self.containerView.frame = CGRect(x: 213, y: 273, width: 343, height: 242)
+            self.firstNameEntry.frame = CGRect(x: 272, y: 654, width: 224, height: 30)
+            self.tapToFinish.frame = CGRect(x: 323, y: 701, width: 122, height: 48)
+            
+            
+        default: print("Check other available cases of DeviceType")
+        }
+        
+
         
     }
     /*

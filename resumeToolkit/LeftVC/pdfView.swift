@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import WebKit
 import ASHorizontalScrollView
+import Device_swift
 
 class pdfView: UIViewController,UIScrollViewDelegate {
     var pdfGenerate = testPDFGenerator()
@@ -21,6 +22,7 @@ class pdfView: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var webView: WKWebView!
     
     @IBOutlet weak var resumeNameLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     @IBOutlet weak var userSelect: ASHorizontalScrollView!
     override func viewDidLoad() {
@@ -93,6 +95,21 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         else if(userInfoController.getResumeIndex() == "3") {
             resumeNameLabel.text = "Vibrant Modern"
             userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.5)
+        }
+        
+        
+        let deviceType = UIDevice.current.deviceType
+        
+        switch deviceType {
+        case .iPhone5:
+            print("iphone 5")
+        case .iPadAir2:
+            self.backgroundImage.frame = CGRect(x: 0, y: -20, width: 768, height: 1044)
+            self.webView.frame = CGRect(x: 0, y: 0, width: 768, height: 817)
+            self.resumeNameLabel.frame = CGRect(x: 263, y: 825, width: 243, height: 24)
+            self.userSelect.frame = CGRect(x: 239, y: 857, width: 291, height: 147)
+            
+        default: print("Check other available cases of DeviceType")
         }
     }
     

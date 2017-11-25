@@ -89,6 +89,11 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         
         
        currentSchoolEntry.text = "Georgia Tech Excel Program"
+        
+        
+        let deviceType = UIDevice.current.deviceType
+        
+        
     }
     
     

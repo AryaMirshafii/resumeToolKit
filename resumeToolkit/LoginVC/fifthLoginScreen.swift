@@ -8,8 +8,17 @@
 
 import Foundation
 import UIKit
+import Device_swift
 class fifthLoginScreen: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var currentSchoolEntry: UITextField!
+    
+    @IBOutlet weak var backgroundImage: UIImageView!
+    
+    @IBOutlet weak var pleaseEnterSchoolLabel: UILabel!
+    
+    @IBOutlet weak var icon: UIImageView!
+    
+    
     var dataController = dataManager()
     var infoController = userInfo()
     override func viewDidLoad() {
@@ -22,6 +31,24 @@ class fifthLoginScreen: UIViewController, UITextFieldDelegate {
         self.currentSchoolEntry.delegate = self
         self.currentSchoolEntry.clearButtonMode = .whileEditing
         currentSchoolEntry.text = "Georgia Tech Excel Program"
+        
+        
+       
+        
+        let deviceType = UIDevice.current.deviceType
+        
+        switch deviceType {
+        case .iPhone5:
+            print("iphone 5")
+        case .iPadAir2:
+            self.backgroundImage.frame = CGRect(x: 0, y: 0, width: 768, height: 1024)
+            self.pleaseEnterSchoolLabel.frame = CGRect(x: 235, y: 569, width: 298, height: 32)
+            self.currentSchoolEntry.frame = CGRect(x: 272, y: 654, width: 224, height: 30)
+            self.icon.frame = CGRect(x: 217, y: 180, width: 334, height: 317)
+            
+            
+        default: print("Check other available cases of DeviceType")
+        }
         
     }
     
