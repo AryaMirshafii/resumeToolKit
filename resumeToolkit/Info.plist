@@ -35,6 +35,17 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>palanquindark-regular.ttf</string>
+		<string>palanquindark-semibold.ttf</string>
+		<string>palanquindark-medium.ttf</string>
+		<string>palanquindark-bold.ttf</string>
+		<string>palanquin-thin.ttf</string>
+		<string>palanquin-semibold.ttf</string>
+		<string>palanquin-regular.ttf</string>
+		<string>palanquin-medium.ttf</string>
+		<string>palanquin-light.ttf</string>
+		<string>palanquin-extralight.ttf</string>
+		<string>palanquin-bold.ttf</string>
 		<string>Infinity.ttf</string>
 		<string>CODE Light.otf</string>
 		<string>CODE Bold.otf</string>

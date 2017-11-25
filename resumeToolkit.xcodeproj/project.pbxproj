@@ -25,6 +25,18 @@
 		D152E3BC1F624C15002F5F54 /* experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BB1F624C15002F5F54 /* experience.swift */; };
 		D152E3BE1F624C36002F5F54 /* skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BD1F624C36002F5F54 /* skill.swift */; };
 		D152E3C01F624C53002F5F54 /* schoolWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BF1F624C53002F5F54 /* schoolWork.swift */; };
+		D16C21411FBD35510005C7C2 /* palanquin-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C21351FBD35500005C7C2 /* palanquin-bold.ttf */; };
+		D16C21421FBD35510005C7C2 /* palanquin-extralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C21361FBD35500005C7C2 /* palanquin-extralight.ttf */; };
+		D16C21431FBD35510005C7C2 /* palanquin-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C21371FBD35500005C7C2 /* palanquin-light.ttf */; };
+		D16C21441FBD35510005C7C2 /* palanquin-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C21381FBD35500005C7C2 /* palanquin-medium.ttf */; };
+		D16C21451FBD35510005C7C2 /* palanquin-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C21391FBD35500005C7C2 /* palanquin-regular.ttf */; };
+		D16C21461FBD35510005C7C2 /* palanquin-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C213A1FBD35500005C7C2 /* palanquin-semibold.ttf */; };
+		D16C21471FBD35510005C7C2 /* palanquin-thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C213B1FBD35500005C7C2 /* palanquin-thin.ttf */; };
+		D16C21481FBD35510005C7C2 /* palanquindark-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C213C1FBD35500005C7C2 /* palanquindark-bold.ttf */; };
+		D16C21491FBD35510005C7C2 /* palanquindark-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C213D1FBD35500005C7C2 /* palanquindark-medium.ttf */; };
+		D16C214A1FBD35510005C7C2 /* palanquindark-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C213E1FBD35500005C7C2 /* palanquindark-regular.ttf */; };
+		D16C214B1FBD35510005C7C2 /* palanquindark-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C213F1FBD35500005C7C2 /* palanquindark-semibold.ttf */; };
+		D16C214C1FBD35510005C7C2 /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = D16C21401FBD35500005C7C2 /* SIL Open Font License.txt */; };
 		D182367C1FA16EF000801E00 /* fifthLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182367B1FA16EF000801E00 /* fifthLoginScreen.swift */; };
 		D182367E1FA171B400801E00 /* fourthLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182367D1FA171B400801E00 /* fourthLoginScreen.swift */; };
 		D18236801FA1736E00801E00 /* thirdLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182367F1FA1736E00801E00 /* thirdLoginScreen.swift */; };
@@ -74,6 +86,18 @@
 		D152E3BB1F624C15002F5F54 /* experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = experience.swift; sourceTree = "<group>"; };
 		D152E3BD1F624C36002F5F54 /* skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skill.swift; sourceTree = "<group>"; };
 		D152E3BF1F624C53002F5F54 /* schoolWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = schoolWork.swift; sourceTree = "<group>"; };
+		D16C21351FBD35500005C7C2 /* palanquin-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-bold.ttf"; sourceTree = "<group>"; };
+		D16C21361FBD35500005C7C2 /* palanquin-extralight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-extralight.ttf"; sourceTree = "<group>"; };
+		D16C21371FBD35500005C7C2 /* palanquin-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-light.ttf"; sourceTree = "<group>"; };
+		D16C21381FBD35500005C7C2 /* palanquin-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-medium.ttf"; sourceTree = "<group>"; };
+		D16C21391FBD35500005C7C2 /* palanquin-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-regular.ttf"; sourceTree = "<group>"; };
+		D16C213A1FBD35500005C7C2 /* palanquin-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-semibold.ttf"; sourceTree = "<group>"; };
+		D16C213B1FBD35500005C7C2 /* palanquin-thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-thin.ttf"; sourceTree = "<group>"; };
+		D16C213C1FBD35500005C7C2 /* palanquindark-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-bold.ttf"; sourceTree = "<group>"; };
+		D16C213D1FBD35500005C7C2 /* palanquindark-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-medium.ttf"; sourceTree = "<group>"; };
+		D16C213E1FBD35500005C7C2 /* palanquindark-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-regular.ttf"; sourceTree = "<group>"; };
+		D16C213F1FBD35500005C7C2 /* palanquindark-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-semibold.ttf"; sourceTree = "<group>"; };
+		D16C21401FBD35500005C7C2 /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
 		D182367B1FA16EF000801E00 /* fifthLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fifthLoginScreen.swift; sourceTree = "<group>"; };
 		D182367D1FA171B400801E00 /* fourthLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fourthLoginScreen.swift; sourceTree = "<group>"; };
 		D182367F1FA1736E00801E00 /* thirdLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thirdLoginScreen.swift; sourceTree = "<group>"; };
@@ -119,6 +143,7 @@
 		D106288D1F6066FE001880AD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				D16C21341FBD35500005C7C2 /* palanquin */,
 				D13FA6B21F7DB87C00AB567C /* CODE Bold.otf */,
 				D13FA6B31F7DB87C00AB567C /* CODE Light.otf */,
 				D106288E1F60677E001880AD /* Prime Light.otf */,
@@ -167,6 +192,25 @@
 				D18286EC1F60A6B400CAD85A /* userSettings.swift */,
 			);
 			path = RightVC;
+			sourceTree = "<group>";
+		};
+		D16C21341FBD35500005C7C2 /* palanquin */ = {
+			isa = PBXGroup;
+			children = (
+				D16C21351FBD35500005C7C2 /* palanquin-bold.ttf */,
+				D16C21361FBD35500005C7C2 /* palanquin-extralight.ttf */,
+				D16C21371FBD35500005C7C2 /* palanquin-light.ttf */,
+				D16C21381FBD35500005C7C2 /* palanquin-medium.ttf */,
+				D16C21391FBD35500005C7C2 /* palanquin-regular.ttf */,
+				D16C213A1FBD35500005C7C2 /* palanquin-semibold.ttf */,
+				D16C213B1FBD35500005C7C2 /* palanquin-thin.ttf */,
+				D16C213C1FBD35500005C7C2 /* palanquindark-bold.ttf */,
+				D16C213D1FBD35500005C7C2 /* palanquindark-medium.ttf */,
+				D16C213E1FBD35500005C7C2 /* palanquindark-regular.ttf */,
+				D16C213F1FBD35500005C7C2 /* palanquindark-semibold.ttf */,
+				D16C21401FBD35500005C7C2 /* SIL Open Font License.txt */,
+			);
+			path = palanquin;
 			sourceTree = "<group>";
 		};
 		D1C02CEF5159EAB5F8BBB7CE /* Pods */ = {
@@ -308,18 +352,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				D198172B1F9987EF00DE38A5 /* resume1.html in Resources */,
+				D16C214C1FBD35510005C7C2 /* SIL Open Font License.txt in Resources */,
 				D13FA6B51F7DB88500AB567C /* CODE Light.otf in Resources */,
 				D102D4B11FACFBC30098E287 /* resume2.html in Resources */,
+				D16C21411FBD35510005C7C2 /* palanquin-bold.ttf in Resources */,
 				D1E4579C1F5A176000D1E030 /* LaunchScreen.storyboard in Resources */,
+				D16C21461FBD35510005C7C2 /* palanquin-semibold.ttf in Resources */,
+				D16C21451FBD35510005C7C2 /* palanquin-regular.ttf in Resources */,
 				D13FA6B71F7DBB6C00AB567C /* Infinity.ttf in Resources */,
 				D13FA6B41F7DB88500AB567C /* CODE Bold.otf in Resources */,
 				D10628911F606791001880AD /* Prime Light.otf in Resources */,
 				D1C90EB91FAE45D8003D9671 /* resume3.html in Resources */,
+				D16C21471FBD35510005C7C2 /* palanquin-thin.ttf in Resources */,
 				D1E457991F5A175F00D1E030 /* Assets.xcassets in Resources */,
+				D16C214B1FBD35510005C7C2 /* palanquindark-semibold.ttf in Resources */,
 				D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */,
 				D14A74A81FAE914E00D56DBC /* resume4.html in Resources */,
+				D16C21421FBD35510005C7C2 /* palanquin-extralight.ttf in Resources */,
+				D16C21441FBD35510005C7C2 /* palanquin-medium.ttf in Resources */,
+				D16C21431FBD35510005C7C2 /* palanquin-light.ttf in Resources */,
+				D16C214A1FBD35510005C7C2 /* palanquindark-regular.ttf in Resources */,
 				D10628901F60678E001880AD /* Prime Regular.otf in Resources */,
+				D16C21491FBD35510005C7C2 /* palanquindark-medium.ttf in Resources */,
 				D1DB93711F70A53200C210B4 /* GoogleService-Info.plist in Resources */,
+				D16C21481FBD35510005C7C2 /* palanquindark-bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
