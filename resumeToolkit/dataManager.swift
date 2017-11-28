@@ -20,7 +20,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")
@@ -39,12 +45,18 @@ class dataManager{
     func checkNameExistence() -> Bool{
         let appDel = UIApplication.shared.delegate as? AppDelegate
         
-        let context = appDel?.persistentContainer.viewContext
+        var context:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            context = (appDel?.persistentContainer.viewContext)!
+        } else {
+            // Fallback on earlier versions
+            context = (appDel?.managedObjectContext)!
+        }
         
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         fetchrequest.predicate = NSPredicate(format: "firstName = %@", "")
         do {
-            let fetchResults = try context?.fetch(fetchrequest) as? NSManagedObject
+            let fetchResults = try context.fetch(fetchrequest) as? NSManagedObject
             if fetchResults  != nil{
                 return false
             }
@@ -139,7 +151,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         let locationEntity = NSEntityDescription.entity(forEntityName: "User",
                                                         in: managedContext)!
@@ -188,7 +206,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         do {
             
@@ -211,7 +235,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         do {
             
@@ -232,7 +262,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         do {
             
@@ -254,7 +290,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         do {
             
@@ -280,7 +322,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         do {
             if( user.last?.value(forKeyPath: "skills") != nil){
@@ -308,7 +356,14 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
+        
         var previousSkills = user.last?.value(forKeyPath: "skills") as! String
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         print(user.last)
@@ -339,7 +394,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         do {
             if( user.last?.value(forKeyPath: "experience") != nil){
@@ -363,7 +424,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         var previousExperience = user.last?.value(forKeyPath: "experience") as! String
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         
@@ -401,7 +468,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         do {
             if( user.last?.value(forKeyPath: "courses") != nil){
@@ -428,7 +501,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         var previousCourses = user.last?.value(forKeyPath: "courses") as! String
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         print(user.last)
@@ -464,7 +543,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         do {
             if( user.last?.value(forKeyPath: "extracurriculars") != nil){
@@ -490,7 +575,14 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         var previousExtracurriculars = user.last?.value(forKeyPath: "extracurriculars") as! String
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         print(user.last)
@@ -525,7 +617,13 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         do {
             
@@ -546,17 +644,32 @@ class dataManager{
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
-        //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")
-        do {
-            user = try managedContext.fetch(userRequest)
-            
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+        if #available(iOS 10.0, *) {
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+            //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")
+            do {
+                user = try managedContext.fetch(userRequest)
+                
+                
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        } else {
+            // Fallback on earlier versions
+            let managedContext = appDelegate.managedObjectContext
+            let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+            //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")
+            do {
+                user = try managedContext.fetch(userRequest)
+                
+                
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
         }
+        
+        
     }
     
     

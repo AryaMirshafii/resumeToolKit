@@ -597,7 +597,13 @@ class testPDFGenerator {
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")

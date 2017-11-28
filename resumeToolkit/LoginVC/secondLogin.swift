@@ -33,7 +33,7 @@ class secondLogin: UIViewController,UITextFieldDelegate {
         
         let deviceType = UIDevice.current.deviceType
         
-        let deviceType = UIDevice.current.deviceType
+        
         
         switch deviceType {
         case .iPhone5:

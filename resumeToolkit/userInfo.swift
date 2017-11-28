@@ -18,6 +18,10 @@ class userInfo {
         static let resumeFilePath = "noFile"
         static let folderID = "noFolder"
         static let resumeIndex = "0"
+        static let jobExperience = "Internship & Job Experience"
+        static let skills = "Skills"
+        static let courses = "Courses"
+        static let extracurriculars = "Extracurriculars"
         
         
         
@@ -116,5 +120,20 @@ class userInfo {
         }
         return "0"
     }
+    
+    func savejobExperience(experience: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(experience, forKey: defaultsKeys.jobExperience)
+    }
+    func getjobExperience()  -> String{
+        let defaults = UserDefaults.standard
+        if let stringOne = defaults.string(forKey: defaultsKeys.jobExperience) {
+            // Some String Value
+            return stringOne
+        }
+        return "0"
+    }
+    
+    
     
 }

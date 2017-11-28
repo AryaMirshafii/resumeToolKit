@@ -29,7 +29,10 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     @IBOutlet weak var classNamesLabel: UILabel!
     
+    @IBOutlet weak var backButton: UIButton!
     
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var entrySwipeButtonRight: UIButton!
     
     @IBOutlet weak var yearLabel: UILabel!
     
@@ -37,6 +40,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var entryLabel: UILabel!
     @IBOutlet weak var entrySwiper: UIView!
     
+    @IBOutlet weak var entrySwipeButtonLeft: UIButton!
     
     //company experience stuff
     @IBOutlet weak var timelineView: UIView!
@@ -102,6 +106,24 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         self.entryDescription.layer.borderColor = UIColor(red:0.00, green:0.58, blue:1.00, alpha:1.0).cgColor
         self.entryDescription.layer.borderWidth = 4
         self.skillImage.image = #imageLiteral(resourceName: "chalkboard")
+        
+        let deviceType = UIDevice.current.deviceType
+        if(deviceType == .iPadAir2){
+            self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
+            self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
+            
+            self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
+            self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
+            self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
+        } else {
+            self.backButton.frame = CGRect(x: 0, y: 378, width: 157, height: 56)
+            self.saveButton.frame = CGRect(x: 218, y: 378, width: 157, height: 56)
+            
+            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
+            self.entrySwipeButtonRight.frame = CGRect(x: 315, y: 33, width: 42, height: 42)
+            self.entrySwipeButtonLeft.frame = CGRect(x: 18, y: 33, width: 42, height: 42)
+        }
+        
         
     }
     
@@ -639,21 +661,53 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             setDescriptions(slectedItem: entryType)
             setPicture(slectedItem: entryType)
             
-            classList.frame = CGRect(x: 16, y: 133, width: 343, height: 134)
-            nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
             
-            entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
-            entryDescription.autoresizesSubviews = true
-            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
+            let deviceType = UIDevice.current.deviceType
+            if(deviceType == .iPadAir2){
+                
+                self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
+                self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
+                self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
+                
+                nameView.frame = CGRect(x: 233, y: 147, width: 343, height: 52)
+                
+                
+                skillImage.frame = CGRect(x: 355, y: 668, width: 59, height: 59)
+                
+                entryDescription.frame = CGRect(x: 213, y: 455, width: 343, height: 94)
+                entryDescription.autoresizesSubviews = true
+                
+                self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
+                self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
+                classList.frame = CGRect(x: 233, y: 262, width: 303, height: 142)
+                
+                timelineView.frame = CGRect(x: 6, y: 1300, width: 2, height: 2)
+                companyView.frame = CGRect(x: 6, y: 1400, width: 2, height: 2)
+                contactView.frame = CGRect(x: 6, y: 1500, width: 2, height: 2)
+                yearReceivedView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
+                
+            } else {
+                classList.frame = CGRect(x: 16, y: 133, width: 343, height: 134)
+                nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
+                entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
+                entryDescription.autoresizesSubviews = true
+                self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
+                
+                skillImage.frame = CGRect(x: 158, y: 377, width: 59, height: 59)
+                
+                timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            }
+            
+            
             
             timelineView.isHidden = true
             companyView.isHidden = true
             contactView.isHidden = true
             yearReceivedView.isHidden = true
-            timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            
         } else if(entryType == "Internships & Job Experience"){
             
             skillImage.isHidden = true
@@ -669,18 +723,48 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             companyView.isHidden = false
             contactView.isHidden = false
             yearReceivedView.isHidden = true
-            nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
-            timelineView.frame = CGRect(x: 16, y: 135, width: 343, height: 52)
-            companyView.frame = CGRect(x: 16, y: 189, width: 343, height: 52)
-            contactView.frame = CGRect(x: 16, y: 242, width: 343, height: 52)
-            entryDescription.frame = CGRect(x: 16, y: 294, width: 343, height: 94)
-            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
             
             
             
+            let deviceType = UIDevice.current.deviceType
+            if(deviceType == .iPadAir2){
+                nameView.frame = CGRect(x: 213, y: 136, width: 343, height: 52)
+                timelineView.frame = CGRect(x: 211, y: 216, width: 343, height: 52)
+                companyView.frame = CGRect(x: 213, y: 293, width: 343, height: 52)
+                contactView.frame = CGRect(x: 211, y: 372, width: 343, height: 52)
+                
+                
+                entryDescription.frame = CGRect(x: 213, y: 455, width: 343, height: 94)
+                entryDescription.autoresizesSubviews = true
+                self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
+                self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
+                self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
+                
+                self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
+                self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
+                
+                
+                
+                
+                classList.frame = CGRect(x: 6, y: 1500, width: 2, height: 2)
+                yearReceivedView.frame = CGRect(x: 6, y: 1600, width: 2, height: 2)
+                
+                
+                
+                
+            } else {
+                nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
+                timelineView.frame = CGRect(x: 16, y: 135, width: 343, height: 52)
+                companyView.frame = CGRect(x: 16, y: 189, width: 343, height: 52)
+                contactView.frame = CGRect(x: 16, y: 242, width: 343, height: 52)
+                entryDescription.frame = CGRect(x: 16, y: 294, width: 343, height: 94)
+                self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
+                
+                classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            }
             
-            classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            
             
         }else if(entryType == "Courses") {
             
@@ -693,21 +777,50 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             nameLabel.text = "Course Name"
             classNamesLabel.text = "Course"
             entryDescription.text = ""
+            let deviceType = UIDevice.current.deviceType
+            if(deviceType == .iPadAir2){
+                
+                self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
+                self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
+                self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
+                
+                nameView.frame = CGRect(x: 233, y: 147, width: 343, height: 52)
+                
+                
+                
+                
+                entryDescription.frame = CGRect(x: 213, y: 455, width: 343, height: 94)
+                entryDescription.autoresizesSubviews = true
+                
+                self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
+                self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
+                classList.frame = CGRect(x: 233, y: 262, width: 303, height: 142)
+                
+                
+                timelineView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
+                companyView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
+                contactView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
+                yearReceivedView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
+                
+            } else {
+                classList.frame = CGRect(x: 16, y: 133, width: 343, height: 134)
+                nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
+                entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
+                self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
+                
+                
+                timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            }
             
-            classList.frame = CGRect(x: 16, y: 133, width: 343, height: 134)
-            nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
             
-            entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
-            //setDescriptions(slectedItem: previousSkill)
-            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
             timelineView.isHidden = true
             companyView.isHidden = true
             contactView.isHidden = true
             yearReceivedView.isHidden = true
-            timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            
         } else if(entryType == "Extracurriculars"){
             
             skillImage.isHidden = true
@@ -722,20 +835,43 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             classNamePicker.isUserInteractionEnabled = false
             yearReceivedView.isHidden = false
             yearLabel.text = "Year:"
+            let deviceType = UIDevice.current.deviceType
+            if(deviceType == .iPadAir2){
+                nameView.frame = CGRect(x: 233, y: 147, width: 343, height: 52)
+                yearReceivedView.frame = CGRect(x: 211, y: 267, width: 343, height: 52)
+                entryDescription.frame = CGRect(x: 213, y: 455, width: 343, height: 94)
+                entryDescription.autoresizesSubviews = true
+                self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
+                self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
+                self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
+                
+                
+                timelineView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
+                companyView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
+                contactView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
+                classList.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
+                self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
+                self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
+                
+            } else {
+                nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
+                yearReceivedView.frame = CGRect(x: 16, y: 154, width: 343, height: 52)
+                entryDescription.frame = CGRect(x: 16, y: 240, width: 343, height: 94)
+                self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
+                
+                
+                timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+                classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            }
             
-            nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
-            yearReceivedView.frame = CGRect(x: 16, y: 154, width: 343, height: 52)
-            entryDescription.frame = CGRect(x: 16, y: 240, width: 343, height: 94)
-            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
             
             timelineView.isHidden = true
             companyView.isHidden = true
             contactView.isHidden = true
             classList.isHidden = true
-            timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
+            
             
             
             

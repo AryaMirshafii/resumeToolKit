@@ -82,6 +82,14 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         self.setUpSearchBar()
         
+        let deviceType = UIDevice.current.deviceType
+        if(deviceType == .iPadAir2){
+            self.objectiveField.frame = CGRect(x: 8, y: 33, width: 750, height: 60)
+        } else {
+            self.objectiveField.frame = CGRect(x: 8, y: 33, width: 357, height: 60)
+        }
+
+        
     }
     
     
@@ -131,6 +139,10 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0.1)
         }
         
+        
+    }
+    
+    func getTitles(){
         
     }
     
@@ -194,7 +206,13 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
         
         let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
        
@@ -497,9 +515,10 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
+        headerView.isUserInteractionEnabled = true
         headerView.backgroundColor = UIColor.clear
         
-        let headerLabel = UILabel(frame: CGRect(x: 6, y: 10, width:
+        let headerLabel = UITextField(frame: CGRect(x: 6, y: 10, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.font = UIFont(name: "Prime", size: 28)
         
