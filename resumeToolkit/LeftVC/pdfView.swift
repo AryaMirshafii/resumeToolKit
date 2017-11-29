@@ -19,7 +19,8 @@ class pdfView: UIViewController,UIScrollViewDelegate {
     
     
     //getfilepath ==
-    @IBOutlet weak var webView: WKWebView!
+    
+    @IBOutlet weak var webView: UIWebView!
     
     @IBOutlet weak var resumeNameLabel: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -27,6 +28,12 @@ class pdfView: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var userSelect: ASHorizontalScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 11.0, *) {
+            //self.webView = self.webView as WKWebView
+        }
+        
+        
         userDefaultsDidChange()
         let notificationCenter = NotificationCenter.default
         

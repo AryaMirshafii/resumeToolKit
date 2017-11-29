@@ -623,7 +623,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GatechEngineeringForInnovation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -644,7 +644,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GatechEngineeringForInnovation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
