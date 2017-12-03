@@ -8,54 +8,59 @@
 
 import Foundation
 import UIKit
-import Device_swift
+
 
 
 class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
     
-    let dataController = dataManager()
+    //OVerall View
     
-    
-    @IBOutlet weak var entryName: UITextField!
-    @IBOutlet weak var entryDescription: UITextView!
-    @IBOutlet weak var classList: UIView!
-    
-    @IBOutlet weak var nameView: UIView!
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    
-     @IBOutlet weak var classNamePicker: UIPickerView!
-    
-    
-    @IBOutlet weak var classNamesLabel: UILabel!
-    
-    @IBOutlet weak var backButton: UIButton!
-    
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var entrySwipeButtonRight: UIButton!
-    
-    @IBOutlet weak var yearLabel: UILabel!
-    
+    @IBOutlet weak var swipeController: UIView!
     @IBOutlet weak var skillImage: UIImageView!
-    @IBOutlet weak var entryLabel: UILabel!
-    @IBOutlet weak var entrySwiper: UIView!
     
-    @IBOutlet weak var entrySwipeButtonLeft: UIButton!
+    @IBOutlet weak var swipeControllerLabel: UILabel!
+    //SkillView
     
-    //company experience stuff
-    @IBOutlet weak var timelineView: UIView!
-    @IBOutlet weak var companyView: UIView!
-    @IBOutlet weak var contactView: UIView!
-    @IBOutlet weak var yearReceivedView: UIView!
+    @IBOutlet weak var skillView: UIView!
+    @IBOutlet weak var skillPicker: UIPickerView!
+    @IBOutlet weak var skillName: UITextField!
+    @IBOutlet weak var skillDescription: UITextView!
     
-    //textfields for professional development
-    @IBOutlet weak var startEntry: UITextField!
-    @IBOutlet weak var endEntry: UITextField!
-    @IBOutlet weak var companyField: UITextField!
-    @IBOutlet weak var contactField: UITextField!
+    //JobView
+    
+    @IBOutlet weak var jobView: UIView!
+    @IBOutlet weak var jobName: UITextField!
+    @IBOutlet weak var startYearEntry: UITextField!
+    @IBOutlet weak var endYearEntry: UITextField!
+    @IBOutlet weak var organizationNameEntry: UITextField!
+    @IBOutlet weak var contactNameEntry: UITextField!
+    @IBOutlet weak var jobDescription: UITextView!
     
     
     
+    //courseView
+    
+    @IBOutlet weak var courseView: UIView!
+    @IBOutlet weak var courseNameEntry: UITextField!
+    @IBOutlet weak var coursePicker: UIPickerView!
+    @IBOutlet weak var courseDescription: UITextView!
+    
+    
+    //ExtracurricularView
+    
+    @IBOutlet weak var extracurricularView: UIView!
+    @IBOutlet weak var extracurricularNameEntry: UITextField!
+    @IBOutlet weak var yearEntry: UITextField!
+    
+    @IBOutlet weak var extracurricularDescription: UITextView!
+    
+    
+    
+    
+    
+    
+    
+    let dataController = dataManager()
     var pickerData: [String] = [String]()
     var entryType: String!
     
@@ -71,7 +76,14 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         super.viewDidLoad()
         
         setUpGestures()
-        entryDescription.text  = " "
+        
+        self.skillView.frame = CGRect(x: 0, y: 71, width: 375, height: 296)
+        self.jobView.isHidden = true
+       
+        self.extracurricularView.isHidden = true
+        
+        self.courseView.isHidden = true
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         view.addGestureRecognizer(tap)
         
@@ -80,49 +92,53 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         pickerData.append("Internships & Job Experience")
         pickerData.append("Courses")
         pickerData.append("Extracurriculars")
-        entryLabel.text = pickerData[0]
+        //entryLabel.text = pickerData[0]
         setAlignment(row:0)
         loadSkills()
         loadCourses()
         
         
-        self.classNamePicker.layer.cornerRadius = 20
+        self.skillPicker.layer.cornerRadius = 20
+        self.skillPicker.dataSource = self
+        self.skillPicker.delegate = self
         
-        self.classNamePicker.dataSource = self
-        self.classNamePicker.delegate = self
+        
+        
+        self.coursePicker.layer.cornerRadius = 20
+        self.coursePicker.dataSource = self
+        self.coursePicker.delegate = self
         
         
         
         
         entryType = pickerData[0]
-        entryName.text = skillData[0]
-        nameLabel.text = "Name:"
-        entryDescription.text = "Understanding the implications of new information for both current and future problem solving and decision making."
+        skillName.text = skillData[0]
+       
+        skillDescription.text = "Understanding the implications of new information for both current and future problem solving and decision making."
         //classList.isHidden = true
         //self.entryName.frame = CGRect(x: 126, y: 177, width: entryName.frame.width, height: entryName.frame.height)
         self.skillImage.layer.cornerRadius = skillImage.frame.width/2
         skillImage.clipsToBounds = true
-        self.entryDescription.layer.cornerRadius = 20
-        self.entryDescription.layer.borderColor = UIColor(red:0.00, green:0.58, blue:1.00, alpha:1.0).cgColor
-        self.entryDescription.layer.borderWidth = 4
+        
+        
+        self.skillDescription.layer.cornerRadius = 20
+        skillDescription.clipsToBounds = true
+        self.jobDescription.layer.cornerRadius = 20
+        jobDescription.clipsToBounds = true
+        self.courseDescription.layer.cornerRadius = 20
+        courseDescription.clipsToBounds = true
+        self.extracurricularDescription.layer.cornerRadius = 20
+        extracurricularDescription.clipsToBounds = true
+        //self.skillDescription.layer.borderWidth = 4
+        
+        
+        
         self.skillImage.image = #imageLiteral(resourceName: "chalkboard")
         
-        let deviceType = UIDevice.current.deviceType
-        if(deviceType == .iPadAir2){
-            self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
-            self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
-            
-            self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
-            self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
-            self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
-        } else {
-            self.backButton.frame = CGRect(x: 0, y: 378, width: 157, height: 56)
-            self.saveButton.frame = CGRect(x: 218, y: 378, width: 157, height: 56)
-            
-            self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
-            self.entrySwipeButtonRight.frame = CGRect(x: 315, y: 33, width: 42, height: 42)
-            self.entrySwipeButtonLeft.frame = CGRect(x: 18, y: 33, width: 42, height: 42)
-        }
+        skillDescription.text = ""
+        jobDescription.text = ""
+        courseDescription.text = ""
+        extracurricularDescription.text = ""
         
         
     }
@@ -166,12 +182,19 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     }
     
     func clearText(alert: UIAlertAction!){
-        entryName.text = ""
-        entryDescription.text = ""
-        endEntry.text = ""
-        startEntry.text = ""
-        companyField.text = ""
-        contactField.text = ""
+        skillName.text = ""
+        skillDescription.text = ""
+        jobName.text = ""
+        startYearEntry.text = ""
+        endYearEntry.text = ""
+        organizationNameEntry.text = ""
+        contactNameEntry.text = ""
+        jobDescription.text = ""
+        courseNameEntry.text = ""
+        courseDescription.text = ""
+        extracurricularNameEntry.text = ""
+        yearEntry.text = ""
+        extracurricularDescription.text = ""
         
         
     }
@@ -241,24 +264,24 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
     }
     
-    @IBAction func goBack(_ sender: UIButton){
+    @IBAction func saveEntry(_ sender: UIButton){
         
         print("!!!" + entryType!)
         if(entryType == "Skill"){
-            classList.isHidden = true
             
-            dataController.saveSkills(theSkills: "Skill" + "_" + entryName.text! + "_" + entryDescription.text)
+            
+            dataController.saveSkills(theSkills: "Skill" + "_" + skillName.text! + "_" + skillDescription.text)
         } else if(entryType == "Internships & Job Experience"){
-            var experienceString =  "Professional Development" + "_" + entryName.text! + "_"
-            experienceString += startEntry.text! + "_" + endEntry.text! + "_"
+            var experienceString =  "Professional Development" + "_" + jobName.text! + "_"
+            experienceString += startYearEntry.text! + "_" + endYearEntry.text! + "_"
                 
-            experienceString += companyField.text! + "_" + contactField.text!
-            experienceString +=   "_" + entryDescription.text
+            experienceString += organizationNameEntry.text! + "_" + contactNameEntry.text!
+            experienceString +=   "_" + jobDescription.text
             dataController.saveExperience(experience: experienceString)
         } else if(entryType == "Courses"){
-            dataController.saveCourses(courses: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.saveCourses(courses: "Courses" + "_" + courseNameEntry.text! + "_" + courseDescription.text)
         } else if(entryType == "Extracurriculars"){
-            dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + extracurricularNameEntry.text! + "_" + extracurricularDescription.text)
         }
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
@@ -275,17 +298,24 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         
-        if pickerView == classNamePicker{
+       
+        
+        
+        if pickerView == skillPicker{
             if(entryType == "Skill"){
                 print("still ehre")
                 return skillData.count
-            } else if(entryType == "Courses"){
+            }
+        } else if pickerView == coursePicker{
+            if(entryType == "Courses"){
+                
                 print("row size = coursedata")
                 return courseData.count
+            
             }
         }
          
-        print("i got here")
+       
         return 1
     }
     
@@ -293,57 +323,52 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         
-        if pickerView == classNamePicker{
+        
+        if pickerView == skillPicker{
             if(entryType == "Skill"){
                 return skillData[row]
-            } else if(entryType == "Courses"){
+            }
+        } else if pickerView == coursePicker{
+            if(entryType == "Courses"){
                 if(row <= courseData.count){
                     return courseData[row]
                 }
-                
             }
-            
         }
+        
+        
+        
         
         return " "
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        if pickerView == classNamePicker {
-            
-            //selectedItem = skillData[row]
-            //previousSkill = selectedItem
-            //entryName.text = selectedItem
-            //setDescriptions(slectedItem: selectedItem)
-            
+        if pickerView == skillPicker{
             if(entryType == "Skill"){
                 skillImage.isHidden = false
                 
                 selectedItem = skillData[row]
-                entryName.text = selectedItem
+                skillName.text = selectedItem
                 self.skillImage.layer.cornerRadius = skillImage.frame.width/2
                 skillImage.clipsToBounds = true
                 setPicture(slectedItem: selectedItem)
                 setDescriptions(slectedItem: selectedItem)
-            } else if(entryType == "Courses"){
+            }
+        } else if pickerView == coursePicker{
+            if(entryType == "Courses"){
                 self.skillImage.image = UIImage()
                 self.skillImage.isHidden = true
                 selectedItem = courseData[row]
-                entryName.text = selectedItem
+                courseNameEntry.text = selectedItem
                 setClassDescriptions(orClass: selectedItem)
-            } else if(entryType == "Internships & Job Experience"){
-                classList.isUserInteractionEnabled = false
-                self.skillImage.image = UIImage()
-                self.skillImage.isHidden = true
-            } else if(entryType == "Extracurriculars"){
-                classList.isUserInteractionEnabled = false
-                self.skillImage.image = UIImage()
-                self.skillImage.isHidden = true
             }
-            
-            
-            
         }
+            
+        
+            
+            
+            
+        
     }
     
     
@@ -351,91 +376,91 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     func setDescriptions(slectedItem: String){
         if(selectedItem == "Active Learning"){
-            entryDescription.text = "Understanding the implications of new information for both current and future problem solving and decision making."
-            entryName.text = "Active Learning"
+            skillDescription.text = "Understanding the implications of new information for both current and future problem solving and decision making."
+            skillName.text = "Active Learning"
         } else if (selectedItem == "Active Listening"){
-            entryDescription.text = "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."
-            entryName.text = "Active Listening"
+            skillDescription.text = "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."
+            skillName.text = "Active Listening"
         } else if (selectedItem == "Critical Thinking"){
-            entryDescription.text = "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems."
-            entryName.text = "Critical Thinking"
+            skillDescription.text = "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems."
+            skillName.text = "Critical Thinking"
         } else if (selectedItem == "Learning Strategies"){
-            entryDescription.text = "Selecting and using training/instructional methods and procedures appropriate for the situation when learning or teaching new things."
-            entryName.text = "Learning Strategies"
+            skillDescription.text = "Selecting and using training/instructional methods and procedures appropriate for the situation when learning or teaching new things."
+            skillName.text = "Learning Strategies"
         } else if (selectedItem == "Mathematics"){
-            entryDescription.text = "Using mathematics to solve problems."
-            entryName.text = "Mathematics"
+            skillDescription.text = "Using mathematics to solve problems."
+            skillName.text = "Mathematics"
         } else if (selectedItem == "Monitoring"){
-            entryDescription.text = "Monitoring/Assessing performance of yourself, other individuals, or organizations to make improvements or take corrective action."
-            entryName.text = "Monitoring"
+            skillDescription.text = "Monitoring/Assessing performance of yourself, other individuals, or organizations to make improvements or take corrective action."
+            skillName.text = "Monitoring"
         } else if (selectedItem == "Reading Comprehension"){
-            entryDescription.text = "Understanding written sentences and paragraphs in work related documents."
-            entryName.text = "Reading Comprehension"
+            skillDescription.text = "Understanding written sentences and paragraphs in work related documents."
+            skillName.text = "Reading Comprehension"
         } else if (selectedItem == "Science"){
-            entryDescription.text = "Using scientific rules and methods to solve problems."
-            entryName.text = "Science"
+            skillDescription.text = "Using scientific rules and methods to solve problems."
+            skillName.text = "Science"
         } else if (selectedItem == "Speaking"){
-            entryDescription.text =  "Talking to others to convey information effectively."
-            entryName.text = "Speaking"
+            skillDescription.text =  "Talking to others to convey information effectively."
+            skillName.text = "Speaking"
         } else if (selectedItem == "Writing"){
-            entryDescription.text = "Communicating effectively in writing as appropriate for the needs of the audience."
-            entryName.text = "Writing"
+            skillDescription.text = "Communicating effectively in writing as appropriate for the needs of the audience."
+            skillName.text = "Writing"
         }
         
          else if (selectedItem == "Complex Problem Solving"){
-            entryDescription.text = " Identifying complex problems and reviewing related information to develop and evaluate options and implement solutions."
-            entryName.text = "Complex Problem Solving"
+            skillDescription.text = " Identifying complex problems and reviewing related information to develop and evaluate options and implement solutions."
+            skillName.text = "Complex Problem Solving"
          } else if (selectedItem == "Time Management"){
-            entryDescription.text = "Managing one's own time and the time of others. "
-            entryName.text = "Time Management"
+            skillDescription.text = "Managing one's own time and the time of others. "
+            skillName.text = "Time Management"
          } else if (selectedItem == "Coordination"){
-            entryDescription.text = "Adjusting actions in relation to others' actions. "
-            entryName.text = "Coordination"
+            skillDescription.text = "Adjusting actions in relation to others' actions. "
+            skillName.text = "Coordination"
          } else if (selectedItem == "Instructing"){
-            entryDescription.text =  "Teaching others how to do something."
-            entryName.text = "Instructing"
+            skillDescription.text =  "Teaching others how to do something."
+            skillName.text = "Instructing"
          } else if (selectedItem == "Negotiation"){
-            entryDescription.text = " Bringing others together and trying to reconcile differences. "
-            entryName.text = "Negotiation"
+            skillDescription.text = " Bringing others together and trying to reconcile differences. "
+            skillName.text = "Negotiation"
          } else if (selectedItem == "Persuasion"){
-            entryDescription.text = "Persuading others to change their minds or behavior. "
-            entryName.text = "Persuasion"
+            skillDescription.text = "Persuading others to change their minds or behavior. "
+            skillName.text = "Persuasion"
          } else if (selectedItem == "Service Orientation"){
-            entryDescription.text = "Actively looking for ways to help people. "
-            entryName.text = "Service Orientation"
+            skillDescription.text = "Actively looking for ways to help people. "
+            skillName.text = "Service Orientation"
          } else if (selectedItem == "Social Perceptiveness"){
-            entryDescription.text = "Being aware of others' reactions and understanding why they react as they do. "
-            entryName.text = "Social Perceptiveness"
+            skillDescription.text = "Being aware of others' reactions and understanding why they react as they do. "
+            skillName.text = "Social Perceptiveness"
          } else if (selectedItem == "Judgment and Decision Making"){
-            entryDescription.text = "Considering the relative costs and benefits of potential actions to choose the most appropriate one. "
-            entryName.text = "Judgment and Decision Making"
+            skillDescription.text = "Considering the relative costs and benefits of potential actions to choose the most appropriate one. "
+            skillName.text = "Judgment and Decision Making"
         } else if (selectedItem == "Equipment Maintenance"){
-            entryDescription.text = "Performing routine maintenance on equipment and determining when and what kind of maintenance is needed. "
-            entryName.text = "Equipment Maintenance"
+            skillDescription.text = "Performing routine maintenance on equipment and determining when and what kind of maintenance is needed. "
+            skillName.text = "Equipment Maintenance"
         } else if (selectedItem == "Equipment Selection"){
-            entryDescription.text = "Determining the kind of tools and equipment needed to do a job. "
-            entryName.text = "Equipment Selection"
+            skillDescription.text = "Determining the kind of tools and equipment needed to do a job. "
+            skillName.text = "Equipment Selection"
         } else if (selectedItem == "Installation"){
-            entryDescription.text = "Installing equipment, machines, wiring, or programs to meet specifications. "
-            entryName.text = "Installation"
+            skillDescription.text = "Installing equipment, machines, wiring, or programs to meet specifications. "
+            skillName.text = "Installation"
         } else if (selectedItem == "Operation and Control"){
-            entryDescription.text = "Controlling operations of equipment or systems. "
-            entryName.text = "Operation and Control"
+            skillDescription.text = "Controlling operations of equipment or systems. "
+            skillName.text = "Operation and Control"
         } else if (selectedItem == "Programming"){
-            entryDescription.text = "Writing computer programs for various purposes. "
-            entryName.text = "Programming"
+            skillDescription.text = "Writing computer programs for various purposes. "
+            skillName.text = "Programming"
         } else if (selectedItem == "Quality Control Analysis"){
-            entryDescription.text = "Conducting tests and inspections of products, services, or processes to evaluate quality or performance. "
-            entryName.text = "Quality Control Analysis"
+            skillDescription.text = "Conducting tests and inspections of products, services, or processes to evaluate quality or performance. "
+            skillName.text = "Quality Control Analysis"
         } else if (selectedItem == "Repairing"){
-            entryDescription.text = "Repairing machines or systems using the needed tools. "
-            entryName.text = "Repairing"
+            skillDescription.text = "Repairing machines or systems using the needed tools. "
+            skillName.text = "Repairing"
         } else if (selectedItem == "Technology Design"){
-            entryDescription.text = "Generating or adapting equipment and technology to serve user needs. "
-            entryName.text = "Technology Design"
+            skillDescription.text = "Generating or adapting equipment and technology to serve user needs. "
+            skillName.text = "Technology Design"
         } else if (selectedItem == "Troubleshooting"){
-            entryDescription.text = "Determining causes of operating errors and deciding what to do about it."
-            entryName.text = "Troubleshooting"
+            skillDescription.text = "Determining causes of operating errors and deciding what to do about it."
+            skillName.text = "Troubleshooting"
         }
         
         
@@ -506,57 +531,57 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     func setClassDescriptions(orClass: String){
         if(orClass == "PSYCH 2103"){
-            entryDescription.text = "Behavioral Psychology" + "\n"
+            courseDescription.text = "Behavioral Psychology" + "\n"
         } else if (orClass == "MUSI 1202"){
-            entryDescription.text = "Chorale" + "\n"
+            courseDescription.text = "Chorale" + "\n"
         } else if (orClass == "LMC 2500"){
-            entryDescription.text = "Introduction to Film" + "\n"
+            courseDescription.text = "Introduction to Film" + "\n"
         } else if (orClass == "SPAN 3823"){
-            entryDescription.text = "Latin American Music" + "\n"
+            courseDescription.text = "Latin American Music" + "\n"
         } else if (orClass == "MGT 4192"){
-            entryDescription.text = "IMPACT Forum" + "\n"
+            courseDescription.text = "IMPACT Forum" + "\n"
         } else if (orClass == "MGT 4193"){
-            entryDescription.text = "Servant Leadership" + "\n"
+            courseDescription.text = "Servant Leadership" + "\n"
         } else if (orClass == "APPH 1050"){
-            entryDescription.text = "Applied Physiology with workout" + "\n"
+            courseDescription.text = "Applied Physiology with workout" + "\n"
         } else if (orClass == "PSYC 1101"){
-            entryDescription.text = "General Psychology" + "\n"
+            courseDescription.text = "General Psychology" + "\n"
         } else if (orClass == "LMC 2500"){
-            entryDescription.text = "Introduction to Film" + "\n"
+            courseDescription.text = "Introduction to Film" + "\n"
         } else if (orClass == "APPH 1040"){
-            entryDescription.text = "Applied Physiology" + "\n"
+            courseDescription.text = "Applied Physiology" + "\n"
         } else if (orClass == "SPAN 2001"){
-            entryDescription.text = "Intermediate Spanish" + "\n"
+            courseDescription.text = "Intermediate Spanish" + "\n"
         } else if (orClass == "HTS 2015"){
-            entryDescription.text = "History of Sports" + "\n"
+            courseDescription.text = "History of Sports" + "\n"
         } else if (orClass == "MGT2200"){
-            entryDescription.text = "Information Technology" + "\n"
+            courseDescription.text = "Information Technology" + "\n"
         } else if (orClass == "HIST 2112"){
-            entryDescription.text = "American History  1877 to present" + "\n"
+            courseDescription.text = "American History  1877 to present" + "\n"
         } else if (orClass == "MUSI 1202"){
-            entryDescription.text = "Chorale" + "\n"
+            courseDescription.text = "Chorale" + "\n"
         } else if (orClass == "PSYC 1101"){
-            entryDescription.text = "General Psychology" + "\n"
+            courseDescription.text = "General Psychology" + "\n"
         } else if (orClass == "MGT 4193"){
-            entryDescription.text = "Servant Leadership" + "\n"
+            courseDescription.text = "Servant Leadership" + "\n"
         } else if (orClass == "MUSI 3251"){
-            entryDescription.text =  "Glee Club" + "\n"
+            courseDescription.text =  "Glee Club" + "\n"
         } else if (orClass == "HIST 2112"){
-            entryDescription.text = "American History  1877 to present" + "\n"
+            courseDescription.text = "American History  1877 to present" + "\n"
         } else if (orClass == "LMC 3252"){
-            entryDescription.text = "Film and Television" + "\n"
+            courseDescription.text = "Film and Television" + "\n"
         } else if (orClass == "JAP 1001"){
-            entryDescription.text = "Beginners Japaneese" + "\n"
+            courseDescription.text = "Beginners Japaneese" + "\n"
         } else if (orClass == "PSYC 1101"){
-            entryDescription.text = "General Psychology" + "\n"
+            courseDescription.text = "General Psychology" + "\n"
         } else if (orClass == "LMC 2600"){
-            entryDescription.text = "Intro to Performance Studies" + "\n"
+            courseDescription.text = "Intro to Performance Studies" + "\n"
         } else if (orClass == "SPAN 2001"){
-            entryDescription.text = "Intermediate Spanish" + "\n"
+            courseDescription.text = "Intermediate Spanish" + "\n"
         } else if (orClass == "LMC 2500"){
-            entryDescription.text = "Introduction to Film" + "\n"
+            courseDescription.text = "Introduction to Film" + "\n"
         } else if (orClass == "MGT 2200"){
-            entryDescription.text = "Information Technology" + "\n"
+            courseDescription.text = "Information Technology" + "\n"
         }
     }
     
@@ -572,13 +597,13 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         swipeRight.addTarget(self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         swipeRight.cancelsTouchesInView = false
-        self.entrySwiper.addGestureRecognizer(swipeRight)
+        self.swipeController.addGestureRecognizer(swipeRight)
         //self.view.addGestureRecognizer(swipeRight)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeLeft.cancelsTouchesInView = false
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.entrySwiper.addGestureRecognizer(swipeLeft)
+        self.swipeController.addGestureRecognizer(swipeLeft)
         
     }
     
@@ -591,7 +616,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         } else if (indx < 0) {
             indx = pickerData.count - 1
         }
-        entryLabel.text = pickerData[indx]
+        swipeControllerLabel.text = pickerData[indx]
         setAlignment(row: indx)
     }
     
@@ -603,7 +628,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         } else if (indx < 0) {
             indx = pickerData.count - 1
         }
-        entryLabel.text = pickerData[indx]
+        swipeControllerLabel.text = pickerData[indx]
         setAlignment(row: indx)
     }
     
@@ -626,7 +651,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 } else if (indx < 0) {
                     indx = pickerData.count - 1
                 }
-                entryLabel.text = pickerData[indx]
+                swipeControllerLabel.text = pickerData[indx]
                 setAlignment(row: indx)
                 
             case UISwipeGestureRecognizerDirection.right:
@@ -637,7 +662,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                     indx = pickerData.count - 1
                 }
                 
-                entryLabel.text = pickerData[indx]
+                swipeControllerLabel.text = pickerData[indx]
                 setAlignment(row: indx)
                 
             default:
@@ -651,66 +676,37 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         entryType = pickerData[row]
         print("the entry type is" +  entryType)
         if(entryType == "Skill"){
-            classNamePicker.reloadAllComponents()
-            classNamePicker.isUserInteractionEnabled = true
-            classList.isUserInteractionEnabled = true
-            classList.isHidden = false
-            nameLabel.text = "Skill Name"
-            classNamesLabel.text = "Skill Name"
-            classNamesLabel.textAlignment = .left
+            skillView.isHidden = false
+            self.view.bringSubview(toFront: skillView)
+            
+            self.jobView.isHidden = true
+            self.courseView.isHidden = true
+            self.extracurricularView.isHidden = true
+            skillPicker.reloadAllComponents()
+            skillPicker.isUserInteractionEnabled = true
+           
+            
             setDescriptions(slectedItem: entryType)
             setPicture(slectedItem: entryType)
             
             
-            let deviceType = UIDevice.current.deviceType
-            if(deviceType == .iPadAir2){
-                
-                self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
-                self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
-                self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
-                
-                nameView.frame = CGRect(x: 233, y: 147, width: 343, height: 52)
-                
-                
-                skillImage.frame = CGRect(x: 355, y: 668, width: 59, height: 59)
-                
-                entryDescription.frame = CGRect(x: 213, y: 455, width: 343, height: 94)
-                entryDescription.autoresizesSubviews = true
-                
-                self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
-                self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
-                classList.frame = CGRect(x: 233, y: 262, width: 303, height: 142)
-                
-                timelineView.frame = CGRect(x: 6, y: 1300, width: 2, height: 2)
-                companyView.frame = CGRect(x: 6, y: 1400, width: 2, height: 2)
-                contactView.frame = CGRect(x: 6, y: 1500, width: 2, height: 2)
-                yearReceivedView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
-                
-            } else {
-                classList.frame = CGRect(x: 16, y: 133, width: 343, height: 134)
-                nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
-                entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
-                entryDescription.autoresizesSubviews = true
-                self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
-                
-                skillImage.frame = CGRect(x: 158, y: 377, width: 59, height: 59)
-                
-                timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            }
             
             
             
-            timelineView.isHidden = true
-            companyView.isHidden = true
-            contactView.isHidden = true
-            yearReceivedView.isHidden = true
+            
+            
+            
             
         } else if(entryType == "Internships & Job Experience"){
             
             skillImage.isHidden = true
+            jobView.isHidden = false
+            self.view.bringSubview(toFront: jobView)
+            
+            self.skillView.isHidden = true
+            self.courseView.isHidden = true
+            self.extracurricularView.isHidden = true
+            /*
             classNamePicker.reloadAllComponents()
             entryName.text = " "
             entryDescription.text = ""
@@ -724,45 +720,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             contactView.isHidden = false
             yearReceivedView.isHidden = true
             
+            */
             
             
-            let deviceType = UIDevice.current.deviceType
-            if(deviceType == .iPadAir2){
-                nameView.frame = CGRect(x: 213, y: 136, width: 343, height: 52)
-                timelineView.frame = CGRect(x: 211, y: 216, width: 343, height: 52)
-                companyView.frame = CGRect(x: 213, y: 293, width: 343, height: 52)
-                contactView.frame = CGRect(x: 211, y: 372, width: 343, height: 52)
-                
-                
-                entryDescription.frame = CGRect(x: 213, y: 455, width: 343, height: 94)
-                entryDescription.autoresizesSubviews = true
-                self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
-                self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
-                self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
-                
-                self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
-                self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
-                
-                
-                
-                
-                classList.frame = CGRect(x: 6, y: 1500, width: 2, height: 2)
-                yearReceivedView.frame = CGRect(x: 6, y: 1600, width: 2, height: 2)
-                
-                
-                
-                
-            } else {
-                nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
-                timelineView.frame = CGRect(x: 16, y: 135, width: 343, height: 52)
-                companyView.frame = CGRect(x: 16, y: 189, width: 343, height: 52)
-                contactView.frame = CGRect(x: 16, y: 242, width: 343, height: 52)
-                entryDescription.frame = CGRect(x: 16, y: 294, width: 343, height: 94)
-                self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
-                
-                classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            }
             
             
             
@@ -770,61 +730,45 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             
             skillImage.isHidden = true
-            classNamePicker.reloadAllComponents()
+            coursePicker.reloadAllComponents()
+            skillImage.isHidden = true
+            courseView.isHidden = false
+            self.view.bringSubview(toFront: courseView)
+            
+            self.skillView.isHidden = true
+            self.jobView.isHidden = true
+            self.extracurricularView.isHidden = true
+            
+            /*
             classList.isHidden = false
             classNamePicker.isUserInteractionEnabled = true
             classList.isUserInteractionEnabled = true
             nameLabel.text = "Course Name"
             classNamesLabel.text = "Course"
             entryDescription.text = ""
-            let deviceType = UIDevice.current.deviceType
-            if(deviceType == .iPadAir2){
-                
-                self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
-                self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
-                self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
-                
-                nameView.frame = CGRect(x: 233, y: 147, width: 343, height: 52)
-                
-                
-                
-                
-                entryDescription.frame = CGRect(x: 213, y: 455, width: 343, height: 94)
-                entryDescription.autoresizesSubviews = true
-                
-                self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
-                self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
-                classList.frame = CGRect(x: 233, y: 262, width: 303, height: 142)
-                
-                
-                timelineView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
-                companyView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
-                contactView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
-                yearReceivedView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
-                
-            } else {
-                classList.frame = CGRect(x: 16, y: 133, width: 343, height: 134)
-                nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
-                entryDescription.frame = CGRect(x: 16, y: 280, width: 343, height: 94)
-                self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
-                
-                
-                timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                yearReceivedView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            }
+            
             
             
             timelineView.isHidden = true
             companyView.isHidden = true
             contactView.isHidden = true
             yearReceivedView.isHidden = true
+             */
             
         } else if(entryType == "Extracurriculars"){
             
             skillImage.isHidden = true
-            classNamePicker.reloadAllComponents()
+            extracurricularView.isHidden = false
+            self.view.bringSubview(toFront: extracurricularView)
+            
+            self.skillView.isHidden = true
+            self.jobView.isHidden = true
+            self.courseView.isHidden = true
+            
+            /*
+             
+             
+             
             entryName.text = " "
             entryDescription.text = ""
             classList.isHidden = true
@@ -835,36 +779,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             classNamePicker.isUserInteractionEnabled = false
             yearReceivedView.isHidden = false
             yearLabel.text = "Year:"
-            let deviceType = UIDevice.current.deviceType
-            if(deviceType == .iPadAir2){
-                nameView.frame = CGRect(x: 233, y: 147, width: 343, height: 52)
-                yearReceivedView.frame = CGRect(x: 211, y: 267, width: 343, height: 52)
-                entryDescription.frame = CGRect(x: 213, y: 455, width: 343, height: 94)
-                entryDescription.autoresizesSubviews = true
-                self.entrySwiper.frame = CGRect(x: 257, y: 33, width: 255, height: 42)
-                self.entrySwipeButtonRight.frame = CGRect(x: 512, y: 33, width: 42, height: 42)
-                self.entrySwipeButtonLeft.frame = CGRect(x: 218, y: 33, width: 42, height: 42)
-                
-                
-                timelineView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
-                companyView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
-                contactView.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
-                classList.frame = CGRect(x: 6, y: 2000, width: 2, height: 2)
-                self.backButton.frame = CGRect(x: 195, y: 669, width: 157, height: 56)
-                self.saveButton.frame = CGRect(x: 412, y: 668, width: 157, height: 56)
-                
-            } else {
-                nameView.frame = CGRect(x: 16, y: 83, width: 343, height: 52)
-                yearReceivedView.frame = CGRect(x: 16, y: 154, width: 343, height: 52)
-                entryDescription.frame = CGRect(x: 16, y: 240, width: 343, height: 94)
-                self.entrySwiper.frame = CGRect(x: 60, y: 33, width: 255, height: 42)
-                
-                
-                timelineView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                companyView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                contactView.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-                classList.frame = CGRect(x: 6, y: 700, width: 2, height: 2)
-            }
+            
+            
+            
             
             
             timelineView.isHidden = true
@@ -873,7 +790,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             classList.isHidden = true
             
             
-            
+            */
             
             
         }
@@ -882,6 +799,10 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     }
     
     
+    @IBAction func dismissTheView(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        
+    }
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
         

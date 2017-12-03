@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
-import Device_swift
+
 
 
 class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopoverPresentationControllerDelegate {
@@ -82,22 +82,20 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         self.setUpSearchBar()
         
-        let deviceType = UIDevice.current.deviceType
-        if(deviceType == .iPadAir2){
-            self.objectiveField.frame = CGRect(x: 8, y: 33, width: 750, height: 60)
-        } else {
-            self.objectiveField.frame = CGRect(x: 8, y: 33, width: 357, height: 60)
-        }
+        
 
         
     }
     
     
     func setUpSearchBar(){
-        self.searchBar.barTintColor =  UIColor(red:0.75, green:0.75, blue:0.75, alpha:1.0)
+        //self.searchBar.barTintColor =  UIColor(red:0.75, green:0.75, blue:0.75, alpha:1.0)
+        //self.searchBar.barTintColor = .clear
+        self.searchBar.backgroundImage = UIImage()
         self.searchBar.layer.borderColor = UIColor.clear.cgColor
         self.searchBar.placeholder = "Search by name or description"
         self.searchBar.delegate = self
+        //self.searchBar.
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -468,7 +466,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         cell.cellType = items![indexPath.row].entryType
         
         
-        
+        cell.backgroundColor = .clear
         
         cell.contentView.backgroundColor = UIColor.clear
         
@@ -479,6 +477,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         whiteRoundedView.layer.cornerRadius = 2.0
         whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
         whiteRoundedView.layer.shadowOpacity = 0.2
+        
         
         cell.contentView.addSubview(whiteRoundedView)
         cell.contentView.sendSubview(toBack: whiteRoundedView)
@@ -529,20 +528,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
        
         headerLabel.sizeToFit()
         headerLabel.adjustsFontSizeToFitWidth = true
-        let deviceType = UIDevice.current.deviceType
         
-        switch deviceType {
-        case .iPhone5:
-            headerLabel.font = UIFont(name: "Prime", size: 27)
-            self.addButton.frame = CGRect(x: 92, y: 7, width: 136, height: 44)
-            self.addView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
-        case .iPadAir2:
-            self.addView.frame = CGRect(x: 0, y: 53, width: 768, height: 147)
-            self.addButton.frame = CGRect(x: 8, y: 95, width: 136, height: 44)
-            self.saveObjectiveButton.frame = CGRect(x: 593, y: 95, width: 165, height: 44)
-            
-        default: print("Check other available cases of DeviceType")
-        }
         
         
         headerView.addSubview(headerLabel)

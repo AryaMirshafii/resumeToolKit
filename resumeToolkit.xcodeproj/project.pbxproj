@@ -45,7 +45,6 @@
 		D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286EC1F60A6B400CAD85A /* userSettings.swift */; };
 		D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */; };
 		D18286F31F618FC700CAD85A /* pdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F21F618FC700CAD85A /* pdfView.swift */; };
-		D18CF79A1F63A01C00C625E4 /* SimplePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18CF7991F63A01C00C625E4 /* SimplePDF.swift */; };
 		D18DCD391F74946300F9E7DB /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DCD381F74946300F9E7DB /* Award.swift */; };
 		D198172B1F9987EF00DE38A5 /* resume1.html in Resources */ = {isa = PBXBuildFile; fileRef = D198172A1F9981F500DE38A5 /* resume1.html */; };
 		D1C90EB91FAE45D8003D9671 /* resume3.html in Resources */ = {isa = PBXBuildFile; fileRef = D1C90EB81FAE45D6003D9671 /* resume3.html */; };
@@ -240,6 +239,7 @@
 				D152E3BD1F624C36002F5F54 /* skill.swift */,
 				D152E3BF1F624C53002F5F54 /* schoolWork.swift */,
 				D1EF9D7E1F6C8B7300BEB77A /* course.swift */,
+				D1E457951F5A175E00D1E030 /* resumeToolkit.xcdatamodeld */,
 				D106288D1F6066FE001880AD /* Fonts */,
 				D1E4578D1F5A175D00D1E030 /* resumeToolkit */,
 				D1E4578C1F5A175D00D1E030 /* Products */,
@@ -273,7 +273,6 @@
 				D1E457981F5A175F00D1E030 /* Assets.xcassets */,
 				D1E4579A1F5A176000D1E030 /* LaunchScreen.storyboard */,
 				D1E4579D1F5A176000D1E030 /* Info.plist */,
-				D1E457951F5A175E00D1E030 /* resumeToolkit.xcdatamodeld */,
 				D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */,
 			);
 			path = resumeToolkit;
@@ -473,7 +472,6 @@
 				D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */,
 				D18236841FA175C200801E00 /* firstLoginScreen.swift in Sources */,
 				D152E3B21F61DE94002F5F54 /* resumeItem.swift in Sources */,
-				D18CF79A1F63A01C00C625E4 /* SimplePDF.swift in Sources */,
 				D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */,
 				D182367C1FA16EF000801E00 /* fifthLoginScreen.swift in Sources */,
 				D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */,
@@ -623,14 +621,14 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GatechEngineeringForInnovation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "resumeToolkit-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -644,13 +642,13 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GatechEngineeringForInnovation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "resumeToolkit-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

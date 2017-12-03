@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Device_swift
+
 class fourthLoginScreen: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var phoneEntry: UITextField!
     var dataController = dataManager()
@@ -31,25 +31,6 @@ class fourthLoginScreen: UIViewController,UITextFieldDelegate {
         self.navigationController?.view.backgroundColor = .clear
         self.phoneEntry.delegate = self
         self.phoneEntry.clearButtonMode = .whileEditing
-        
-        
-        
-        let deviceType = UIDevice.current.deviceType
-        
-        
-        
-        switch deviceType {
-        case .iPhone5:
-            print("iphone 5")
-        case .iPadAir2:
-            self.backgroundImage.frame = CGRect(x: 0, y: 0, width: 768, height: 1024)
-            self.pleaseEnterPhone.frame = CGRect(x: 235, y: 569, width: 298, height: 32)
-            self.phoneEntry.frame = CGRect(x: 272, y: 654, width: 224, height: 30)
-            self.icon.frame = CGRect(x: 217, y: 180, width: 334, height: 317)
-            
-            
-        default: print("Check other available cases of DeviceType")
-        }
         
         
         

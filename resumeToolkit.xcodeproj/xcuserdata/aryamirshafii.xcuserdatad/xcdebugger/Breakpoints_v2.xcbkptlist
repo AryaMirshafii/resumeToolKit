@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "resumeToolkit/MiddleVC/editViewController.swift"
-            timestampString = "533372995.495214"
+            timestampString = "533974069.44811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "saveEntry(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

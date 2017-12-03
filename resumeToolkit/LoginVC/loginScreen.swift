@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Device_swift
+
 class loginScreen: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstNameEntry: UITextField!

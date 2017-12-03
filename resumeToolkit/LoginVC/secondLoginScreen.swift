@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Device_swift
+
 class secondLoginScreen: UIViewController, UITextFieldDelegate  {
     @IBOutlet weak var phoneEntry: UITextField!
     @IBOutlet weak var currentSchoolEntry: UITextField!
@@ -91,7 +91,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
        currentSchoolEntry.text = "Georgia Tech Excel Program"
         
         
-        let deviceType = UIDevice.current.deviceType
+        
         
         
     }

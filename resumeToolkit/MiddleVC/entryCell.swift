@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Device_swift
+
 class entryCell : UITableViewCell,UITextViewDelegate{
     
     
@@ -44,21 +44,20 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         self.cancelButton.isHidden = true
         self.originalColor = entryDescription.backgroundColor!
         
-        
-        
         let deviceType = UIDevice.current.deviceType
         
         switch deviceType {
-        case .iPhone5:
-            print("iphone 5")
         case .iPadAir2:
-            self.saveButton.frame = CGRect(x: 673, y: 130, width: 71, height: 30)
-            self.cancelButton.frame = CGRect(x: 34, y: 130, width: 90, height: 30)
-            self.entryDescription.frame = CGRect(x: 34, y: 44, width: 710, height: 78)
+             self.layer.borderWidth = 40
+        case .iPad2: print("Do stuff for iPhone6S Plus")
+        self.layer.borderWidth = 40
             
-            
+        case .iPhone6: print("Do stuff for iPad mini")
+             self.layer.borderWidth = 20
         default: print("Check other available cases of DeviceType")
         }
+        
+         self.layer.borderColor = UIColor.clear.cgColor
     }
     
     

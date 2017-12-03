@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import WebKit
 import ASHorizontalScrollView
-import Device_swift
 
 class pdfView: UIViewController,UIScrollViewDelegate {
     var pdfGenerate = testPDFGenerator()
@@ -91,6 +90,7 @@ class pdfView: UIViewController,UIScrollViewDelegate {
             resumeNameLabel.text = "Plain"
             userSelect.contentOffset.x = 0 * (userSelect.frame.size.width/3.5)
             
+            
         } else if(userInfoController.getResumeIndex() == "1"){
             resumeNameLabel.text = "Industrial"
             userSelect.contentOffset.x = 1 * (userSelect.frame.size.width/3.5)
@@ -103,21 +103,12 @@ class pdfView: UIViewController,UIScrollViewDelegate {
             resumeNameLabel.text = "Vibrant Modern"
             userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.5)
         }
-        
-        
         let deviceType = UIDevice.current.deviceType
-        
-        switch deviceType {
-        case .iPhone5:
-            print("iphone 5")
-        case .iPadAir2:
-            self.backgroundImage.frame = CGRect(x: 0, y: -20, width: 768, height: 1044)
-            self.webView.frame = CGRect(x: 0, y: 0, width: 768, height: 817)
-            self.resumeNameLabel.frame = CGRect(x: 263, y: 825, width: 243, height: 24)
-            self.userSelect.frame = CGRect(x: 239, y: 857, width: 291, height: 147)
-            
-        default: print("Check other available cases of DeviceType")
+        if(deviceType == .iPadAir2 || deviceType == .iPad2 || deviceType == .iPadAir){
+            self.webView.frame = CGRect(x: 0, y: 0, width: 768, height: 785)
         }
+        
+        
     }
     
     
@@ -134,6 +125,7 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         if(resumeToPick == "0"){
             resumeNameLabel.text = "Plain"
             
+            
         } else if(resumeToPick == "1"){
             resumeNameLabel.text = "Industrial"
             
@@ -142,6 +134,10 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         }
         else if(resumeToPick == "3") {
             resumeNameLabel.text = "Vibrant Modern"
+        }
+        let deviceType = UIDevice.current.deviceType
+        if(deviceType == .iPadAir2 || deviceType == .iPad2 || deviceType == .iPadAir){
+            self.webView.frame = CGRect(x: 0, y: 0, width: 768, height: 785)
         }
     }
     
