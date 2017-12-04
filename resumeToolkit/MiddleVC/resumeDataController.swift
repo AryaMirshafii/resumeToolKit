@@ -443,9 +443,13 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         let cellIdentifier = "entryCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? entryCell  else {
-            fatalError("The dequeued cell is not an instance of entryCell.")
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? entryCell
+        if cell == nil {
+            cell = entryCell(style: UITableViewCellStyle.default, reuseIdentifier: cellIdentifier)
         }
+
+           
+        
         
         if(self.isSearching){
             self.itemsDict = self.searchDict
@@ -460,15 +464,15 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         
         
-        cell.entryName.text = items![indexPath.row].name
-        cell.entryDescription.text = items![indexPath.row].description
+        cell?.entryName.text = items![indexPath.row].name
+        cell?.entryDescription.text = items![indexPath.row].description
         self.tableView.rowHeight = 160
-        cell.cellType = items![indexPath.row].entryType
+        cell?.cellType = items![indexPath.row].entryType
         
         
-        cell.backgroundColor = .clear
+        cell?.backgroundColor = .clear
         
-        cell.contentView.backgroundColor = UIColor.clear
+        cell?.contentView.backgroundColor = UIColor.clear
         
         let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 160))
         
@@ -479,9 +483,9 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         whiteRoundedView.layer.shadowOpacity = 0.2
         
         
-        cell.contentView.addSubview(whiteRoundedView)
-        cell.contentView.sendSubview(toBack: whiteRoundedView)
-        cell.getColor(aNumber: self.colorCounter)
+        cell?.contentView.addSubview(whiteRoundedView)
+        cell?.contentView.sendSubview(toBack: whiteRoundedView)
+        cell?.getColor(aNumber: self.colorCounter)
         
         if(self.colorCounter < 3){
             self.colorCounter += 1
@@ -495,10 +499,10 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
         
         
         
+        //cell?.entryDescription.isUserInteractionEnabled = true
+        cell?.entryDescription.isScrollEnabled = true
         
-        
-        
-       return cell
+        return cell!
     }
     
     

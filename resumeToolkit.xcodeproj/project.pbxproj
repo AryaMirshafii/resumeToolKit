@@ -124,6 +124,7 @@
 		D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginScreen.swift; sourceTree = "<group>"; };
 		D1EF9D7E1F6C8B7300BEB77A /* course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = course.swift; sourceTree = "<group>"; };
+		D1F2D3971FD4832000AFD91E /* resumeToolkit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = resumeToolkit.entitlements; sourceTree = "<group>"; };
 		D82411673F2ECB91FE217AD0 /* Pods_resumeToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_resumeToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -260,6 +261,7 @@
 		D1E4578D1F5A175D00D1E030 /* resumeToolkit */ = {
 			isa = PBXGroup;
 			children = (
+				D1F2D3971FD4832000AFD91E /* resumeToolkit.entitlements */,
 				D152E3AB1F61DD04002F5F54 /* MiddleVC */,
 				D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */,
 				D152E3AC1F61DD14002F5F54 /* LeftVC */,
@@ -324,6 +326,11 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -617,6 +624,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = resumeToolkit/resumeToolkit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
@@ -638,6 +646,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = resumeToolkit/resumeToolkit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
