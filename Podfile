@@ -15,5 +15,6 @@ pod 'GTMOAuth2', '~> 1.1.0'
 pod 'Google/SignIn'
 pod 'Device.swift'
 pod 'ASHorizontalScrollView', '~> 1.5.1'
+pod 'HFCardCollectionViewLayout'
 
 end

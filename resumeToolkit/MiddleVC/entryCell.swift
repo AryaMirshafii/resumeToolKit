@@ -132,6 +132,8 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         reloadCounter += 1
         
     }
+    
+    
     func getColor(aNumber: Int){
         
        

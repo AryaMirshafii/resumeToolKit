@@ -46,10 +46,13 @@
 		D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */; };
 		D18286F31F618FC700CAD85A /* pdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F21F618FC700CAD85A /* pdfView.swift */; };
 		D18DCD391F74946300F9E7DB /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DCD381F74946300F9E7DB /* Award.swift */; };
-		D198172B1F9987EF00DE38A5 /* resume1.html in Resources */ = {isa = PBXBuildFile; fileRef = D198172A1F9981F500DE38A5 /* resume1.html */; };
+		D1C136721FDCEB0600AA88C0 /* cardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C136701FDCEB0400AA88C0 /* cardViewController.swift */; };
+		D1C136731FDCEB0600AA88C0 /* collectionViewCell.temp_caseinsensitive_rename.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C136711FDCEB0500AA88C0 /* collectionViewCell.temp_caseinsensitive_rename.swift */; };
+		D1C136751FDCFC2800AA88C0 /* resumeItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C136741FDCFC2800AA88C0 /* resumeItemCell.swift */; };
 		D1C90EB91FAE45D8003D9671 /* resume3.html in Resources */ = {isa = PBXBuildFile; fileRef = D1C90EB81FAE45D6003D9671 /* resume3.html */; };
 		D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DB936F1F70A3EE00C210B4 /* userSetUp.m */; };
 		D1DB93711F70A53200C210B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D18F9B471F70645800FB48EA /* GoogleService-Info.plist */; };
+		D1E381B71FE4749600485650 /* resume1.html in Resources */ = {isa = PBXBuildFile; fileRef = D1E381B61FE4749600485650 /* resume1.html */; };
 		D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */; };
 		D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457901F5A175D00D1E030 /* ViewController.swift */; };
 		D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E457921F5A175E00D1E030 /* Main.storyboard */; };
@@ -108,11 +111,14 @@
 		D18CF7991F63A01C00C625E4 /* SimplePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePDF.swift; sourceTree = "<group>"; };
 		D18DCD381F74946300F9E7DB /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		D18F9B471F70645800FB48EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D198172A1F9981F500DE38A5 /* resume1.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = resume1.html; path = ../../Documents/pdfTest/resume1.html; sourceTree = "<group>"; };
+		D1C136701FDCEB0400AA88C0 /* cardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cardViewController.swift; sourceTree = "<group>"; };
+		D1C136711FDCEB0500AA88C0 /* collectionViewCell.temp_caseinsensitive_rename.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectionViewCell.temp_caseinsensitive_rename.swift; sourceTree = "<group>"; };
+		D1C136741FDCFC2800AA88C0 /* resumeItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resumeItemCell.swift; sourceTree = "<group>"; };
 		D1C90EB81FAE45D6003D9671 /* resume3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = resume3.html; sourceTree = "<group>"; };
 		D1DB936D1F70A3EB00C210B4 /* resumeToolkit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "resumeToolkit-Bridging-Header.h"; sourceTree = "<group>"; };
 		D1DB936E1F70A3ED00C210B4 /* userSetUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userSetUp.h; sourceTree = "<group>"; };
 		D1DB936F1F70A3EE00C210B4 /* userSetUp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userSetUp.m; sourceTree = "<group>"; };
+		D1E381B61FE4749600485650 /* resume1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = resume1.html; sourceTree = "<group>"; };
 		D1E4578B1F5A175D00D1E030 /* resumeToolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = resumeToolkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E4578E1F5A175D00D1E030 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E457901F5A175D00D1E030 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +235,7 @@
 				D14A74A71FAE914E00D56DBC /* resume4.html */,
 				D1C90EB81FAE45D6003D9671 /* resume3.html */,
 				D102D4B01FACFBC30098E287 /* resume2.html */,
-				D198172A1F9981F500DE38A5 /* resume1.html */,
+				D1E381B61FE4749600485650 /* resume1.html */,
 				D18DCD381F74946300F9E7DB /* Award.swift */,
 				D1DB936E1F70A3ED00C210B4 /* userSetUp.h */,
 				D1DB936F1F70A3EE00C210B4 /* userSetUp.m */,
@@ -262,6 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				D1F2D3971FD4832000AFD91E /* resumeToolkit.entitlements */,
+				D1C136701FDCEB0400AA88C0 /* cardViewController.swift */,
+				D1C136741FDCFC2800AA88C0 /* resumeItemCell.swift */,
+				D1C136711FDCEB0500AA88C0 /* collectionViewCell.temp_caseinsensitive_rename.swift */,
 				D152E3AB1F61DD04002F5F54 /* MiddleVC */,
 				D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */,
 				D152E3AC1F61DD14002F5F54 /* LeftVC */,
@@ -357,7 +366,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D198172B1F9987EF00DE38A5 /* resume1.html in Resources */,
 				D16C214C1FBD35510005C7C2 /* SIL Open Font License.txt in Resources */,
 				D13FA6B51F7DB88500AB567C /* CODE Light.otf in Resources */,
 				D102D4B11FACFBC30098E287 /* resume2.html in Resources */,
@@ -374,6 +382,7 @@
 				D16C214B1FBD35510005C7C2 /* palanquindark-semibold.ttf in Resources */,
 				D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */,
 				D14A74A81FAE914E00D56DBC /* resume4.html in Resources */,
+				D1E381B71FE4749600485650 /* resume1.html in Resources */,
 				D16C21421FBD35510005C7C2 /* palanquin-extralight.ttf in Resources */,
 				D16C21441FBD35510005C7C2 /* palanquin-medium.ttf in Resources */,
 				D16C21431FBD35510005C7C2 /* palanquin-light.ttf in Resources */,
@@ -419,6 +428,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/HFCardCollectionViewLayout/HFCardCollectionViewLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -428,6 +438,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HFCardCollectionViewLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -470,6 +481,7 @@
 				D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */,
 				D152E3BE1F624C36002F5F54 /* skill.swift in Sources */,
 				D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */,
+				D1C136731FDCEB0600AA88C0 /* collectionViewCell.temp_caseinsensitive_rename.swift in Sources */,
 				D152E3A61F61D741002F5F54 /* resumeDataController.swift in Sources */,
 				D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */,
 				D1E4578F1F5A175D00D1E030 /* AppDelegate.swift in Sources */,
@@ -483,9 +495,11 @@
 				D182367C1FA16EF000801E00 /* fifthLoginScreen.swift in Sources */,
 				D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */,
 				D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */,
+				D1C136721FDCEB0600AA88C0 /* cardViewController.swift in Sources */,
 				D182367E1FA171B400801E00 /* fourthLoginScreen.swift in Sources */,
 				D152E3B81F620630002F5F54 /* entryCell.swift in Sources */,
 				D133C6A71F5A60600080B598 /* dataManager.swift in Sources */,
+				D1C136751FDCFC2800AA88C0 /* resumeItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -99,9 +99,13 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        //Possibly get rid of
+        /*
         if(isSearching){
             view.endEditing(true)
         }
+         */
        
     }
     
@@ -422,6 +426,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     
+   
     
     @IBAction func addItem(_ sender: UIButton){
         performSegue(withIdentifier: "goEdit", sender: self)
