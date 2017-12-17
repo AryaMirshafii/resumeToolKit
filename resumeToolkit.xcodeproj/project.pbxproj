@@ -45,6 +45,26 @@
 		D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286EC1F60A6B400CAD85A /* userSettings.swift */; };
 		D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */; };
 		D18286F31F618FC700CAD85A /* pdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18286F21F618FC700CAD85A /* pdfView.swift */; };
+		D18313BD1FE6499500F41D5F /* HKGrotesk-BoldLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313A91FE6497000F41D5F /* HKGrotesk-BoldLegacy.ttf */; };
+		D18313BE1FE6499500F41D5F /* HKGrotesk-SemiBoldLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313AA1FE6497100F41D5F /* HKGrotesk-SemiBoldLegacy.ttf */; };
+		D18313BF1FE6499500F41D5F /* HKGrotesk-BoldItalicLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313AB1FE6497300F41D5F /* HKGrotesk-BoldItalicLegacy.ttf */; };
+		D18313C01FE6499500F41D5F /* HKGrotesk-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313AC1FE6497500F41D5F /* HKGrotesk-Italic.ttf */; };
+		D18313C11FE6499500F41D5F /* HKGrotesk-ItalicLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313AD1FE6497700F41D5F /* HKGrotesk-ItalicLegacy.ttf */; };
+		D18313C21FE6499500F41D5F /* HKGrotesk-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313AE1FE6497800F41D5F /* HKGrotesk-Light.ttf */; };
+		D18313C31FE6499500F41D5F /* HKGrotesk-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313AF1FE6497B00F41D5F /* HKGrotesk-Bold.ttf */; };
+		D18313C41FE6499500F41D5F /* HKGrotesk-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B01FE6497C00F41D5F /* HKGrotesk-LightItalic.ttf */; };
+		D18313C51FE6499500F41D5F /* HKGrotesk-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B11FE6497E00F41D5F /* HKGrotesk-SemiBoldItalic.ttf */; };
+		D18313C61FE6499500F41D5F /* HKGrotesk-SemiBoldItalicLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B21FE6498000F41D5F /* HKGrotesk-SemiBoldItalicLegacy.ttf */; };
+		D18313C71FE6499500F41D5F /* HKGrotesk-MediumLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B31FE6498200F41D5F /* HKGrotesk-MediumLegacy.ttf */; };
+		D18313C81FE6499500F41D5F /* HKGrotesk-MediumItalicLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B41FE6498300F41D5F /* HKGrotesk-MediumItalicLegacy.ttf */; };
+		D18313C91FE6499500F41D5F /* HKGrotesk-RegularLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B51FE6498500F41D5F /* HKGrotesk-RegularLegacy.ttf */; };
+		D18313CA1FE6499500F41D5F /* HKGrotesk-LightItalicLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B61FE6498700F41D5F /* HKGrotesk-LightItalicLegacy.ttf */; };
+		D18313CB1FE6499500F41D5F /* HKGrotesk-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B71FE6498900F41D5F /* HKGrotesk-Regular.ttf */; };
+		D18313CC1FE6499500F41D5F /* HKGrotesk-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B81FE6498B00F41D5F /* HKGrotesk-BoldItalic.ttf */; };
+		D18313CD1FE6499500F41D5F /* HKGrotesk-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313B91FE6498D00F41D5F /* HKGrotesk-Medium.ttf */; };
+		D18313CE1FE6499500F41D5F /* HKGrotesk-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313BA1FE6498F00F41D5F /* HKGrotesk-SemiBold.ttf */; };
+		D18313CF1FE6499500F41D5F /* HKGrotesk-LightLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313BB1FE6499100F41D5F /* HKGrotesk-LightLegacy.ttf */; };
+		D18313D01FE6499500F41D5F /* HKGrotesk-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313BC1FE6499300F41D5F /* HKGrotesk-MediumItalic.ttf */; };
 		D18DCD391F74946300F9E7DB /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DCD381F74946300F9E7DB /* Award.swift */; };
 		D1C136721FDCEB0600AA88C0 /* cardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C136701FDCEB0400AA88C0 /* cardViewController.swift */; };
 		D1C136731FDCEB0600AA88C0 /* collectionViewCell.temp_caseinsensitive_rename.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C136711FDCEB0500AA88C0 /* collectionViewCell.temp_caseinsensitive_rename.swift */; };
@@ -108,6 +128,26 @@
 		D18286EC1F60A6B400CAD85A /* userSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userSettings.swift; sourceTree = "<group>"; };
 		D18286F01F618F1C00CAD85A /* testPDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testPDFGenerator.swift; sourceTree = "<group>"; };
 		D18286F21F618FC700CAD85A /* pdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pdfView.swift; sourceTree = "<group>"; };
+		D18313A91FE6497000F41D5F /* HKGrotesk-BoldLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-BoldLegacy.ttf"; sourceTree = "<group>"; };
+		D18313AA1FE6497100F41D5F /* HKGrotesk-SemiBoldLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBoldLegacy.ttf"; sourceTree = "<group>"; };
+		D18313AB1FE6497300F41D5F /* HKGrotesk-BoldItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-BoldItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D18313AC1FE6497500F41D5F /* HKGrotesk-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Italic.ttf"; sourceTree = "<group>"; };
+		D18313AD1FE6497700F41D5F /* HKGrotesk-ItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-ItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D18313AE1FE6497800F41D5F /* HKGrotesk-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Light.ttf"; sourceTree = "<group>"; };
+		D18313AF1FE6497B00F41D5F /* HKGrotesk-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Bold.ttf"; sourceTree = "<group>"; };
+		D18313B01FE6497C00F41D5F /* HKGrotesk-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-LightItalic.ttf"; sourceTree = "<group>"; };
+		D18313B11FE6497E00F41D5F /* HKGrotesk-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		D18313B21FE6498000F41D5F /* HKGrotesk-SemiBoldItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBoldItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D18313B31FE6498200F41D5F /* HKGrotesk-MediumLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-MediumLegacy.ttf"; sourceTree = "<group>"; };
+		D18313B41FE6498300F41D5F /* HKGrotesk-MediumItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-MediumItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D18313B51FE6498500F41D5F /* HKGrotesk-RegularLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-RegularLegacy.ttf"; sourceTree = "<group>"; };
+		D18313B61FE6498700F41D5F /* HKGrotesk-LightItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-LightItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D18313B71FE6498900F41D5F /* HKGrotesk-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Regular.ttf"; sourceTree = "<group>"; };
+		D18313B81FE6498B00F41D5F /* HKGrotesk-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-BoldItalic.ttf"; sourceTree = "<group>"; };
+		D18313B91FE6498D00F41D5F /* HKGrotesk-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Medium.ttf"; sourceTree = "<group>"; };
+		D18313BA1FE6498F00F41D5F /* HKGrotesk-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBold.ttf"; sourceTree = "<group>"; };
+		D18313BB1FE6499100F41D5F /* HKGrotesk-LightLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-LightLegacy.ttf"; sourceTree = "<group>"; };
+		D18313BC1FE6499300F41D5F /* HKGrotesk-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-MediumItalic.ttf"; sourceTree = "<group>"; };
 		D18CF7991F63A01C00C625E4 /* SimplePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePDF.swift; sourceTree = "<group>"; };
 		D18DCD381F74946300F9E7DB /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		D18F9B471F70645800FB48EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -155,6 +195,26 @@
 				D106288E1F60677E001880AD /* Prime Light.otf */,
 				D106288F1F606780001880AD /* Prime Regular.otf */,
 				D13FA6B61F7DBB2100AB567C /* Infinity.ttf */,
+				D18313AF1FE6497B00F41D5F /* HKGrotesk-Bold.ttf */,
+				D18313B81FE6498B00F41D5F /* HKGrotesk-BoldItalic.ttf */,
+				D18313AB1FE6497300F41D5F /* HKGrotesk-BoldItalicLegacy.ttf */,
+				D18313A91FE6497000F41D5F /* HKGrotesk-BoldLegacy.ttf */,
+				D18313AC1FE6497500F41D5F /* HKGrotesk-Italic.ttf */,
+				D18313AD1FE6497700F41D5F /* HKGrotesk-ItalicLegacy.ttf */,
+				D18313AE1FE6497800F41D5F /* HKGrotesk-Light.ttf */,
+				D18313B01FE6497C00F41D5F /* HKGrotesk-LightItalic.ttf */,
+				D18313B61FE6498700F41D5F /* HKGrotesk-LightItalicLegacy.ttf */,
+				D18313BB1FE6499100F41D5F /* HKGrotesk-LightLegacy.ttf */,
+				D18313B91FE6498D00F41D5F /* HKGrotesk-Medium.ttf */,
+				D18313BC1FE6499300F41D5F /* HKGrotesk-MediumItalic.ttf */,
+				D18313B41FE6498300F41D5F /* HKGrotesk-MediumItalicLegacy.ttf */,
+				D18313B31FE6498200F41D5F /* HKGrotesk-MediumLegacy.ttf */,
+				D18313B71FE6498900F41D5F /* HKGrotesk-Regular.ttf */,
+				D18313B51FE6498500F41D5F /* HKGrotesk-RegularLegacy.ttf */,
+				D18313BA1FE6498F00F41D5F /* HKGrotesk-SemiBold.ttf */,
+				D18313B11FE6497E00F41D5F /* HKGrotesk-SemiBoldItalic.ttf */,
+				D18313B21FE6498000F41D5F /* HKGrotesk-SemiBoldItalicLegacy.ttf */,
+				D18313AA1FE6497100F41D5F /* HKGrotesk-SemiBoldLegacy.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -366,19 +426,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D18313C01FE6499500F41D5F /* HKGrotesk-Italic.ttf in Resources */,
+				D18313C91FE6499500F41D5F /* HKGrotesk-RegularLegacy.ttf in Resources */,
 				D16C214C1FBD35510005C7C2 /* SIL Open Font License.txt in Resources */,
+				D18313C11FE6499500F41D5F /* HKGrotesk-ItalicLegacy.ttf in Resources */,
 				D13FA6B51F7DB88500AB567C /* CODE Light.otf in Resources */,
+				D18313CF1FE6499500F41D5F /* HKGrotesk-LightLegacy.ttf in Resources */,
 				D102D4B11FACFBC30098E287 /* resume2.html in Resources */,
+				D18313C81FE6499500F41D5F /* HKGrotesk-MediumItalicLegacy.ttf in Resources */,
 				D16C21411FBD35510005C7C2 /* palanquin-bold.ttf in Resources */,
 				D1E4579C1F5A176000D1E030 /* LaunchScreen.storyboard in Resources */,
+				D18313D01FE6499500F41D5F /* HKGrotesk-MediumItalic.ttf in Resources */,
 				D16C21461FBD35510005C7C2 /* palanquin-semibold.ttf in Resources */,
+				D18313CB1FE6499500F41D5F /* HKGrotesk-Regular.ttf in Resources */,
 				D16C21451FBD35510005C7C2 /* palanquin-regular.ttf in Resources */,
+				D18313CA1FE6499500F41D5F /* HKGrotesk-LightItalicLegacy.ttf in Resources */,
 				D13FA6B71F7DBB6C00AB567C /* Infinity.ttf in Resources */,
+				D18313CD1FE6499500F41D5F /* HKGrotesk-Medium.ttf in Resources */,
 				D13FA6B41F7DB88500AB567C /* CODE Bold.otf in Resources */,
 				D10628911F606791001880AD /* Prime Light.otf in Resources */,
+				D18313CE1FE6499500F41D5F /* HKGrotesk-SemiBold.ttf in Resources */,
 				D1C90EB91FAE45D8003D9671 /* resume3.html in Resources */,
 				D16C21471FBD35510005C7C2 /* palanquin-thin.ttf in Resources */,
+				D18313CC1FE6499500F41D5F /* HKGrotesk-BoldItalic.ttf in Resources */,
+				D18313C31FE6499500F41D5F /* HKGrotesk-Bold.ttf in Resources */,
+				D18313C71FE6499500F41D5F /* HKGrotesk-MediumLegacy.ttf in Resources */,
 				D1E457991F5A175F00D1E030 /* Assets.xcassets in Resources */,
+				D18313BE1FE6499500F41D5F /* HKGrotesk-SemiBoldLegacy.ttf in Resources */,
+				D18313C41FE6499500F41D5F /* HKGrotesk-LightItalic.ttf in Resources */,
 				D16C214B1FBD35510005C7C2 /* palanquindark-semibold.ttf in Resources */,
 				D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */,
 				D14A74A81FAE914E00D56DBC /* resume4.html in Resources */,
@@ -386,8 +461,13 @@
 				D16C21421FBD35510005C7C2 /* palanquin-extralight.ttf in Resources */,
 				D16C21441FBD35510005C7C2 /* palanquin-medium.ttf in Resources */,
 				D16C21431FBD35510005C7C2 /* palanquin-light.ttf in Resources */,
+				D18313C21FE6499500F41D5F /* HKGrotesk-Light.ttf in Resources */,
+				D18313BF1FE6499500F41D5F /* HKGrotesk-BoldItalicLegacy.ttf in Resources */,
 				D16C214A1FBD35510005C7C2 /* palanquindark-regular.ttf in Resources */,
+				D18313C61FE6499500F41D5F /* HKGrotesk-SemiBoldItalicLegacy.ttf in Resources */,
+				D18313BD1FE6499500F41D5F /* HKGrotesk-BoldLegacy.ttf in Resources */,
 				D10628901F60678E001880AD /* Prime Regular.otf in Resources */,
+				D18313C51FE6499500F41D5F /* HKGrotesk-SemiBoldItalic.ttf in Resources */,
 				D16C21491FBD35510005C7C2 /* palanquindark-medium.ttf in Resources */,
 				D1DB93711F70A53200C210B4 /* GoogleService-Info.plist in Resources */,
 				D16C21481FBD35510005C7C2 /* palanquindark-bold.ttf in Resources */,

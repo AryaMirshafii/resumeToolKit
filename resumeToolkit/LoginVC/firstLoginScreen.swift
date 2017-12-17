@@ -28,6 +28,7 @@ class firstLoginScreen:UIViewController,UITextFieldDelegate {
         self.navigationController?.view.backgroundColor = .clear
         self.firstNameEntry.delegate = self
         self.firstNameEntry.clearButtonMode = .whileEditing
+        self.icon.isHidden = true
         
         
     

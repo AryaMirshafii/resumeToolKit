@@ -8,6 +8,8 @@
 
 import UIKit
 import HFCardCollectionViewLayout
+import CoreData
+
 
 struct CardInfo {
     var color: UIColor
@@ -38,8 +40,10 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
     
+    var infoController = userInfo()
+    var dataController = dataManager()
     
-    
+    @IBOutlet weak var objectiveEntry: UITextView!
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var backgroundNavigationBar: UINavigationBar?
     
@@ -47,6 +51,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     var shouldSetupBackgroundView = true
     
     var cardArray: [CardInfo] = []
+     var user: [NSManagedObject] = []
     
     override func viewDidLoad() {
         
@@ -60,7 +65,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         layoutOptions.bottomNumberOfStackedCards     = 5
         layoutOptions.bottomStackedCardsShouldScale  = true //self.switchBottomStackedCardsShouldScale!.isOn
         layoutOptions.bottomCardLookoutMargin        = 10
-        layoutOptions.spaceAtTopForBackgroundView    = 50
+        layoutOptions.spaceAtTopForBackgroundView    = 121 //50*2 + 10
         layoutOptions.spaceAtTopShouldSnap           = true //self.switchSpaceAtTopShouldSnap!.isOn
         layoutOptions.spaceAtBottom                  = 10
         layoutOptions.scrollAreaTop                  = 120
@@ -77,11 +82,51 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         backgroundNavigationBar?.isUserInteractionEnabled = true
         
         
-        
+        self.objectiveEntry.layer.cornerRadius = 15
+        self.objectiveEntry.clipsToBounds = true
         self.setupExample()
+        
+        setUpData()
+        let aUser = user.last
+        let objectiveText = aUser?.value(forKeyPath: "objective") as? String
+        if(objectiveText != nil){
+            objectiveEntry.text = objectiveText
+        }
+        
         super.viewDidLoad()
+        
+    }
+   
+    var reloadCounter = 0
+    @IBAction func saveObjective(_ sender: Any) {
+        dataController.saveObjective(statement: objectiveEntry.text)
+        infoController.saveChangeText(text: String(reloadCounter))
+        reloadCounter += 1
+        view.endEditing(true)
+        var alert = UIAlertController(title: "Saved!",
+                                      message: "Your objective has been saved.",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        
+        
+        let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        
+        subview.backgroundColor = UIColor(red:0.91, green:0.38, blue:0.50, alpha:1.0)
+        alert.view.tintColor = .black
+        
+        alert.addAction(UIAlertAction(title: "Ok",
+                                      style: UIAlertActionStyle.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
+    @IBAction func goToEditViewController(_ sender: Any) {
+        self.performSegue(withIdentifier: "goEdit", sender: nil)
+    }
+    
+   
     // MARK: CollectionView
     
     func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, willRevealCardAtIndex index: Int) {
@@ -119,26 +164,28 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
             cell.labelText?.text = sections[cardCounter]
             
             cell.resumeSection = sections[cardCounter]
-            cell.labelText?.font = UIFont(name: "Prime-Regular", size: 28)
+            cell.labelText?.font = UIFont(name: "HKGrotesk-RegularLegacy", size: 28)
             
             
         }
        
         
        
-        if(cardCounter == 0){
+        if(cardCounter == 0 && cell.CellIndexNumber == -1){
             cell.backgroundColor = UIColor(red:0.23, green:0.42, blue:0.86, alpha:1.0)
             
         }else if(cardCounter == 1 && cell.CellIndexNumber == -1){
-            cell.backgroundColor = UIColor(red:0.71, green:0.38, blue:0.50, alpha:1.0)
+            cell.backgroundColor = UIColor(red:0.82, green:0.65, blue:0.06, alpha:1.0)
+            
             
         }else if(cardCounter == 2 && cell.CellIndexNumber == -1){
-            cell.backgroundColor = UIColor(red:0.15, green:0.62, blue:0.11, alpha:1.0)
+            cell.backgroundColor = UIColor(red:0.71, green:0.38, blue:0.50, alpha:1.0)
+            
             
         }
         //Change this color later so it matches the other 3
         else if(cardCounter == 3 && cell.CellIndexNumber == -1){
-            cell.backgroundColor = UIColor(red:0.46, green:0.62, blue:0.11, alpha:1.0)
+            cell.backgroundColor = UIColor(red:0.15, green:0.62, blue:0.11, alpha:1.0)
         }
         
         cell.CellIndexNumber = cardCounter
@@ -255,6 +302,31 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         let randomGreen:CGFloat = CGFloat(drand48())
         let randomBlue:CGFloat = CGFloat(drand48())
         return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+    }
+    
+    
+    func setUpData(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        var managedContext:NSManagedObjectContext
+        if #available(iOS 10.0, *) {
+            managedContext = appDelegate.persistentContainer.viewContext
+        } else {
+            // Fallback on earlier versions
+            managedContext = appDelegate.managedObjectContext
+        }
+        
+        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+        
+        do {
+            user = try managedContext.fetch(userRequest)
+            
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
 }
 

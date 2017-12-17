@@ -22,6 +22,9 @@ class CollectionViewCell: HFCardCollectionViewCell {
     
     @IBOutlet var backView: UIView?
     @IBOutlet var buttonFlipBack: UIButton?
+    
+    
+    
     var itemsDict = [String:[resumeItem]]()
     var dataController = dataManager()
     var user: [NSManagedObject] = []
@@ -40,10 +43,22 @@ class CollectionViewCell: HFCardCollectionViewCell {
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
         self.tableView?.allowsSelectionDuringEditing = false
-        self.tableView?.rowHeight = 150
+        self.tableView?.rowHeight = 160
         self.tableView?.reloadData()
         generateItemsDict()
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+        
     }
+    
+    @objc func userDefaultsDidChange() {
+        generateItemsDict()
+        DispatchQueue.main.async {
+            self.tableView?.reloadData()
+        }
+    }
+    
     
     func cardIsRevealed(_ isRevealed: Bool) {
         self.buttonFlip?.isHidden = !isRevealed
@@ -260,14 +275,18 @@ extension CollectionViewCell : UITableViewDelegate, UITableViewDataSource {
                 cell.entryDescriptionField.text = items![indexPath.row].description
                 cell.backgroundColor = .clear
                 cell.selectionStyle = .none
+                cell.cellType = resumeSection
                 //return cell
-            } else {
+            }else {
                 cell.itemNameLabel.isHidden = true
                 cell.entryDescriptionField.isHidden = true
             }
             //cellCounter += 1
            
             //return cell
+        }else {
+            cell.itemNameLabel.isHidden = true
+            cell.entryDescriptionField.isHidden = true
         }
         //cellCounter += 1
        return cell
