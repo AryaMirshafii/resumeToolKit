@@ -10,10 +10,12 @@ import Foundation
 import UIKit
 import WebKit
 import ASHorizontalScrollView
+import MessageUI
 
-class pdfView: UIViewController,UIScrollViewDelegate {
+class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewControllerDelegate,UIWebViewDelegate {
     var pdfGenerate = testPDFGenerator()
     var userInfoController = userInfo()
+    var dataController = dataManager()
     var previousFilePath = " "
     
     
@@ -31,6 +33,7 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         if #available(iOS 11.0, *) {
             //self.webView = self.webView as WKWebView
         }
+        self.webView.delegate = self
         
         
         userDefaultsDidChange()
@@ -192,7 +195,7 @@ class pdfView: UIViewController,UIScrollViewDelegate {
         
         guard let pdfContext = UIGraphicsGetCurrentContext() else { return }
         
-        let rescale: CGFloat = 6
+        let rescale: CGFloat = 10
         
         func scaler(v: UIView) {
             if !v.isKind(of:UIStackView.self) {
@@ -276,8 +279,71 @@ class pdfView: UIViewController,UIScrollViewDelegate {
     }
     
     
-    func createPdfFromView(aView: UIView, saveToDocumentsWithFileName fileName: String)
-    {
+    @IBAction func emailResume(_ sender: Any) {
+        if !MFMailComposeViewController.canSendMail() {
+            print("Mail services are not available")
+            return
+        }
+        let scrollPoint = CGPoint(x: 0, y: webView.scrollView.contentSize.height - webView.frame.size.height + 50)
+        self.webView.scrollView.setContentOffset(scrollPoint, animated: true)
+        self.webView.reload()
+        sendEmail()
+        
+        
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        if(self.isEmailing){
+            let scrollPoint = CGPoint(x: 0, y: webView.scrollView.contentSize.height - webView.frame.size.height)
+            self.webView.scrollView.setContentOffset(scrollPoint, animated: true)
+            //userDefaultsDidChange()
+            //Set false if you doesn't want animation
+        }
+        self.isEmailing = false
+        
+    }
+    var isEmailing = false
+    func sendEmail() {
+  
+        userDefaultsDidChange()
+        self.isEmailing = true
+        self.webView.reload()
+        dataController.loadData()
+        let firstname:String = dataController.user.last?.value(forKey: "firstName") as! String
+        
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+        // Configure the fields of the interface.
+        composeVC.setToRecipients(["aryamirshafii97@gmail.com"])
+        composeVC.setSubject("Your Resume")
+        composeVC.setMessageBody("Hello " + firstname + "," + "\n  \n" + "Attached below is your resume. We wish you sucess with your future career endeavours. \n \nThank you for choosing Resume Writer!\n", isHTML: false)
+        
+        
+        
+        
+        let fileName = "pdffilename.pdf"
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0] as! NSString
+        let outputURL = URL(fileURLWithPath: documentsDirectory.appending("/" + fileName))
+        
+        
+        let pdfData = NSData(contentsOf: outputURL)
+        
+        
+        
+        composeVC.addAttachmentData(pdfData as! Data, mimeType: "application/pdf", fileName: "resume.pdf")
+        // Present the view controller modally.
+        self.present(composeVC, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func createPdfFromView(aView: UIView, saveToDocumentsWithFileName fileName: String){
         let pdfData = NSMutableData()
         UIGraphicsBeginPDFContextToData(pdfData, aView.bounds, nil)
         UIGraphicsBeginPDFPage()

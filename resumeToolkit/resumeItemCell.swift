@@ -59,7 +59,7 @@ class resumeItemCell:UITableViewCell,UITextViewDelegate {
     
     func getOriginalText() -> String {
         if(self.cellType == "Skill"){
-            return "Skill" + "_" + itemNameLabel.text! + "_" + entryDescriptionField.text
+            return "Skills" + "_" + itemNameLabel.text! + "_" + entryDescriptionField.text
             
             
         } else if(self.cellType == "Internships & Job Experience"){
@@ -86,10 +86,10 @@ class resumeItemCell:UITableViewCell,UITextViewDelegate {
     
     var reloadCounter = 0
     @IBAction func saveEntry(_ sender: Any) {
-        if(self.cellType == "Skill"){
+        if(self.cellType == "Skills"){
             
             
-            dataController.overwriteSkill(previousText: originalText, skillName: "Skill" + "_" + self.itemNameLabel.text! + "_" + self.entryDescriptionField.text)
+            dataController.overwriteSkill(previousText: originalText, skillName: "Skills" + "_" + self.itemNameLabel.text! + "_" + self.entryDescriptionField.text)
             //self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
         } else if(self.cellType == "Internships & Job Experience"){
             

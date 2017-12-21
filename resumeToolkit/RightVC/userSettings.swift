@@ -69,8 +69,10 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     var signedIn = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        self.updateViewConstraints()
+        self.view.reloadInputViews()
+        self.view.layoutIfNeeded()
+        self.view.clipsToBounds = true
         self.firstNameEntry.delegate = self
         self.lastNameEntry.delegate = self
         self.emailEntry.delegate = self
@@ -78,7 +80,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         self.currentSchoolEntry.delegate = self
         
         
- 
+        
         self.firstNameEntry.delegate = self
         self.firstNameEntry.clearButtonMode = .whileEditing
         
@@ -90,7 +92,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         self.lastNameEntry.delegate = self
         self.lastNameEntry.clearButtonMode = .whileEditing
-       
+        
         
         
         
@@ -120,11 +122,11 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         loadData()
         
-       
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        tapFinishZone.addGestureRecognizer(tap)
+        
         containerView.addGestureRecognizer(tap)
-       
+        
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
@@ -146,16 +148,16 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             driveFileManager = userSetUp(driveService: service, withFilePath: String(describing: pdfGenerator.createPDFFileAndReturnPath(indexAt:userInfoController.getResumeIndex()).output))
         }
         userDefaultsDidChange()
-       
+        
         if( userData.last?.value(forKeyPath: "firstName") != nil){
             let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
             welcomeLabel.text = "Welcome " +  nameString.firstUppercased + ","
         } else {
-             welcomeLabel.text = "Welcome,"
+            welcomeLabel.text = "Welcome,"
         }
         
         signInButton.clipsToBounds = true
-       
+        
         
         if(userInfoController.fetchData() == "main2"){
             
@@ -182,9 +184,16 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         default: print("Check other available cases of DeviceType")
         }
         
+        
 
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated) // No need for semicolon
+        
+    }
+    
     /*
     Detects if the settings in userInfo.swift has changed.
     */

@@ -192,6 +192,9 @@ class testPDFGenerator {
                 newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objective)
                 
                 
+            } else {
+                
+                newHTML = newHTML.replacingOccurrences(of: "<p class=\"head\">Objective</p><dl>ObjectiveGoHere</dl>", with: "")
             }
             
             if(skills != nil){
@@ -205,6 +208,9 @@ class testPDFGenerator {
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
+            } else {
+                newHTML = newHTML.replacingOccurrences(of: "<p class=\"head\">Skills</p><dl>SkillsGoHere</dl>", with: "")
+                
             }
             
             if(professionalDevelopment != nil){
@@ -220,6 +226,10 @@ class testPDFGenerator {
                 }
                 newHTML = newHTML.replacingOccurrences(of: "ExperienceGoHere", with: experienceHTML)
                 
+            } else {
+                newHTML = newHTML.replacingOccurrences(of: "<p class=\"head\">Internship and Job Experience</p><dl>ExperienceGoHere</dl>", with: "")
+                //newHTML = newHTML.replacingOccurrences(of: "<p class=\"head\">Internship and Job Experience</p><dl>ExperienceGoHere</dl>", with: "")
+                
             }
             
             
@@ -234,6 +244,8 @@ class testPDFGenerator {
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
+            } else {
+                newHTML = newHTML.replacingOccurrences(of: "<p class=\"head\">Extracurricular Activities</p><dl>extracurricularsGoHere</dl>", with: "")
             }
             
             
@@ -249,6 +261,8 @@ class testPDFGenerator {
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "CoursesGoHere", with: courseHTML)
+            } else {
+                newHTML = newHTML.replacingOccurrences(of: "<p class=\"head\">Courses Taken</p><dl>CoursesGoHere</dl>", with: "")
             }
             
             
@@ -266,6 +280,9 @@ class testPDFGenerator {
                 newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objectiveHTML)
                
                 
+            } else {
+                newHTML = newHTML.replacingOccurrences(of: "</div><div id=\"objective\"><p>ObjectiveGoHere</p></div>", with: "")
+                
             }
             
             if(skills != nil){
@@ -279,6 +296,8 @@ class testPDFGenerator {
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
+            } else {
+                newHTML = newHTML.replacingOccurrences(of: "<dd class=\"clear\"></dd><dt>Skills</dt><dd>SkillsGoHere</dd>", with: "")
             }
             
             if(professionalDevelopment != nil){
@@ -294,6 +313,8 @@ class testPDFGenerator {
                 }
                 newHTML = newHTML.replacingOccurrences(of: "ExperienceGoHere", with: experienceHTML)
                 
+            }else {
+                newHTML = newHTML.replacingOccurrences(of: "<dd class=\"clear\"></dd><dt>Internship and Job Experience</dt><dd>ExperienceGoHere</dd>", with: "")
             }
             
             
@@ -308,6 +329,8 @@ class testPDFGenerator {
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
+            }else {
+                newHTML = newHTML.replacingOccurrences(of: "<dd class=\"clear\"></dd><dt>Extracurricular Activities</dt><dd>extracurricularsGoHere</dd>", with: "")
             }
             
             
@@ -323,6 +346,8 @@ class testPDFGenerator {
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "CoursesGoHere", with: courseHTML)
+            }else {
+                newHTML = newHTML.replacingOccurrences(of: "<dd class=\"clear\"></dd><dt>Courses Taken</dt><dd>CoursesGoHere</dd>", with: "")
             }
             
             
@@ -353,6 +378,8 @@ class testPDFGenerator {
                 newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objective)
                 
                 
+            } else {
+                newHTML = newHTML.replacingOccurrences(of: "<div class=\"yui-gf\"><div class=\"yui-u first\"><h2>Objective</h2></div><div class=\"yui-u\"><p class=\"enlarge\">ObjectiveGoHere</p></div></div>", with: "")
             }
             
             if(skills != nil){
@@ -366,6 +393,8 @@ class testPDFGenerator {
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
+            } else {
+                newHTML = newHTML.replacingOccurrences(of: "<div class=\"yui-gf\"><div class=\"yui-u first\"><h2>Skills</h2></div><div class=\"yui-u\">SkillsGoHere</div>", with: "")
             }
             
             if(professionalDevelopment != nil){
@@ -381,6 +410,8 @@ class testPDFGenerator {
                 }
                 newHTML = newHTML.replacingOccurrences(of: "ExperienceGoHere", with: experienceHTML)
                 
+            } else {
+                newHTML = newHTML.replacingOccurrences(of: "<div class=\"yui-gf\"><div class=\"yui-u first\"><h2>Experience</h2></div><div class=\"yui-u\">ExperienceGoHere</div></div>", with: "")
             }
             
             
@@ -388,13 +419,17 @@ class testPDFGenerator {
                 var extracurricularsArr = extracurriculars.components(separatedBy:"-")
                 
                 var extracurricularHTML = ""
+                print("your aextras are")
+                print(extracurricularsArr)
                 for anAward in extracurricularsArr{
                     let extracurricularDescription = anAward.components(separatedBy:"_")
                     
-                    extracurricularHTML += (String(format: "<h2>%@</h2><p>%@</p>", extracurricularDescription[1],extracurricularDescription[2]))
+                    extracurricularHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", extracurricularDescription[1],extracurricularDescription[2]))
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
+            }else {
+                newHTML = newHTML.replacingOccurrences(of: "<div class=\"yui-gf\"><div class=\"yui-u first\"><h2>ExtraCurriculars</h2></div><div class=\"yui-u\">extracurricularsGoHere</div>", with: "")
             }
             
             
@@ -410,7 +445,11 @@ class testPDFGenerator {
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "CoursesGoHere", with: courseHTML)
+            }else {
+                newHTML = newHTML.replacingOccurrences(of: "<div class=\"yui-gf\"><div class=\"yui-u first\"><h2>Courses</h2></div><div class=\"yui-u\">CoursesGoHere</div>", with: "")
             }
+            
+            
             
             
             
@@ -433,6 +472,8 @@ class testPDFGenerator {
             newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objective)
             
             
+        } else {
+            newHTML = newHTML.replacingOccurrences(of: "<section><article><div class=\"sectionTitle\"><h1>Objective</h1></div><div class=\"sectionContent\"><p>ObjectiveGoHere</p></div></article><div class=\"clear\"></div></section>", with: "")
         }
         
         if(skills != nil){
@@ -446,6 +487,9 @@ class testPDFGenerator {
                 
             }
             newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
+        } else {
+            newHTML = newHTML.replacingOccurrences(of: "<section><div class=\"sectionTitle\"><h1>Skills</h1></div><div class=\"sectionContent\"><ul class=\"keySkills\"><ul style=\"list-style-type:none\">SkillsGoHere</ul></ul></div><div class=\"clear\"></div></section>", with: "")
+            
         }
         
         if(professionalDevelopment != nil){
@@ -461,6 +505,8 @@ class testPDFGenerator {
             }
             newHTML = newHTML.replacingOccurrences(of: "ExperienceGoHere", with: experienceHTML)
             
+        } else {
+            newHTML = newHTML.replacingOccurrences(of: "<section><div class=\"sectionTitle\"><h1>Internship and Job Experience</h1></div><div class=\"sectionContent\">ExperienceGoHere</div><div class=\"clear\"></div></section>", with: "")
         }
         
         
@@ -475,6 +521,8 @@ class testPDFGenerator {
                 
             }
             newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
+        } else {
+            newHTML = newHTML.replacingOccurrences(of: "<section><div class=\"sectionTitle\"><h1>Extracurriculars</h1></div><div class=\"sectionContent\"><ul class=\"keySkills\"><ul style=\"list-style-type:none\">extracurricularsGoHere</ul></ul></div><div class=\"clear\"></div></section>", with: "")
         }
         
         
@@ -490,6 +538,8 @@ class testPDFGenerator {
                 
             }
             newHTML = newHTML.replacingOccurrences(of: "CoursesGoHere", with: courseHTML)
+        } else {
+            newHTML = newHTML.replacingOccurrences(of: "<section><div class=\"sectionTitle\"><h1>Courses</h1></div><div class=\"sectionContent\"><ul class=\"keySkills\"><ul style=\"list-style-type:none\">CoursesGoHere</ul></ul></div><div class=\"clear\"></div></section>", with: "")
         }
         
         
