@@ -13,8 +13,9 @@ pod 'GoogleAPIClientForREST/Drive', '~> 1.2.1'
 pod 'GoogleSignIn'
 pod 'GTMOAuth2', '~> 1.1.0'
 pod 'Google/SignIn'
-pod 'Device.swift'
-pod 'ASHorizontalScrollView', '~> 1.5.1'
+#pod 'ASHorizontalScrollView', '~> 1.5.1'
+pod 'ASHorizontalScrollView'
 pod 'HFCardCollectionViewLayout'
+pod 'Device', '~> 3.0.3'
 
 end

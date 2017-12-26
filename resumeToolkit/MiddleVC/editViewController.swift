@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Device
 
 
 
@@ -77,7 +78,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
         setUpGestures()
         
-        self.skillView.frame = CGRect(x: 0, y: 71, width: 375, height: 296)
+        //self.skillView.frame = CGRect(x: 0, y: 71, width: 375, height: 296)
         self.jobView.isHidden = true
        
         self.extracurricularView.isHidden = true
@@ -140,6 +141,26 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         courseDescription.text = ""
         extracurricularDescription.text = ""
         
+        
+        switch Device.size() {
+        case .screen3_5Inch:  print("It's a 3.5 inch screen")
+        case .screen4Inch:    print("It's a 4 inch screen")
+        case .screen4_7Inch:
+            print("It's a 4.7 inch screen")
+            self.skillImage.frame = CGRect(x: 157, y: 379, width: 60, height: 60)
+        case .screen5_5Inch:  print("It's a 5.5 inch screen")
+            
+            self.skillImage.frame = CGRect(x: 177, y: 407, width: 60, height: 60)
+            self.skillImage.isHidden = true
+        case .screen5_8Inch:  print("It's a 5.8 inch screen")
+        case .screen7_9Inch:  print("It's a 7.9 inch screen")
+        case .screen9_7Inch:  print("It's a 9.7 inch screen")
+        case .screen12_9Inch: print("It's a 12.9 inch screen")
+        default:              print("Unknown size")
+        }
+        
+        
+     
         
     }
     
@@ -346,6 +367,14 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         if pickerView == skillPicker{
             if(entryType == "Skill"){
                 skillImage.isHidden = false
+                
+                switch Device.size() {
+                    
+                case .screen5_5Inch:  print("It's a 5.5 inch screen")
+                self.skillImage.frame = CGRect(x: 177, y: 407, width: 60, height: 60)
+                self.skillImage.isHidden = true
+                default:              print("Unknown size")
+                }
                 
                 selectedItem = skillData[row]
                 skillName.text = selectedItem

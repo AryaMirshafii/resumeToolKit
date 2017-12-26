@@ -11,6 +11,7 @@ import UIKit
 import WebKit
 import ASHorizontalScrollView
 import MessageUI
+import Device
 
 class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewControllerDelegate,UIWebViewDelegate {
     var pdfGenerate = testPDFGenerator()
@@ -52,7 +53,14 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         let button4 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
         
         userSelect.uniformItemSize = CGSize(width: 90, height: 140)
-        userSelect.setItemsMarginOnce()
+        //userSelect.setItemsMarginOnce()
+        //userSelect.numberOfItemsPerScreen = 2
+        //userSelect.defaultMarginSettings.numberOfItemsPerScreen = 2
+        userSelect.marginSettings_375 =  MarginSettings(leftMargin: 10, miniMarginBetweenItems: 15, miniAppearWidthOfLastItem: 15)
+        userSelect.marginSettings_768 =  MarginSettings(leftMargin: 40, miniMarginBetweenItems: 30, miniAppearWidthOfLastItem: 20)
+        //userSelect.setItemsMarginOnce()
+        userSelect.clipsToBounds = true
+        
         button1.image = #imageLiteral(resourceName: "resume1Icon")
         button2.image = #imageLiteral(resourceName: "resume2Icon")
         button3.image = #imageLiteral(resourceName: "resume3Icon")
@@ -70,7 +78,8 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
        
         
         //userSelect.showsHorizontalScrollIndicator = true
-        self.userSelect.clipsToBounds = true
+        //self.userSelect.clipsToBounds = true
+        
         
        // self.webView.scrollView.zoomScale = -2.0
         
@@ -106,10 +115,13 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
             resumeNameLabel.text = "Vibrant Modern"
             userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.5)
         }
-        let deviceType = UIDevice.current.deviceType
-        if(deviceType == .iPadAir2 || deviceType == .iPad2 || deviceType == .iPadAir){
-            self.webView.frame = CGRect(x: 0, y: 0, width: 768, height: 785)
+        if (Device.isPad()){
+            print("It's an iPad")
+            //self.webView.frame = CGRect(x: 0, y: 0, width: 768, height: 785)
         }
+        
+        
+        
         
         
     }
@@ -138,10 +150,13 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         else if(resumeToPick == "3") {
             resumeNameLabel.text = "Vibrant Modern"
         }
-        let deviceType = UIDevice.current.deviceType
-        if(deviceType == .iPadAir2 || deviceType == .iPad2 || deviceType == .iPadAir){
+        
+        
+        if (Device.isPad()){
+            print("It's an iPad")
             self.webView.frame = CGRect(x: 0, y: 0, width: 768, height: 785)
         }
+       
     }
     
     
@@ -183,8 +198,8 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         //self.webView.bounds =  CGRect(x: 0, y: 0, width: 612, height: 792)
         
         
-        
-        self.webView.frame = CGRect(x: 0, y: self.webView.frame.height - webView.scrollView.contentSize.height, width: 375, height: webView.scrollView.contentSize.height)
+        // uncomment for later
+        //self.webView.frame = CGRect(x: 0, y: self.webView.frame.height - webView.scrollView.contentSize.height, width: 375, height: webView.scrollView.contentSize.height)
 
         
         loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
@@ -248,7 +263,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         if(pdfData != NSData()){
             
         }
-        self.webView.frame = CGRect(x: 0, y: 0, width: 375, height: 462)
+        //self.webView.frame = CGRect(x: 0, y: 0, width: 375, height: 462)
        // self.webView.bounds =  CGRect(x: 0, y: 0, width: 375, height: 462)
        
         

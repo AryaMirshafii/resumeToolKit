@@ -29,7 +29,7 @@ class loginScreen: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getID()
+       
         
         
         self.firstNameEntry.delegate = self
@@ -76,37 +76,9 @@ class loginScreen: UIViewController, UITextFieldDelegate {
         //firstNameEntry.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
        // self.firstNameEntry.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
     }
-    func getID(){
-        let deviceType = UIDevice.current.deviceType
-        
-        switch deviceType {
-        case .iPhone5: positionViews(deviceID: "iphone5")
-        case .iPadMini: print("Do stuff for iPad mini")
-        default: print("Check other available cases of DeviceType")
-        }
-    }
     
-    func positionViews(deviceID: String) {
-        if(deviceID == "iphone5"){
-            self.firstNameLabel.font = UIFont(name: "Prime-Regular", size: 18)
-            self.firstNameLabel.font = UIFont(name: "Prime-Regular", size: 18)
-            self.firstNameLabel.font = UIFont(name: "Prime-Regular", size: 18)
-            
-            self.firstNameLabel.frame = CGRect(x: 11, y: 34, width: 298, height: 32)
-             self.firstNameEntry.frame = CGRect(x: 76, y: 64, width: 169, height: 30)
-                
-                
-            self.lastNameLabel.frame = CGRect(x: 11, y: 108, width: 298, height: 32)
-            self.lastNameEntry.frame = CGRect(x: 76, y: 138, width: 169, height: 30)
-                
-                
-            self.emailAdressLabel.frame = CGRect(x: 11, y: 182, width: 298, height: 32)
-            self.emailEntry.frame = CGRect(x: 76, y: 212, width: 169, height: 30)
-            self.doneButton.frame = CGRect(x: 80, y: 257, width: 161, height: 54)
-        }
-        
-        
-    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

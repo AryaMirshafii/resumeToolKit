@@ -1,6 +1,6 @@
 PODS:
   - ASHorizontalScrollView (1.5.1)
-  - Device.swift (1.1)
+  - Device (3.0.3)
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
@@ -46,8 +46,8 @@ PODS:
   - HFCardCollectionViewLayout (0.4.2)
 
 DEPENDENCIES:
-  - ASHorizontalScrollView (~> 1.5.1)
-  - Device.swift
+  - ASHorizontalScrollView
+  - Device (~> 3.0.3)
   - Google
   - Google/SignIn
   - GoogleAPIClientForREST/Drive (~> 1.2.1)
@@ -57,7 +57,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   ASHorizontalScrollView: 9c98b9226509540075b6398c92f68fb474bea7e9
-  Device.swift: f90a2493ab5059da5aeca4907ed55da7b16006fb
+  Device: 9a5264ee4e0f392e7153d2c46b10c8df46b7aad2
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
@@ -69,6 +69,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   HFCardCollectionViewLayout: 88cc7deb86baae9396450d9db323081cce50da59
 
-PODFILE CHECKSUM: 90570984922633119d3a09ce0f401dbadd0cbbc0
+PODFILE CHECKSUM: af61014977ca1d57dd93f0b1292b8ce0a82e9c36
 
 COCOAPODS: 1.3.1

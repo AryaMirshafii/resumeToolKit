@@ -11,7 +11,8 @@ import UIKit
 import CoreData
 import GoogleAPIClientForREST
 import GoogleSignIn
-import Device_swift
+import Device
+
 /*
 Uppercases a string. Helpful for saving a user's name/updating the name textfields properly
 */
@@ -169,24 +170,16 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             currentSchoolEntry.text = aUser?.value(forKeyPath: "schoolName") as? String
         }
         
-        let deviceType = UIDevice.current.deviceType
         
-        switch deviceType {
-        case .iPhone5:
-            print("iphone 5")
-        case .iPadAir2:
+        if (Device.isPad()){
+            print("It's an iPad")
             self.backgroundImage.frame = CGRect(x: 0, y: 0, width: 768, height: 1024)
             self.containerView.frame = CGRect(x: 213, y: 273, width: 343, height: 242)
             self.firstNameEntry.frame = CGRect(x: 272, y: 654, width: 224, height: 30)
             self.tapToFinish.frame = CGRect(x: 323, y: 701, width: 122, height: 48)
-            
-            
-        default: print("Check other available cases of DeviceType")
         }
         
-        
-
-        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -257,16 +250,10 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         
         view.endEditing(true)
-        print("else it is located at" + userInfoController.getFolderID() )
+        print("else it is located at" + userInfoController.getFolderID())
         
         
-        let deviceType = UIDevice.current.deviceType
         
-        switch deviceType {
-            case .iPhone6: print("Do stuff for iPhone6 Plus")
-            case .iPadMini: print("Do stuff for iPad mini")
-            default: print("Check other available cases of DeviceType")
-        }
         
         
         
