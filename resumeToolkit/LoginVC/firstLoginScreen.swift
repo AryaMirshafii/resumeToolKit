@@ -29,6 +29,7 @@ class firstLoginScreen:UIViewController,UITextFieldDelegate {
         self.firstNameEntry.delegate = self
         self.firstNameEntry.clearButtonMode = .whileEditing
         self.icon.isHidden = true
+        self.firstNameEntry.becomeFirstResponder()
         
         
     

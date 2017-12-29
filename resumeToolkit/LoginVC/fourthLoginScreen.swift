@@ -31,6 +31,8 @@ class fourthLoginScreen: UIViewController,UITextFieldDelegate {
         self.navigationController?.view.backgroundColor = .clear
         self.phoneEntry.delegate = self
         self.phoneEntry.clearButtonMode = .whileEditing
+        self.phoneEntry.becomeFirstResponder()
+        self.phoneEntry.keyboardType = .numbersAndPunctuation
         
         
         

@@ -233,6 +233,17 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
+        self.uploadFolder()
+        
+        
+        
+        
+        
+        
+    }
+    
+    func uploadFolder(){
+        print("yuo are" + String(signedIn) + "signed in " )
         dataController.savefirstName(firstName: firstNameEntry.text!)
         dataController.saveLastName(lastName: lastNameEntry.text!)
         dataController.saveEmail(email: emailEntry.text!)
@@ -246,17 +257,11 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         if(signedIn){
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
-       
+        
         
         
         view.endEditing(true)
         print("else it is located at" + userInfoController.getFolderID())
-        
-        
-        
-        
-        
-        
     }
     
     /*
@@ -384,8 +389,14 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
                 driveFileManager.createFolder(userLastName! + "_" + userFirstName!)
                 
             }
+            
  
             fetchFolder()
+            userDefaultsDidChange()
+            self.uploadFolder()
+            
+            
+            //driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
     }
     

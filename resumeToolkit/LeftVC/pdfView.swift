@@ -22,8 +22,11 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     
     //getfilepath ==
     
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var largeWebView: UIWebView!
     
+    
+    
+    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var resumeNameLabel: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
     
@@ -31,10 +34,9 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(iOS 11.0, *) {
-            //self.webView = self.webView as WKWebView
-        }
+        
         self.webView.delegate = self
+        self.largeWebView.delegate = self
         
         
         userDefaultsDidChange()
@@ -42,10 +44,12 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         notificationCenter.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
        
-        //previousFilePath = userInfoController.getFilePath()
-        //self.loadPDF(filePath: pdfGenerate.createPDFFileAndReturnPath())
+        
+        
         self.webView.isOpaque = true
         self.webView.backgroundColor = UIColor.clear
+        self.largeWebView.isOpaque = true
+        self.largeWebView.backgroundColor = UIColor.clear
         
         let button1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
         let button2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
@@ -53,12 +57,11 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         let button4 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
         
         userSelect.uniformItemSize = CGSize(width: 90, height: 140)
-        //userSelect.setItemsMarginOnce()
-        //userSelect.numberOfItemsPerScreen = 2
-        //userSelect.defaultMarginSettings.numberOfItemsPerScreen = 2
-        userSelect.marginSettings_375 =  MarginSettings(leftMargin: 10, miniMarginBetweenItems: 15, miniAppearWidthOfLastItem: 15)
+        
+        userSelect.marginSettings_375 =  MarginSettings(leftMargin: 20, miniMarginBetweenItems: 15, miniAppearWidthOfLastItem: 15)
         userSelect.marginSettings_768 =  MarginSettings(leftMargin: 40, miniMarginBetweenItems: 30, miniAppearWidthOfLastItem: 20)
-        //userSelect.setItemsMarginOnce()
+        userSelect.marginSettings_414 =  MarginSettings(leftMargin: 30, miniMarginBetweenItems: 15, miniAppearWidthOfLastItem: 20)
+        
         userSelect.clipsToBounds = true
         
         button1.image = #imageLiteral(resourceName: "resume1Icon")
@@ -70,33 +73,26 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         userSelect.addItems([button1,button2,button3,button4])
        
-        //userSelect.marginSettings = MarginSettings(leftMargin: <#T##CGFloat#>, numberOfItemsPerScreen: <#T##Float#>)
         
-        
-        
-        
-       
-        
-        //userSelect.showsHorizontalScrollIndicator = true
-        //self.userSelect.clipsToBounds = true
-        
-        
-       // self.webView.scrollView.zoomScale = -2.0
-        
-        //self.webView.scrollView.setZoomScale( 5.0, animated: false)
         
         var contentRect = CGRect.zero
         for view in self.webView.scrollView.subviews {
             contentRect = contentRect.union(view.frame) }
         self.webView.scrollView.contentSize = contentRect.size
         
+        
+        
+        
+        
+        for view in self.largeWebView.scrollView.subviews {
+            contentRect = contentRect.union(view.frame) }
+        self.largeWebView.scrollView.contentSize = contentRect.size
+        
         self.userSelect.delegate = self
         self.userSelect.bounces = true
         
         
     
-        //let notificationCenter = NotificationCenter.default
-        //notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         
         if(userInfoController.getResumeIndex() == "0"){
             resumeNameLabel.text = "Plain"
@@ -115,10 +111,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
             resumeNameLabel.text = "Vibrant Modern"
             userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.5)
         }
-        if (Device.isPad()){
-            print("It's an iPad")
-            //self.webView.frame = CGRect(x: 0, y: 0, width: 768, height: 785)
-        }
+        
         
         
         
@@ -186,31 +179,20 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         let pdfData = NSMutableData()
         
-        
-       // self.webView.frame = CGRect(x: 0, y: -154, width: 375, height: 608)
-        
-        
-        
-        
-        //self.webView.frame =  CGRect(x: -237, y: -300, width: 612, height: 792)
-        //self.webView.bounds =  CGRect(x:0, y: 0, width: 612, height: 792)
-        //webView.layoutIfNeeded()
-        //self.webView.bounds =  CGRect(x: 0, y: 0, width: 612, height: 792)
-        
-        
-        // uncomment for later
-        //self.webView.frame = CGRect(x: 0, y: self.webView.frame.height - webView.scrollView.contentSize.height, width: 375, height: webView.scrollView.contentSize.height)
+        self.largeWebView.stringByEvaluatingJavaScript(from: "document.body.style.zoom = 0.8;")
+        self.largeWebView.contentMode = .scaleAspectFit
+       
 
         
         loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
         
-        UIGraphicsBeginPDFContextToData(pdfData, webView.bounds, nil)
+        UIGraphicsBeginPDFContextToData(pdfData, largeWebView.bounds, nil)
         defer { UIGraphicsEndPDFContext() }
         UIGraphicsBeginPDFPage()
         
         guard let pdfContext = UIGraphicsGetCurrentContext() else { return }
         
-        let rescale: CGFloat = 10
+        let rescale: CGFloat = 5
         
         func scaler(v: UIView) {
             if !v.isKind(of:UIStackView.self) {
@@ -220,29 +202,28 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
                 scaler(v: sv)
             }
         }
-        scaler(v: self.webView)
+        scaler(v: self.largeWebView)
         
-        let bigSize = CGSize(width: webView.frame.size.width*rescale, height: webView.frame.size.height*rescale)
+        let bigSize = CGSize(width: largeWebView.frame.size.width*rescale, height: largeWebView.frame.size.height*rescale)
         UIGraphicsBeginImageContextWithOptions(bigSize, true, 1)
         let context = UIGraphicsGetCurrentContext()!
         
         context.setFillColor(UIColor.white.cgColor)
         context.fill(CGRect(origin: CGPoint(x: 0, y: 0), size: bigSize))
         
-        // Must increase the transform scale
-        //CGContextScaleCTM(context, rescale, rescale)
+        
         context.scaleBy(x: rescale, y: rescale)
-        webView.layer.render(in: context)
+        largeWebView.layer.render(in: context)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        //let page = CGRect(x: 0, y: -300, width: 612, height: 792)
+        
         
         
         pdfContext.saveGState()
         //CGContextTranslateCTM(pdfContext, webView.frame.origin.x, webView.frame.origin.x) // where the view should be shown
-        pdfContext.translateBy(x: webView.frame.origin.x, y: webView.frame.origin.x)
+        pdfContext.translateBy(x: largeWebView.frame.origin.x, y: largeWebView.frame.origin.x)
         //CGContextScaleCTM(pdfContext, 1/rescale, 1/rescale)
         pdfContext.scaleBy(x: 1/rescale, y: 1/rescale)
         let frame = CGRect(origin: CGPoint(x: 0, y: 0), size: bigSize)
@@ -263,12 +244,12 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         if(pdfData != NSData()){
             
         }
-        //self.webView.frame = CGRect(x: 0, y: 0, width: 375, height: 462)
-       // self.webView.bounds =  CGRect(x: 0, y: 0, width: 375, height: 462)
        
-        
+       
+        print("the frame is " + String(describing: largeWebView.frame))
         
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -281,13 +262,20 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         let urlRequest = NSURLRequest(url: url as URL)
         
         
+        
+        largeWebView.loadHTMLString(html, baseURL: url as URL)
         webView.loadHTMLString(html, baseURL: url as URL)
         
-        
+        print("the frame is actually" + String(describing:largeWebView.scrollView.contentSize))
+        largeWebView.frame = CGRect(x: 0, y: 0, width: largeWebView.scrollView.frame.width, height: largeWebView.scrollView.frame.height)
         var contentRect = CGRect.zero
         for view in self.webView.scrollView.subviews {
             contentRect = contentRect.union(view.frame) }
         self.webView.scrollView.contentSize = contentRect.size
+        
+        for view in self.largeWebView.scrollView.subviews {
+            contentRect = contentRect.union(view.frame) }
+        self.largeWebView.scrollView.contentSize = contentRect.size
         
         
         
@@ -308,12 +296,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        if(self.isEmailing){
-            let scrollPoint = CGPoint(x: 0, y: webView.scrollView.contentSize.height - webView.frame.size.height)
-            self.webView.scrollView.setContentOffset(scrollPoint, animated: true)
-            //userDefaultsDidChange()
-            //Set false if you doesn't want animation
-        }
+        
         self.isEmailing = false
         
     }
@@ -358,22 +341,6 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     }
     
     
-    func createPdfFromView(aView: UIView, saveToDocumentsWithFileName fileName: String){
-        let pdfData = NSMutableData()
-        UIGraphicsBeginPDFContextToData(pdfData, aView.bounds, nil)
-        UIGraphicsBeginPDFPage()
-        
-        guard let pdfContext = UIGraphicsGetCurrentContext() else { return }
-        
-        aView.layer.render(in: pdfContext)
-        UIGraphicsEndPDFContext()
-        
-        if let documentDirectories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
-            let documentsFileName = documentDirectories + "/" + fileName
-            debugPrint(documentsFileName)
-            pdfData.write(toFile: documentsFileName, atomically: true)
-        }
-    }
     
     
     

@@ -30,7 +30,8 @@ class fifthLoginScreen: UIViewController, UITextFieldDelegate {
         self.navigationController?.view.backgroundColor = .clear
         self.currentSchoolEntry.delegate = self
         self.currentSchoolEntry.clearButtonMode = .whileEditing
-        currentSchoolEntry.text = "Georgia Tech Excel Program"
+        self.currentSchoolEntry.text = "Georgia Tech Excel Program"
+        self.currentSchoolEntry.becomeFirstResponder()
         
         
         

@@ -59,26 +59,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
         currentSchoolEntry.clipsToBounds = true
          */
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
-       
+    
         
         //UNCOMMENT
         
@@ -91,9 +72,7 @@ class secondLoginScreen: UIViewController, UITextFieldDelegate  {
        currentSchoolEntry.text = "Georgia Tech Excel Program"
         
         
-        
-        
-        
+       
     }
     
     

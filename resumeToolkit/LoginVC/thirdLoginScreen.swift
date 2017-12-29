@@ -31,6 +31,8 @@ class thirdLoginScreen: UIViewController,UITextFieldDelegate {
         self.navigationController?.view.backgroundColor = .clear
         self.emailEntry.delegate = self
         self.emailEntry.clearButtonMode = .whileEditing
+        self.emailEntry.becomeFirstResponder()
+        emailEntry.keyboardType = .emailAddress
         
         
     }

@@ -28,12 +28,7 @@ class secondLogin: UIViewController,UITextFieldDelegate {
         self.navigationController?.view.backgroundColor = .clear
         self.lastNameEntry.delegate = self
         self.lastNameEntry.clearButtonMode = .whileEditing
-        
-        
-        
-       
-        
-        
+        self.lastNameEntry.becomeFirstResponder()
         
        
     }
