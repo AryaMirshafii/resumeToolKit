@@ -9,5 +9,10 @@
 import Foundation
 
 class course: resumeItem {
+    var description: String
+    init(name: String, entryType: String, description: String) {
+        self.description = description
+        super.init(name: name, entryType: entryType)
+    }
     
 }

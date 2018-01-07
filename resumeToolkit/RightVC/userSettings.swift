@@ -182,6 +182,13 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     
     }
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        self.uploadFolder()
+        return true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
         
@@ -241,7 +248,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         
     }
-    
+    var reloadCounter = 100
     func uploadFolder(){
         print("yuo are" + String(signedIn) + "signed in " )
         dataController.savefirstName(firstName: firstNameEntry.text!)
@@ -258,7 +265,8 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
         
-        
+        userInfoController.saveChangeText(text: String(reloadCounter))
+        reloadCounter += 1
         
         view.endEditing(true)
         print("else it is located at" + userInfoController.getFolderID())

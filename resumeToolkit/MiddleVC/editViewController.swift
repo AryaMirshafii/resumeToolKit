@@ -302,7 +302,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         } else if(entryType == "Courses"){
             dataController.saveCourses(courses: "Courses" + "_" + courseNameEntry.text! + "_" + courseDescription.text)
         } else if(entryType == "Extracurriculars"){
-            dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + extracurricularNameEntry.text! + "_" + extracurricularDescription.text)
+            dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + extracurricularNameEntry.text! + "_" + extracurricularDescription.text + "_" + yearEntry.text!)
         }
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1

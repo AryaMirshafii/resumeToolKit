@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class resumeItemCell:UITableViewCell,UITextViewDelegate {
+class resumeItemCell:UITableViewCell,UITextFieldDelegate,UITextViewDelegate {
     
     @IBOutlet weak var entryDescriptionField: UITextView!
     @IBOutlet weak var itemNameLabel: UILabel!
@@ -24,7 +24,7 @@ class resumeItemCell:UITableViewCell,UITextViewDelegate {
     
     var dataController = dataManager()
     var infoController = userInfo()
-    override func awakeFromNib() {
+     override func awakeFromNib() {
         self.entryDescriptionField.layer.cornerRadius = 10
         
         entryDescriptionField.delegate = self
@@ -35,6 +35,7 @@ class resumeItemCell:UITableViewCell,UITextViewDelegate {
         self.saveButton.isHidden = true
         self.cancelButton.isHidden = true
     }
+    
     
     @objc func longPressed(_ sender: UILongPressGestureRecognizer)
     {

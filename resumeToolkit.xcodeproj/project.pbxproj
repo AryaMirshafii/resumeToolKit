@@ -20,14 +20,21 @@
 		D13FA6B51F7DB88500AB567C /* CODE Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D13FA6B31F7DB87C00AB567C /* CODE Light.otf */; };
 		D13FA6B71F7DBB6C00AB567C /* Infinity.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D13FA6B61F7DBB2100AB567C /* Infinity.ttf */; };
 		D14A74A81FAE914E00D56DBC /* resume4.html in Resources */ = {isa = PBXBuildFile; fileRef = D14A74A71FAE914E00D56DBC /* resume4.html */; };
-		D152E3A61F61D741002F5F54 /* resumeDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3A51F61D741002F5F54 /* resumeDataController.swift */; };
 		D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3AF1F61DDC5002F5F54 /* SearchBarView.swift */; };
-		D152E3B21F61DE94002F5F54 /* resumeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B11F61DE94002F5F54 /* resumeItem.swift */; };
 		D152E3B81F620630002F5F54 /* entryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B71F620630002F5F54 /* entryCell.swift */; };
 		D152E3BA1F621B5C002F5F54 /* editViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B91F621B5C002F5F54 /* editViewController.swift */; };
-		D152E3BC1F624C15002F5F54 /* experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BB1F624C15002F5F54 /* experience.swift */; };
-		D152E3BE1F624C36002F5F54 /* skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BD1F624C36002F5F54 /* skill.swift */; };
-		D152E3C01F624C53002F5F54 /* schoolWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3BF1F624C53002F5F54 /* schoolWork.swift */; };
+		D16175F31FFC290400EF3F08 /* education.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175ED1FFC290200EF3F08 /* education.swift */; };
+		D16175F41FFC290400EF3F08 /* experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175EE1FFC290300EF3F08 /* experience.swift */; };
+		D16175F51FFC290400EF3F08 /* extracurricular.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175EF1FFC290300EF3F08 /* extracurricular.swift */; };
+		D16175F61FFC290400EF3F08 /* resumeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175F01FFC290300EF3F08 /* resumeItem.swift */; };
+		D16175F71FFC290400EF3F08 /* course.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175F11FFC290300EF3F08 /* course.swift */; };
+		D16175F81FFC290400EF3F08 /* skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175F21FFC290300EF3F08 /* skill.swift */; };
+		D16175FF1FFC29DF00EF3F08 /* courseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175FA1FFC29DE00EF3F08 /* courseCell.swift */; };
+		D16176001FFC29DF00EF3F08 /* extracurricularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175FB1FFC29DE00EF3F08 /* extracurricularCell.swift */; };
+		D16176011FFC29DF00EF3F08 /* experienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175FC1FFC29DF00EF3F08 /* experienceCell.swift */; };
+		D16176021FFC29DF00EF3F08 /* educationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175FD1FFC29DF00EF3F08 /* educationCell.swift */; };
+		D16176031FFC29DF00EF3F08 /* skillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175FE1FFC29DF00EF3F08 /* skillCell.swift */; };
+		D16176051FFC29EA00EF3F08 /* resumeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16176041FFC29EA00EF3F08 /* resumeCell.swift */; };
 		D16C21411FBD35510005C7C2 /* palanquin-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C21351FBD35500005C7C2 /* palanquin-bold.ttf */; };
 		D16C21421FBD35510005C7C2 /* palanquin-extralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C21361FBD35500005C7C2 /* palanquin-extralight.ttf */; };
 		D16C21431FBD35510005C7C2 /* palanquin-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C21371FBD35500005C7C2 /* palanquin-light.ttf */; };
@@ -81,7 +88,6 @@
 		D1E4579C1F5A176000D1E030 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E4579A1F5A176000D1E030 /* LaunchScreen.storyboard */; };
 		D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */; };
 		D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */; };
-		D1EF9D7F1F6C8B7300BEB77A /* course.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF9D7E1F6C8B7300BEB77A /* course.swift */; };
 		FDE8F1016BB5B5CF62A5078D /* Pods_resumeToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82411673F2ECB91FE217AD0 /* Pods_resumeToolkit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -105,12 +111,20 @@
 		D14A74A71FAE914E00D56DBC /* resume4.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = resume4.html; sourceTree = "<group>"; };
 		D152E3A51F61D741002F5F54 /* resumeDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resumeDataController.swift; sourceTree = "<group>"; };
 		D152E3AF1F61DDC5002F5F54 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
-		D152E3B11F61DE94002F5F54 /* resumeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resumeItem.swift; sourceTree = "<group>"; };
 		D152E3B71F620630002F5F54 /* entryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entryCell.swift; sourceTree = "<group>"; };
 		D152E3B91F621B5C002F5F54 /* editViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editViewController.swift; sourceTree = "<group>"; };
-		D152E3BB1F624C15002F5F54 /* experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = experience.swift; sourceTree = "<group>"; };
-		D152E3BD1F624C36002F5F54 /* skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skill.swift; sourceTree = "<group>"; };
-		D152E3BF1F624C53002F5F54 /* schoolWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = schoolWork.swift; sourceTree = "<group>"; };
+		D16175ED1FFC290200EF3F08 /* education.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = education.swift; sourceTree = "<group>"; };
+		D16175EE1FFC290300EF3F08 /* experience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experience.swift; sourceTree = "<group>"; };
+		D16175EF1FFC290300EF3F08 /* extracurricular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extracurricular.swift; sourceTree = "<group>"; };
+		D16175F01FFC290300EF3F08 /* resumeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resumeItem.swift; sourceTree = "<group>"; };
+		D16175F11FFC290300EF3F08 /* course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = course.swift; sourceTree = "<group>"; };
+		D16175F21FFC290300EF3F08 /* skill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = skill.swift; sourceTree = "<group>"; };
+		D16175FA1FFC29DE00EF3F08 /* courseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = courseCell.swift; sourceTree = "<group>"; };
+		D16175FB1FFC29DE00EF3F08 /* extracurricularCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extracurricularCell.swift; sourceTree = "<group>"; };
+		D16175FC1FFC29DF00EF3F08 /* experienceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experienceCell.swift; sourceTree = "<group>"; };
+		D16175FD1FFC29DF00EF3F08 /* educationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = educationCell.swift; sourceTree = "<group>"; };
+		D16175FE1FFC29DF00EF3F08 /* skillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = skillCell.swift; sourceTree = "<group>"; };
+		D16176041FFC29EA00EF3F08 /* resumeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resumeCell.swift; sourceTree = "<group>"; };
 		D16C21351FBD35500005C7C2 /* palanquin-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-bold.ttf"; sourceTree = "<group>"; };
 		D16C21361FBD35500005C7C2 /* palanquin-extralight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-extralight.ttf"; sourceTree = "<group>"; };
 		D16C21371FBD35500005C7C2 /* palanquin-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-light.ttf"; sourceTree = "<group>"; };
@@ -169,7 +183,6 @@
 		D1E4579D1F5A176000D1E030 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1E457A51F5A194800D1E030 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginScreen.swift; sourceTree = "<group>"; };
-		D1EF9D7E1F6C8B7300BEB77A /* course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = course.swift; sourceTree = "<group>"; };
 		D1F2D3971FD4832000AFD91E /* resumeToolkit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = resumeToolkit.entitlements; sourceTree = "<group>"; };
 		D82411673F2ECB91FE217AD0 /* Pods_resumeToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_resumeToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -260,6 +273,32 @@
 			path = RightVC;
 			sourceTree = "<group>";
 		};
+		D16175F91FFC290F00EF3F08 /* resumeItemSubClasses */ = {
+			isa = PBXGroup;
+			children = (
+				D16175F11FFC290300EF3F08 /* course.swift */,
+				D16175ED1FFC290200EF3F08 /* education.swift */,
+				D16175EE1FFC290300EF3F08 /* experience.swift */,
+				D16175EF1FFC290300EF3F08 /* extracurricular.swift */,
+				D16175F01FFC290300EF3F08 /* resumeItem.swift */,
+				D16175F21FFC290300EF3F08 /* skill.swift */,
+			);
+			path = resumeItemSubClasses;
+			sourceTree = "<group>";
+		};
+		D16176061FFC29F100EF3F08 /* Cell Types */ = {
+			isa = PBXGroup;
+			children = (
+				D16175FA1FFC29DE00EF3F08 /* courseCell.swift */,
+				D16175FD1FFC29DF00EF3F08 /* educationCell.swift */,
+				D16175FC1FFC29DF00EF3F08 /* experienceCell.swift */,
+				D16175FB1FFC29DE00EF3F08 /* extracurricularCell.swift */,
+				D16175FE1FFC29DF00EF3F08 /* skillCell.swift */,
+				D16176041FFC29EA00EF3F08 /* resumeCell.swift */,
+			);
+			path = "Cell Types";
+			sourceTree = "<group>";
+		};
 		D16C21341FBD35500005C7C2 /* palanquin */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,11 +340,6 @@
 				D1DB936F1F70A3EE00C210B4 /* userSetUp.m */,
 				D18F9B471F70645800FB48EA /* GoogleService-Info.plist */,
 				D18CF7991F63A01C00C625E4 /* SimplePDF.swift */,
-				D152E3B11F61DE94002F5F54 /* resumeItem.swift */,
-				D152E3BB1F624C15002F5F54 /* experience.swift */,
-				D152E3BD1F624C36002F5F54 /* skill.swift */,
-				D152E3BF1F624C53002F5F54 /* schoolWork.swift */,
-				D1EF9D7E1F6C8B7300BEB77A /* course.swift */,
 				D1E457951F5A175E00D1E030 /* resumeToolkit.xcdatamodeld */,
 				D106288D1F6066FE001880AD /* Fonts */,
 				D1E4578D1F5A175D00D1E030 /* resumeToolkit */,
@@ -327,6 +361,8 @@
 		D1E4578D1F5A175D00D1E030 /* resumeToolkit */ = {
 			isa = PBXGroup;
 			children = (
+				D16176061FFC29F100EF3F08 /* Cell Types */,
+				D16175F91FFC290F00EF3F08 /* resumeItemSubClasses */,
 				D1E457981F5A175F00D1E030 /* Assets.xcassets */,
 				D1F2D3971FD4832000AFD91E /* resumeToolkit.entitlements */,
 				D1C136701FDCEB0400AA88C0 /* cardViewController.swift */,
@@ -550,33 +586,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D16176001FFC29DF00EF3F08 /* extracurricularCell.swift in Sources */,
 				D18DCD391F74946300F9E7DB /* Award.swift in Sources */,
 				D18236801FA1736E00801E00 /* thirdLoginScreen.swift in Sources */,
 				D18236821FA1750600801E00 /* secondLogin.swift in Sources */,
-				D1EF9D7F1F6C8B7300BEB77A /* course.swift in Sources */,
 				D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */,
+				D16175F51FFC290400EF3F08 /* extracurricular.swift in Sources */,
 				D18286F31F618FC700CAD85A /* pdfView.swift in Sources */,
-				D152E3C01F624C53002F5F54 /* schoolWork.swift in Sources */,
+				D16175F71FFC290400EF3F08 /* course.swift in Sources */,
+				D16175F61FFC290400EF3F08 /* resumeItem.swift in Sources */,
+				D16175F31FFC290400EF3F08 /* education.swift in Sources */,
 				D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */,
 				D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */,
-				D152E3BE1F624C36002F5F54 /* skill.swift in Sources */,
 				D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */,
+				D16176021FFC29DF00EF3F08 /* educationCell.swift in Sources */,
+				D16176051FFC29EA00EF3F08 /* resumeCell.swift in Sources */,
 				D134D8351FF3588E0062367A /* resumeItemCell.swift in Sources */,
-				D152E3A61F61D741002F5F54 /* resumeDataController.swift in Sources */,
 				D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */,
 				D125BA821F608B3E0077C0BD /* userInfo.swift in Sources */,
-				D152E3BC1F624C15002F5F54 /* experience.swift in Sources */,
 				D152E3BA1F621B5C002F5F54 /* editViewController.swift in Sources */,
+				D16175F81FFC290400EF3F08 /* skill.swift in Sources */,
 				D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */,
+				D16175F41FFC290400EF3F08 /* experience.swift in Sources */,
 				D18236841FA175C200801E00 /* firstLoginScreen.swift in Sources */,
-				D152E3B21F61DE94002F5F54 /* resumeItem.swift in Sources */,
 				D18286F11F618F1C00CAD85A /* testPDFGenerator.swift in Sources */,
 				D134D8311FF358760062367A /* AppDelegate.swift in Sources */,
 				D182367C1FA16EF000801E00 /* fifthLoginScreen.swift in Sources */,
 				D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */,
 				D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */,
+				D16176011FFC29DF00EF3F08 /* experienceCell.swift in Sources */,
+				D16176031FFC29DF00EF3F08 /* skillCell.swift in Sources */,
 				D1C136721FDCEB0600AA88C0 /* cardViewController.swift in Sources */,
 				D182367E1FA171B400801E00 /* fourthLoginScreen.swift in Sources */,
+				D16175FF1FFC29DF00EF3F08 /* courseCell.swift in Sources */,
 				D152E3B81F620630002F5F54 /* entryCell.swift in Sources */,
 				D134D8331FF358840062367A /* collectionViewCell.temp_caseinsensitive_rename.swift in Sources */,
 				D133C6A71F5A60600080B598 /* dataManager.swift in Sources */,

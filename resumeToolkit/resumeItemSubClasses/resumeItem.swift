@@ -10,12 +10,11 @@ import Foundation
 
 class resumeItem {
     var name: String
-    var description: String
+    
     var entryType: String
     
-    init(name: String,description: String, entryType: String){
+    init(name: String,entryType: String){
         self.name = name
-        self.description = description
         self.entryType = entryType
     }
     

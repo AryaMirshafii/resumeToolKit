@@ -411,7 +411,7 @@ class testPDFGenerator {
                 newHTML = newHTML.replacingOccurrences(of: "ExperienceGoHere", with: experienceHTML)
                 
             } else {
-                newHTML = newHTML.replacingOccurrences(of: "<div class=\"yui-gf\"><div class=\"yui-u first\"><h2>Experience</h2></div><div class=\"yui-u\">ExperienceGoHere</div></div>", with: "")
+                newHTML = newHTML.replacingOccurrences(of: "<div class=\"yui-gf\"><div class=\"yui-u first\"><h2>Experience</h2></div><div class=\"yui-u\">ExperienceGoHere</div>", with: "")
             }
             
             

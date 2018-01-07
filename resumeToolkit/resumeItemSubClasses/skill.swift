@@ -1,5 +1,5 @@
 //
-//  schoolWork.swift
+//  skill.swift
 //  resumeToolkit
 //
 //  Created by arya mirshafii on 9/7/17.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-class schoolWork: resumeItem {
+class skill: course {
     
 }

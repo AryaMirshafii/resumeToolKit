@@ -15,7 +15,7 @@ import CoreData
 class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopoverPresentationControllerDelegate {
     
     
-    
+    /**
     
     @IBOutlet weak var saveObjectiveButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
@@ -149,47 +149,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     }
     
     
-    func filterTableView(text: String) {
-        
-        
-        
-       
-        
-        print("searching for" + text)
-        
-        searchDict["Skills"] = skillsList.filter({ (mod) -> Bool in
-            
-           return mod.name.lowercased().contains(text.lowercased()) || mod.description.lowercased().contains(text.lowercased())
-        })
-        
-        
-        
-        
-        
-        searchDict["Courses"] = courseList.filter({ (mod) -> Bool in
-            
-            return mod.name.lowercased().contains(text.lowercased()) || mod.description.lowercased().contains(text.lowercased())
-        })
-        
-        
-        searchDict["Internship & Job Experience"] = experrienceList.filter({ (mod) -> Bool in
-            
-            return mod.name.lowercased().contains(text.lowercased()) || mod.description.lowercased().contains(text.lowercased())
-        })
-        
-        
-        searchDict["Extracurriculars"] = ExtracurricularsList.filter({ (mod) -> Bool in
-            
-            return mod.name.lowercased().contains(text.lowercased()) || mod.description.lowercased().contains(text.lowercased())
-        })
-        
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        
-        
-    }
+    
     
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -557,7 +517,7 @@ class resumeDataController: UITableViewController, UISearchBarDelegate, UIPopove
     
     
     
-    
+    */
     
     
     

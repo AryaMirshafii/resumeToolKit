@@ -13,6 +13,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="HKGrotesk-RegularLegacy.ttf">
+            <string>HKGrotesk-RegularLegacy</string>
+        </array>
+        <array key="HKGrotesk-SemiBold.ttf">
+            <string>HKGrotesk-SemiBold</string>
+        </array>
         <array key="HKGrotesk-SemiBoldLegacy.ttf">
             <string>HKGrotesk-SemiBoldLegacy</string>
         </array>
@@ -2885,12 +2891,6 @@
                                 <exclude reference="dg8-OV-e6G"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="0D0-O3-GVH"/>
-                                <exclude reference="Jce-Wj-xdk"/>
-                                <exclude reference="T4p-rr-VvV"/>
-                                <exclude reference="Uq2-rq-FRa"/>
-                                <exclude reference="eRv-Ed-GKA"/>
-                                <exclude reference="plc-gX-BN3"/>
                                 <exclude reference="05T-DS-qYi"/>
                                 <exclude reference="6pW-U7-a6w"/>
                                 <exclude reference="7yT-mm-Mfj"/>
@@ -3002,13 +3002,16 @@
                                 <exclude reference="Uyi-On-znh"/>
                                 <exclude reference="egb-vq-rZO"/>
                                 <exclude reference="nG7-ZH-U2a"/>
+                                <exclude reference="0D0-O3-GVH"/>
+                                <exclude reference="Jce-Wj-xdk"/>
+                                <exclude reference="T4p-rr-VvV"/>
+                                <exclude reference="Uq2-rq-FRa"/>
+                                <exclude reference="eRv-Ed-GKA"/>
+                                <exclude reference="plc-gX-BN3"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
-                                <include reference="0D0-O3-GVH"/>
-                                <include reference="eRv-Ed-GKA"/>
-                                <include reference="plc-gX-BN3"/>
                                 <include reference="6pW-U7-a6w"/>
                                 <include reference="7yT-mm-Mfj"/>
                                 <include reference="IZx-d9-LnL"/>
@@ -3043,6 +3046,9 @@
                                 <include reference="Tpp-PZ-040"/>
                                 <include reference="pHD-Wa-Pav"/>
                                 <include reference="9yW-gk-lRY"/>
+                                <include reference="0D0-O3-GVH"/>
+                                <include reference="eRv-Ed-GKA"/>
+                                <include reference="plc-gX-BN3"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -3052,10 +3058,6 @@
                                 <include reference="dg8-OV-e6G"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="0D0-O3-GVH"/>
-                                <include reference="T4p-rr-VvV"/>
-                                <exclude reference="eRv-Ed-GKA"/>
-                                <exclude reference="plc-gX-BN3"/>
                                 <include reference="05T-DS-qYi"/>
                                 <exclude reference="6pW-U7-a6w"/>
                                 <exclude reference="7yT-mm-Mfj"/>
@@ -3128,12 +3130,14 @@
                                 <exclude reference="9yW-gk-lRY"/>
                                 <include reference="egb-vq-rZO"/>
                                 <exclude reference="nG7-ZH-U2a"/>
+                                <exclude reference="0D0-O3-GVH"/>
+                                <include reference="T4p-rr-VvV"/>
+                                <exclude reference="eRv-Ed-GKA"/>
+                                <exclude reference="plc-gX-BN3"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
-                                <include reference="Jce-Wj-xdk"/>
-                                <include reference="Uq2-rq-FRa"/>
                                 <include reference="HLM-JQ-51E"/>
                                 <include reference="JIB-hY-Gae"/>
                                 <include reference="LMu-TR-Odq"/>
@@ -3173,6 +3177,8 @@
                                 <include reference="T7U-ay-vW3"/>
                                 <exclude reference="YWr-Cv-ljv"/>
                                 <include reference="Uyi-On-znh"/>
+                                <include reference="Jce-Wj-xdk"/>
+                                <include reference="Uq2-rq-FRa"/>
                             </mask>
                         </variation>
                     </view>
@@ -4172,7 +4178,7 @@
                                 </variation>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-icon-png-898" translatesAutoresizingMaskIntoConstraints="NO" id="RuR-fr-ZmB">
-                                <rect key="frame" x="52" y="71" width="271" height="275.5"/>
+                                <rect key="frame" x="52" y="71" width="271" height="271"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.093322322279999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4191,7 +4197,9 @@
                             <constraint firstItem="lm0-BO-yLx" firstAttribute="centerX" secondItem="AwC-8d-e9u" secondAttribute="centerX" id="B04-5S-aId"/>
                             <constraint firstItem="lm0-BO-yLx" firstAttribute="centerX" secondItem="AwC-8d-e9u" secondAttribute="centerX" id="D1Y-hG-hlF"/>
                             <constraint firstItem="lm0-BO-yLx" firstAttribute="leading" secondItem="RwM-Je-mzB" secondAttribute="leadingMargin" constant="23" id="D4v-uY-AUX"/>
-                            <constraint firstItem="AwC-8d-e9u" firstAttribute="top" secondItem="RuR-fr-ZmB" secondAttribute="bottom" constant="18" id="D6U-Fz-vdu"/>
+                            <constraint firstItem="AwC-8d-e9u" firstAttribute="top" secondItem="RuR-fr-ZmB" secondAttribute="bottom" constant="18" id="D6U-Fz-vdu">
+                                <variation key="heightClass=regular-widthClass=compact" constant="22.5"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="lm0-BO-yLx" secondAttribute="trailing" constant="18" id="DUf-uE-yV8"/>
                             <constraint firstItem="lm0-BO-yLx" firstAttribute="top" secondItem="6W7-AM-iCy" secondAttribute="bottom" constant="245" id="Dvf-b2-16R"/>
                             <constraint firstItem="RuR-fr-ZmB" firstAttribute="leading" secondItem="RwM-Je-mzB" secondAttribute="leadingMargin" constant="46" id="GJD-7A-Fa4"/>
@@ -4435,7 +4443,7 @@
                                 </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-icon-png-898" translatesAutoresizingMaskIntoConstraints="NO" id="gsA-Ki-avq">
-                                <rect key="frame" x="62" y="35" width="251" height="213"/>
+                                <rect key="frame" x="62" y="35" width="251" height="251"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.56811294189999995" green="0.0" blue="0.8384625912" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4455,7 +4463,7 @@
                             <constraint firstAttribute="trailing" secondItem="xm2-aF-Ayh" secondAttribute="trailing" id="VAD-pj-M32"/>
                             <constraint firstItem="RQM-IR-T9z" firstAttribute="leading" secondItem="SWw-vd-5Oz" secondAttribute="leadingMargin" constant="-5" id="VVO-ke-OHR"/>
                             <constraint firstItem="RQM-IR-T9z" firstAttribute="top" secondItem="gsA-Ki-avq" secondAttribute="bottom" constant="24" id="Wy9-k9-QEm">
-                                <variation key="heightClass=regular-widthClass=compact" constant="61"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="23"/>
                             </constraint>
                             <constraint firstItem="xm2-aF-Ayh" firstAttribute="top" secondItem="SWw-vd-5Oz" secondAttribute="top" id="Z80-5d-ZhJ"/>
                             <constraint firstItem="gsA-Ki-avq" firstAttribute="top" secondItem="rg3-Kh-CMZ" secondAttribute="bottom" constant="8" symbolic="YES" id="ZWU-ek-ACw"/>
@@ -4634,7 +4642,7 @@
                                 </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mailicon" translatesAutoresizingMaskIntoConstraints="NO" id="juU-5W-TsC">
-                                <rect key="frame" x="62" y="35" width="251" height="213"/>
+                                <rect key="frame" x="62" y="35" width="251" height="251"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -4663,7 +4671,7 @@
                             <constraint firstItem="h9S-cV-gm2" firstAttribute="top" secondItem="QZs-mE-TXV" secondAttribute="top" id="oTa-OF-jzN"/>
                             <constraint firstItem="WPq-dD-AxY" firstAttribute="centerX" secondItem="sYa-Cj-MJL" secondAttribute="centerX" id="qkK-4s-TNQ"/>
                             <constraint firstItem="WPq-dD-AxY" firstAttribute="top" secondItem="juU-5W-TsC" secondAttribute="bottom" constant="24" id="rQJ-O4-fyL">
-                                <variation key="heightClass=regular-widthClass=compact" constant="61"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="23"/>
                             </constraint>
                             <constraint firstItem="h9S-cV-gm2" firstAttribute="top" secondItem="QZs-mE-TXV" secondAttribute="top" id="snp-Zy-Qft"/>
                             <constraint firstItem="juU-5W-TsC" firstAttribute="centerX" secondItem="WPq-dD-AxY" secondAttribute="centerX" id="uyE-xD-wbo"/>
@@ -4778,12 +4786,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="670-XN-dRQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone_icon" translatesAutoresizingMaskIntoConstraints="NO" id="yH5-P9-6Bk">
-                                <rect key="frame" x="62" y="35" width="251" height="250"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="flk-kb-AmX">
-                                <rect key="frame" x="75" y="360" width="225" height="30"/>
+                                <rect key="frame" x="75" y="360" width="198" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ARu-os-EKB"/>
                                     <constraint firstAttribute="width" constant="298" id="Oop-a7-yl2"/>
@@ -4810,7 +4814,7 @@
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What Is Your Phone Number?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFG-qy-PFM">
-                                <rect key="frame" x="5" y="309" width="366" height="32"/>
+                                <rect key="frame" x="5" y="309" width="339" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="bzH-hh-05z"/>
                                     <constraint firstAttribute="height" constant="32" id="vu2-mR-ysX"/>
@@ -4836,6 +4840,10 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newPhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="yH5-P9-6Bk">
+                                <rect key="frame" x="62" y="80" width="251" height="200"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.41077951419999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -4849,9 +4857,13 @@
                             <constraint firstItem="670-XN-dRQ" firstAttribute="bottom" secondItem="sar-DC-jS4" secondAttribute="top" id="6eP-1H-S1J"/>
                             <constraint firstAttribute="trailing" secondItem="670-XN-dRQ" secondAttribute="trailing" id="7V1-qw-E8g"/>
                             <constraint firstItem="yH5-P9-6Bk" firstAttribute="top" secondItem="hxd-WS-Auz" secondAttribute="bottom" constant="15" id="8GN-Jc-pQR">
+                                <variation key="heightClass=regular-widthClass=compact" constant="64"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="8"/>
                             </constraint>
                             <constraint firstItem="670-XN-dRQ" firstAttribute="top" secondItem="dlT-uG-Pvb" secondAttribute="top" id="DJA-H7-dtb"/>
+                            <constraint firstItem="yH5-P9-6Bk" firstAttribute="leading" secondItem="dlT-uG-Pvb" secondAttribute="leadingMargin" constant="46" id="Enx-Gh-ANS"/>
+                            <constraint firstItem="yH5-P9-6Bk" firstAttribute="top" secondItem="hxd-WS-Auz" secondAttribute="bottom" constant="60" id="FhG-Wu-7dm"/>
+                            <constraint firstItem="yH5-P9-6Bk" firstAttribute="centerX" secondItem="670-XN-dRQ" secondAttribute="centerX" id="GJ9-xB-avR"/>
                             <constraint firstItem="JFG-qy-PFM" firstAttribute="leading" secondItem="dlT-uG-Pvb" secondAttribute="leadingMargin" constant="23" id="QbN-oq-KNm"/>
                             <constraint firstItem="670-XN-dRQ" firstAttribute="leading" secondItem="dlT-uG-Pvb" secondAttribute="leading" id="RYZ-wR-D7v"/>
                             <constraint firstItem="flk-kb-AmX" firstAttribute="leading" secondItem="dlT-uG-Pvb" secondAttribute="leadingMargin" constant="59" id="Wck-eS-cfl">
@@ -4860,6 +4872,7 @@
                             <constraint firstAttribute="trailing" secondItem="670-XN-dRQ" secondAttribute="trailing" id="WmS-NP-zmf"/>
                             <constraint firstItem="670-XN-dRQ" firstAttribute="leading" secondItem="dlT-uG-Pvb" secondAttribute="leading" id="Zvk-fH-NCl"/>
                             <constraint firstItem="JFG-qy-PFM" firstAttribute="leading" secondItem="dlT-uG-Pvb" secondAttribute="leadingMargin" constant="-11" id="buR-sV-CfL"/>
+                            <constraint firstItem="JFG-qy-PFM" firstAttribute="top" secondItem="yH5-P9-6Bk" secondAttribute="bottom" constant="29" id="cEE-dc-nkc"/>
                             <constraint firstItem="JFG-qy-PFM" firstAttribute="centerX" secondItem="flk-kb-AmX" secondAttribute="centerX" id="e8R-VK-gYn"/>
                             <constraint firstItem="yH5-P9-6Bk" firstAttribute="centerX" secondItem="JFG-qy-PFM" secondAttribute="centerX" id="iVB-hI-iEt"/>
                             <constraint firstItem="yH5-P9-6Bk" firstAttribute="leading" secondItem="dlT-uG-Pvb" secondAttribute="leadingMargin" constant="46" id="ihL-EH-fii">
@@ -4875,6 +4888,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
                             <constraint firstItem="JFG-qy-PFM" firstAttribute="top" secondItem="yH5-P9-6Bk" secondAttribute="bottom" constant="24" id="zwQ-i9-4eI">
+                                <variation key="heightClass=regular-widthClass=compact" constant="25"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="23"/>
                             </constraint>
                         </constraints>
@@ -4892,6 +4906,9 @@
                                 <exclude reference="xv3-Zr-zv1"/>
                                 <exclude reference="4dB-Ud-XXp"/>
                                 <exclude reference="8GN-Jc-pQR"/>
+                                <exclude reference="Enx-Gh-ANS"/>
+                                <exclude reference="FhG-Wu-7dm"/>
+                                <exclude reference="GJ9-xB-avR"/>
                                 <exclude reference="iVB-hI-iEt"/>
                                 <exclude reference="ihL-EH-fii"/>
                                 <exclude reference="ncW-aW-D4N"/>
@@ -4899,6 +4916,7 @@
                                 <exclude reference="0f9-eO-Cp9"/>
                                 <exclude reference="QbN-oq-KNm"/>
                                 <exclude reference="buR-sV-CfL"/>
+                                <exclude reference="cEE-dc-nkc"/>
                                 <exclude reference="e8R-VK-gYn"/>
                                 <exclude reference="u5H-jD-3hC"/>
                                 <exclude reference="zwQ-i9-4eI"/>
@@ -4924,6 +4942,19 @@
                                 <include reference="Wck-eS-cfl"/>
                                 <include reference="y2x-pq-9pL"/>
                                 <include reference="5y9-BN-4x1"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="2kL-H7-C8S"/>
+                                <exclude reference="4dB-Ud-XXp"/>
+                                <exclude reference="8GN-Jc-pQR"/>
+                                <include reference="Enx-Gh-ANS"/>
+                                <include reference="FhG-Wu-7dm"/>
+                                <include reference="GJ9-xB-avR"/>
+                                <exclude reference="ihL-EH-fii"/>
+                                <include reference="cEE-dc-nkc"/>
+                                <exclude reference="zwQ-i9-4eI"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -5043,6 +5074,294 @@
                                                         <outlet property="entryDescriptionField" destination="SXT-3m-YnI" id="0AG-Fr-nkr"/>
                                                         <outlet property="itemNameLabel" destination="l41-0P-sB3" id="m4r-1y-PkI"/>
                                                         <outlet property="saveButton" destination="RTh-LT-fjz" id="Viq-hN-DL9"/>
+                                                    </connections>
+                                                </tableViewCell>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="extracurricularCell" rowHeight="145" id="IJ1-f4-zfC" customClass="extracurricularCell" customModule="resumeToolkit" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="198" width="317" height="145"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IJ1-f4-zfC" id="x76-QK-Bgz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="145"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tennis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyJ-Gq-pNa">
+                                                                <rect key="frame" x="16" y="11" width="286" height="29"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rHc-6Q-38g">
+                                                                <rect key="frame" x="34" y="48" width="307" height="99"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-RegularLegacy" family="HK Grotesk" pointSize="24"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlj-PE-kEx">
+                                                                <rect key="frame" x="310" y="11" width="58" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="1" green="0.2816441449" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <variation key="default">
+                                                            <mask key="subviews">
+                                                                <exclude reference="TyJ-Gq-pNa"/>
+                                                                <exclude reference="rHc-6Q-38g"/>
+                                                                <exclude reference="wlj-PE-kEx"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=compact">
+                                                            <mask key="subviews">
+                                                                <include reference="TyJ-Gq-pNa"/>
+                                                                <include reference="rHc-6Q-38g"/>
+                                                                <include reference="wlj-PE-kEx"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </tableViewCellContentView>
+                                                    <connections>
+                                                        <outlet property="extracurricularDescription" destination="rHc-6Q-38g" id="9oh-OZ-4tt"/>
+                                                        <outlet property="extracurricularNameLabel" destination="TyJ-Gq-pNa" id="uo9-fK-5NZ"/>
+                                                        <outlet property="extracurricularYearLabel" destination="wlj-PE-kEx" id="nyS-hJ-K4q"/>
+                                                    </connections>
+                                                </tableViewCell>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="courseCell" rowHeight="160" id="CSb-0R-X4Z" userLabel="courseCell" customClass="courseCell" customModule="resumeToolkit" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="343" width="317" height="160"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CSb-0R-X4Z" id="9JP-2Q-p6J">
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="160"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ECE 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooP-87-fqS">
+                                                                <rect key="frame" x="16" y="11" width="325" height="29"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MCd-in-MfP">
+                                                                <rect key="frame" x="34" y="48" width="307" height="59"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-RegularLegacy" family="HK Grotesk" pointSize="24"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="1" green="0.2816441449" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <variation key="default">
+                                                            <mask key="subviews">
+                                                                <exclude reference="ooP-87-fqS"/>
+                                                                <exclude reference="MCd-in-MfP"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=compact">
+                                                            <mask key="subviews">
+                                                                <include reference="ooP-87-fqS"/>
+                                                                <include reference="MCd-in-MfP"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </tableViewCellContentView>
+                                                    <connections>
+                                                        <outlet property="courseDescription" destination="MCd-in-MfP" id="jvq-5t-itA"/>
+                                                        <outlet property="courseNameLabel" destination="ooP-87-fqS" id="Skl-pP-pMF"/>
+                                                    </connections>
+                                                </tableViewCell>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="experienceCell" rowHeight="170" id="88A-OA-5eU" userLabel="experienceCell" customClass="experienceCell" customModule="resumeToolkit" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="503" width="317" height="170"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="88A-OA-5eU" id="IdN-E0-qSB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="170"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Intern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bor-wY-JNM">
+                                                                <rect key="frame" x="16" y="11" width="219" height="29"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEW-D9-07N">
+                                                                <rect key="frame" x="243" y="11" width="58" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Apple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR8-dj-jDL">
+                                                                <rect key="frame" x="16" y="48" width="210" height="25"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="20"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2B-Dt-FvW">
+                                                                <rect key="frame" x="311" y="11" width="58" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cLp-H0-jDb">
+                                                                <rect key="frame" x="34" y="80" width="307" height="89"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-RegularLegacy" family="HK Grotesk" pointSize="20"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steve Jobs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebG-Yg-Lgs">
+                                                                <rect key="frame" x="16" y="177" width="210" height="25"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="20"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="1" green="0.2816441449" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <variation key="default">
+                                                            <mask key="subviews">
+                                                                <exclude reference="bor-wY-JNM"/>
+                                                                <exclude reference="kEW-D9-07N"/>
+                                                                <exclude reference="tR8-dj-jDL"/>
+                                                                <exclude reference="j2B-Dt-FvW"/>
+                                                                <exclude reference="ebG-Yg-Lgs"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=compact">
+                                                            <mask key="subviews">
+                                                                <include reference="bor-wY-JNM"/>
+                                                                <include reference="kEW-D9-07N"/>
+                                                                <include reference="tR8-dj-jDL"/>
+                                                                <include reference="j2B-Dt-FvW"/>
+                                                                <include reference="cLp-H0-jDb"/>
+                                                                <include reference="ebG-Yg-Lgs"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </tableViewCellContentView>
+                                                    <connections>
+                                                        <outlet property="companyLabel" destination="tR8-dj-jDL" id="sYn-Dv-AOm"/>
+                                                        <outlet property="contactLabel" destination="ebG-Yg-Lgs" id="goT-6h-WLC"/>
+                                                        <outlet property="endYearLabel" destination="j2B-Dt-FvW" id="m8G-g8-7zz"/>
+                                                        <outlet property="experienceDescription" destination="cLp-H0-jDb" id="86k-pm-DUQ"/>
+                                                        <outlet property="positionlabel" destination="bor-wY-JNM" id="4EI-03-ngb"/>
+                                                        <outlet property="startYearLabel" destination="kEW-D9-07N" id="6sK-Md-5Qu"/>
+                                                    </connections>
+                                                </tableViewCell>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="skillCell" rowHeight="150" id="gfu-6b-vfP" customClass="skillCell" customModule="resumeToolkit" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="673" width="317" height="150"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gfu-6b-vfP" id="1Jt-fJ-3l8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="150"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tennis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXA-pT-Qbw">
+                                                                <rect key="frame" x="16" y="11" width="325" height="29"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vb6-hL-NcH">
+                                                                <rect key="frame" x="34" y="48" width="307" height="100"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-RegularLegacy" family="HK Grotesk" pointSize="22"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            </textView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="1" green="0.2816441449" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <variation key="default">
+                                                            <mask key="subviews">
+                                                                <exclude reference="OXA-pT-Qbw"/>
+                                                                <exclude reference="vb6-hL-NcH"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=compact">
+                                                            <mask key="subviews">
+                                                                <include reference="OXA-pT-Qbw"/>
+                                                                <include reference="vb6-hL-NcH"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </tableViewCellContentView>
+                                                    <connections>
+                                                        <outlet property="skillDescription" destination="vb6-hL-NcH" id="lxy-QB-GCR"/>
+                                                        <outlet property="skillNameLabel" destination="OXA-pT-Qbw" id="dMG-pg-iXN"/>
+                                                    </connections>
+                                                </tableViewCell>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="educationCell" rowHeight="120" id="Hga-at-iJT" customClass="educationCell" customModule="resumeToolkit" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="823" width="317" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hga-at-iJT" id="bJV-rp-y0Q">
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="120"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Georgia Tech" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxI-gn-dqd">
+                                                                <rect key="frame" x="16" y="11" width="219" height="29"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7n-OK-g37">
+                                                                <rect key="frame" x="243" y="11" width="58" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="B.S" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGm-lU-dk1">
+                                                                <rect key="frame" x="16" y="49" width="128" height="24"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="20"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Computer Engineering" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3n-JJ-hbP">
+                                                                <rect key="frame" x="159" y="45" width="210" height="24"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="20"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0V-en-VnH">
+                                                                <rect key="frame" x="311" y="11" width="58" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="1" green="0.2816441449" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <variation key="default">
+                                                            <mask key="subviews">
+                                                                <exclude reference="oxI-gn-dqd"/>
+                                                                <exclude reference="b7n-OK-g37"/>
+                                                                <exclude reference="uGm-lU-dk1"/>
+                                                                <exclude reference="f3n-JJ-hbP"/>
+                                                                <exclude reference="C0V-en-VnH"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="heightClass=regular-widthClass=compact">
+                                                            <mask key="subviews">
+                                                                <include reference="oxI-gn-dqd"/>
+                                                                <include reference="b7n-OK-g37"/>
+                                                                <include reference="uGm-lU-dk1"/>
+                                                                <include reference="f3n-JJ-hbP"/>
+                                                                <include reference="C0V-en-VnH"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </tableViewCellContentView>
+                                                    <connections>
+                                                        <outlet property="degreeTypeLabel" destination="uGm-lU-dk1" id="uSy-na-a56"/>
+                                                        <outlet property="majorLabel" destination="f3n-JJ-hbP" id="Wq1-Np-SzG"/>
+                                                        <outlet property="schoolEndYearLabel" destination="C0V-en-VnH" id="iQF-L5-4dj"/>
+                                                        <outlet property="schoolNameLabel" destination="oxI-gn-dqd" id="iL8-Yd-NCv"/>
+                                                        <outlet property="schoolStartYearLabel" destination="b7n-OK-g37" id="nbb-me-VhL"/>
                                                     </connections>
                                                 </tableViewCell>
                                             </prototypes>
@@ -5293,7 +5612,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                                 </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="schoolIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jM8-zO-x8m">
-                                <rect key="frame" x="62" y="35" width="251" height="213"/>
+                                <rect key="frame" x="63" y="28" width="251" height="251"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.2175154401549656" green="1" blue="0.19513979667062475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5308,7 +5627,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                             <constraint firstItem="F4d-lI-akM" firstAttribute="leading" secondItem="M5P-qY-WXf" secondAttribute="leadingMargin" constant="-5" id="GtH-ay-lOg"/>
                             <constraint firstItem="kXA-G8-iaD" firstAttribute="leading" secondItem="M5P-qY-WXf" secondAttribute="leading" id="HCJ-Jz-S4a"/>
                             <constraint firstItem="F4d-lI-akM" firstAttribute="top" secondItem="jM8-zO-x8m" secondAttribute="bottom" constant="24" id="HDr-dk-gF6">
-                                <variation key="heightClass=regular-widthClass=compact" constant="61"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="30"/>
                             </constraint>
                             <constraint firstItem="jM8-zO-x8m" firstAttribute="top" secondItem="Wwp-j8-WE2" secondAttribute="bottom" constant="8" symbolic="YES" id="Hfe-d0-LnR"/>
                             <constraint firstItem="kXA-G8-iaD" firstAttribute="bottom" secondItem="552-Y4-SB2" secondAttribute="top" id="I9i-2o-usJ"/>
@@ -5316,7 +5635,9 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                             <constraint firstItem="kXA-G8-iaD" firstAttribute="leading" secondItem="M5P-qY-WXf" secondAttribute="leading" id="LrX-tR-ULg"/>
                             <constraint firstItem="U28-wB-tt3" firstAttribute="leading" secondItem="M5P-qY-WXf" secondAttribute="leadingMargin" constant="59" id="Na6-Nc-2iQ"/>
                             <constraint firstItem="jM8-zO-x8m" firstAttribute="centerX" secondItem="F4d-lI-akM" secondAttribute="centerX" id="PEQ-bA-fdq"/>
-                            <constraint firstItem="jM8-zO-x8m" firstAttribute="leading" secondItem="M5P-qY-WXf" secondAttribute="leadingMargin" constant="46" id="QoA-rd-6dB"/>
+                            <constraint firstItem="jM8-zO-x8m" firstAttribute="leading" secondItem="M5P-qY-WXf" secondAttribute="leadingMargin" constant="46" id="QoA-rd-6dB">
+                                <variation key="heightClass=regular-widthClass=compact" constant="47"/>
+                            </constraint>
                             <constraint firstItem="U28-wB-tt3" firstAttribute="top" secondItem="F4d-lI-akM" secondAttribute="bottom" constant="19" id="WEI-aJ-eG9"/>
                             <constraint firstItem="F4d-lI-akM" firstAttribute="top" secondItem="jM8-zO-x8m" secondAttribute="bottom" constant="35" id="XMe-8c-Phq"/>
                             <constraint firstItem="kXA-G8-iaD" firstAttribute="top" secondItem="M5P-qY-WXf" secondAttribute="top" id="Y8k-WA-pba"/>
@@ -5326,7 +5647,9 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                             <constraint firstItem="jM8-zO-x8m" firstAttribute="leading" secondItem="M5P-qY-WXf" secondAttribute="leadingMargin" constant="96" id="mTu-NZ-2So"/>
                             <constraint firstItem="F4d-lI-akM" firstAttribute="centerX" secondItem="U28-wB-tt3" secondAttribute="centerX" id="nkD-y5-e6h"/>
                             <constraint firstItem="kXA-G8-iaD" firstAttribute="top" secondItem="M5P-qY-WXf" secondAttribute="top" id="vlI-fB-vpj"/>
-                            <constraint firstItem="jM8-zO-x8m" firstAttribute="top" secondItem="Wwp-j8-WE2" secondAttribute="bottom" constant="15" id="vlY-1I-Uit"/>
+                            <constraint firstItem="jM8-zO-x8m" firstAttribute="top" secondItem="Wwp-j8-WE2" secondAttribute="bottom" constant="15" id="vlY-1I-Uit">
+                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                            </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -5469,7 +5792,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
         <image name="envelope" width="128" height="128"/>
         <image name="lightBlue" width="1024" height="576"/>
         <image name="mailicon" width="2400" height="2400"/>
-        <image name="phone_icon" width="512" height="512"/>
+        <image name="newPhoneIcon" width="600" height="405"/>
         <image name="profile-icon-png-898" width="512" height="512"/>
         <image name="realLeft" width="32" height="32"/>
         <image name="realRight" width="32" height="32"/>

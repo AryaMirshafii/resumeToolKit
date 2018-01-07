@@ -219,18 +219,19 @@ class CollectionViewCell: HFCardCollectionViewCell {
         
         if(entryInfo[0] == "Skill"){
             
-            return skill(name: entryInfo[1], description: entryInfo[2],entryType: entryInfo[0])
+            return skill(name: entryInfo[1], entryType: entryInfo[0], description: entryInfo[2])
         } else if(entryInfo[0] == "Professional Development"){
             
             //return experience(name: entryInfo[1], description: entryInfo[2])
-            return experience(name: entryInfo[1], dateStarted: entryInfo[2], dateEnded: entryInfo[3], companyName: entryInfo[4], companyContact: entryInfo[5], description: entryInfo[6], entryType:entryInfo[0] )
+            
+            return experience(name: entryInfo[1], entryType:entryInfo[0], yearStarted: entryInfo[2], yearEnded: entryInfo[3], companyName: entryInfo[4], description: entryInfo[6], companyContact: entryInfo[5] )
         } else if(entryInfo[0] == "Courses"){
             
-            return course(name: entryInfo[1], description: entryInfo[2],entryType:entryInfo[0])
+            return course(name: entryInfo[1], entryType:entryInfo[0], description: entryInfo[2])
         } else if(entryInfo[0] == "Extracurriculars"){
-            return Award(name: entryInfo[1], description: entryInfo[2],entryType:entryInfo[0])
-        }
-        return resumeItem(name: "entryInfo[1]", description: "entryInfo[2]", entryType:"None")
+            return extracurricular(name: entryInfo[1], entryType:entryInfo[0], description: entryInfo[2], year:entryInfo[3])
+        } 
+        return resumeItem(name: "entryInfo[1]", entryType:"None")
     }
    var cellCounter = 0
     var CellIndexNumber:Int = -1
@@ -253,43 +254,76 @@ extension CollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     //creates individual cells in the card change this for each type of skill
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(itemsDict)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "resumeItemCell") as! resumeItemCell
-        let aSection = self.sections[self.cellCounter]
-        print("meanwhile the cell c0ounter is" + String(cellCounter))
+        var items = self.itemsDict[self.resumeSection]
         if(!itemsDict.isEmpty) {
-            
-            print(aSection + "     " + String(self.cellCounter))
-            
-            //cell.itemNameLabel?.text = "Table Cell #\(indexPath.row)"
-            //cell.itemNameLabel?.textColor = .white
-            
-            //let aSection = self.sections[cellCounter]
-            var items = self.itemsDict[aSection]
-            //print(aSection + "    "  + String(describing: items))
-            if(items != nil){
-                cell.itemNameLabel.isHidden = false
-                cell.entryDescriptionField.isHidden = false
-                cell.itemNameLabel.text = items![indexPath.row].name
-                cell.itemNameLabel?.textColor = .white
-                cell.entryDescriptionField.text = items![indexPath.row].description
-                cell.backgroundColor = .clear
-                cell.selectionStyle = .none
-                cell.cellType = resumeSection
-                //return cell
-            }else {
-                cell.itemNameLabel.isHidden = true
-                cell.entryDescriptionField.isHidden = true
+            if(self.resumeSection == "Education"){
+                let cell = tableView.dequeueReusableCell(withIdentifier: "educationCell") as! educationCell
+                if(items != nil){
+                    self.tableView?.rowHeight = 150
+                    let theEducationItem = items![indexPath.row] as! education
+                    cell.schoolNameLabel.text = theEducationItem.name
+                    cell.schoolStartYearLabel.text = theEducationItem.startYear
+                    cell.schoolEndYearLabel.text = theEducationItem.endYear
+                    cell.degreeTypeLabel.text = theEducationItem.degreeType
+                    cell.majorLabel.text = theEducationItem.major
+                    return cell
+                    
+                }
+                
+                
+            } else if(self.resumeSection == "Internship & Job Experience"){
+                let cell = tableView.dequeueReusableCell(withIdentifier: "experienceCell") as! experienceCell
+                if(items != nil){
+                    self.tableView?.rowHeight = 230
+                    let theExperienceItem = items![indexPath.row] as! experience
+                    cell.positionlabel.text = theExperienceItem.name
+                    cell.startYearLabel.text = theExperienceItem.yearStarted
+                    cell.endYearLabel.text = theExperienceItem.yearEnded
+                    cell.companyLabel.text = theExperienceItem.companyName
+                    cell.experienceDescription.text = theExperienceItem.description
+                    cell.contactLabel.text = theExperienceItem.companyContact
+                    return cell
+                }
+                
+                
+            } else if(self.resumeSection == "Skills") {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "skillCell") as! skillCell
+                if(items != nil){
+                    self.tableView?.rowHeight = 140
+                    let theSkillItem = items![indexPath.row] as! skill
+                    cell.skillNameLabel.text = theSkillItem.name
+                    cell.skillDescription.text = theSkillItem.description
+                    return cell
+                }
+                
+            } else if(self.resumeSection == "Courses"){
+                let cell = tableView.dequeueReusableCell(withIdentifier: "courseCell") as! courseCell
+                if(items != nil){
+                    self.tableView?.rowHeight = 150
+                    let theCourseItem = items![indexPath.row] as! course
+                    cell.courseNameLabel.text = theCourseItem.name
+                    cell.courseDescription.text = theCourseItem.description
+                    
+                    return cell
+                }
+                
+            } else if(self.resumeSection == "Extracurriculars"){
+                let cell = tableView.dequeueReusableCell(withIdentifier: "extracurricularCell") as! extracurricularCell
+                if(items != nil){
+                    let theExtraCurricularItem = items![indexPath.row] as! extracurricular
+                    cell.extracurricularNameLabel.text = theExtraCurricularItem.name
+                    cell.extracurricularDescription.text = theExtraCurricularItem.description
+                    cell.extracurricularYearLabel.text = theExtraCurricularItem.year
+                    
+                    return cell
+                }
+                
             }
-            //cellCounter += 1
-           
-            //return cell
-        }else {
-            cell.itemNameLabel.isHidden = true
-            cell.entryDescriptionField.isHidden = true
+            
         }
-        //cellCounter += 1
-       return cell
+        let cell = UITableViewCell()
+        cell.isHidden = true
+        return cell
         
     }
     
