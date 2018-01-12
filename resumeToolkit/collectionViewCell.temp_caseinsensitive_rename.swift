@@ -10,18 +10,20 @@ import UIKit
 import QuartzCore
 import HFCardCollectionViewLayout
 import CoreData
+import EECellSwipeGestureRecognizer
 
-class CollectionViewCell: HFCardCollectionViewCell {
+
+class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableViewDataSource {
     
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
     
-    @IBOutlet var buttonFlip: UIButton?
-    @IBOutlet var tableView: UITableView?
-    @IBOutlet var labelText: UILabel?
-    @IBOutlet var imageIcon: UIImageView?
+    @IBOutlet   var buttonFlip: UIButton?
+    @IBOutlet  var tableView: UITableView?
+    @IBOutlet  var labelText: UILabel?
+    @IBOutlet  var imageIcon: UIImageView?
     
-    @IBOutlet var backView: UIView?
-    @IBOutlet var buttonFlipBack: UIButton?
+    @IBOutlet  var backView: UIView?
+    @IBOutlet  var buttonFlipBack: UIButton?
     
     
     
@@ -33,7 +35,7 @@ class CollectionViewCell: HFCardCollectionViewCell {
     var skillsList = [resumeItem]()
     var courseList = [resumeItem]()
     var ExtracurricularsList = [resumeItem]()
-    var resumeSection  = " " 
+    var resumeSection  = " "
     override func awakeFromNib() {
         super.awakeFromNib()
         self.buttonFlip?.isHidden = true
@@ -52,7 +54,7 @@ class CollectionViewCell: HFCardCollectionViewCell {
         
     }
     
-    @objc func userDefaultsDidChange() {
+    @objc private func userDefaultsDidChange() {
         generateItemsDict()
         DispatchQueue.main.async {
             self.tableView?.reloadData()
@@ -237,8 +239,8 @@ class CollectionViewCell: HFCardCollectionViewCell {
     var CellIndexNumber:Int = -1
     
 }
-
-extension CollectionViewCell : UITableViewDelegate, UITableViewDataSource {
+//UITableViewDelegate, UITableViewDataSource
+extension CollectionViewCell  {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -282,6 +284,28 @@ extension CollectionViewCell : UITableViewDelegate, UITableViewDataSource {
                     cell.companyLabel.text = theExperienceItem.companyName
                     cell.experienceDescription.text = theExperienceItem.description
                     cell.contactLabel.text = theExperienceItem.companyContact
+                    
+                    
+                    let gestureRecognizer: EECellSwipeGestureRecognizer = EECellSwipeGestureRecognizer()
+                    let action: EECellSwipeAction = EECellSwipeAction(fraction: 0.25)
+                    
+                    action.behavior = .push
+                    action.icon = (UIImage(named: "cancel-button.png")?.withRenderingMode(.alwaysTemplate))!
+                    
+                    action.activeBackgroundColor = cell.contentView.backgroundColor!
+                    //action.inactiveColor = .clear
+                    action.inactiveBackgroundColor = cell.contentView.backgroundColor!
+                    action.iconMargin = 40
+                    
+                    print("I am so triggered rn")
+                    action.didChangeState = { (tableView, indexPath) in
+                        
+                        cell.activateTaps()
+                        
+                    }
+                    gestureRecognizer.add(actions: [action])
+                    cell.addGestureRecognizer(gestureRecognizer)
+                    
                     return cell
                 }
                 
@@ -293,6 +317,29 @@ extension CollectionViewCell : UITableViewDelegate, UITableViewDataSource {
                     let theSkillItem = items![indexPath.row] as! skill
                     cell.skillNameLabel.text = theSkillItem.name
                     cell.skillDescription.text = theSkillItem.description
+                    
+                    
+                    let gestureRecognizer: EECellSwipeGestureRecognizer = EECellSwipeGestureRecognizer()
+                    let action: EECellSwipeAction = EECellSwipeAction(fraction: 0.25)
+    
+                    action.behavior = .push
+                    action.icon = (UIImage(named: "cancel-button.png")?.withRenderingMode(.alwaysTemplate))!
+                    
+                    action.activeBackgroundColor = cell.contentView.backgroundColor!
+                    //action.inactiveColor = .clear
+                    action.inactiveBackgroundColor = cell.contentView.backgroundColor!
+                    action.iconMargin = 40
+                    
+                    print("I am so triggered rn")
+                    action.didChangeState = { (tableView, indexPath) in
+                        
+                        cell.activateTaps()
+            
+                    }
+                    gestureRecognizer.add(actions: [action])
+                    cell.addGestureRecognizer(gestureRecognizer)
+                    
+                    
                     return cell
                 }
                 
@@ -304,6 +351,27 @@ extension CollectionViewCell : UITableViewDelegate, UITableViewDataSource {
                     cell.courseNameLabel.text = theCourseItem.name
                     cell.courseDescription.text = theCourseItem.description
                     
+                    
+                    let gestureRecognizer: EECellSwipeGestureRecognizer = EECellSwipeGestureRecognizer()
+                    let action: EECellSwipeAction = EECellSwipeAction(fraction: 0.25)
+                    
+                    action.behavior = .push
+                    action.icon = (UIImage(named: "cancel-button.png")?.withRenderingMode(.alwaysTemplate))!
+                    
+                    action.activeBackgroundColor = cell.contentView.backgroundColor!
+                    //action.inactiveColor = .clear
+                    action.inactiveBackgroundColor = cell.contentView.backgroundColor!
+                    action.iconMargin = 40
+                    
+                    print("I am so triggered rn")
+                    action.didChangeState = { (tableView, indexPath) in
+                        
+                        cell.activateTaps()
+                        
+                    }
+                    gestureRecognizer.add(actions: [action])
+                    cell.addGestureRecognizer(gestureRecognizer)
+                    
                     return cell
                 }
                 
@@ -314,6 +382,29 @@ extension CollectionViewCell : UITableViewDelegate, UITableViewDataSource {
                     cell.extracurricularNameLabel.text = theExtraCurricularItem.name
                     cell.extracurricularDescription.text = theExtraCurricularItem.description
                     cell.extracurricularYearLabel.text = theExtraCurricularItem.year
+                    
+                    
+                    
+                    let gestureRecognizer: EECellSwipeGestureRecognizer = EECellSwipeGestureRecognizer()
+                    let action: EECellSwipeAction = EECellSwipeAction(fraction: 0.25)
+                    
+                    action.behavior = .push
+                    action.icon = (UIImage(named: "cancel-button.png")?.withRenderingMode(.alwaysTemplate))!
+                    
+                    action.activeBackgroundColor = cell.contentView.backgroundColor!
+                    //action.inactiveColor = .clear
+                    action.inactiveBackgroundColor = cell.contentView.backgroundColor!
+                    action.iconMargin = 40
+                    
+                    print("I am so triggered rn")
+                    action.didChangeState = { (tableView, indexPath) in
+                        
+                        cell.activateTaps()
+                        
+                    }
+                    gestureRecognizer.add(actions: [action])
+                    cell.addGestureRecognizer(gestureRecognizer)
+                    
                     
                     return cell
                 }
@@ -332,8 +423,22 @@ extension CollectionViewCell : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        // nothing
+        if (editingStyle == .delete) {
+            
+            self.itemsDict[resumeSection]?.remove(at: indexPath.row)
+            
+            
+            self.tableView?.reloadData()
+        }
     }
+    
+    
+
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let anAction = UITableViewRowAction(style: .default, title: "An Action")

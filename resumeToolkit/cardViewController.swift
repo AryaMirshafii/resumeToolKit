@@ -51,7 +51,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     var shouldSetupBackgroundView = true
     
     var cardArray: [CardInfo] = []
-     var user: [NSManagedObject] = []
+    var user: [NSManagedObject] = []
     
     override func viewDidLoad() {
         

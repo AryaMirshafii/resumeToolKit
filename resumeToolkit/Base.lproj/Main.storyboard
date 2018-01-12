@@ -3267,7 +3267,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" id="D4v-Bp-8fS">
+                        <view key="tableHeaderView" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="D4v-Bp-8fS">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -3277,7 +3277,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <view contentMode="scaleToFill" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNr-p0-xGP">
-                                    <rect key="frame" x="0.0" y="-15" width="768" height="146"/>
+                                    <rect key="frame" x="0.0" y="54" width="768" height="146"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Objective" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5l1-Av-vwP">
                                             <rect key="frame" x="8" y="0.0" width="333" height="34"/>
@@ -5022,11 +5022,11 @@
                                             <rect key="frame" x="0.0" y="80" width="356" height="65"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <prototypes>
-                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="resumeItemCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="resumeItemCell" rowHeight="170" id="c9C-7r-eQQ" customClass="resumeItemCell" customModule="resumeToolkit" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="28" width="317" height="170"/>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="resumeItemCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="resumeItemCell" rowHeight="170" id="c9C-7r-eQQ" customClass="resumeItemCell" customModule="resumeToolkit" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="28" width="356" height="170"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c9C-7r-eQQ" id="VFx-RG-4i8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="170"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="356" height="170"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l41-0P-sB3">
@@ -5077,10 +5077,10 @@
                                                     </connections>
                                                 </tableViewCell>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="extracurricularCell" rowHeight="145" id="IJ1-f4-zfC" customClass="extracurricularCell" customModule="resumeToolkit" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="198" width="317" height="145"/>
+                                                    <rect key="frame" x="0.0" y="198" width="356" height="145"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IJ1-f4-zfC" id="x76-QK-Bgz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="145"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="356" height="145"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tennis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyJ-Gq-pNa">
@@ -5129,10 +5129,10 @@
                                                     </connections>
                                                 </tableViewCell>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="courseCell" rowHeight="160" id="CSb-0R-X4Z" userLabel="courseCell" customClass="courseCell" customModule="resumeToolkit" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="343" width="317" height="160"/>
+                                                    <rect key="frame" x="0.0" y="343" width="356" height="160"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CSb-0R-X4Z" id="9JP-2Q-p6J">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="160"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="356" height="160"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ECE 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooP-87-fqS">
@@ -5171,10 +5171,10 @@
                                                     </connections>
                                                 </tableViewCell>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="experienceCell" rowHeight="170" id="88A-OA-5eU" userLabel="experienceCell" customClass="experienceCell" customModule="resumeToolkit" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="503" width="317" height="170"/>
+                                                    <rect key="frame" x="0.0" y="503" width="356" height="170"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="88A-OA-5eU" id="IdN-E0-qSB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="170"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="356" height="170"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Intern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bor-wY-JNM">
@@ -5252,10 +5252,10 @@
                                                     </connections>
                                                 </tableViewCell>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="skillCell" rowHeight="150" id="gfu-6b-vfP" customClass="skillCell" customModule="resumeToolkit" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="673" width="317" height="150"/>
+                                                    <rect key="frame" x="0.0" y="673" width="356" height="150"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gfu-6b-vfP" id="1Jt-fJ-3l8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="150"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="356" height="150"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tennis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXA-pT-Qbw">
@@ -5294,10 +5294,10 @@
                                                     </connections>
                                                 </tableViewCell>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="educationCell" rowHeight="120" id="Hga-at-iJT" customClass="educationCell" customModule="resumeToolkit" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="823" width="317" height="120"/>
+                                                    <rect key="frame" x="0.0" y="823" width="356" height="120"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hga-at-iJT" id="bJV-rp-y0Q">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="120"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="356" height="120"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Georgia Tech" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxI-gn-dqd">

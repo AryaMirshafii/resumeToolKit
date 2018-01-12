@@ -17,5 +17,6 @@ pod 'Google/SignIn'
 pod 'ASHorizontalScrollView'
 pod 'HFCardCollectionViewLayout'
 pod 'Device', '~> 3.0.3'
+pod 'EECellSwipeGestureRecognizer', '~> 1.0'
 
 end

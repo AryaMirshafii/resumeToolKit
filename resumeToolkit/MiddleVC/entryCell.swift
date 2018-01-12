@@ -61,8 +61,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
     
     
     
-    @objc func longPressed(_ sender: UILongPressGestureRecognizer)
-    {
+    @objc func longPressed(_ sender: UILongPressGestureRecognizer){
     
         
         if(sender.state == .began){
@@ -112,15 +111,15 @@ class entryCell : UITableViewCell,UITextViewDelegate{
         if(self.cellType == "Skill"){
             
             
-            dataController.overwriteSkill(previousText: originalText, skillName: "Skill" + "_" + self.entryName.text! + "_" + self.entryDescription.text)
+            dataController.overwriteSkill(previousText: originalText, textToChangeTo: "Skill" + "_" + self.entryName.text! + "_" + self.entryDescription.text)
             //self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
         } else if(self.cellType == "Internships & Job Experience"){
             
             //dataController.saveExperience(experience: experienceString)
         } else if(self.cellType == "Courses"){
-            dataController.overwriteCourses(previousText: originalText,courseName: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.overwriteCourses(previousText: originalText,courseToChangeTo: "Courses" + "_" + entryName.text! + "_" + entryDescription.text)
         } else if(self.cellType == "Extracurriculars"){
-            dataController.overwriteExtracurriculars(previousText: originalText, extracurricularName: "Extracurriculars" + "_" + entryName.text! + "_" + entryDescription.text)
+            dataController.overwriteExtracurriculars(previousText: originalText, extraCurricularToReplace: "Extracurriculars" + "_" + entryName.text! + "_" + entryDescription.text)
         }
         self.saveButton.isHidden = true
         self.cancelButton.isHidden = true

@@ -348,10 +348,10 @@ class dataManager{
     
     
     
-    func overwriteSkill(previousText: String, skillName: String) {
+    func overwriteSkill(previousText: String, textToChangeTo: String) {
         self.loadData()
         print("previous text is" + previousText)
-        print("new text is" + skillName)
+        print("new text is" + textToChangeTo)
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -371,7 +371,14 @@ class dataManager{
         do {
             let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
             if fetchResults?.count != 0{
-                let toSave = previousSkills.replacingOccurrences(of: previousText, with: skillName)
+                var toSave = previousSkills.replacingOccurrences(of: previousText, with: textToChangeTo)
+                
+                print("to save is" + toSave)
+                if(toSave.contains("--") || toSave == "-"){
+                    toSave = toSave.replacingOccurrences(of: "-", with: "")
+                    print("to save is NOW" + toSave)
+                    
+                }
                 var managedObject = fetchResults?[0]
                 
                 user.last?.setValue(toSave, forKey: "skills")
@@ -417,7 +424,7 @@ class dataManager{
     }
     
     
-    func overwriteExperience(previousText: String, experienceName: String) {
+    func overwriteExperience(previousText: String, experienceToChangeTo: String) {
         self.loadData()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -438,9 +445,12 @@ class dataManager{
         do {
             let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
             if fetchResults?.count != 0{
-                let toSave = previousExperience.replacingOccurrences(of: previousText, with: experienceName)
+                var toSave = previousExperience.replacingOccurrences(of: previousText, with: experienceToChangeTo)
                 var managedObject = fetchResults?[0]
-                
+                if(toSave.contains("--") || toSave == "-"){
+                    toSave = toSave.replacingOccurrences(of: "-", with: "")
+                    
+                }
                 user.last?.setValue(toSave, forKey: "experience")
                 
                 
@@ -494,7 +504,7 @@ class dataManager{
     
     
     
-    func overwriteCourses(previousText: String, courseName: String) {
+    func overwriteCourses(previousText: String, courseToChangeTo: String) {
         self.loadData()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -515,8 +525,12 @@ class dataManager{
         do {
             let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
             if fetchResults?.count != 0{
-                let toSave = previousCourses.replacingOccurrences(of: previousText, with: courseName)
+                var toSave = previousCourses.replacingOccurrences(of: previousText, with: courseToChangeTo)
                 var managedObject = fetchResults?[0]
+                if(toSave.contains("--") || toSave == "-"){
+                    toSave = toSave.replacingOccurrences(of: "-", with: "")
+                    
+                }
                 
                 user.last?.setValue(toSave, forKey: "courses")
                 
@@ -568,7 +582,7 @@ class dataManager{
     
     
     
-    func overwriteExtracurriculars(previousText: String, extracurricularName: String) {
+    func overwriteExtracurriculars(previousText: String, extraCurricularToReplace: String) {
         self.loadData()
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -590,7 +604,12 @@ class dataManager{
         do {
             let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
             if fetchResults?.count != 0{
-                let toSave = previousExtracurriculars.replacingOccurrences(of: previousText, with: extracurricularName)
+                var toSave = previousExtracurriculars.replacingOccurrences(of: previousText, with: extraCurricularToReplace)
+                
+                if(toSave.contains("--") || toSave == "-"){
+                    toSave = toSave.replacingOccurrences(of: "-", with: "")
+                    
+                }
                 var managedObject = fetchResults?[0]
                 
                 user.last?.setValue(toSave, forKey: "extracurriculars")

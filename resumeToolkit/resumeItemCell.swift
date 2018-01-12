@@ -90,15 +90,15 @@ class resumeItemCell:UITableViewCell,UITextFieldDelegate,UITextViewDelegate {
         if(self.cellType == "Skills"){
             
             
-            dataController.overwriteSkill(previousText: originalText, skillName: "Skills" + "_" + self.itemNameLabel.text! + "_" + self.entryDescriptionField.text)
+            dataController.overwriteSkill(previousText: originalText, textToChangeTo: "Skills" + "_" + self.itemNameLabel.text! + "_" + self.entryDescriptionField.text)
             //self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
         } else if(self.cellType == "Internships & Job Experience"){
             
             //dataController.saveExperience(experience: experienceString)
         } else if(self.cellType == "Courses"){
-            dataController.overwriteCourses(previousText: originalText,courseName: "Courses" + "_" + itemNameLabel.text! + "_" + entryDescriptionField.text)
+            dataController.overwriteCourses(previousText: originalText,courseToChangeTo: "Courses" + "_" + itemNameLabel.text! + "_" + entryDescriptionField.text)
         } else if(self.cellType == "Extracurriculars"){
-            dataController.overwriteExtracurriculars(previousText: originalText, extracurricularName: "Extracurriculars" + "_" + itemNameLabel.text! + "_" + entryDescriptionField.text)
+            dataController.overwriteExtracurriculars(previousText: originalText, extraCurricularToReplace: "Extracurriculars" + "_" + itemNameLabel.text! + "_" + entryDescriptionField.text)
         }
         self.saveButton.isHidden = true
         self.cancelButton.isHidden = true

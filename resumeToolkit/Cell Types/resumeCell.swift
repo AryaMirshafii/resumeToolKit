@@ -13,7 +13,9 @@ class resumeCell:UITableViewCell,UITextViewDelegate {
     
     var dataController = dataManager()
     var infoController = userInfo()
-    @objc func longPressed(_ sender: UILongPressGestureRecognizer){}
+    var tapRecognizer:UITapGestureRecognizer!
+    
     func getOriginalText() -> String { return ""}
+    func deleteInformation(){}
     
 }

@@ -21,6 +21,28 @@ class educationCell: resumeCell{
     
     override func awakeFromNib() {
         self.contentView.backgroundColor = UIColor(red:0.78, green:0.78, blue:0.96, alpha:1.0)
+        self.tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        self.addGestureRecognizer(tapRecognizer)
+        tapRecognizer.isEnabled = false
+        //tapRecognizer.disa
+        print("CELL CREATED")
+        
+    }
+    func activateTaps(){
+        print("activateTAPS is " + String(tapRecognizer.isEnabled))
+        tapRecognizer.isEnabled = true
+        
+        
+        
+    }
+    
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        print("longpressed")
+        
+        deleteInformation()
+        
+        tapRecognizer.isEnabled = false
         
     }
     
