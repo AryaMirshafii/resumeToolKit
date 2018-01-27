@@ -318,6 +318,17 @@
 			path = palanquin;
 			sourceTree = "<group>";
 		};
+		D18327322009668900A567FD /* HTML Files */ = {
+			isa = PBXGroup;
+			children = (
+				D14A74A71FAE914E00D56DBC /* resume4.html */,
+				D1C90EB81FAE45D6003D9671 /* resume3.html */,
+				D102D4B01FACFBC30098E287 /* resume2.html */,
+				D1E381B61FE4749600485650 /* resume1.html */,
+			);
+			path = "HTML Files";
+			sourceTree = "<group>";
+		};
 		D1C02CEF5159EAB5F8BBB7CE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,10 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				D11487031FB4C2DC00A60669 /* ASHorizontalScrollView.framework */,
-				D14A74A71FAE914E00D56DBC /* resume4.html */,
-				D1C90EB81FAE45D6003D9671 /* resume3.html */,
-				D102D4B01FACFBC30098E287 /* resume2.html */,
-				D1E381B61FE4749600485650 /* resume1.html */,
+				D18327322009668900A567FD /* HTML Files */,
 				D18DCD381F74946300F9E7DB /* Award.swift */,
 				D1DB936E1F70A3ED00C210B4 /* userSetUp.h */,
 				D1DB936F1F70A3EE00C210B4 /* userSetUp.m */,
