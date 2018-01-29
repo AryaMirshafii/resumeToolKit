@@ -99,13 +99,13 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         loadCourses()
         
         
-        self.skillPicker.layer.cornerRadius = 20
+        //self.skillPicker.layer.cornerRadius = 20
         self.skillPicker.dataSource = self
         self.skillPicker.delegate = self
         
         
         
-        self.coursePicker.layer.cornerRadius = 20
+        //self.coursePicker.layer.cornerRadius = 20
         self.coursePicker.dataSource = self
         self.coursePicker.delegate = self
         
@@ -122,13 +122,13 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         skillImage.clipsToBounds = true
         
         
-        self.skillDescription.layer.cornerRadius = 20
+        //self.skillDescription.layer.cornerRadius = 20
         skillDescription.clipsToBounds = true
-        self.jobDescription.layer.cornerRadius = 20
+        //self.jobDescription.layer.cornerRadius = 20
         jobDescription.clipsToBounds = true
-        self.courseDescription.layer.cornerRadius = 20
+        //self.courseDescription.layer.cornerRadius = 20
         courseDescription.clipsToBounds = true
-        self.extracurricularDescription.layer.cornerRadius = 20
+        //self.extracurricularDescription.layer.cornerRadius = 20
         extracurricularDescription.clipsToBounds = true
         //self.skillDescription.layer.borderWidth = 4
         

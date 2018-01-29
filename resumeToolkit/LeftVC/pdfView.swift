@@ -96,20 +96,20 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         if(userInfoController.getResumeIndex() == "0"){
             resumeNameLabel.text = "Plain"
-            userSelect.contentOffset.x = 0 * (userSelect.frame.size.width/3.5)
+            userSelect.contentOffset.x = 0 * (userSelect.frame.size.width/3.8)
             
             
         } else if(userInfoController.getResumeIndex() == "1"){
             resumeNameLabel.text = "Industrial"
-            userSelect.contentOffset.x = 1 * (userSelect.frame.size.width/3.5)
+            userSelect.contentOffset.x = 1 * (userSelect.frame.size.width/3.8)
             
         } else if(userInfoController.getResumeIndex() == "2") {
             resumeNameLabel.text = "Modern Minimalist"
-            userSelect.contentOffset.x = 2 * (userSelect.frame.size.width/3.5)
+            userSelect.contentOffset.x = 2 * (userSelect.frame.size.width/3.8)
         }
         else if(userInfoController.getResumeIndex() == "3") {
             resumeNameLabel.text = "Vibrant Modern"
-            userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.5)
+            userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.8)
         }
         
         
@@ -127,7 +127,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     }
     @objc func actionOnFinishedScrolling() {
         print("scrolling is finished")
-        let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/3.5)))))
+        let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/3.8)))))
         print("THE INDEX IS" + resumeToPick + userInfoController.getResumeIndex())
         userInfoController.saveResumeIndex(resumeIndexAt: resumeToPick)
         if(resumeToPick == "0"){
