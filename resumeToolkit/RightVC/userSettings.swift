@@ -126,7 +126,13 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         
-        containerView.addGestureRecognizer(tap)
+        firstNameView.addGestureRecognizer(tap)
+        lastNameView.addGestureRecognizer(tap)
+        emailView.addGestureRecognizer(tap)
+        phoneView.addGestureRecognizer(tap)
+        schoolView.addGestureRecognizer(tap)
+
+
         
         let notificationCenter = NotificationCenter.default
         

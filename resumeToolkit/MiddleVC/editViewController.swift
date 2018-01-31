@@ -90,7 +90,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
         
         pickerData.append("Skill")
-        pickerData.append("Internships & Job Experience")
+        pickerData.append("Experience")
         pickerData.append("Courses")
         pickerData.append("Extracurriculars")
         //entryLabel.text = pickerData[0]
@@ -292,7 +292,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             
             dataController.saveSkills(theSkills: "Skill" + "_" + skillName.text! + "_" + skillDescription.text)
-        } else if(entryType == "Internships & Job Experience"){
+        } else if(entryType == "Experience"){
             var experienceString =  "Professional Development" + "_" + jobName.text! + "_"
             experienceString += startYearEntry.text! + "_" + endYearEntry.text! + "_"
                 
@@ -726,7 +726,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             
             
-        } else if(entryType == "Internships & Job Experience"){
+        } else if(entryType == "Experience"){
             
             skillImage.isHidden = true
             jobView.isHidden = false

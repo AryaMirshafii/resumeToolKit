@@ -30,7 +30,7 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
     var itemsDict = [String:[resumeItem]]()
     var dataController = dataManager()
     var user: [NSManagedObject] = []
-    let sections = ["Internship & Job Experience", "Skills", "Courses","Extracurriculars"]
+    let sections = ["Experience", "Skills", "Courses","Extracurriculars"]
     var experrienceList = [resumeItem]()
     var skillsList = [resumeItem]()
     var courseList = [resumeItem]()
@@ -99,7 +99,7 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
             
             
             
-            if(aSection == "Internship & Job Experience" && userExpereience != nil){
+            if(aSection == "Experience" && userExpereience != nil){
                 experrienceList.removeAll()
                 
                 if(experienceArr != nil){
@@ -273,7 +273,7 @@ extension CollectionViewCell  {
                 }
                 
                 
-            } else if(self.resumeSection == "Internship & Job Experience"){
+            } else if(self.resumeSection == "Experience"){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "experienceCell") as! experienceCell
                 if(items != nil){
                     self.tableView?.rowHeight = 230

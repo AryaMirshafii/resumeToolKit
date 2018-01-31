@@ -150,7 +150,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         return self.cardArray.count
     }
     var cardCounter = 0
-    let sections = ["Internship & Job Experience", "Skills", "Courses","Extracurriculars"]
+    let sections = ["Experience", "Skills", "Courses","Extracurriculars"]
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if(cardCounter  == 4) {
             cardCounter = 0

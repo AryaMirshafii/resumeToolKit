@@ -43,7 +43,7 @@ class resumeItemCell:UITableViewCell,UITextFieldDelegate,UITextViewDelegate {
         
         if(sender.state == .began){
             print("longpressed")
-            if(self.cellType != "Internships & Job Experience"){
+            if(self.cellType != "Experience"){
                 self.entryDescriptionField.isUserInteractionEnabled = true
                 self.saveButton.isHidden = false
                 self.cancelButton.isHidden = false
@@ -63,7 +63,7 @@ class resumeItemCell:UITableViewCell,UITextFieldDelegate,UITextViewDelegate {
             return "Skills" + "_" + itemNameLabel.text! + "_" + entryDescriptionField.text
             
             
-        } else if(self.cellType == "Internships & Job Experience"){
+        } else if(self.cellType == "Experience"){
             
             return " "
         } else if(self.cellType == "Courses"){
@@ -92,7 +92,7 @@ class resumeItemCell:UITableViewCell,UITextFieldDelegate,UITextViewDelegate {
             
             dataController.overwriteSkill(previousText: originalText, textToChangeTo: "Skills" + "_" + self.itemNameLabel.text! + "_" + self.entryDescriptionField.text)
             //self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
-        } else if(self.cellType == "Internships & Job Experience"){
+        } else if(self.cellType == "Experience"){
             
             //dataController.saveExperience(experience: experienceString)
         } else if(self.cellType == "Courses"){

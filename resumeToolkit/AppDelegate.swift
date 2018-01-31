@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let right = storyboard.instantiateViewController(withIdentifier: "right")
         let login = storyboard.instantiateViewController(withIdentifier: "startScreen")
         
+        
         let viewControllerArray = [login,middle]
         
         //let snapContainer = SnapContainerViewController.containerViewWith(left,
