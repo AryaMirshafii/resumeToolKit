@@ -77,7 +77,7 @@
     
     
     metadata.parents = [NSArray arrayWithObject:folderId];
-    metadata.writersCanShare;
+    //metadata.writersCanShare;
     //metadata.writersCanShare = true;
     //metadata.sha
     

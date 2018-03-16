@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Award: resumeItem{
+class Award: resumeItem {
     
 }

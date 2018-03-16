@@ -182,6 +182,8 @@ class testPDFGenerator {
         newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with: "Phone Number: " + phoneNumber)
         newHTML = newHTML.replacingOccurrences(of: "YourEmailHere", with: "Email: " + email)
         
+        
+        
         if(resumeNumber == "resume1"){
             newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName! + " " + myLastName!)
             newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with:"Phone Number:  " + phoneNumber)

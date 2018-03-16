@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import GoogleAPIClientForREST
 import GoogleSignIn
-import Device
+
 
 /*
 Uppercases a string. Helpful for saving a user's name/updating the name textfields properly
@@ -118,9 +118,6 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         
         
-        
-        
-        
         loadData()
         
         
@@ -177,13 +174,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         }
         
         
-        if (Device.isPad()){
-            print("It's an iPad")
-            self.backgroundImage.frame = CGRect(x: 0, y: 0, width: 768, height: 1024)
-            self.containerView.frame = CGRect(x: 213, y: 273, width: 343, height: 242)
-            self.firstNameEntry.frame = CGRect(x: 272, y: 654, width: 224, height: 30)
-            self.tapToFinish.frame = CGRect(x: 323, y: 701, width: 122, height: 48)
-        }
+    
         
     
     }
@@ -209,16 +200,23 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         print("USER DEFAULTS CHANGED")
         let aUser = userData.last
         if(userInfoController.fetchData() == "main" || userInfoController.fetchData() == "main2"){
+            /**
             firstNameEntry.text = aUser?.value(forKeyPath: "firstName") as? String
             lastNameEntry.text = aUser?.value(forKeyPath: "lastName") as? String
             emailEntry.text = aUser?.value(forKeyPath: "emailAdress") as? String
             phoneEntry.text = aUser?.value(forKeyPath: "phoneNumber") as? String
             currentSchoolEntry.text = aUser?.value(forKeyPath: "schoolName") as? String
-            
+            */
+            firstNameEntry.text = dataController.getFirstName();
+            lastNameEntry.text = dataController.getLastName();
+            emailEntry.text = dataController.getEmailAdress();
+            phoneEntry.text = dataController.getPhoneNumber()
+            currentSchoolEntry.text = "Georgia Institute of Technology"
             
             
             if( userData.last?.value(forKeyPath: "firstName") != nil){
-                let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
+                //let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
+                let nameString = dataController.getFirstName()
                 welcomeLabel.text = "Welcome " +  nameString.firstUppercased + ","
             } else {
                 welcomeLabel.text = "Welcome,"

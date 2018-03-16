@@ -437,7 +437,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         }
         
          else if (selectedItem == "Complex Problem Solving"){
-            skillDescription.text = " Identifying complex problems and reviewing related information to develop and evaluate options and implement solutions."
+            skillDescription.text = "Identifying complex problems and reviewing related information to develop and evaluate options and implement solutions."
             skillName.text = "Complex Problem Solving"
          } else if (selectedItem == "Time Management"){
             skillDescription.text = "Managing one's own time and the time of others. "
@@ -491,6 +491,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             skillDescription.text = "Determining causes of operating errors and deciding what to do about it."
             skillName.text = "Troubleshooting"
         }
+        
+        let my = UIViewController()
         
         
         
@@ -842,3 +844,4 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
     }
 }
+

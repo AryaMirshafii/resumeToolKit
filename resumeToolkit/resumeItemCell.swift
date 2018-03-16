@@ -106,6 +106,7 @@ class resumeItemCell:UITableViewCell,UITextFieldDelegate,UITextViewDelegate {
         self.entryDescriptionField.isUserInteractionEnabled = false
         //self.entryDescriptionField.backgroundColor = self.originalColor
         infoController.saveChangeText(text: String(reloadCounter))
+        
         reloadCounter += 1
         
     }

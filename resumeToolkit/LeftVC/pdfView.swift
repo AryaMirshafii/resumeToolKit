@@ -14,23 +14,23 @@ import MessageUI
 import Device
 
 class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewControllerDelegate,UIWebViewDelegate {
-    var pdfGenerate = testPDFGenerator()
-    var userInfoController = userInfo()
-    var dataController = dataManager()
-    var previousFilePath = " "
+    private var pdfGenerate = testPDFGenerator()
+    private var userInfoController = userInfo()
+    private var dataController = dataManager()
+    private var previousFilePath = " "
     
     
     //getfilepath ==
     
-    @IBOutlet weak var largeWebView: UIWebView!
+    @IBOutlet weak private var largeWebView: UIWebView!
     
     
     
-    @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var resumeNameLabel: UILabel!
-    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak private var webView: UIWebView!
+    @IBOutlet weak private var resumeNameLabel: UILabel!
+    @IBOutlet weak private var backgroundImage: UIImageView!
     
-    @IBOutlet weak var userSelect: ASHorizontalScrollView!
+    @IBOutlet weak private var userSelect: ASHorizontalScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,7 +125,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         perform(#selector(self.actionOnFinishedScrolling), with: nil, afterDelay: Double(velocity.x))
     }
-    @objc func actionOnFinishedScrolling() {
+    @objc private func actionOnFinishedScrolling() {
         print("scrolling is finished")
         let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/3.8)))))
         print("THE INDEX IS" + resumeToPick + userInfoController.getResumeIndex())
@@ -158,8 +158,8 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     
     
     
-    var counter = 0
-    @objc func userDefaultsDidChange() {
+    private var counter = 0
+    @objc private func userDefaultsDidChange() {
         print("I AM WORKING")
         
         
@@ -255,7 +255,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         // Dispose of any resources that can be recreated.
     }
     
-    func loadPDF(html: String, filePath:String) {
+    private func loadPDF(html: String, filePath:String) {
         
         
         let url = NSURL(fileURLWithPath: filePath)
@@ -295,13 +295,13 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
     }
     
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+    func  webViewDidFinishLoad(_ webView: UIWebView) {
         
         self.isEmailing = false
         
     }
-    var isEmailing = false
-    func sendEmail() {
+    private var isEmailing = false
+    private func sendEmail() {
   
         userDefaultsDidChange()
         self.isEmailing = true
@@ -312,7 +312,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
         // Configure the fields of the interface.
-        composeVC.setToRecipients(["aryamirshafii97@gmail.com"])
+        composeVC.setToRecipients([dataController.getEmailAdress()])
         composeVC.setSubject("Your Resume")
         composeVC.setMessageBody("Hello " + firstname + "," + "\n  \n" + "Attached below is your resume. We wish you sucess with your future career endeavours. \n \nThank you for choosing Resume Writer!\n", isHTML: false)
         
@@ -331,7 +331,10 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         composeVC.addAttachmentData(pdfData as! Data, mimeType: "application/pdf", fileName: "resume.pdf")
         // Present the view controller modally.
-        self.present(composeVC, animated: true, completion: nil)
+        if(pdfData != nil){
+            self.present(composeVC, animated: true, completion: nil)
+        }
+        
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

@@ -22,7 +22,6 @@
 		D14A74A81FAE914E00D56DBC /* resume4.html in Resources */ = {isa = PBXBuildFile; fileRef = D14A74A71FAE914E00D56DBC /* resume4.html */; };
 		D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3AF1F61DDC5002F5F54 /* SearchBarView.swift */; };
 		D152E3B81F620630002F5F54 /* entryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B71F620630002F5F54 /* entryCell.swift */; };
-		D152E3BA1F621B5C002F5F54 /* editViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B91F621B5C002F5F54 /* editViewController.swift */; };
 		D16175F31FFC290400EF3F08 /* education.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175ED1FFC290200EF3F08 /* education.swift */; };
 		D16175F41FFC290400EF3F08 /* experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175EE1FFC290300EF3F08 /* experience.swift */; };
 		D16175F51FFC290400EF3F08 /* extracurricular.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175EF1FFC290300EF3F08 /* extracurricular.swift */; };
@@ -75,14 +74,16 @@
 		D18313CE1FE6499500F41D5F /* HKGrotesk-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313BA1FE6498F00F41D5F /* HKGrotesk-SemiBold.ttf */; };
 		D18313CF1FE6499500F41D5F /* HKGrotesk-LightLegacy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313BB1FE6499100F41D5F /* HKGrotesk-LightLegacy.ttf */; };
 		D18313D01FE6499500F41D5F /* HKGrotesk-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18313BC1FE6499300F41D5F /* HKGrotesk-MediumItalic.ttf */; };
+		D18617D1204E345D0055F75E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E457921F5A175E00D1E030 /* Main.storyboard */; };
 		D18DCD391F74946300F9E7DB /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18DCD381F74946300F9E7DB /* Award.swift */; };
 		D1C136721FDCEB0600AA88C0 /* cardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C136701FDCEB0400AA88C0 /* cardViewController.swift */; };
 		D1C90EB91FAE45D8003D9671 /* resume3.html in Resources */ = {isa = PBXBuildFile; fileRef = D1C90EB81FAE45D6003D9671 /* resume3.html */; };
+		D1D9A8EB202E3D940094634D /* resumeDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3A51F61D741002F5F54 /* resumeDataController.swift */; };
+		D1D9A8EC202E4D930094634D /* editViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B91F621B5C002F5F54 /* editViewController.swift */; };
 		D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */ = {isa = PBXBuildFile; fileRef = D1DB936F1F70A3EE00C210B4 /* userSetUp.m */; };
 		D1DB93711F70A53200C210B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D18F9B471F70645800FB48EA /* GoogleService-Info.plist */; };
 		D1E381B71FE4749600485650 /* resume1.html in Resources */ = {isa = PBXBuildFile; fileRef = D1E381B61FE4749600485650 /* resume1.html */; };
 		D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E457901F5A175D00D1E030 /* ViewController.swift */; };
-		D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E457921F5A175E00D1E030 /* Main.storyboard */; };
 		D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1E457951F5A175E00D1E030 /* resumeToolkit.xcdatamodeld */; };
 		D1E457991F5A175F00D1E030 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1E457981F5A175F00D1E030 /* Assets.xcassets */; };
 		D1E4579C1F5A176000D1E030 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E4579A1F5A176000D1E030 /* LaunchScreen.storyboard */; };
@@ -165,7 +166,6 @@
 		D18313BA1FE6498F00F41D5F /* HKGrotesk-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBold.ttf"; sourceTree = "<group>"; };
 		D18313BB1FE6499100F41D5F /* HKGrotesk-LightLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-LightLegacy.ttf"; sourceTree = "<group>"; };
 		D18313BC1FE6499300F41D5F /* HKGrotesk-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-MediumItalic.ttf"; sourceTree = "<group>"; };
-		D18CF7991F63A01C00C625E4 /* SimplePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePDF.swift; sourceTree = "<group>"; };
 		D18DCD381F74946300F9E7DB /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		D18F9B471F70645800FB48EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1C136701FDCEB0400AA88C0 /* cardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cardViewController.swift; sourceTree = "<group>"; };
@@ -347,7 +347,6 @@
 				D1DB936E1F70A3ED00C210B4 /* userSetUp.h */,
 				D1DB936F1F70A3EE00C210B4 /* userSetUp.m */,
 				D18F9B471F70645800FB48EA /* GoogleService-Info.plist */,
-				D18CF7991F63A01C00C625E4 /* SimplePDF.swift */,
 				D1E457951F5A175E00D1E030 /* resumeToolkit.xcdatamodeld */,
 				D106288D1F6066FE001880AD /* Fonts */,
 				D1E4578D1F5A175D00D1E030 /* resumeToolkit */,
@@ -476,6 +475,7 @@
 				D18313C11FE6499500F41D5F /* HKGrotesk-ItalicLegacy.ttf in Resources */,
 				D13FA6B51F7DB88500AB567C /* CODE Light.otf in Resources */,
 				D18313CF1FE6499500F41D5F /* HKGrotesk-LightLegacy.ttf in Resources */,
+				D18617D1204E345D0055F75E /* Main.storyboard in Resources */,
 				D102D4B11FACFBC30098E287 /* resume2.html in Resources */,
 				D18313C81FE6499500F41D5F /* HKGrotesk-MediumItalicLegacy.ttf in Resources */,
 				D16C21411FBD35510005C7C2 /* palanquin-bold.ttf in Resources */,
@@ -499,7 +499,6 @@
 				D18313BE1FE6499500F41D5F /* HKGrotesk-SemiBoldLegacy.ttf in Resources */,
 				D18313C41FE6499500F41D5F /* HKGrotesk-LightItalic.ttf in Resources */,
 				D16C214B1FBD35510005C7C2 /* palanquindark-semibold.ttf in Resources */,
-				D1E457941F5A175E00D1E030 /* Main.storyboard in Resources */,
 				D14A74A81FAE914E00D56DBC /* resume4.html in Resources */,
 				D1E381B71FE4749600485650 /* resume1.html in Resources */,
 				D16C21421FBD35510005C7C2 /* palanquin-extralight.ttf in Resources */,
@@ -608,13 +607,13 @@
 				D16175F31FFC290400EF3F08 /* education.swift in Sources */,
 				D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */,
 				D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */,
+				D1D9A8EB202E3D940094634D /* resumeDataController.swift in Sources */,
 				D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */,
 				D16176021FFC29DF00EF3F08 /* educationCell.swift in Sources */,
 				D16176051FFC29EA00EF3F08 /* resumeCell.swift in Sources */,
 				D134D8351FF3588E0062367A /* resumeItemCell.swift in Sources */,
 				D1E457911F5A175D00D1E030 /* ViewController.swift in Sources */,
 				D125BA821F608B3E0077C0BD /* userInfo.swift in Sources */,
-				D152E3BA1F621B5C002F5F54 /* editViewController.swift in Sources */,
 				D16175F81FFC290400EF3F08 /* skill.swift in Sources */,
 				D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */,
 				D16175F41FFC290400EF3F08 /* experience.swift in Sources */,
@@ -626,6 +625,7 @@
 				D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */,
 				D16176011FFC29DF00EF3F08 /* experienceCell.swift in Sources */,
 				D16176031FFC29DF00EF3F08 /* skillCell.swift in Sources */,
+				D1D9A8EC202E4D930094634D /* editViewController.swift in Sources */,
 				D1C136721FDCEB0600AA88C0 /* cardViewController.swift in Sources */,
 				D182367E1FA171B400801E00 /* fourthLoginScreen.swift in Sources */,
 				D16175FF1FFC29DF00EF3F08 /* courseCell.swift in Sources */,
@@ -775,7 +775,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GatechEngineeringForInnovation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -797,7 +797,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GatechEngineeringForInnovation;
 				PRODUCT_NAME = "$(TARGET_NAME)";

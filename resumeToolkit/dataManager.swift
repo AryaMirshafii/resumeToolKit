@@ -366,7 +366,7 @@ class dataManager{
         
         var previousSkills = user.last?.value(forKeyPath: "skills") as! String
         let fetchrequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        print(user.last)
+        print(user.last as Any)
         fetchrequest.predicate = NSPredicate(format: "skills == %@", previousSkills)
         do {
             let fetchResults = try managedContext.fetch(fetchrequest) as? [NSManagedObject]
@@ -386,7 +386,7 @@ class dataManager{
                
                  print("updated skills")
             };try managedContext.save()
-           print(user.last)
+            print(user.last as Any)
         } catch {
             print(error)
         }
@@ -537,7 +537,7 @@ class dataManager{
                 
                 print("courses Updated")
             };try managedContext.save()
-            print(user.last)
+            print(user.last as Any)
         } catch {
             print(error)
         }
@@ -689,6 +689,95 @@ class dataManager{
         }
         
         
+    }
+    
+    
+    
+    func getPhoneNumber() ->String {
+        self.loadData()
+        if let myCourses = user.last?.value(forKey: "phoneNumber") as? String {
+            return myCourses
+        }
+        return " "
+    }
+    
+    func getCourses() ->String {
+        self.loadData()
+        if let myCourses = user.last?.value(forKey: "courses") as? String {
+            return myCourses
+        }
+        return " "
+    }
+    
+    func getEducation() ->String {
+        self.loadData()
+        if let education =  user.last?.value(forKey: "education") as? String {
+            return education
+        }
+        return " "
+    }
+    
+    
+    func getEmailAdress() ->String {
+        self.loadData()
+        if let email =  user.last?.value(forKey: "emailAdress") as? String {
+            return email
+        }
+        return " "
+    }
+    
+    
+    
+    func getExperience() ->String {
+        self.loadData()
+        if let experience =  user.last?.value(forKey: "experience") as? String {
+            return experience
+        }
+        return " "
+    }
+    
+    
+    
+    func getExtraCurriculars() ->String {
+        self.loadData()
+        if(user.last?.value(forKey: "extracurriculars") as? String == nil){
+            return " "
+        }
+        return user.last?.value(forKey: "extracurriculars") as! String
+    }
+    
+    func getFirstName() ->String {
+        self.loadData()
+        if let firstName =  user.last?.value(forKey: "firstName") as? String {
+            return firstName
+        }
+        return ""
+    }
+    
+    func getLastName() ->String {
+        self.loadData()
+        if let lastName = user.last?.value(forKey: "lastName") as? String{
+            return lastName
+        }
+        return ""
+    }
+    
+    
+    func getGradeLevel() ->String {
+        self.loadData()
+        if let gradeLevel = user.last?.value(forKey: "gradeLevel") as? String {
+            return gradeLevel
+        }
+        return ""
+    }
+    
+    func getObjective() ->String {
+        self.loadData()
+        if let objective = user.last?.value(forKey: "objective") as? String{
+            return objective
+            
+        }
+        return ""
     }
     
     

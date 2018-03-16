@@ -30,11 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let left = storyboard.instantiateViewController(withIdentifier: "left")
-        var middle = storyboard.instantiateViewController(withIdentifier: "middle")
-        let right = storyboard.instantiateViewController(withIdentifier: "right")
-        let login = storyboard.instantiateViewController(withIdentifier: "startScreen")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        let left = storyboard.instantiateViewController(withIdentifier: "left");
+        var middle = storyboard.instantiateViewController(withIdentifier: "middle");
+        let right = storyboard.instantiateViewController(withIdentifier: "right");
+        let login = storyboard.instantiateViewController(withIdentifier: "startScreen");
         
         
         let viewControllerArray = [login,middle]
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var configureError: NSError?
         
         GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
     }
     
     func application(_ application: UIApplication,
