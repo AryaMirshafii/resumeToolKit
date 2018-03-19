@@ -125,6 +125,10 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         perform(#selector(self.actionOnFinishedScrolling), with: nil, afterDelay: Double(velocity.x))
     }
+    
+    
+    
+    /// Determines which resume style is selected from horizontal scroll view
     @objc private func actionOnFinishedScrolling() {
         print("scrolling is finished")
         let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/3.8)))))
@@ -157,7 +161,10 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     
     
     
-    
+    // Re-renders resume if user defaults changed
+    // This is usually called when the user has added something new to resume and it needs to be updated
+    //
+    //
     private var counter = 0
     @objc private func userDefaultsDidChange() {
         print("I AM WORKING")
@@ -282,6 +289,9 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     }
     
     
+    /// The function that emails the resume to whatever email the user wants
+    ///
+    /// - Parameter sender: the Email icon button on the resume view screen
     @IBAction func emailResume(_ sender: Any) {
         if !MFMailComposeViewController.canSendMail() {
             print("Mail services are not available")

@@ -28,6 +28,14 @@
     //[self initSetup];
     return self;
 }
+
+
+
+/**
+ Creates a folder on the user's google drive with their name.
+
+ @param folderName <#folderName description#>
+ */
 - (void) createFolder:(NSString *) folderName{
     
     
@@ -66,6 +74,13 @@
 - (NSString *) returnID:(NSString *) folderId{
     return folderId;
 }
+/**
+ Uploads the pdf of the user's resume to his/her google drive folder.
+
+ @param folderId the google drive id of the user's folder. THIS WILL ALWAYS BE THE SAME
+ @param filePath the filepath for the pdf
+ @param fileName the desired name that will be shown on google drive
+ */
 - (void ) uploadToFolder:(NSString *) folderId atFilePath:(NSString *)filePath withFileName:(NSString *)fileName {
     
     
@@ -106,6 +121,15 @@
     }];
     printf("uploaded image to folder");
 }
+
+
+/**
+ shares the folder to a google drive
+ right now it is configured to upload to a dummy google drive for testing
+ in the future it will be linked to an actual account
+
+ @param fileId the google drive id of the folder
+ */
 - (void) shareToDrive:(NSString *) fileId {
     GTLRBatchQuery *batchQuery = [GTLRBatchQuery batchQuery];
     

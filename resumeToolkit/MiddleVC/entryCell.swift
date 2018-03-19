@@ -48,12 +48,7 @@ class entryCell : UITableViewCell,UITextViewDelegate{
        
         
         
-        if (Device.isPad()){
-            print("It's an iPad")
-            self.layer.borderWidth = 40
-        } else {
-            self.layer.borderColor = UIColor.clear.cgColor
-        }
+        
         
         
         

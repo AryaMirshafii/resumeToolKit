@@ -37,14 +37,17 @@ class fifthLoginScreen: UIViewController, UITextFieldDelegate {
         
     }
     
+    
+    ///  When enter/return is pressed in keyboard, entered data is saved and segue is preformed to the next sceen
+    ///
+    /// - Parameter textField:
+    /// - Returns: true when enter is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
         infoController.save(screen: "main")
         textField.resignFirstResponder()
         performSegue(withIdentifier: "unwindto1", sender: self)
         
-        
-       
         
         
         return true

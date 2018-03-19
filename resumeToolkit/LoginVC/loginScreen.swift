@@ -85,10 +85,21 @@ class loginScreen: UIViewController, UITextFieldDelegate {
         
         
     }
+    
+    
+    
+    
     @objc func textFieldDidChange() {
         //dataController.savefirstName(firstName: firstNameEntry.text!)
         
     }
+    
+    
+    
+    ///  When enter/return is pressed in keyboard, entered data is saved and segue is preformed to the next sceen
+    ///
+    /// - Parameter textField:
+    /// - Returns: true when enter is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("return pressed")
         dataController.savefirstName(firstName: firstNameEntry.text!)

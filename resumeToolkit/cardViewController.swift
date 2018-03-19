@@ -98,6 +98,10 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     }
    
     var reloadCounter = 0
+    /// Saves the objective entered at the top and displays a message notifying the user
+    /// that the save has been executed correctly.
+    ///
+    /// - Parameter sender: the sender passed from the save objective button.
     @IBAction func saveObjective(_ sender: Any) {
         dataController.saveObjective(statement: objectiveEntry.text)
         infoController.saveChangeText(text: String(reloadCounter))
@@ -122,12 +126,13 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         
     }
     
+    
     @IBAction func goToEditViewController(_ sender: Any) {
         self.performSegue(withIdentifier: "goEdit", sender: nil)
     }
     
    
-    // MARK: CollectionView
+    
     
     func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, willRevealCardAtIndex index: Int) {
         if let cell = self.collectionView?.cellForItem(at: IndexPath(item: index, section: 0)) as? CollectionViewCell {
@@ -199,6 +204,9 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         self.cardCollectionViewLayout?.revealCardAt(index: indexPath.item)
     }
     
+    
+    
+    
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let tempItem = self.cardArray[sourceIndexPath.item]
         self.cardArray.remove(at: sourceIndexPath.item)
@@ -211,7 +219,10 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    
+    /// Upon pressing of the add Item button, this function triggers the screen to transition
+    /// to the edit viewcontroller where users add items to their resumes
+    ///
+    /// - Parameter sender: the sender passsed from the add item button.
     @IBAction func addItem(_ sender: Any) {
         performSegue(withIdentifier: "goEdit", sender: self)
     }
@@ -229,6 +240,9 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     }
      */
     
+    /// If delete button is pressed on a cell, delete the cell as well as its contents
+    ///
+    ///
     @IBAction func deleteCardAtIndex0orSelected() {
         var index = 0
         if(self.cardCollectionViewLayout!.revealedIndex >= 0) {
@@ -240,7 +254,9 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         })
     }
     
-    // MARK: Private Functions
+    
+    ///Sets up the defaults for a card
+    ///
     
     private func setupExample() {
         if let cardCollectionViewLayout = self.collectionView?.collectionViewLayout as? HFCardCollectionViewLayout {
@@ -305,6 +321,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     }
     
     
+    ///Sets up the data from the 
     func setUpData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return

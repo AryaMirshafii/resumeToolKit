@@ -160,7 +160,16 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         }
         
         
-     
+        jobDescription.layer.cornerRadius = 10
+        skillDescription.layer.cornerRadius = 10
+        skillPicker.layer.cornerRadius = 10
+        
+        
+        courseDescription.layer.cornerRadius = 10
+        coursePicker.layer.cornerRadius = 10
+        
+        extracurricularDescription.layer.cornerRadius = 10
+    
         
     }
     
@@ -178,6 +187,12 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         return true
     }
     
+    
+    // Function that is triggered if the phone is shaken
+    // This acts like an etch-a sketch. If you shake the phone, it will prompt and ask if you wish to clear the present textviews and textfields.
+    /// - Parameters:
+    ///   - motion:  the motion type
+    ///   - event: the event that triggers this function
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent!) {
         var alert = UIAlertController(title: "Clear Text??",
                                       message: "Are you sure you want to clear the text?",
@@ -202,6 +217,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    // This function actually cclears the textfields/views
     func clearText(alert: UIAlertAction!){
         skillName.text = ""
         skillDescription.text = ""
@@ -222,6 +239,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
    
     
     
+    //Loads the courses into an array called coursedata
+    //which is used as a datasource by coursePicker
     func loadCourses(){
         courseData.append("PSYCH 2103")
         courseData.append("MUSI 1202")
@@ -253,6 +272,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
     }
     
+    
+    //Loads the skills into an array called skillData
+    //which is used as a datasource by skillPicker
     func loadSkills(){
         skillData.append("Active Learning")
         skillData.append("Active Listening")
@@ -285,6 +307,10 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
     }
     
+    
+    // When save button is pressed the data is stored in the
+    // coredata model by using datacontroller as an interface
+    // - Parameter sender: the UIButton that triggers this function being called
     @IBAction func saveEntry(_ sender: UIButton){
         
         print("!!!" + entryType!)
@@ -315,7 +341,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         return 1
     }
     
-    // The number of rows of data
+    //  The number of rows of data for the pickerViews
+    //  Changes based on which pickerview is being passed in
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         
@@ -357,24 +384,17 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             }
         }
         
-        
-        
-        
         return " "
     }
     
+    // Alters the UIPickers for courses and skills and changes their properties accordingly.
+    // Configures coursePicker and SKillPicker when prsented
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         if pickerView == skillPicker{
             if(entryType == "Skill"){
                 skillImage.isHidden = false
                 
-                switch Device.size() {
-                    
-                case .screen5_5Inch:  print("It's a 5.5 inch screen")
-                self.skillImage.frame = CGRect(x: 177, y: 407, width: 60, height: 60)
-                self.skillImage.isHidden = true
-                default:              print("Unknown size")
-                }
+                
                 
                 selectedItem = skillData[row]
                 skillName.text = selectedItem
@@ -402,7 +422,10 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     
     
-    
+    // Sets the textviews and fields for skills
+    // For example, when the user selects active listening, this function updates the textview description
+    // to reflect this selection
+    // - Parameter slectedItem: the selected skill which is fed from the UIPICker
     func setDescriptions(slectedItem: String){
         if(selectedItem == "Active Learning"){
             skillDescription.text = "Understanding the implications of new information for both current and future problem solving and decision making."
@@ -498,6 +521,10 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         
     }
     
+    
+    // Sets the corresponding image for a skill.
+    //
+    // - Parameter slectedItem: the selected item being looked at
     func setPicture(slectedItem: String){
         if(selectedItem == "Active Learning"){
             
@@ -559,7 +586,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
-    
+    // Sets the description for the class that is selected
+    //
+    // - Parameter orClass:  the name of the class being looked at
     func setClassDescriptions(orClass: String){
         if(orClass == "PSYCH 2103"){
             courseDescription.text = "Behavioral Psychology" + "\n"
@@ -616,12 +645,15 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    // If the back button is pressed it takes you to the view with the cards
     
+    // - Parameter sender: the button that triggers the exit
     @IBAction func exit(_ sender: UIButton){
         dismiss(animated: true, completion: nil)
     }
     
-    
+    //Sets up the gesture recognizers present in the swipecontroller.
+    // Allows user to also swipe left or right to navigate between skills, extracurriculars, courses, and experience
     func setUpGestures(){
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         
@@ -640,6 +672,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     var indx = 0
     
+    
+    //  Allows for right swipe/ button to navigate  navigate between skills, extracurriculars, courses, and experience
+    // GOES RIGHT ONLY
     @IBAction func rightTap(_ sender: UIButton){
         indx += 1
         if (indx > (pickerData.count - 1)){
@@ -651,7 +686,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         setAlignment(row: indx)
     }
     
-    
+    //  Allows for left swipe/ button to navigate  navigate between skills, extracurriculars, courses, and experience
+    // GOES LEFT ONLY
     @IBAction func leftTap(_ sender: UIButton){
         indx += 1
         if (indx > (pickerData.count - 1)){
@@ -666,6 +702,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     
     
+    // Determines which direction is being swiped in the swipecontroller
+    // - Parameter gesture: THe UIGesture that is tested to see if its direction is left/right
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
         
@@ -703,6 +741,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     }
     
     
+    // Determines which textviews and textfields or UIPIckers should be displayed based on the type of entry selected
     func setAlignment(row: Int){
         entryType = pickerData[row]
         print("the entry type is" +  entryType)
@@ -719,10 +758,6 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             setDescriptions(slectedItem: entryType)
             setPicture(slectedItem: entryType)
-            
-            
-            
-            
             
             
             

@@ -35,6 +35,10 @@ class testPDFGenerator {
     
     var reloadCounter = 0
     var html = ""
+    /// Returns the resume as an HTML string, as well as the file path where the resume is saved
+    ///
+    /// - Parameter indexAt: the resume selected. I.E resume1, resume2...Ect
+    /// - Returns: html string of resume, filepath to resume
     func createPDFFileAndReturnPath(indexAt:String) -> (html: String, output: String){
         var htmlFile = ""
         if(indexAt == "0"){
@@ -135,6 +139,12 @@ class testPDFGenerator {
    
     
     var newHTML = " "
+    /// Takes in the Html string and replaces the fillers with actual resume data.
+    ///
+    /// - Parameters:
+    ///   - oldHTML: the old unedited HTML string
+    ///   - resumeNumber: the selected resume. I.E resume1,resume2,
+    /// - Returns: the final HTML string, edited with data.
     func addDataToPDF(oldHTML: String, resumeNumber: String) ->String {
         loadData()
         let aUser = user.last
@@ -416,8 +426,11 @@ class testPDFGenerator {
                 var skillHTML = ""
                 for aSkill in skillArr{
                     let skillDescription = aSkill.components(separatedBy:"_")
+                    if (skillDescription.count == 3) {
+                        skillHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", skillDescription[1],skillDescription[2]))
+                    }
                     
-                    skillHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", skillDescription[1],skillDescription[2]))
+                    
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
@@ -672,6 +685,8 @@ class testPDFGenerator {
         
         return secondline
     }
+    
+    
     var restultantString = " "
     func loadEntryItems(anEntry: String?) -> String{
         restultantString = " "
@@ -687,9 +702,11 @@ class testPDFGenerator {
         
         return restultantString
     }
-    //func separateInto
     
     
+    // Loads data that is later added to resume.
+    //
+    //
     func loadData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return

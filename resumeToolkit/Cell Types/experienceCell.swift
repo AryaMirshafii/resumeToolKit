@@ -33,6 +33,12 @@ class experienceCell:resumeCell {
         
     }
     
+    
+    //Function is called when cell is toggled to be deleted
+    //Allows the cell to be tapped, which allows the user to tap the delete button
+    //on the cell
+    
+    
     func activateTaps(){
         print("activateTAPS is " + String(tapRecognizer.isEnabled))
         tapRecognizer.isEnabled = true
@@ -42,7 +48,8 @@ class experienceCell:resumeCell {
     }
     
     
-    
+    //WHen the user swipes to the right on this cell, it shows the delete function
+    // this function is run when the delete button is pressed.
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         print("longpressed")
         
@@ -53,6 +60,8 @@ class experienceCell:resumeCell {
     }
     
     
+    //Enables editing of the cell.
+    //Lets say you mispell something, you can go back and edit it without re entering it.
     
     @objc func longPressed(_ sender: UILongPressGestureRecognizer){
         experienceDescription.isUserInteractionEnabled = true
@@ -62,6 +71,8 @@ class experienceCell:resumeCell {
         
     }
     
+    
+    //Saves changes in the coredata model
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             experienceDescription.isUserInteractionEnabled = false
@@ -80,7 +91,11 @@ class experienceCell:resumeCell {
         return true
     }
     
-    
+    //  Gets the original text entered in the text fields and textviews
+    //  Used when updating the coredata model
+    //
+    //
+    //- Returns: the original text.
     override func getOriginalText() -> String {
         var experienceString =  "Professional Development" + "_" + positionlabel.text! + "_"
         experienceString += startYearLabel.text! + "_" + endYearLabel.text! + "_"
@@ -91,6 +106,11 @@ class experienceCell:resumeCell {
     }
     
     
+    // Triggers the overwrite method in datacontroller and passes in an empty string
+    // This empty string is the equivalent of deleting the cell.
+    // Reload counter is used to trigger the functions in other files that cause the data to be reloaded.
+    // An example of this would be deleting a course and then having the pdf generating viewcontroller
+    // update the contents of the pdf to reflect this change.
     
     private var reloadCounter = 0
     override func deleteInformation() {

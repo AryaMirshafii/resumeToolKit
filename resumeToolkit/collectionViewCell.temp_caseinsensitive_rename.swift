@@ -5,6 +5,7 @@
 //  Created by Hendrik Frahmann on 02.11.16.
 //  Copyright © 2016 Hendrik Frahmann. All rights reserved.
 //
+// Insert github link
 
 import UIKit
 import QuartzCore
@@ -54,6 +55,8 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
         
     }
     
+    // Detects if the user has added data and changes it accordingly
+    // Usually trigered when reload counter is altered on other files.
     @objc private func userDefaultsDidChange() {
         generateItemsDict()
         DispatchQueue.main.async {
@@ -61,12 +64,14 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
         }
     }
     
-    
+    // Allows the card being revealed property to be set to true
+    // This was used mostly in the developer's demo app but is always set to true in this app.
     func cardIsRevealed(_ isRevealed: Bool) {
         self.buttonFlip?.isHidden = !isRevealed
         self.tableView?.scrollsToTop = isRevealed
     }
     
+    // Once again, this just allows the card to be flipped but this is never used
     @IBAction func buttonFlipAction() {
         if let backView = self.backView {
             // Same Corner radius like the contentview of the HFCardCollectionViewCell
@@ -78,6 +83,9 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
     }
     
     
+    
+    // Gets data from coredata model and generates a dictionary which is later used to load
+    // data into the cards
     var counter = 0
     func generateItemsDict(){
         
@@ -191,6 +199,8 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
     }
     
     
+    // fetches data from coredata model
+    
     func setUpData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -216,6 +226,8 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
     }
     
     
+    // Uses strings from coredata model to create theresumeItem objects
+    
     func createResumeItem(description: String) -> resumeItem{
         let entryInfo = description.components(separatedBy: "_")
         
@@ -239,7 +251,7 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
     var CellIndexNumber:Int = -1
     
 }
-//UITableViewDelegate, UITableViewDataSource
+// UITableViewDelegate, UITableViewDataSource
 extension CollectionViewCell  {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -253,7 +265,7 @@ extension CollectionViewCell  {
         return 1
         
     }
-    //creates individual cells in the card change this for each type of skill
+    // creates individual cells in the card change this for each type of skill
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var items = self.itemsDict[self.resumeSection]
@@ -418,9 +430,11 @@ extension CollectionViewCell  {
         
     }
     
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {

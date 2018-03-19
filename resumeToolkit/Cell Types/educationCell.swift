@@ -28,6 +28,11 @@ class educationCell: resumeCell{
         print("CELL CREATED")
         
     }
+    
+    
+    //Function is called when cell is toggled to be deleted
+    //Allows the cell to be tapped, which allows the user to tap the delete button
+    //on the cell
     func activateTaps(){
         print("activateTAPS is " + String(tapRecognizer.isEnabled))
         tapRecognizer.isEnabled = true
@@ -36,6 +41,9 @@ class educationCell: resumeCell{
         
     }
     
+    
+    //Enables editing of the cell.
+    //Lets say you mispell something, you can go back and edit it without re entering it.
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         print("longpressed")
