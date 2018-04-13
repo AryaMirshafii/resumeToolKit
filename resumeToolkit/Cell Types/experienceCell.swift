@@ -13,7 +13,7 @@ class experienceCell:resumeCell {
     @IBOutlet weak var endYearLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var experienceDescription: UITextView!
-    @IBOutlet weak var contactLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.backgroundColor = UIColor(red:0.23, green:0.42, blue:0.86, alpha:1.0)
@@ -80,8 +80,7 @@ class experienceCell:resumeCell {
             var experienceString =  "Professional Development" + "_" + positionlabel.text! + "_"
             experienceString += startYearLabel.text! + "_" + endYearLabel.text! + "_"
             
-            experienceString += companyLabel.text! + "_" + contactLabel.text!
-            experienceString +=   "_" + experienceDescription.text
+            experienceString += companyLabel.text! +  "_" + experienceDescription.text
             dataController.overwriteExperience(previousText: originalText, experienceToChangeTo: experienceString)
             reloadCounter += 1
             infoController.saveChangeText(text: String(reloadCounter))
@@ -100,8 +99,7 @@ class experienceCell:resumeCell {
         var experienceString =  "Professional Development" + "_" + positionlabel.text! + "_"
         experienceString += startYearLabel.text! + "_" + endYearLabel.text! + "_"
         
-        experienceString += companyLabel.text! + "_" + contactLabel.text!
-        experienceString +=   "_" + experienceDescription.text
+        experienceString += companyLabel.text! +  "_" + experienceDescription.text
         return experienceString
     }
     
@@ -118,8 +116,7 @@ class experienceCell:resumeCell {
         var experienceString =  "Professional Development" + "_" + positionlabel.text! + "_"
         experienceString += startYearLabel.text! + "_" + endYearLabel.text! + "_"
         
-        experienceString += companyLabel.text! + "_" + contactLabel.text!
-        experienceString +=   "_" + experienceDescription.text
+        experienceString += companyLabel.text! +  "_" + experienceDescription.text
         
         dataController.overwriteExperience(previousText: experienceString, experienceToChangeTo: "")
         

@@ -238,7 +238,7 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
             
             //return experience(name: entryInfo[1], description: entryInfo[2])
             
-            return experience(name: entryInfo[1], entryType:entryInfo[0], yearStarted: entryInfo[2], yearEnded: entryInfo[3], companyName: entryInfo[4], description: entryInfo[6], companyContact: entryInfo[5] )
+            return experience(name: entryInfo[1], entryType:entryInfo[0], yearStarted: entryInfo[2], yearEnded: entryInfo[3], companyName: entryInfo[4], description: entryInfo[5])
         } else if(entryInfo[0] == "Courses"){
             
             return course(name: entryInfo[1], entryType:entryInfo[0], description: entryInfo[2])
@@ -295,7 +295,7 @@ extension CollectionViewCell  {
                     cell.endYearLabel.text = theExperienceItem.yearEnded
                     cell.companyLabel.text = theExperienceItem.companyName
                     cell.experienceDescription.text = theExperienceItem.description
-                    cell.contactLabel.text = theExperienceItem.companyContact
+                    
                     
                     
                     let gestureRecognizer: EECellSwipeGestureRecognizer = EECellSwipeGestureRecognizer()

@@ -238,7 +238,7 @@ class testPDFGenerator {
                         print(anExperience)
                         let experienceDescription = anExperience.components(separatedBy:"_")
                         print(experienceDescription)
-                        experienceHTML += (String(format: "<h3>%@</h3><h4>%@</h4><ul><li>%@</li></ul>",experienceDescription[4], experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[6]))
+                        experienceHTML += (String(format: "<h3>%@</h3><h4>%@</h4><ul><li>%@</li></ul>",experienceDescription[4], experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[5]))
                     }
                    
                     
@@ -338,7 +338,7 @@ class testPDFGenerator {
                         print(anExperience)
                         let experienceDescription = anExperience.components(separatedBy:"_")
                         print(experienceDescription)
-                        experienceHTML += (String(format: "<h2>%@<span>%@</span></h2><ul><li>%@</li></ul>", experienceDescription[4],experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[6]))
+                        experienceHTML += (String(format: "<h2>%@<span>%@</span></h2><ul><li>%@</li></ul>", experienceDescription[4],experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[5]))
                     }
                    
                     
@@ -447,7 +447,7 @@ class testPDFGenerator {
                         print(anExperience)
                         let experienceDescription = anExperience.components(separatedBy:"_")
                         print(experienceDescription)
-                        experienceHTML += (String(format: "<div class=job><h2>%@</h2><h3>%@</h3><h4>%@</h4><p>%@</p></div>",experienceDescription[4],experienceDescription[1],experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[6]))
+                        experienceHTML += (String(format: "<div class=job><h2>%@</h2><h3>%@</h3><h4>%@</h4><p>%@</p></div>",experienceDescription[4],experienceDescription[1],experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[5]))
                     }
                     
                     
@@ -553,7 +553,7 @@ class testPDFGenerator {
                     print(anExperience)
                     let experienceDescription = anExperience.components(separatedBy:"_")
                     print(experienceDescription)
-                    experienceHTML += (String(format: "<article><h2>%@</h2><pclass=subDetails>%@</p><p>%@</p></article>",experienceDescription[4],experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[6]))
+                    experienceHTML += (String(format: "<article><h2>%@</h2><pclass=subDetails>%@</p><p>%@</p></article>",experienceDescription[4],experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[5]))
                 }
                 
                 

@@ -34,7 +34,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var startYearEntry: UITextField!
     @IBOutlet weak var endYearEntry: UITextField!
     @IBOutlet weak var organizationNameEntry: UITextField!
-    @IBOutlet weak var contactNameEntry: UITextField!
+    
     @IBOutlet weak var jobDescription: UITextView!
     
     
@@ -226,7 +226,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         startYearEntry.text = ""
         endYearEntry.text = ""
         organizationNameEntry.text = ""
-        contactNameEntry.text = ""
+        
         jobDescription.text = ""
         courseNameEntry.text = ""
         courseDescription.text = ""
@@ -313,21 +313,176 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     // - Parameter sender: the UIButton that triggers this function being called
     @IBAction func saveEntry(_ sender: UIButton){
         
+        
+        
         print("!!!" + entryType!)
         if(entryType == "Skill"){
+            
+            //Makes sure user entered everything
+            if(skillName.text == "" || skillDescription.text == "") {
+                var message = ""
+                if(skillName.text == "" && skillDescription.text != ""){
+                    message = "Please enter a name for this skill!"
+                } else if(skillName.text != "" && skillDescription.text == ""){
+                    message = "Please enter a description for this skill!"
+                }else if(skillName.text == "" && skillDescription.text == ""){
+                    message = "Please enter a name and description for this skill!"
+                }
+                
+                view.endEditing(true)
+                var alert = UIAlertController(title: "ResumeWriter has detected an empty entry!",
+                                              message: message,
+                                              preferredStyle: UIAlertControllerStyle.alert)
+                
+                
+                
+                
+                let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+                
+                subview.backgroundColor = UIColor(red:0.91, green:0.38, blue:0.50, alpha:1.0)
+                alert.view.tintColor = .black
+                
+                alert.addAction(UIAlertAction(title: "Ok",
+                                              style: UIAlertActionStyle.default, handler: nil))
+                
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
             
             
             dataController.saveSkills(theSkills: "Skill" + "_" + skillName.text! + "_" + skillDescription.text)
         } else if(entryType == "Experience"){
+            
+            
+            //Makes sure user entered everything
+            if(jobName.text! == "" || startYearEntry.text! == "" || endYearEntry.text! == "" || organizationNameEntry.text! == ""
+                || jobDescription.text == "") {
+                var message = ""
+                if(jobName.text! == "" && startYearEntry.text! != "" && endYearEntry.text! != "" && organizationNameEntry.text! != ""
+                    && jobDescription.text != ""){
+                    
+                    message = "Please enter a name for this experience entry!"
+                    
+                } else if(jobName.text! != "" && startYearEntry.text! == "" && endYearEntry.text! != "" && organizationNameEntry.text! != ""
+                    && jobDescription.text != ""){
+                    
+                    message = "Please enter a start year for this experience entry!"
+                    
+                } else if(jobName.text! != "" && startYearEntry.text! != "" && endYearEntry.text! == "" && organizationNameEntry.text! != ""
+                    && jobDescription.text != ""){
+                    message = "Please enter an end year for this experience entry!"
+                    
+                } else if(jobName.text! != "" && startYearEntry.text! != "" && endYearEntry.text! != "" && organizationNameEntry.text! == ""
+                    && jobDescription.text != ""){
+                    message = "Please enter a company name for this experience entry!"
+                    
+                } else if(jobName.text! != "" && startYearEntry.text! != "" && endYearEntry.text! != "" && organizationNameEntry.text! != ""
+                    && jobDescription.text == ""){
+                    message = "Please enter a description for this experience entry!"
+                    
+                } else {
+                     message = "It appears that this entry has more than one empty field. Be sure to populate all fields!"
+                }
+                
+                view.endEditing(true)
+                var alert = UIAlertController(title: "ResumeWriter has detected an empty entry!",
+                                              message: message,
+                                              preferredStyle: UIAlertControllerStyle.alert)
+                
+                
+                
+                
+                let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+                
+                subview.backgroundColor = UIColor(red:0.91, green:0.38, blue:0.50, alpha:1.0)
+                alert.view.tintColor = .black
+                
+                alert.addAction(UIAlertAction(title: "Ok",
+                                              style: UIAlertActionStyle.default, handler: nil))
+                
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            
             var experienceString =  "Professional Development" + "_" + jobName.text! + "_"
             experienceString += startYearEntry.text! + "_" + endYearEntry.text! + "_"
                 
-            experienceString += organizationNameEntry.text! + "_" + contactNameEntry.text!
-            experienceString +=   "_" + jobDescription.text
+            experienceString += organizationNameEntry.text! +   "_" + jobDescription.text
             dataController.saveExperience(experience: experienceString)
         } else if(entryType == "Courses"){
+            //Makes sure user entered everything
+            if(courseNameEntry.text == "" || courseDescription.text == "") {
+                var message = ""
+                if(courseNameEntry.text == "" && courseDescription.text != ""){
+                    message = "Please enter a name for this course!"
+                } else if(courseNameEntry.text != "" && courseDescription.text == ""){
+                    message = "Please enter a description for this course!"
+                }else if(courseNameEntry.text == "" && courseDescription.text == ""){
+                    message = "Please enter a name and description for this course!"
+                }
+                
+                view.endEditing(true)
+                var alert = UIAlertController(title: "ResumeWriter has detected an empty entry!",
+                                              message: message,
+                                              preferredStyle: UIAlertControllerStyle.alert)
+                
+                
+                
+                
+                let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+                
+                subview.backgroundColor = UIColor(red:0.91, green:0.38, blue:0.50, alpha:1.0)
+                alert.view.tintColor = .black
+                
+                alert.addAction(UIAlertAction(title: "Ok",
+                                              style: UIAlertActionStyle.default, handler: nil))
+                
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            
             dataController.saveCourses(courses: "Courses" + "_" + courseNameEntry.text! + "_" + courseDescription.text)
         } else if(entryType == "Extracurriculars"){
+            
+            
+            //Makes sure user entered everything
+            if(extracurricularNameEntry.text == "" || extracurricularDescription.text == "" || yearEntry.text == "") {
+                var message = ""
+                if(extracurricularNameEntry.text == "" && extracurricularDescription.text != "" && yearEntry.text != ""){
+                    message = "Please enter a name for this extracurricular!"
+                } else if(extracurricularNameEntry.text != "" && extracurricularDescription.text == "" && yearEntry.text != ""){
+                    message = "Please enter a description for this extracurricular!"
+                }else if(extracurricularNameEntry.text != "" && extracurricularDescription.text != "" && yearEntry.text == ""){
+                    message = "Please enter a year for this extracurricular!"
+                }else {
+                     message = "It appears that this entry has more than one empty field. Be sure to populate all fields!"
+                }
+                
+                view.endEditing(true)
+                var alert = UIAlertController(title: "ResumeWriter has detected an empty entry!",
+                                              message: message,
+                                              preferredStyle: UIAlertControllerStyle.alert)
+                
+                
+                
+                
+                let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+                
+                subview.backgroundColor = UIColor(red:0.91, green:0.38, blue:0.50, alpha:1.0)
+                alert.view.tintColor = .black
+                
+                alert.addAction(UIAlertAction(title: "Ok",
+                                              style: UIAlertActionStyle.default, handler: nil))
+                
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            
+            
+            
             dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + extracurricularNameEntry.text! + "_" + extracurricularDescription.text + "_" + yearEntry.text!)
         }
         infoController.saveChangeText(text: String(reloadCounter))

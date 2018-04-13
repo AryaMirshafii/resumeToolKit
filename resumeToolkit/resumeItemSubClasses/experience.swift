@@ -14,16 +14,15 @@ class experience: resumeItem{
     var yearEnded: String
     var companyName: String
     var description:String
-    var companyContact: String
+
     
     
     
-    init(name: String, entryType: String,yearStarted:String, yearEnded:String,companyName:String,description:String,companyContact:String) {
+    init(name: String, entryType: String,yearStarted:String, yearEnded:String,companyName:String,description:String) {
         self.yearStarted = yearStarted
         self.yearEnded = yearEnded
         self.companyName = companyName
         self.description = description
-        self.companyContact =  companyContact
         super.init(name: name, entryType: entryType)
     }
         

@@ -51,10 +51,10 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         self.largeWebView.isOpaque = true
         self.largeWebView.backgroundColor = UIColor.clear
         
-        let button1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
-        let button2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
-        let button3 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
-        let button4 = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button1 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button2 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button3 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
+        let button4 = UIButton(frame: CGRect(x: 0, y: 0, width: 90, height: 140))
         
         userSelect.uniformItemSize = CGSize(width: 90, height: 140)
         
@@ -64,10 +64,19 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         userSelect.clipsToBounds = true
         
-        button1.image = #imageLiteral(resourceName: "resume1Icon")
-        button2.image = #imageLiteral(resourceName: "resume2Icon")
-        button3.image = #imageLiteral(resourceName: "resume3Icon")
-        button4.image = #imageLiteral(resourceName: "resume4Icon")
+        //button1.image = #imageLiteral(resourceName: "resume1Icon")
+        //button2.image = #imageLiteral(resourceName: "resume2Icon")
+        //button3.image = #imageLiteral(resourceName: "resume3Icon")
+       // button4.image = #imageLiteral(resourceName: "resume4Icon")
+        button1.setImage(#imageLiteral(resourceName: "resume1Icon"), for: .normal)
+        button2.setImage(#imageLiteral(resourceName: "resume2Icon"), for: .normal)
+        button3.setImage(#imageLiteral(resourceName: "resume3Icon"), for: .normal)
+        button4.setImage(#imageLiteral(resourceName: "resume4Icon"), for: .normal)
+        
+        button1.addTarget(self, action: #selector(button1Tapped), for: .touchUpInside)
+        button2.addTarget(self, action: #selector(button2Tapped), for: .touchUpInside)
+        button3.addTarget(self, action: #selector(button3Tapped), for: .touchUpInside)
+        button4.addTarget(self, action: #selector(button4Tapped), for: .touchUpInside)
         
         
         
@@ -117,6 +126,28 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         
         
+    }
+    
+    func button1Tapped(){
+        resumeNameLabel.text = "Plain"
+        userInfoController.saveResumeIndex(resumeIndexAt: "0")
+        userSelect.contentOffset.x = 0 * (userSelect.frame.size.width/3.8)
+    }
+    func button2Tapped(){
+        resumeNameLabel.text = "Industrial"
+        userInfoController.saveResumeIndex(resumeIndexAt: "1")
+        userSelect.contentOffset.x = 1 * (userSelect.frame.size.width/3.8)
+    }
+    
+    func button3Tapped(){
+        resumeNameLabel.text = "Modern Minimalist"
+        userInfoController.saveResumeIndex(resumeIndexAt: "2")
+        userSelect.contentOffset.x = 2 * (userSelect.frame.size.width/3.8)
+    }
+    func button4Tapped(){
+        resumeNameLabel.text = "Vibrant Modern"
+        userInfoController.saveResumeIndex(resumeIndexAt: "3")
+        userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.8)
     }
     
     
