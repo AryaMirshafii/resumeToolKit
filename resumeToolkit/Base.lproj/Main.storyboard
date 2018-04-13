@@ -5295,42 +5295,125 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="411" height="145"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tennis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyJ-Gq-pNa">
-                                                                <rect key="frame" x="16" y="11" width="235" height="29"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rHc-6Q-38g">
-                                                                <rect key="frame" x="34" y="48" width="307" height="99"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rHc-6Q-38g">
+                                                                <rect key="frame" x="15" y="46" width="307" height="99"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="307" id="P8K-ub-6n0"/>
+                                                                    <constraint firstAttribute="height" constant="99" id="gM2-Pv-qah"/>
+                                                                </constraints>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="HKGrotesk-RegularLegacy" family="HK Grotesk" pointSize="24"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="P8K-ub-6n0"/>
+                                                                        <exclude reference="gM2-Pv-qah"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="P8K-ub-6n0"/>
+                                                                        <include reference="gM2-Pv-qah"/>
+                                                                    </mask>
+                                                                </variation>
                                                             </textView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlj-PE-kEx">
-                                                                <rect key="frame" x="150" y="15" width="58" height="20"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlj-PE-kEx">
+                                                                <rect key="frame" x="308" y="15" width="58" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="58" id="3P8-pg-BXU"/>
+                                                                    <constraint firstAttribute="height" constant="20" id="mAL-WM-xYX"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="3P8-pg-BXU"/>
+                                                                        <exclude reference="mAL-WM-xYX"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="3P8-pg-BXU"/>
+                                                                        <include reference="mAL-WM-xYX"/>
+                                                                    </mask>
+                                                                </variation>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tennis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyJ-Gq-pNa" customClass="MarqueeLabel">
+                                                                <rect key="frame" x="15" y="11" width="157" height="29"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="29" id="Je2-Rb-1Vi"/>
+                                                                    <constraint firstAttribute="width" constant="218" id="lQV-t3-LzQ">
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="157"/>
+                                                                    </constraint>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tapToScroll" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="holdScrolling" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="labelize" value="NO"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="Je2-Rb-1Vi"/>
+                                                                        <exclude reference="lQV-t3-LzQ"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="Je2-Rb-1Vi"/>
+                                                                        <include reference="lQV-t3-LzQ"/>
+                                                                    </mask>
+                                                                </variation>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" red="1" green="0.2816441449" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstItem="TyJ-Gq-pNa" firstAttribute="top" secondItem="x76-QK-Bgz" secondAttribute="topMargin" id="4yU-3o-cMz"/>
+                                                            <constraint firstItem="TyJ-Gq-pNa" firstAttribute="leading" secondItem="x76-QK-Bgz" secondAttribute="leadingMargin" constant="1" id="5jJ-oq-Ic9">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                                            </constraint>
+                                                            <constraint firstItem="rHc-6Q-38g" firstAttribute="leading" secondItem="x76-QK-Bgz" secondAttribute="leading" constant="15" id="VND-mG-4dO"/>
+                                                            <constraint firstAttribute="trailingMargin" secondItem="wlj-PE-kEx" secondAttribute="trailing" constant="67" id="VsM-3z-sH1">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                                            </constraint>
+                                                            <constraint firstItem="wlj-PE-kEx" firstAttribute="top" secondItem="x76-QK-Bgz" secondAttribute="topMargin" constant="4" id="fNd-oh-811"/>
+                                                            <constraint firstItem="rHc-6Q-38g" firstAttribute="top" secondItem="TyJ-Gq-pNa" secondAttribute="bottom" constant="6" id="hd9-f0-VPw"/>
+                                                        </constraints>
                                                         <variation key="default">
                                                             <mask key="subviews">
-                                                                <exclude reference="TyJ-Gq-pNa"/>
                                                                 <exclude reference="rHc-6Q-38g"/>
                                                                 <exclude reference="wlj-PE-kEx"/>
+                                                                <exclude reference="TyJ-Gq-pNa"/>
+                                                            </mask>
+                                                            <mask key="constraints">
+                                                                <exclude reference="4yU-3o-cMz"/>
+                                                                <exclude reference="5jJ-oq-Ic9"/>
+                                                                <exclude reference="VND-mG-4dO"/>
+                                                                <exclude reference="hd9-f0-VPw"/>
+                                                                <exclude reference="VsM-3z-sH1"/>
+                                                                <exclude reference="fNd-oh-811"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=compact">
                                                             <mask key="subviews">
-                                                                <include reference="TyJ-Gq-pNa"/>
                                                                 <include reference="rHc-6Q-38g"/>
                                                                 <include reference="wlj-PE-kEx"/>
+                                                                <include reference="TyJ-Gq-pNa"/>
+                                                            </mask>
+                                                            <mask key="constraints">
+                                                                <include reference="4yU-3o-cMz"/>
+                                                                <include reference="5jJ-oq-Ic9"/>
+                                                                <include reference="VND-mG-4dO"/>
+                                                                <include reference="hd9-f0-VPw"/>
+                                                                <include reference="VsM-3z-sH1"/>
+                                                                <include reference="fNd-oh-811"/>
                                                             </mask>
                                                         </variation>
                                                     </tableViewCellContentView>
@@ -5347,12 +5430,20 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="411" height="160"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ECE 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooP-87-fqS">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ECE 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooP-87-fqS" customClass="MarqueeLabel">
                                                                 <rect key="frame" x="16" y="11" width="325" height="29"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="holdScrolling" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tapToScroll" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="labelize" value="NO"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MCd-in-MfP">
                                                                 <rect key="frame" x="34" y="48" width="307" height="59"/>
@@ -5389,59 +5480,197 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="411" height="170"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Intern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bor-wY-JNM">
-                                                                <rect key="frame" x="16" y="11" width="219" height="29"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bor-wY-JNM" customClass="MarqueeLabel">
+                                                                <rect key="frame" x="9" y="11" width="172" height="29"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="156" id="1Dt-ST-WW7">
+                                                                        <variation key="heightClass=regular-widthClass=compact" constant="172"/>
+                                                                    </constraint>
+                                                                    <constraint firstAttribute="height" constant="29" id="wA8-gY-yId"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tapToScroll" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="holdScrolling" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="1Dt-ST-WW7"/>
+                                                                        <exclude reference="wA8-gY-yId"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="1Dt-ST-WW7"/>
+                                                                        <include reference="wA8-gY-yId"/>
+                                                                    </mask>
+                                                                </variation>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEW-D9-07N">
-                                                                <rect key="frame" x="150" y="15" width="58" height="20"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Apple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR8-dj-jDL">
-                                                                <rect key="frame" x="16" y="48" width="210" height="25"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Apple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tR8-dj-jDL">
+                                                                <rect key="frame" x="9" y="48" width="257" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="6sq-25-PBZ"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="20"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="6sq-25-PBZ"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="6sq-25-PBZ"/>
+                                                                    </mask>
+                                                                </variation>
                                                             </label>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cLp-H0-jDb">
-                                                                <rect key="frame" x="34" y="80" width="307" height="89"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <fontDescription key="fontDescription" name="HKGrotesk-RegularLegacy" family="HK Grotesk" pointSize="20"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2B-Dt-FvW">
-                                                                <rect key="frame" x="216" y="15" width="58" height="20"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2B-Dt-FvW">
+                                                                <rect key="frame" x="339" y="19" width="58" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="58" id="KRd-Uf-FE1"/>
+                                                                    <constraint firstAttribute="height" constant="20" id="Wir-ZB-dGX"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="KRd-Uf-FE1"/>
+                                                                        <exclude reference="Wir-ZB-dGX"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="KRd-Uf-FE1"/>
+                                                                        <include reference="Wir-ZB-dGX"/>
+                                                                    </mask>
+                                                                </variation>
                                                             </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kEW-D9-07N">
+                                                                <rect key="frame" x="272" y="19" width="58" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="58" id="6Fz-99-5Uw"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="7vg-9I-Xfm"/>
+                                                                    <constraint firstAttribute="height" constant="20" id="QCi-A4-14Q"/>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="58" id="Ux1-Er-kVS"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="6Fz-99-5Uw"/>
+                                                                        <exclude reference="7vg-9I-Xfm"/>
+                                                                        <exclude reference="QCi-A4-14Q"/>
+                                                                        <exclude reference="Ux1-Er-kVS"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="6Fz-99-5Uw"/>
+                                                                        <include reference="7vg-9I-Xfm"/>
+                                                                        <include reference="QCi-A4-14Q"/>
+                                                                        <include reference="Ux1-Er-kVS"/>
+                                                                    </mask>
+                                                                </variation>
+                                                            </label>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cLp-H0-jDb">
+                                                                <rect key="frame" x="15" y="81" width="307" height="89"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="89" id="XHy-Ty-DwP"/>
+                                                                    <constraint firstAttribute="width" constant="307" id="siT-7C-gN1"/>
+                                                                </constraints>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="HKGrotesk-RegularLegacy" family="HK Grotesk" pointSize="20"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="XHy-Ty-DwP"/>
+                                                                        <exclude reference="siT-7C-gN1"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="heightClass=regular-widthClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="XHy-Ty-DwP"/>
+                                                                        <include reference="siT-7C-gN1"/>
+                                                                    </mask>
+                                                                </variation>
+                                                            </textView>
                                                         </subviews>
                                                         <color key="backgroundColor" red="1" green="0.2816441449" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstItem="tR8-dj-jDL" firstAttribute="top" secondItem="bor-wY-JNM" secondAttribute="bottom" constant="8" id="DZs-5N-Gc2"/>
+                                                            <constraint firstItem="cLp-H0-jDb" firstAttribute="top" secondItem="tR8-dj-jDL" secondAttribute="bottom" constant="8" id="KqR-C6-5xn"/>
+                                                            <constraint firstItem="tR8-dj-jDL" firstAttribute="leading" secondItem="IdN-E0-qSB" secondAttribute="leadingMargin" constant="1" id="WAJ-hn-zBP">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="-6"/>
+                                                            </constraint>
+                                                            <constraint firstItem="bor-wY-JNM" firstAttribute="top" secondItem="IdN-E0-qSB" secondAttribute="top" constant="11" id="YTX-4x-hPE"/>
+                                                            <constraint firstAttribute="trailingMargin" secondItem="j2B-Dt-FvW" secondAttribute="trailing" constant="6" id="ZOL-Ei-oG4">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="-1"/>
+                                                            </constraint>
+                                                            <constraint firstItem="kEW-D9-07N" firstAttribute="top" secondItem="IdN-E0-qSB" secondAttribute="topMargin" constant="4" id="ajP-Lq-RtT">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                                            </constraint>
+                                                            <constraint firstItem="j2B-Dt-FvW" firstAttribute="leading" secondItem="kEW-D9-07N" secondAttribute="trailing" constant="31" id="bVb-LO-vvP">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="9"/>
+                                                            </constraint>
+                                                            <constraint firstItem="j2B-Dt-FvW" firstAttribute="top" secondItem="IdN-E0-qSB" secondAttribute="topMargin" constant="4" id="hJQ-AK-DVC">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                                            </constraint>
+                                                            <constraint firstItem="kEW-D9-07N" firstAttribute="top" secondItem="IdN-E0-qSB" secondAttribute="topMargin" constant="4" id="kAA-Eh-k55">
+                                                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                                            </constraint>
+                                                            <constraint firstItem="cLp-H0-jDb" firstAttribute="leading" secondItem="IdN-E0-qSB" secondAttribute="leading" constant="15" id="rnd-Gb-qUZ"/>
+                                                            <constraint firstItem="bor-wY-JNM" firstAttribute="leading" secondItem="IdN-E0-qSB" secondAttribute="leading" constant="9" id="xFP-iP-0QN"/>
+                                                        </constraints>
                                                         <variation key="default">
                                                             <mask key="subviews">
                                                                 <exclude reference="bor-wY-JNM"/>
-                                                                <exclude reference="kEW-D9-07N"/>
                                                                 <exclude reference="tR8-dj-jDL"/>
                                                                 <exclude reference="j2B-Dt-FvW"/>
+                                                                <exclude reference="kEW-D9-07N"/>
+                                                            </mask>
+                                                            <mask key="constraints">
+                                                                <exclude reference="YTX-4x-hPE"/>
+                                                                <exclude reference="xFP-iP-0QN"/>
+                                                                <exclude reference="DZs-5N-Gc2"/>
+                                                                <exclude reference="WAJ-hn-zBP"/>
+                                                                <exclude reference="KqR-C6-5xn"/>
+                                                                <exclude reference="rnd-Gb-qUZ"/>
+                                                                <exclude reference="ajP-Lq-RtT"/>
+                                                                <exclude reference="kAA-Eh-k55"/>
+                                                                <exclude reference="ZOL-Ei-oG4"/>
+                                                                <exclude reference="bVb-LO-vvP"/>
+                                                                <exclude reference="hJQ-AK-DVC"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="heightClass=regular-widthClass=compact">
                                                             <mask key="subviews">
                                                                 <include reference="bor-wY-JNM"/>
-                                                                <include reference="kEW-D9-07N"/>
                                                                 <include reference="tR8-dj-jDL"/>
-                                                                <include reference="cLp-H0-jDb"/>
                                                                 <include reference="j2B-Dt-FvW"/>
+                                                                <include reference="kEW-D9-07N"/>
+                                                                <include reference="cLp-H0-jDb"/>
+                                                            </mask>
+                                                            <mask key="constraints">
+                                                                <include reference="YTX-4x-hPE"/>
+                                                                <include reference="xFP-iP-0QN"/>
+                                                                <include reference="DZs-5N-Gc2"/>
+                                                                <include reference="WAJ-hn-zBP"/>
+                                                                <include reference="KqR-C6-5xn"/>
+                                                                <include reference="rnd-Gb-qUZ"/>
+                                                                <include reference="ajP-Lq-RtT"/>
+                                                                <include reference="kAA-Eh-k55"/>
+                                                                <include reference="ZOL-Ei-oG4"/>
+                                                                <include reference="bVb-LO-vvP"/>
+                                                                <include reference="hJQ-AK-DVC"/>
                                                             </mask>
                                                         </variation>
                                                     </tableViewCellContentView>
@@ -5460,12 +5689,20 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="411" height="150"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tennis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXA-pT-Qbw">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tennis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXA-pT-Qbw" customClass="MarqueeLabel">
                                                                 <rect key="frame" x="16" y="11" width="325" height="29"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="24"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="holdScrolling" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tapToScroll" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="labelize" value="NO"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vb6-hL-NcH">
                                                                 <rect key="frame" x="16" y="48" width="307" height="100"/>
@@ -5752,7 +5989,7 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3712" y="715.14242878560731"/>
+            <point key="canvasLocation" x="3710.625" y="715.14084507042253"/>
         </scene>
         <!--Fifth Login Screen-->
         <scene sceneID="8wH-au-Cbq">

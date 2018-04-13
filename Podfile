@@ -18,5 +18,6 @@ pod 'ASHorizontalScrollView', '~> 1.5.1'
 pod 'HFCardCollectionViewLayout'
 pod 'Device', '~> 3.0.3'
 pod 'EECellSwipeGestureRecognizer', '~> 1.0'
+pod 'MarqueeLabel'
 
 end
