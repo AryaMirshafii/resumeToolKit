@@ -9,6 +9,7 @@
 import UIKit
 import HFCardCollectionViewLayout
 import CoreData
+import EasyTipView
 
 
 struct CardInfo {
@@ -36,7 +37,11 @@ struct CardLayoutSetupOptions {
     
     var numberOfCards: Int = 15
 }
-class cardViewController : UICollectionViewController, HFCardCollectionViewLayoutDelegate {
+class cardViewController : UICollectionViewController, HFCardCollectionViewLayoutDelegate, EasyTipViewDelegate {
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        
+    }
+    
     
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
     
@@ -128,6 +133,24 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     
     
     @IBAction func goToEditViewController(_ sender: Any) {
+        
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 20)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+        
+        /*
+         * Optionally you can make these preferences global for all future EasyTipViews
+         */
+        EasyTipView.globalPreferences = preferences
+        
+        EasyTipView.show(forView: self.objectiveEntry,
+                         withinSuperview: self.navigationController?.view,
+                         text: "Hi Arya",
+                         preferences: preferences,
+                         delegate: self)
+
         self.performSegue(withIdentifier: "goEdit", sender: nil)
     }
     

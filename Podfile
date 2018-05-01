@@ -19,5 +19,6 @@ pod 'HFCardCollectionViewLayout'
 pod 'Device', '~> 3.0.3'
 pod 'EECellSwipeGestureRecognizer', '~> 1.0'
 pod 'MarqueeLabel'
+pod 'EasyTipView', '~> 1.0.2'
 
 end
