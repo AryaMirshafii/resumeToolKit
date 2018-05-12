@@ -17,15 +17,19 @@ class testPDFGenerator {
     let service = GTLRDriveService()
     var pdfFilePath = " "
     var informationController = userInfo()
-    var user: [NSManagedObject] = []
-    var skills:String! = " "
-    var professionalDevelopment:String! = " "
-    var courses:String! = " "
-    var extracurriculars:String! = " "
+    var user:user!
+    var skills:[skill]!
+    var professionalDevelopment:[experience]!
+    var courses:[course]!
+    var extracurriculars:[extracurricular]!
     var objective:String! = " "
     var resumeIndex = 1
+    var dataController = newDataManager()
     init() {
-        loadData()
+        professionalDevelopment = dataController.fetchExperiences()
+        courses = dataController.fetchCourses()
+        extracurriculars = dataController.fetchExtraCurriculars()
+        skills = dataController.fetchSkills()
        
         
     }
@@ -109,7 +113,7 @@ class testPDFGenerator {
         
         let fileName = "pdffilename.pdf"
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0] as! NSString
+        let documentsDirectory = paths[0] as NSString
         let outputURL = documentsDirectory.appending("/" + fileName)
         //let outputURL = URL()
         
@@ -146,60 +150,48 @@ class testPDFGenerator {
     ///   - resumeNumber: the selected resume. I.E resume1,resume2,
     /// - Returns: the final HTML string, edited with data.
     func addDataToPDF(oldHTML: String, resumeNumber: String) ->String {
-        loadData()
-        let aUser = user.last
+        
+        _ = dataController.getUser()
         
         
+        
+        
+        
+        let myFirstName = dataController.getUser().firstName
+        let myLastName = dataController.getUser().lastName
+        let email = dataController.getUser().emailAddress
+        let phoneNumber = dataController.getUser().phoneNumber
         
         
         
        
         
         
-        guard let email  = aUser?.value(forKeyPath: "emailAdress") as? String  else {
-            //print("nothing to see here")
-            return ""
-        }
         
-        guard let phoneNumber  = aUser?.value(forKeyPath: "phoneNumber") as? String  else {
-            //print("nothing to see here")
-            return ""
-        }
-       
+        
+        skills = dataController.fetchSkills()
+        
+        professionalDevelopment  = dataController.fetchExperiences()
+        courses = dataController.fetchCourses()
+        extracurriculars = dataController.fetchExtraCurriculars()
+        objective = dataController.getUser().objective
         
         
         
+    
         
-        skills = aUser?.value(forKeyPath: "skills") as? String
-        
-        professionalDevelopment  = aUser?.value(forKeyPath: "experience") as? String
-        courses = aUser?.value(forKeyPath: "courses") as? String
-        extracurriculars = aUser?.value(forKeyPath: "extracurriculars") as? String
-        objective = aUser?.value(forKeyPath: "objective") as? String
-        
-        
-        
-        //Replace Name
-        
-        //let phoneNumber
-        
-        let myFirstName = aUser?.value(forKeyPath: "firstName") as? String
-        let myLastName = aUser?.value(forKeyPath: "lastName") as? String
-        
-        professionalDevelopment  = aUser?.value(forKeyPath: "experience") as? String
-        
-        newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName! + " " + myLastName!)
+        newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName + " " + myLastName)
         newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with: "Phone Number: " + phoneNumber)
         newHTML = newHTML.replacingOccurrences(of: "YourEmailHere", with: "Email: " + email)
         
         
         
         if(resumeNumber == "resume1"){
-            newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName! + " " + myLastName!)
+            newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName + " " + myLastName)
             newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with:"Phone Number:  " + phoneNumber)
             newHTML = newHTML.replacingOccurrences(of: "YourEmailHere", with:"Email:  " + email)
             if(objective != nil){
-                var objectiveHTML = ""
+                _ = ""
                 
                 newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objective)
                 
@@ -209,17 +201,14 @@ class testPDFGenerator {
                 newHTML = newHTML.replacingOccurrences(of: "<p class=\"head\">Objective</p><dl>ObjectiveGoHere</dl>", with: "")
             }
             
-            if(skills != nil && skills != ""){
-                
-                var skillArr = skills.components(separatedBy:"-")
-                
+            if(!skills.isEmpty){
                 var skillHTML = ""
-                for aSkill in skillArr{
-                    if(aSkill != ""){
-                        let skillDescription = aSkill.components(separatedBy:"_")
+                for aSkill in skills{
+                    
+                    skillHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", String(aSkill.name), String(aSkill.skillDescription)))
                         
-                        skillHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", skillDescription[1],skillDescription[2]))
-                    }
+                    
+                    
                     
                     
                 }
@@ -229,20 +218,15 @@ class testPDFGenerator {
                 
             }
             
-            if(professionalDevelopment != nil && professionalDevelopment != ""){
-                var experienceArr = professionalDevelopment.components(separatedBy:"-")
+            if(!professionalDevelopment .isEmpty){
+                
                 
                 var experienceHTML = ""
-                for anExperience in experienceArr{
-                    if(anExperience != ""){
-                        print(anExperience)
-                        let experienceDescription = anExperience.components(separatedBy:"_")
-                        print(experienceDescription)
-                        experienceHTML += (String(format: "<h3>%@</h3><h4>%@</h4><ul><li>%@</li></ul>",experienceDescription[4], experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[5]))
-                    }
-                   
-                    
+                for anExperience in professionalDevelopment{
+                    experienceHTML += (String(format: "<h3>%@</h3><h4>%@</h4><ul><li>%@</li></ul>",anExperience.companyName, anExperience.name + " - " + anExperience.yearStarted + "-" + anExperience.yearEnded, anExperience.companyDescription))
                 }
+                   
+                
                 newHTML = newHTML.replacingOccurrences(of: "ExperienceGoHere", with: experienceHTML)
                 
             } else {
@@ -252,16 +236,12 @@ class testPDFGenerator {
             }
             
             
-            if(extracurriculars != nil && extracurriculars != ""){
-                var extracurricularsArr = extracurriculars.components(separatedBy:"-")
+            if(!extracurriculars.isEmpty){
+               
                 
                 var extracurricularHTML = ""
-                for anAward in extracurricularsArr{
-                    if(anAward != ""){
-                        let extracurricularDescription = anAward.components(separatedBy:"_")
-                        
-                        extracurricularHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", extracurricularDescription[1],extracurricularDescription[2]))
-                    }
+                for anEC in extracurriculars{
+                    extracurricularHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", anEC.name, anEC.ecDescription))
                    
                     
                 }
@@ -272,16 +252,12 @@ class testPDFGenerator {
             
             
             //Courses loaded here
-            if(courses != nil && courses != ""){
-                var coursesArr = courses.components(separatedBy:"-")
+            if(!courses.isEmpty){
+                
                 
                 var courseHTML = ""
-                for aCourse in coursesArr{
-                    if(aCourse != ""){
-                        let courseDescription = aCourse.components(separatedBy:"_")
-                        
-                        courseHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", courseDescription[1],courseDescription[2]))
-                    }
+                for aCourse in courses{
+                    courseHTML += (String(format: "<h3>%@</h3><ul><li>%@</li></ul>", aCourse.name, aCourse.courseDescription))
                     
                     
                 }
@@ -296,7 +272,7 @@ class testPDFGenerator {
             return newHTML
         } else if(resumeNumber == "resume2"){
             
-            newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName! + " " + myLastName!)
+            newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName + " " + myLastName)
             newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with: phoneNumber)
             newHTML = newHTML.replacingOccurrences(of: "YourEmailHere", with: email)
             if(objective != nil){
@@ -310,18 +286,12 @@ class testPDFGenerator {
                 
             }
             
-            if(skills != nil && skills != ""){
-                var skillArr = skills.components(separatedBy:"-")
+            if(!skills.isEmpty){
+                
                 
                 var skillHTML = ""
-                for aSkill in skillArr{
-                    if(aSkill != ""){
-                        let skillDescription = aSkill.components(separatedBy:"_")
-                        
-                        skillHTML += (String(format: "<h2>%@</h2><p>%@</p>", skillDescription[1],skillDescription[2]))
-                        
-                    }
-                    
+                for aSkill in skills{
+                    skillHTML += (String(format: "<h2>%@</h2><p>%@</p>", aSkill.name,aSkill.skillDescription))
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
@@ -329,17 +299,12 @@ class testPDFGenerator {
                 newHTML = newHTML.replacingOccurrences(of: "<dd class=\"clear\"></dd><dt>Skills</dt><dd>SkillsGoHere</dd>", with: "")
             }
             
-            if(professionalDevelopment != nil && professionalDevelopment != ""){
-                var experienceArr = professionalDevelopment.components(separatedBy:"-")
+            if(!professionalDevelopment.isEmpty){
+                
                 
                 var experienceHTML = ""
-                for anExperience in experienceArr{
-                    if(anExperience != ""){
-                        print(anExperience)
-                        let experienceDescription = anExperience.components(separatedBy:"_")
-                        print(experienceDescription)
-                        experienceHTML += (String(format: "<h2>%@<span>%@</span></h2><ul><li>%@</li></ul>", experienceDescription[4],experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[5]))
-                    }
+                for anExperience in professionalDevelopment{
+                     experienceHTML += (String(format: "<h2>%@<span>%@</span></h2><ul><li>%@</li></ul>", anExperience.companyName, anExperience.name + " - " + anExperience.yearStarted + "-" + anExperience.yearEnded ,anExperience.companyDescription))
                    
                     
                 }
@@ -350,17 +315,12 @@ class testPDFGenerator {
             }
             
             
-            if(extracurriculars != nil && extracurriculars != ""){
-                var extracurricularsArr = extracurriculars.components(separatedBy:"-")
+            if(!extracurriculars.isEmpty){
+                
                 
                 var extracurricularHTML = ""
-                for anAward in extracurricularsArr{
-                    if(anAward != ""){
-                        let extracurricularDescription = anAward.components(separatedBy:"_")
-                        
-                        extracurricularHTML += (String(format: "<h2>%@</h2><p>%@</p>", extracurricularDescription[1],extracurricularDescription[2]))
-                    }
-                    
+                for anEC in extracurriculars{
+                    extracurricularHTML += (String(format: "<h2>%@</h2><p>%@</p>", anEC.name, anEC.ecDescription))
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "extracurricularsGoHere", with: extracurricularHTML)
@@ -370,16 +330,12 @@ class testPDFGenerator {
             
             
             //Courses loaded here
-            if(courses != nil && courses != ""){
-                var coursesArr = courses.components(separatedBy:"-")
+            if(!courses.isEmpty){
+                
                 
                 var courseHTML = ""
-                for aCourse in coursesArr{
-                    if(aCourse != ""){
-                        let courseDescription = aCourse.components(separatedBy:"_")
-                        
-                        courseHTML += (String(format: "<h2>%@</h2><p>%@</p>", courseDescription[1],courseDescription[2]))
-                    }
+                for aCourse in courses{
+                    courseHTML += (String(format: "<h2>%@</h2><p>%@</p>", aCourse.name, aCourse.courseDescription))
                    
                     
                 }
@@ -407,11 +363,11 @@ class testPDFGenerator {
             
             
         } else if(resumeNumber == "resume3"){
-            newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName! + " " + myLastName!)
+            newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName + " " + myLastName)
             newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with:"Phone Number:  " + phoneNumber)
             newHTML = newHTML.replacingOccurrences(of: "YourEmailHere", with:"Email:  " + email)
             if(objective != nil){
-                var objectiveHTML = ""
+                _ = ""
                 
                 newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objective)
                 
@@ -420,35 +376,27 @@ class testPDFGenerator {
                 newHTML = newHTML.replacingOccurrences(of: "<div class=\"yui-gf\"><div class=\"yui-u first\"><h2>Objective</h2></div><div class=\"yui-u\"><p class=\"enlarge\">ObjectiveGoHere</p></div></div>", with: "")
             }
             
-            if(skills != nil && skills != ""){
-                var skillArr = skills.components(separatedBy:"-")
+            if(!skills.isEmpty){
+                
                 
                 var skillHTML = ""
-                for aSkill in skillArr{
-                    let skillDescription = aSkill.components(separatedBy:"_")
-                    if (skillDescription.count == 3) {
-                        skillHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", skillDescription[1],skillDescription[2]))
-                    }
+                for aSkill in skills {
                     
+                    skillHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", aSkill.name, aSkill.skillDescription))
                     
-                    
+                
                 }
                 newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
             } else {
                 newHTML = newHTML.replacingOccurrences(of: "<div class=\"yui-gf\"><div class=\"yui-u first\"><h2>Skills</h2></div><div class=\"yui-u\">SkillsGoHere</div>", with: "")
             }
             
-            if(professionalDevelopment != nil && professionalDevelopment != ""){
-                var experienceArr = professionalDevelopment.components(separatedBy:"-")
+            if(!professionalDevelopment.isEmpty){
+                
                 
                 var experienceHTML = ""
-                for anExperience in experienceArr{
-                    if(anExperience != ""){
-                        print(anExperience)
-                        let experienceDescription = anExperience.components(separatedBy:"_")
-                        print(experienceDescription)
-                        experienceHTML += (String(format: "<div class=job><h2>%@</h2><h3>%@</h3><h4>%@</h4><p>%@</p></div>",experienceDescription[4],experienceDescription[1],experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[5]))
-                    }
+                for anExperience in professionalDevelopment{
+                    experienceHTML += (String(format: "<div class=job><h2>%@</h2><h3>%@</h3><h4>%@</h4><p>%@</p></div>",anExperience.companyName,anExperience.name, anExperience.yearStarted + "-" + anExperience.yearEnded ,anExperience.companyDescription))
                     
                     
                 }
@@ -459,18 +407,14 @@ class testPDFGenerator {
             }
             
             
-            if(extracurriculars != nil && extracurriculars != "" ){
-                var extracurricularsArr = extracurriculars.components(separatedBy:"-")
+            if(!extracurriculars.isEmpty){
+                
                 
                 var extracurricularHTML = ""
-                print("your aextras are")
-                print(extracurricularsArr)
-                for anAward in extracurricularsArr{
-                    if(anAward != ""){
-                        let extracurricularDescription = anAward.components(separatedBy:"_")
-                        
-                        extracurricularHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", extracurricularDescription[1],extracurricularDescription[2]))
-                    }
+                
+                for anAward in extracurriculars {
+                    
+                    extracurricularHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", anAward.name, anAward.ecDescription))
                     
                     
                 }
@@ -481,14 +425,14 @@ class testPDFGenerator {
             
             
             //Courses loaded here
-            if(courses != nil){
-                var coursesArr = courses.components(separatedBy:"-")
+            if(!courses.isEmpty){
+                
                 
                 var courseHTML = ""
-                for aCourse in coursesArr{
-                    let courseDescription = aCourse.components(separatedBy:"_")
+                for aCourse in courses{
                     
-                    courseHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", courseDescription[1],courseDescription[2]))
+                    
+                    courseHTML += (String(format: "<div class=talent><h2>%@</h2><p>%@</p></div>", aCourse.name ,aCourse.courseDescription))
                     
                 }
                 newHTML = newHTML.replacingOccurrences(of: "CoursesGoHere", with: courseHTML)
@@ -510,11 +454,11 @@ class testPDFGenerator {
         
         
         
-        newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName! + " " + myLastName!)
+        newHTML = oldHTML.replacingOccurrences(of: "YourNameHere", with: myFirstName + " " + myLastName)
         newHTML = newHTML.replacingOccurrences(of: "YourPhoneNumberHere", with:"Phone Number:  " + phoneNumber)
         newHTML = newHTML.replacingOccurrences(of: "YourEmailHere", with:"Email:  " + email)
         if(objective != nil){
-            var objectiveHTML = ""
+            _ = ""
             
             newHTML = newHTML.replacingOccurrences(of: "ObjectiveGoHere", with: objective)
             
@@ -523,18 +467,13 @@ class testPDFGenerator {
             newHTML = newHTML.replacingOccurrences(of: "<section><article><div class=\"sectionTitle\"><h1>Objective</h1></div><div class=\"sectionContent\"><p>ObjectiveGoHere</p></div></article><div class=\"clear\"></div></section>", with: "")
         }
         
-        if(skills != nil && skills != ""){
+        if(!skills.isEmpty){
             
-            var skillArr = skills.components(separatedBy:"-")
+            
             
             var skillHTML = ""
-            for aSkill in skillArr{
-                if(aSkill != ""){
-                    let skillDescription = aSkill.components(separatedBy:"_")
-                    
-                    skillHTML += (String(format: "<article><h2>%@</h2><p>%@</p></article>", skillDescription[1],skillDescription[2]))
-                }
-                
+            for aSkill in skills{
+                skillHTML += (String(format: "<article><h2>%@</h2><p>%@</p></article>", aSkill.name, aSkill.skillDescription))
                 
             }
             newHTML = newHTML.replacingOccurrences(of: "SkillsGoHere", with: skillHTML)
@@ -543,18 +482,13 @@ class testPDFGenerator {
             
         }
         
-        if(professionalDevelopment != nil && professionalDevelopment != ""){
-            var experienceArr = professionalDevelopment.components(separatedBy:"-")
+        if(!professionalDevelopment.isEmpty){
+            
             
             var experienceHTML = ""
-            for anExperience in experienceArr{
+            for anExperience in professionalDevelopment{
                 
-                if(anExperience != ""){
-                    print(anExperience)
-                    let experienceDescription = anExperience.components(separatedBy:"_")
-                    print(experienceDescription)
-                    experienceHTML += (String(format: "<article><h2>%@</h2><pclass=subDetails>%@</p><p>%@</p></article>",experienceDescription[4],experienceDescription[1] + " - " + experienceDescription[2] + "-" + experienceDescription[3],experienceDescription[5]))
-                }
+                experienceHTML += (String(format: "<article><h2>%@</h2><pclass=subDetails>%@</p><p>%@</p></article>",anExperience.companyName,anExperience.name + " - " + anExperience.yearStarted + "-" + anExperience.yearEnded,anExperience.companyDescription))
                 
                 
             }
@@ -565,16 +499,12 @@ class testPDFGenerator {
         }
         
         
-        if(extracurriculars != nil && extracurriculars != ""){
-            var extracurricularsArr = extracurriculars.components(separatedBy:"-")
+        if(!extracurriculars.isEmpty){
+            
             
             var extracurricularHTML = ""
-            for anAward in extracurricularsArr{
-                if(anAward != ""){
-                    let extracurricularDescription = anAward.components(separatedBy:"_")
-                    
-                    extracurricularHTML += (String(format: "<article><h2>%@</h2><p>%@</p></article>", extracurricularDescription[1],extracurricularDescription[2]))
-                }
+            for anAward in extracurriculars{
+                extracurricularHTML += (String(format: "<article><h2>%@</h2><p>%@</p></article>", anAward.name,anAward.ecDescription))
                 
                 
             }
@@ -585,16 +515,12 @@ class testPDFGenerator {
         
         
         //Courses loaded here
-        if(courses != nil && courses != ""){
-            var coursesArr = courses.components(separatedBy:"-")
+        if(!courses.isEmpty){
+            
             
             var courseHTML = ""
-            for aCourse in coursesArr{
-                if(aCourse != ""){
-                    let courseDescription = aCourse.components(separatedBy:"_")
-                    
-                    courseHTML += (String(format: "<article><h2>%@</h2><p>%@</p></article>", courseDescription[1],courseDescription[2]))
-                }
+            for aCourse in courses{
+                courseHTML += (String(format: "<article><h2>%@</h2><p>%@</p></article>", aCourse.name,aCourse.courseDescription))
                 
                 
             }
@@ -613,84 +539,13 @@ class testPDFGenerator {
     
     
     
-    func getText() -> String{
-        loadData()
-        let aUser = user.last
-        
-        
-        
-        guard let firstName  = aUser?.value(forKeyPath: "firstName") as? String  else {
-            //print("nothing to see here")
-            return ""
-            
-            
-            
-            
-        }
-        //var lastname = aUser.value(forKeyPath: "lastName") as? String
-        guard let lastName  = aUser?.value(forKeyPath: "lastName") as? String  else {
-            //print("nothing to see here")
-            return ""
-            
-            
-            
-            
-        }
-        
-        
-        guard let email  = aUser?.value(forKeyPath: "emailAdress") as? String  else {
-            //print("nothing to see here")
-            return ""
-            
-            
-            
-            
-        }
-        
-        guard let phoneNumber  = aUser?.value(forKeyPath: "phoneNumber") as? String  else {
-            //print("nothing to see here")
-            return ""
-            
-            
-            
-            
-        }
-        
-        
-        
-        
-        
-        
-        guard let schoolName  = aUser?.value(forKeyPath: "schoolName") as? String  else {
-            //print("nothing to see here")
-            return ""
-        }
-        
-        
-        
-        
-       
-        skills = aUser?.value(forKeyPath: "skills") as? String
-        
-        professionalDevelopment  = aUser?.value(forKeyPath: "experience") as? String
-        courses = aUser?.value(forKeyPath: "courses") as? String
-        extracurriculars = aUser?.value(forKeyPath: "extracurriculars") as? String
-        
-        let gradeLevel = ""
-        let secondline = ( ("\(firstName) \(lastName) \n\(email)") + " \n\(phoneNumber)\n\(schoolName)\n\(gradeLevel)\n\("SKILLS")\n\(loadEntryItems(anEntry: skills))\n\("PROFESSIONAL DEVELOPMENT")\n\(loadEntryItems(anEntry: professionalDevelopment))\n\("COURSES TAKEN")\n\(loadEntryItems(anEntry: courses))\n\("extracurriculars")\n\(loadEntryItems(anEntry: extracurriculars))")
-        //let entryItems = loadEntryItems()
-        
-       
-        //print("the first thing is" + EntryItems[0])
-        
-        return secondline
-    }
+    
     
     
     var restultantString = " "
     func loadEntryItems(anEntry: String?) -> String{
         restultantString = " "
-        if let testVar = anEntry{
+        if anEntry != nil{
             
         } else {
             return " "
@@ -704,30 +559,5 @@ class testPDFGenerator {
     }
     
     
-    // Loads data that is later added to resume.
-    //
-    //
-    func loadData(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        var managedContext:NSManagedObjectContext
-        if #available(iOS 10.0, *) {
-            managedContext = appDelegate.persistentContainer.viewContext
-        } else {
-            // Fallback on earlier versions
-            managedContext = appDelegate.managedObjectContext
-        }
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
-        //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")
-        do {
-            user = try managedContext.fetch(userRequest)
-            
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
+   
 }

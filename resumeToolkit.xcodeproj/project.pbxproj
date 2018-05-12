@@ -10,9 +10,7 @@
 		D102D4B11FACFBC30098E287 /* resume2.html in Resources */ = {isa = PBXBuildFile; fileRef = D102D4B01FACFBC30098E287 /* resume2.html */; };
 		D10628901F60678E001880AD /* Prime Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D106288F1F606780001880AD /* Prime Regular.otf */; };
 		D10628911F606791001880AD /* Prime Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D106288E1F60677E001880AD /* Prime Light.otf */; };
-		D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10628921F6080E7001880AD /* secondLoginScreen.swift */; };
 		D125BA821F608B3E0077C0BD /* userInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D125BA811F608B3E0077C0BD /* userInfo.swift */; };
-		D133C6A71F5A60600080B598 /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D133C6A61F5A60600080B598 /* dataManager.swift */; };
 		D134D8311FF358760062367A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D8301FF358760062367A /* AppDelegate.swift */; };
 		D134D8331FF358840062367A /* collectionViewCell.temp_caseinsensitive_rename.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134D8321FF358840062367A /* collectionViewCell.temp_caseinsensitive_rename.swift */; };
 		D13FA6B41F7DB88500AB567C /* CODE Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D13FA6B21F7DB87C00AB567C /* CODE Bold.otf */; };
@@ -20,8 +18,6 @@
 		D13FA6B71F7DBB6C00AB567C /* Infinity.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D13FA6B61F7DBB2100AB567C /* Infinity.ttf */; };
 		D14A74A81FAE914E00D56DBC /* resume4.html in Resources */ = {isa = PBXBuildFile; fileRef = D14A74A71FAE914E00D56DBC /* resume4.html */; };
 		D152E3B01F61DDC6002F5F54 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3AF1F61DDC5002F5F54 /* SearchBarView.swift */; };
-		D152E3B81F620630002F5F54 /* entryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152E3B71F620630002F5F54 /* entryCell.swift */; };
-		D16175F31FFC290400EF3F08 /* education.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175ED1FFC290200EF3F08 /* education.swift */; };
 		D16175F41FFC290400EF3F08 /* experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175EE1FFC290300EF3F08 /* experience.swift */; };
 		D16175F51FFC290400EF3F08 /* extracurricular.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175EF1FFC290300EF3F08 /* extracurricular.swift */; };
 		D16175F61FFC290400EF3F08 /* resumeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16175F01FFC290300EF3F08 /* resumeItem.swift */; };
@@ -45,6 +41,8 @@
 		D16C214A1FBD35510005C7C2 /* palanquindark-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C213E1FBD35500005C7C2 /* palanquindark-regular.ttf */; };
 		D16C214B1FBD35510005C7C2 /* palanquindark-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16C213F1FBD35500005C7C2 /* palanquindark-semibold.ttf */; };
 		D16C214C1FBD35510005C7C2 /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = D16C21401FBD35500005C7C2 /* SIL Open Font License.txt */; };
+		D16E43FB2098FEF400229789 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16E43FA2098FEF400229789 /* user.swift */; };
+		D16E43FD2099067D00229789 /* newDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16E43FC2099067C00229789 /* newDataManager.swift */; };
 		D182367C1FA16EF000801E00 /* fifthLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182367B1FA16EF000801E00 /* fifthLoginScreen.swift */; };
 		D182367E1FA171B400801E00 /* fourthLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182367D1FA171B400801E00 /* fourthLoginScreen.swift */; };
 		D18236801FA1736E00801E00 /* thirdLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182367F1FA1736E00801E00 /* thirdLoginScreen.swift */; };
@@ -95,7 +93,6 @@
 		D102D4B01FACFBC30098E287 /* resume2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = resume2.html; sourceTree = "<group>"; };
 		D106288E1F60677E001880AD /* Prime Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Light.otf"; sourceTree = "<group>"; };
 		D106288F1F606780001880AD /* Prime Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Regular.otf"; sourceTree = "<group>"; };
-		D10628921F6080E7001880AD /* secondLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondLoginScreen.swift; sourceTree = "<group>"; };
 		D11487031FB4C2DC00A60669 /* ASHorizontalScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ASHorizontalScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D11487081FB4C49300A60669 /* ASHorizontalScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ASHorizontalScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D125BA811F608B3E0077C0BD /* userInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userInfo.swift; sourceTree = "<group>"; };
@@ -107,9 +104,7 @@
 		D13FA6B61F7DBB2100AB567C /* Infinity.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Infinity.ttf; sourceTree = "<group>"; };
 		D14A74A71FAE914E00D56DBC /* resume4.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = resume4.html; sourceTree = "<group>"; };
 		D152E3AF1F61DDC5002F5F54 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
-		D152E3B71F620630002F5F54 /* entryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entryCell.swift; sourceTree = "<group>"; };
 		D152E3B91F621B5C002F5F54 /* editViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editViewController.swift; sourceTree = "<group>"; };
-		D16175ED1FFC290200EF3F08 /* education.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = education.swift; sourceTree = "<group>"; };
 		D16175EE1FFC290300EF3F08 /* experience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = experience.swift; sourceTree = "<group>"; };
 		D16175EF1FFC290300EF3F08 /* extracurricular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extracurricular.swift; sourceTree = "<group>"; };
 		D16175F01FFC290300EF3F08 /* resumeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resumeItem.swift; sourceTree = "<group>"; };
@@ -133,6 +128,8 @@
 		D16C213E1FBD35500005C7C2 /* palanquindark-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-regular.ttf"; sourceTree = "<group>"; };
 		D16C213F1FBD35500005C7C2 /* palanquindark-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-semibold.ttf"; sourceTree = "<group>"; };
 		D16C21401FBD35500005C7C2 /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
+		D16E43FA2098FEF400229789 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
+		D16E43FC2099067C00229789 /* newDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newDataManager.swift; sourceTree = "<group>"; };
 		D182367B1FA16EF000801E00 /* fifthLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fifthLoginScreen.swift; sourceTree = "<group>"; };
 		D182367D1FA171B400801E00 /* fourthLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fourthLoginScreen.swift; sourceTree = "<group>"; };
 		D182367F1FA1736E00801E00 /* thirdLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = thirdLoginScreen.swift; sourceTree = "<group>"; };
@@ -230,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				D152E3AF1F61DDC5002F5F54 /* SearchBarView.swift */,
-				D152E3B71F620630002F5F54 /* entryCell.swift */,
 				D152E3B91F621B5C002F5F54 /* editViewController.swift */,
 			);
 			path = MiddleVC;
@@ -251,7 +247,6 @@
 				D182367D1FA171B400801E00 /* fourthLoginScreen.swift */,
 				D182367F1FA1736E00801E00 /* thirdLoginScreen.swift */,
 				D18236811FA1750600801E00 /* secondLogin.swift */,
-				D10628921F6080E7001880AD /* secondLoginScreen.swift */,
 				D18236831FA175C200801E00 /* firstLoginScreen.swift */,
 				D1E457A71F5A1D0B00D1E030 /* loginScreen.swift */,
 			);
@@ -270,11 +265,11 @@
 			isa = PBXGroup;
 			children = (
 				D16175F11FFC290300EF3F08 /* course.swift */,
-				D16175ED1FFC290200EF3F08 /* education.swift */,
 				D16175EE1FFC290300EF3F08 /* experience.swift */,
 				D16175EF1FFC290300EF3F08 /* extracurricular.swift */,
 				D16175F01FFC290300EF3F08 /* resumeItem.swift */,
 				D16175F21FFC290300EF3F08 /* skill.swift */,
+				D16E43FA2098FEF400229789 /* user.swift */,
 			);
 			path = coreDataClasses;
 			sourceTree = "<group>";
@@ -373,6 +368,7 @@
 				D152E3AC1F61DD14002F5F54 /* LeftVC */,
 				D152E3AD1F61DD2A002F5F54 /* LoginVC */,
 				D133C6A61F5A60600080B598 /* dataManager.swift */,
+				D16E43FC2099067C00229789 /* newDataManager.swift */,
 				D1E457921F5A175E00D1E030 /* Main.storyboard */,
 				D152E3AE1F61DD65002F5F54 /* RightVC */,
 				D125BA811F608B3E0077C0BD /* userInfo.swift */,
@@ -594,12 +590,10 @@
 				D18DCD391F74946300F9E7DB /* Award.swift in Sources */,
 				D18236801FA1736E00801E00 /* thirdLoginScreen.swift in Sources */,
 				D18236821FA1750600801E00 /* secondLogin.swift in Sources */,
-				D10628931F6080E7001880AD /* secondLoginScreen.swift in Sources */,
 				D16175F51FFC290400EF3F08 /* extracurricular.swift in Sources */,
 				D18286F31F618FC700CAD85A /* pdfView.swift in Sources */,
 				D16175F71FFC290400EF3F08 /* course.swift in Sources */,
 				D16175F61FFC290400EF3F08 /* resumeItem.swift in Sources */,
-				D16175F31FFC290400EF3F08 /* education.swift in Sources */,
 				D1DB93701F70A3EE00C210B4 /* userSetUp.m in Sources */,
 				D18286ED1F60A6B400CAD85A /* userSettings.swift in Sources */,
 				D1E457A61F5A194800D1E030 /* SnapContainerViewController.swift in Sources */,
@@ -615,15 +609,15 @@
 				D182367C1FA16EF000801E00 /* fifthLoginScreen.swift in Sources */,
 				D1E457971F5A175F00D1E030 /* resumeToolkit.xcdatamodeld in Sources */,
 				D1E457A81F5A1D0B00D1E030 /* loginScreen.swift in Sources */,
+				D16E43FB2098FEF400229789 /* user.swift in Sources */,
 				D16176011FFC29DF00EF3F08 /* experienceCell.swift in Sources */,
 				D16176031FFC29DF00EF3F08 /* skillCell.swift in Sources */,
+				D16E43FD2099067D00229789 /* newDataManager.swift in Sources */,
 				D1D9A8EC202E4D930094634D /* editViewController.swift in Sources */,
 				D1C136721FDCEB0600AA88C0 /* cardViewController.swift in Sources */,
 				D182367E1FA171B400801E00 /* fourthLoginScreen.swift in Sources */,
 				D16175FF1FFC29DF00EF3F08 /* courseCell.swift in Sources */,
-				D152E3B81F620630002F5F54 /* entryCell.swift in Sources */,
 				D134D8331FF358840062367A /* collectionViewCell.temp_caseinsensitive_rename.swift in Sources */,
-				D133C6A71F5A60600080B598 /* dataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,7 +761,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GatechEngineeringForInnovation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -789,7 +783,7 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = resumeToolkit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GatechEngineeringForInnovation;
 				PRODUCT_NAME = "$(TARGET_NAME)";

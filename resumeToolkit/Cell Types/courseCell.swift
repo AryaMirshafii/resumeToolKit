@@ -53,7 +53,8 @@ class courseCell:resumeCell{
         if text == "\n" {
             courseDescription.isUserInteractionEnabled = false
             courseDescription.resignFirstResponder()
-            dataController.overwriteCourses(previousText: originalText, courseToChangeTo: "Courses" + "_" + courseNameLabel.text! + "_" + courseDescription.text)
+            dataController.overwriteCourses(name: courseNameLabel.text!, updatedDescription: courseDescription.text)
+            
             reloadCounter += 1
             infoController.saveChangeText(text: String(reloadCounter))
             
@@ -93,8 +94,8 @@ class courseCell:resumeCell{
     private var reloadCounter = 0
     override func deleteInformation() {
         
-        dataController.overwriteCourses(previousText: "Courses" + "_" + courseNameLabel.text! + "_" + courseDescription.text, courseToChangeTo: "")
         
+       dataController.deleteCourse(name: courseNameLabel.text!)
         
         
         infoController.saveChangeText(text: String(reloadCounter))

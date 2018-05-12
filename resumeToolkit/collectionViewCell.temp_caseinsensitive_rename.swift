@@ -5,16 +5,22 @@
 //  Created by Hendrik Frahmann on 02.11.16.
 //  Copyright © 2016 Hendrik Frahmann. All rights reserved.
 //
-// Insert github link
+
 
 import UIKit
 import QuartzCore
 import HFCardCollectionViewLayout
 import CoreData
 import EECellSwipeGestureRecognizer
+import EasyTipView
 
 
-class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableViewDataSource {
+class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableViewDataSource,EasyTipViewDelegate {
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+      
+        
+    }
+    
     
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
     
@@ -28,14 +34,13 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
     
     
     
-    var itemsDict = [String:[resumeItem]]()
-    var dataController = dataManager()
-    var user: [NSManagedObject] = []
+    var itemsDict = [String:[NSManagedObject]]()
+    var dataController = newDataManager()
+    private var infoController = userInfo()
+    private var tipView:EasyTipView!
+    
     let sections = ["Experience", "Skills", "Courses","Extracurriculars"]
-    var experrienceList = [resumeItem]()
-    var skillsList = [resumeItem]()
-    var courseList = [resumeItem]()
-    var ExtracurricularsList = [resumeItem]()
+    
     var resumeSection  = " "
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,13 +57,53 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
-        
+        determineTutorial()
     }
+    
+    
+    var dropWarningCounter = 0
+    
+    func determineTutorial(){
+        infoController.refresh()
+        if(infoController.isTutorailComplete()){
+            return
+        }
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 20)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+        
+        /*
+         * Optionally you can make these preferences global for all future EasyTipViews
+         */
+        
+        EasyTipView.globalPreferences = preferences
+        
+        
+        if(self.resumeSection == "Skills" && infoController.getProgress() == 4){
+            print("Showing swipe warning")
+            
+            tipView = EasyTipView(text: "Tap tap here to see your skill card", preferences: preferences)
+            tipView.show(forView: self.labelText!, withinSuperview: self)
+        } else if(self.resumeSection == "Skills" && infoController.getProgress() == 5){
+            print("Showing remove warning")
+            if(dropWarningCounter < 1){
+                tipView = EasyTipView(text: "Tap or swipe down to dismiss", preferences: preferences)
+                tipView.show(forView: self.labelText!, withinSuperview: self)
+            }
+            dropWarningCounter += 1
+        }
+    }
+    
+    
     
     // Detects if the user has added data and changes it accordingly
     // Usually trigered when reload counter is altered on other files.
     @objc private func userDefaultsDidChange() {
+        print("user changginnnzz")
         generateItemsDict()
+        
         DispatchQueue.main.async {
             self.tableView?.reloadData()
         }
@@ -67,12 +112,28 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
     // Allows the card being revealed property to be set to true
     // This was used mostly in the developer's demo app but is always set to true in this app.
     func cardIsRevealed(_ isRevealed: Bool) {
+        //determineTutorial()
+        print("Isreavled is" + String(isRevealed))
+        if(isRevealed && infoController.getProgress() == 4){
+            infoController.incrementTutorialProgress()
+            tipView.dismiss()
+            determineTutorial()
+            
+        } else if (!isRevealed && infoController.getProgress() == 5){
+            print("Isreavled is" + String(isRevealed))
+            infoController.incrementTutorialProgress()
+            tipView.dismiss()
+            determineTutorial()
+            
+        }
+        
         self.buttonFlip?.isHidden = !isRevealed
         self.tableView?.scrollsToTop = isRevealed
     }
     
     // Once again, this just allows the card to be flipped but this is never used
     @IBAction func buttonFlipAction() {
+        print("going back")
         if let backView = self.backView {
             // Same Corner radius like the contentview of the HFCardCollectionViewCell
             backView.layer.cornerRadius = self.cornerRadius
@@ -88,166 +149,37 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
     // data into the cards
     var counter = 0
     func generateItemsDict(){
+        print("Generating Resume Items Dictionary")
         
-        setUpData()
-        let aUser = user.last
+        
+        
         for aSection in sections {
             
-            let userExpereience = aUser?.value(forKeyPath: "experience") as? String
-            let userSkills = aUser?.value(forKeyPath: "skills") as? String
-            let userCourses = aUser?.value(forKeyPath: "courses") as? String
-            let userExtracurriculars = aUser?.value(forKeyPath: "extracurriculars") as? String
-            
-            print("going here")
-            
-            var experienceArr = userExpereience?.components(separatedBy:"-")
-            var skillsArr = userSkills?.components(separatedBy:"-")
-            var coursesArr = userCourses?.components(separatedBy:"-")
-            var ExtracurricularsArr = userExtracurriculars?.components(separatedBy:"-")
-            
-            
-            
-            if(aSection == "Experience" && userExpereience != nil){
-                experrienceList.removeAll()
-                
-                if(experienceArr != nil){
-                    for anExperience in experienceArr!{
-                        if(!anExperience.isEmpty && anExperience != "entryInfo[1]_entryInfo[2]"){
-                            experrienceList.append(createResumeItem(description: anExperience))
-                        }
-                        
-                    }
-                    itemsDict[aSection]  = experrienceList
-                    
-                } else {
-                    itemsDict[aSection] = [createResumeItem(description: userExpereience!)]
-                }
-                
-                counter += 1
-                
-                
-                
+            if(aSection == "Experience") {
+                itemsDict[aSection] = dataController.fetchExperiences()
+            } else if(aSection == "Skills") {
+                itemsDict[aSection] = dataController.fetchSkills()
+            } else if(aSection == "Courses") {
+                itemsDict[aSection] = dataController.fetchCourses()
+            } else if (aSection == "Extracurriculars"){
+                itemsDict[aSection] = dataController.fetchExtraCurriculars()
             }
             
-            if(aSection == "Skills" && userSkills != nil){
-                
-                if(skillsArr != nil){
-                    skillsList.removeAll()
-                    for aSkill in skillsArr!{
-                        let aResumeItem = createResumeItem(description: aSkill)
-                        if(aResumeItem.name != "entryInfo[1]" ){
-                            skillsList.append(aResumeItem)
-                        }
-                        
-                    }
-                    itemsDict[aSection]  = skillsList
-                    
-                } else {
-                    itemsDict[aSection] = [createResumeItem(description: userSkills!)]
-                }
-                
-                counter += 1
-                
-                
-                
-            }
-            
-            if(aSection == "Courses" && userCourses != nil){
-                
-                if(coursesArr != nil){
-                    courseList.removeAll()
-                    for aCourse in coursesArr!{
-                        if(!aCourse.isEmpty){
-                            courseList.append(createResumeItem(description: aCourse))
-                        }
-                        
-                    }
-                    itemsDict[aSection]  = courseList
-                    
-                } else {
-                    itemsDict[aSection] = [createResumeItem(description: userCourses!)]
-                }
-                
-                counter += 1
-                
-            }
-            
-            if(aSection == "Extracurriculars" && userExtracurriculars != nil){
-                
-                if(ExtracurricularsArr != nil){
-                    ExtracurricularsList.removeAll()
-                    for anAward in ExtracurricularsArr!{
-                        if(!anAward.isEmpty){
-                            ExtracurricularsList.append(createResumeItem(description: anAward))
-                        }
-                        
-                    }
-                    itemsDict[aSection]  = ExtracurricularsList
-                    
-                } else {
-                    itemsDict[aSection] = [createResumeItem(description: userExtracurriculars!)]
-                }
-                
-                counter += 1
-                
-                
-                
-            }
             
         }
+            
         
     }
     
     
-    // fetches data from coredata model
-    
-    func setUpData(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        var managedContext:NSManagedObjectContext
-        if #available(iOS 10.0, *) {
-            managedContext = appDelegate.persistentContainer.viewContext
-        } else {
-            // Fallback on earlier versions
-            managedContext = appDelegate.managedObjectContext
-        }
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
-        
-        do {
-            user = try managedContext.fetch(userRequest)
-            
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
     
     
-    // Uses strings from coredata model to create theresumeItem objects
     
-    func createResumeItem(description: String) -> resumeItem{
-        let entryInfo = description.components(separatedBy: "_")
-        
-        if(entryInfo[0] == "Skill"){
-            
-            return skill(name: entryInfo[1], entryType: entryInfo[0], description: entryInfo[2])
-        } else if(entryInfo[0] == "Professional Development"){
-            
-            //return experience(name: entryInfo[1], description: entryInfo[2])
-            
-            return experience(name: entryInfo[1], entryType:entryInfo[0], yearStarted: entryInfo[2], yearEnded: entryInfo[3], companyName: entryInfo[4], description: entryInfo[5])
-        } else if(entryInfo[0] == "Courses"){
-            
-            return course(name: entryInfo[1], entryType:entryInfo[0], description: entryInfo[2])
-        } else if(entryInfo[0] == "Extracurriculars"){
-            return extracurricular(name: entryInfo[1], entryType:entryInfo[0], description: entryInfo[2], year:entryInfo[3])
-        } 
-        return resumeItem(name: "entryInfo[1]", entryType:"None")
-    }
-   var cellCounter = 0
+    
+    
+   
+    
+    var cellCounter = 0
     var CellIndexNumber:Int = -1
     
 }
@@ -268,33 +200,21 @@ extension CollectionViewCell  {
     // creates individual cells in the card change this for each type of skill
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         var items = self.itemsDict[self.resumeSection]
         if(!itemsDict.isEmpty) {
-            if(self.resumeSection == "Education"){
-                let cell = tableView.dequeueReusableCell(withIdentifier: "educationCell") as! educationCell
-                if(items != nil){
-                    self.tableView?.rowHeight = 150
-                    let theEducationItem = items![indexPath.row] as! education
-                    cell.schoolNameLabel.text = theEducationItem.name
-                    cell.schoolStartYearLabel.text = theEducationItem.startYear
-                    cell.schoolEndYearLabel.text = theEducationItem.endYear
-                    cell.degreeTypeLabel.text = theEducationItem.degreeType
-                    cell.majorLabel.text = theEducationItem.major
-                    return cell
-                    
-                }
-                
-                
-            } else if(self.resumeSection == "Experience"){
+            if(self.resumeSection == "Experience"){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "experienceCell") as! experienceCell
                 if(items != nil){
+                    
                     self.tableView?.rowHeight = 230
                     let theExperienceItem = items![indexPath.row] as! experience
                     cell.positionlabel.text = theExperienceItem.name
                     cell.startYearLabel.text = theExperienceItem.yearStarted
                     cell.endYearLabel.text = theExperienceItem.yearEnded
                     cell.companyLabel.text = theExperienceItem.companyName
-                    cell.experienceDescription.text = theExperienceItem.description
+                    cell.experienceDescription.text = theExperienceItem.companyDescription
+                    cell.theExperience = theExperienceItem
                     
                     
                     
@@ -325,10 +245,11 @@ extension CollectionViewCell  {
             } else if(self.resumeSection == "Skills") {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "skillCell") as! skillCell
                 if(items != nil){
+                    determineTutorial()
                     self.tableView?.rowHeight = 140
                     let theSkillItem = items![indexPath.row] as! skill
                     cell.skillNameLabel.text = theSkillItem.name
-                    cell.skillDescription.text = theSkillItem.description
+                    cell.skillDescription.text = theSkillItem.skillDescription
                     
                     
                     let gestureRecognizer: EECellSwipeGestureRecognizer = EECellSwipeGestureRecognizer()
@@ -342,7 +263,7 @@ extension CollectionViewCell  {
                     action.inactiveBackgroundColor = cell.contentView.backgroundColor!
                     action.iconMargin = 40
                     
-                    print("I am so triggered rn")
+                    
                     action.didChangeState = { (tableView, indexPath) in
                         
                         cell.activateTaps()
@@ -358,10 +279,11 @@ extension CollectionViewCell  {
             } else if(self.resumeSection == "Courses"){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "courseCell") as! courseCell
                 if(items != nil){
+                    
                     self.tableView?.rowHeight = 150
                     let theCourseItem = items![indexPath.row] as! course
                     cell.courseNameLabel.text = theCourseItem.name
-                    cell.courseDescription.text = theCourseItem.description
+                    cell.courseDescription.text = theCourseItem.courseDescription
                     
                     
                     let gestureRecognizer: EECellSwipeGestureRecognizer = EECellSwipeGestureRecognizer()
@@ -390,9 +312,10 @@ extension CollectionViewCell  {
             } else if(self.resumeSection == "Extracurriculars"){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "extracurricularCell") as! extracurricularCell
                 if(items != nil){
+                    
                     let theExtraCurricularItem = items![indexPath.row] as! extracurricular
                     cell.extracurricularNameLabel.text = theExtraCurricularItem.name
-                    cell.extracurricularDescription.text = theExtraCurricularItem.description
+                    cell.extracurricularDescription.text = theExtraCurricularItem.ecDescription
                     cell.extracurricularYearLabel.text = theExtraCurricularItem.year
                     
                     
@@ -438,7 +361,7 @@ extension CollectionViewCell  {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            
+            print("Removing an Item")
             self.itemsDict[resumeSection]?.remove(at: indexPath.row)
             
             

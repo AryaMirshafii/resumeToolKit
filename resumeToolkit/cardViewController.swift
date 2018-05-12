@@ -16,6 +16,12 @@ struct CardInfo {
     var color: UIColor
     var icon: UIImage
 }
+
+extension EasyTipView{
+    func shouldShow(newText: String) -> Bool{
+        return text != newText
+    }
+}
 struct CardLayoutSetupOptions {
     var firstMovableIndex: Int = 0
     var cardHeadHeight: CGFloat = 80
@@ -39,27 +45,38 @@ struct CardLayoutSetupOptions {
 }
 class cardViewController : UICollectionViewController, HFCardCollectionViewLayoutDelegate, EasyTipViewDelegate {
     func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-        
+        // do nothing
     }
     
     
     var cardCollectionViewLayout: HFCardCollectionViewLayout?
     
     var infoController = userInfo()
-    var dataController = dataManager()
+    var dataController = newDataManager()
     
     @IBOutlet weak var objectiveEntry: UITextView!
     @IBOutlet var backgroundView: UIView!
     @IBOutlet var backgroundNavigationBar: UINavigationBar?
+    
+    @IBOutlet weak var goEditButton: UIButton!
+    
+    
+    @IBOutlet weak var saveObjectiveButton: UIButton!
+    
+    @IBOutlet weak var topView: UIView!
+    
+    
+    
     
     var cardLayoutOptions: CardLayoutSetupOptions?
     var shouldSetupBackgroundView = true
     
     var cardArray: [CardInfo] = []
     var user: [NSManagedObject] = []
+    private var tipView:EasyTipView!
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
         var layoutOptions = CardLayoutSetupOptions()
         layoutOptions.numberOfCards                  = 4
         layoutOptions.firstMovableIndex              = 0
@@ -98,9 +115,148 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
             objectiveEntry.text = objectiveText
         }
         
-        super.viewDidLoad()
+        
+        
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         
     }
+    
+    @objc func userDefaultsDidChange(){
+        determineTutorial()
+    }
+    
+    
+    
+
+    
+    var preferences: EasyTipView.Preferences!
+    var tipArr = [EasyTipView]()
+    func determineTutorial(){
+        infoController.refresh()
+        if(infoController.isTutorailComplete()){
+            if(tipView != nil){
+                tipView.dismiss()
+            }
+            return
+        }
+        preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 20)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+        
+        
+        /*
+         * Optionally you can make these preferences global for all future EasyTipViews
+         */
+        
+        EasyTipView.globalPreferences = preferences
+        
+        
+        if(infoController.getProgress() == 1){
+            print("Arya is here")
+            let newTipView = EasyTipView(text: "Tap \"Add Item\" to add a skill to your resume", preferences: preferences)
+            tipView = newTipView
+            tipView.show(forView: self.goEditButton, withinSuperview: self.view)
+            tipArr.append(newTipView)
+        } else if(infoController.getProgress() == 6){
+            let textToShow = "Add an objective here"
+            if(!tipView.shouldShow(newText: textToShow)){
+                return
+            }
+            let newTipView = EasyTipView(text: textToShow, preferences: preferences)
+            tipView = newTipView
+            tipView.show(forView: self.objectiveEntry, withinSuperview: self.view)
+            tipArr.append(newTipView)
+            let timer = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(saveObjectiveTutorial), userInfo: nil, repeats: false)
+        }  else if(infoController.getProgress() == 7){
+            
+            let newTipView = EasyTipView(text: "Tap \"Add Item\" to add a course to your resume", preferences: preferences)
+            tipView = newTipView
+            tipView.show(forView: self.goEditButton, withinSuperview: self.view)
+            tipArr.append(newTipView)
+        } else if(infoController.getProgress() == 10){
+            preferences.drawing.backgroundColor = UIColor.red
+            let newTipView = EasyTipView(text: "Swipe left to view your resume", preferences: preferences)
+            tipView = newTipView
+            tipView.show(forView: self.backgroundView, withinSuperview: self.view)
+            tipArr.append(newTipView)
+            let timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(dismissTimer), userInfo: nil, repeats: false)
+        }else if(infoController.getProgress() == 12){
+            infoController.disableTutorial()
+        }
+        
+    
+    
+    }
+    
+    func determineDismissal(){
+        for aTip in tipArr{
+            aTip.dismiss()
+        }
+        
+        if(tipView == nil){
+            return
+        }
+        if(!infoController.isTutorailComplete() && infoController.getProgress() == 1){
+            infoController.incrementTutorialProgress()
+            //tipView.dismiss()
+        } else if( !infoController.isTutorailComplete() && infoController.getProgress() == 7){
+            infoController.incrementTutorialProgress()
+            //tipView.dismiss()
+        }else if(infoController.getProgress() == 6){
+            infoController.incrementTutorialProgress()
+            //tipView.dismiss()
+            
+            
+        }else if(infoController.getProgress() == 12){
+            infoController.disableTutorial()
+        }
+    }
+    
+    
+    
+    
+    @objc func dismissTimer(){
+        for aTip in tipArr{
+            aTip.dismiss()
+        }
+        //tipView.dismiss()
+        infoController.incrementTutorialProgress()
+        //tipView.dismiss()
+    }
+   
+    @objc func saveObjectiveTutorial(){
+        for aTip in tipArr{
+            aTip.dismiss()
+        }
+        let newTipView = EasyTipView(text: "Tap \"Save Objective\" when done", preferences: preferences)
+        tipView = newTipView
+        tipView.show(forView: self.saveObjectiveButton, withinSuperview: self.view)
+        tipArr.append(newTipView)
+        
+    }
+    
+    
+    
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("View appears")
+        //determineTutorial()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+    }
+    
+    
+    
+    
+    
    
     var reloadCounter = 0
     /// Saves the objective entered at the top and displays a message notifying the user
@@ -108,8 +264,9 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     ///
     /// - Parameter sender: the sender passed from the save objective button.
     @IBAction func saveObjective(_ sender: Any) {
-        dataController.saveObjective(statement: objectiveEntry.text)
-        infoController.saveChangeText(text: String(reloadCounter))
+        determineDismissal()
+        dataController.saveObjective(objective: objectiveEntry.text)
+        //infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
         view.endEditing(true)
         var alert = UIAlertController(title: "Saved!",
@@ -127,6 +284,9 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         alert.addAction(UIAlertAction(title: "Ok",
                                       style: UIAlertActionStyle.default, handler: nil))
         
+        
+        determineTutorial()
+        
         self.present(alert, animated: true, completion: nil)
         
     }
@@ -134,22 +294,8 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     
     @IBAction func goToEditViewController(_ sender: Any) {
         
-        var preferences = EasyTipView.Preferences()
-        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 20)!
-        preferences.drawing.foregroundColor = UIColor.white
-        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
-        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
-        
-        /*
-         * Optionally you can make these preferences global for all future EasyTipViews
-         */
-        EasyTipView.globalPreferences = preferences
-        
-        EasyTipView.show(forView: self.objectiveEntry,
-                         withinSuperview: self.navigationController?.view,
-                         text: "Hi Arya",
-                         preferences: preferences,
-                         delegate: self)
+        print("Going to edit")
+        determineDismissal()
 
         self.performSegue(withIdentifier: "goEdit", sender: nil)
     }
@@ -180,6 +326,11 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     var cardCounter = 0
     let sections = ["Experience", "Skills", "Courses","Extracurriculars"]
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        /**
+        if(cardCounter < 1){
+            determineTutorial()
+        }
+        */
         if(cardCounter  == 4) {
             cardCounter = 0
         }
@@ -196,6 +347,8 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
             
             
         }
+        
+    
        
         
        
@@ -225,6 +378,8 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.cardCollectionViewLayout?.revealCardAt(index: indexPath.item)
+        print("Card selected")
+        determineTutorial()
     }
     
     
@@ -247,6 +402,9 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     ///
     /// - Parameter sender: the sender passsed from the add item button.
     @IBAction func addItem(_ sender: Any) {
+        
+        
+        
         performSegue(withIdentifier: "goEdit", sender: self)
     }
     

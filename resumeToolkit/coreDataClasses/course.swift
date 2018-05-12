@@ -7,12 +7,66 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
 
-class course: resumeItem {
-    var description: String
-    init(name: String, entryType: String, description: String) {
-        self.description = description
-        super.init(name: name, entryType: entryType)
+@objc(course)
+class course: NSManagedObject {
+    
+    @NSManaged   var name: String
+    @NSManaged  var courseDescription: String
+    
+    private var context:NSManagedObjectContext!
+    
+    
+    
+    
+    
+    
+    convenience init(name: String, courseDescription: String, objectContext: NSManagedObjectContext!) {
+        
+        
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Course", in: objectContext)!
+        
+        self.init(entity: entity, insertInto: objectContext)
+        self.context = objectContext
+        self.name = name
+        self.courseDescription = courseDescription
+       
+        
+        
+        self.save()
+        
+       
+    }
+    
+    func editName(newName:String) {
+        self.name = newName
+        save()
+    }
+    
+    
+    func editDescription(newDescription:String) {
+        self.courseDescription = newDescription
+        save()
+    }
+    
+    
+    
+    func delete() {
+        
+        context.delete(self)
+        
+    }
+    
+    private func save(){
+        do {
+            try context.save()
+            
+        } catch {
+            fatalError("Failure to save course: \(error)")
+        }
     }
     
 }

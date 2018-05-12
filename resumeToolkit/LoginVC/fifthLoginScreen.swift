@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
+
 class fifthLoginScreen: UIViewController, UITextFieldDelegate {
+    
     @IBOutlet weak var currentSchoolEntry: UITextField!
     
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -19,8 +21,9 @@ class fifthLoginScreen: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var icon: UIImageView!
     
     
-    var dataController = dataManager()
-    var infoController = userInfo()
+    private var dataController = newDataManager()
+    private var infoController = userInfo()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +41,8 @@ class fifthLoginScreen: UIViewController, UITextFieldDelegate {
     }
     
     
+    
+    
     ///  When enter/return is pressed in keyboard, entered data is saved and segue is preformed to the next sceen
     ///
     /// - Parameter textField:
@@ -46,6 +51,10 @@ class fifthLoginScreen: UIViewController, UITextFieldDelegate {
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
         infoController.save(screen: "main")
         textField.resignFirstResponder()
+        
+        
+        
+        
         performSegue(withIdentifier: "unwindto1", sender: self)
         
         

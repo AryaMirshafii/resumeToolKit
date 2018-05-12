@@ -30,7 +30,7 @@ It also connects the app to google drive.
 */
 class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDSignInUIDelegate{
     var userData: [NSManagedObject] = []
-    var dataController = dataManager()
+    var dataController = newDataManager()
     var pdfGenerate = testPDFGenerator()
     
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -117,8 +117,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         
         
-        
-        loadData()
+       
         
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
@@ -147,6 +146,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         // Add the sign-in button.
         tapToFinish.addSubview(signInButton)
+        print("Sign in size is" + String(describing: signInButton.frame.size))
         
         if(signedIn){
             driveFileManager = userSetUp(driveService: service, withFilePath: String(describing: pdfGenerator.createPDFFileAndReturnPath(indexAt:userInfoController.getResumeIndex()).output))
@@ -165,12 +165,12 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         if(userInfoController.fetchData() == "main2"){
             
-            let aUser = userData.last
-            firstNameEntry.text = aUser?.value(forKeyPath: "firstName") as? String
-            lastNameEntry.text = aUser?.value(forKeyPath: "lastName") as? String
-            emailEntry.text = aUser?.value(forKeyPath: "emailAdress") as? String
-            phoneEntry.text = aUser?.value(forKeyPath: "phoneNumber") as? String
-            currentSchoolEntry.text = aUser?.value(forKeyPath: "schoolName") as? String
+            let aUser = dataController.getUser()
+            firstNameEntry.text = aUser.firstName
+            lastNameEntry.text = aUser.lastName
+            emailEntry.text = aUser.emailAddress
+            phoneEntry.text = aUser.phoneNumber
+            currentSchoolEntry.text = aUser.schoolName
         }
         
         
@@ -196,9 +196,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     */
      @objc func userDefaultsDidChange() {
         
-        loadData()
+        userInfoController.refresh()
         print("USER DEFAULTS CHANGED")
-        let aUser = userData.last
+        let aUser = dataController.getUser()
         if(userInfoController.fetchData() == "main" || userInfoController.fetchData() == "main2"){
             /**
             firstNameEntry.text = aUser?.value(forKeyPath: "firstName") as? String
@@ -207,16 +207,16 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             phoneEntry.text = aUser?.value(forKeyPath: "phoneNumber") as? String
             currentSchoolEntry.text = aUser?.value(forKeyPath: "schoolName") as? String
             */
-            firstNameEntry.text = dataController.getFirstName();
-            lastNameEntry.text = dataController.getLastName();
-            emailEntry.text = dataController.getEmailAdress();
-            phoneEntry.text = dataController.getPhoneNumber()
+            firstNameEntry.text = dataController.getUser().firstName;
+            lastNameEntry.text = dataController.getUser().lastName;
+            emailEntry.text = dataController.getUser().emailAddress
+            phoneEntry.text = dataController.getUser().phoneNumber
             currentSchoolEntry.text = "Georgia Institute of Technology"
             
             
             if( userData.last?.value(forKeyPath: "firstName") != nil){
                 //let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
-                let nameString = dataController.getFirstName()
+                let nameString = dataController.getUser().firstName
                 welcomeLabel.text = "Welcome " +  nameString.firstUppercased + ","
             } else {
                 welcomeLabel.text = "Welcome,"
@@ -257,7 +257,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         print("yuo are" + String(signedIn) + "signed in " )
         dataController.savefirstName(firstName: firstNameEntry.text!)
         dataController.saveLastName(lastName: lastNameEntry.text!)
-        dataController.saveEmail(email: emailEntry.text!)
+        dataController.saveEmail(emailAddress: emailEntry.text!)
         dataController.savePhoneNumber(phoneNumber: phoneEntry.text!)
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
         
@@ -310,7 +310,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     Returns the folder ID if it isnt already saved by calling returnFoldername.
     */
     func fetchFolder() {
-        loadData()
+        
         let query = GTLRDriveQuery_FilesList.query()
         query.pageSize = 10
         
@@ -377,7 +377,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     */
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
               withError error: Error!) {
-        loadData()
+        
         if let error = error {
             //showAlert(title: "Authentication Error", message: error.localizedDescription)
             self.service.authorizer = nil
@@ -391,8 +391,8 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             self.output.isHidden = false
             self.service.authorizer = user.authentication.fetcherAuthorizer()
             
-            userLastName = userData.last?.value(forKeyPath: "lastName") as? String
-            userFirstName = userData.last?.value(forKeyPath: "firstName") as? String
+            userLastName = dataController.getUser().lastName
+            userFirstName = dataController.getUser().firstName
             driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
            
             if(userFirstName != nil && userFirstName != nil &&  userInfoController.getFolderID() == "noFolder" ){
@@ -414,30 +414,19 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     
     
     
+    @IBAction func activateTutorial(_ sender: Any) {
+        userInfoController.restartTutorial()
+    }
+    
+    
+    
+    @IBAction func disableTutorial(_ sender: Any) {
+        userInfoController.disableTutorial()
+    }
+    
+    
     /*
     Loads the data to be used by the uitextfields/labels of the settings viewcontroller
     */
-    func loadData(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        var managedContext:NSManagedObjectContext
-        if #available(iOS 10.0, *) {
-            managedContext = appDelegate.persistentContainer.viewContext
-        } else {
-            // Fallback on earlier versions
-            managedContext = appDelegate.managedObjectContext
-        }
-        
-        let userRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
-        //let timeRequest = NSFetchRequest<NSManagedObject>(entityName: "Time")
-        do {
-            userData = try managedContext.fetch(userRequest)
-            
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
+   
 }

@@ -11,7 +11,7 @@ class resumeCell:UITableViewCell,UITextViewDelegate {
     var cellType = " "
     var originalText = " "
     
-    var dataController = dataManager()
+    var dataController = newDataManager()
     var infoController = userInfo()
     var tapRecognizer:UITapGestureRecognizer!
     

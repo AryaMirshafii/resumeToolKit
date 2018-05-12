@@ -72,68 +72,9 @@ class dataManager{
     
     
     
-    func printStuff(){
-        let aUser = user.last
-        var firstname = aUser?.value(forKeyPath: "firstName") as? String
-            //var lastname = aUser.value(forKeyPath: "lastName") as? String
-        guard let lastname  = aUser?.value(forKeyPath: "lastName") as? String  else {
-                print("nothing to see here")
-                return
-                
-            
-            
-            
-        }
-        
-        
-        guard let email  = aUser?.value(forKeyPath: "emailAdress") as? String  else {
-            print("nothing to see here")
-            return
-            
-            
-            
-            
-        }
-        
-        guard let phoneNumber  = aUser?.value(forKeyPath: "phoneNumber") as? String  else {
-            print("nothing to see here")
-            return
-            
-            
-            
-            
-        }
-        print(firstname! + " ______ " + lastname  + "______" + email + "_____" + phoneNumber)
-    }
     
-    var acounter = 0
     
-    func printData(){
-        loadData()
-        
-        
-        for aUser in user{
-            
-            var courses = aUser.value(forKeyPath: "courses") as? String
-            var extracurriculars = aUser.value(forKeyPath: "extracurriculars") as? String
-            var experience = aUser.value(forKeyPath: "experience") as? String
-            var skills = aUser.value(forKeyPath: "skills") as? String
-            
-            //print(String(acounter) + "courses: " + courses + "****" + "extracurriculars: " + extracurriculars +  "****" + "experience: " + experience + "****" + "Skills: " + skills)
-            
-            var printString = String(acounter) + "courses: "
-            //printString.append(courses! + "****" + "extracurriculars: " + extracurriculars!)
-           // printString += "****" + "experience: " + experience!
-            //printString.append( "****" + "Skills: " + skills!)
-            print(aUser)
-            print("the length is" + String(user.count))
-            acounter += 1
-        }
-        
-        acounter = 0
-        //ininfoController.save(screen: "main")
-        
-    }
+    
     
     
     

@@ -8,10 +8,16 @@
 
 import Foundation
 import CoreData
-class skillCell: resumeCell{
+import EasyTipView
+class skillCell: resumeCell,EasyTipViewDelegate{
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        
+    }
+    
     @IBOutlet weak var skillNameLabel: UILabel!
     @IBOutlet weak var skillDescription: UITextView!
     
+    private var tipView:EasyTipView!
     
     
     
@@ -29,9 +35,11 @@ class skillCell: resumeCell{
         self.addGestureRecognizer(longPressRecognizer)
         skillDescription.tintColor = .white
         //tapRecognizer.disa
-        print("CELL CREATED")
+        print("Created a skill cell!")
         
     }
+    
+    
     
     //Function is called when cell is toggled to be deleted
     //Allows the cell to be tapped, which allows the user to tap the delete button
@@ -61,7 +69,8 @@ class skillCell: resumeCell{
         if text == "\n" {
             skillDescription.isUserInteractionEnabled = false
             skillDescription.resignFirstResponder()
-            dataController.overwriteSkill(previousText: originalText, textToChangeTo: "Skill" + "_" + self.skillNameLabel.text! + "_" + self.skillDescription.text)
+            dataController.overwriteSkill(name: self.skillNameLabel.text!, updatedDescription: self.skillDescription.text)
+            
             reloadCounter += 1
             infoController.saveChangeText(text: String(reloadCounter))
             skillDescription.showsVerticalScrollIndicator = false
@@ -106,8 +115,10 @@ class skillCell: resumeCell{
     // update the contents of the pdf to reflect this change.
     var reloadCounter = 0
     override func deleteInformation() {
-        
-        dataController.overwriteSkill(previousText: "Skill" + "_" + self.skillNameLabel.text! + "_" + self.skillDescription.text, textToChangeTo: "")
+        print("Updating skill")
+        //dataController.overwriteSkill(name:self.skillNameLabel.text! , updatedDescription: self.skillDescription.text)
+        dataController.deleteSkill(name: self.skillNameLabel.text!)
+        //dataController.overwriteSkill(previousText: "Skill" + "_" + self.skillNameLabel.text! + "_" + self.skillDescription.text, textToChangeTo: "")
             //self.originalSkillText = "Skill" + "_" + entryName.text! + "_" + entryDescription.text
         
         infoController.saveChangeText(text: String(reloadCounter))

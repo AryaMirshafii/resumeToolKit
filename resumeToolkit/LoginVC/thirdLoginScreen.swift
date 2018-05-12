@@ -11,10 +11,14 @@ import UIKit
 
 
 
+
 class thirdLoginScreen: UIViewController,UITextFieldDelegate {
+    
+    
     @IBOutlet weak var emailEntry: UITextField!
-    var dataController = dataManager()
-    var infoController = userInfo()
+    private var dataController = newDataManager()
+    private var infoController = userInfo()
+    
     
     
     @IBOutlet weak var icon: UIImageView!
@@ -44,17 +48,22 @@ class thirdLoginScreen: UIViewController,UITextFieldDelegate {
     /// - Parameter textField:
     /// - Returns: true when enter is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        dataController.saveEmail(email: emailEntry.text!)
+        dataController.saveEmail(emailAddress: emailEntry.text!)
         
         
         textField.resignFirstResponder()
         //dismiss(animated: true, completion: nil)
+        
         performSegue(withIdentifier: "3to4", sender: self)
         
         
         
         return true
     }
+    
+    
+    
+    
     
     
     

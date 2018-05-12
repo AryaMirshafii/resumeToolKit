@@ -9,10 +9,14 @@
 import Foundation
 import UIKit
 
+
 class fourthLoginScreen: UIViewController,UITextFieldDelegate {
+    
+    
     @IBOutlet weak var phoneEntry: UITextField!
-    var dataController = dataManager()
-    var infoController = userInfo()
+    private var dataController = newDataManager()
+    private var infoController = userInfo()
+  
     
     
     @IBOutlet weak var icon: UIImageView!
@@ -35,9 +39,12 @@ class fourthLoginScreen: UIViewController,UITextFieldDelegate {
         self.phoneEntry.keyboardType = .numbersAndPunctuation
         
         
-        
+    
         
     }
+    
+    
+   
     
     
     ///  When enter/return is pressed in keyboard, entered data is saved and segue is preformed to the next sceen
@@ -49,6 +56,7 @@ class fourthLoginScreen: UIViewController,UITextFieldDelegate {
         
         textField.resignFirstResponder()
         //dismiss(animated: true, completion: nil)
+       
         performSegue(withIdentifier: "4to5", sender: self)
        
         

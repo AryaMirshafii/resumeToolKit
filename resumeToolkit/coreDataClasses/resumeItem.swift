@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import Foundation
+import CoreData
+import UIKit
 
 class resumeItem {
     var name: String

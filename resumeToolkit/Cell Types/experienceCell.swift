@@ -13,6 +13,8 @@ class experienceCell:resumeCell {
     @IBOutlet weak var endYearLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var experienceDescription: UITextView!
+    var theExperience:experience!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -81,7 +83,7 @@ class experienceCell:resumeCell {
             experienceString += startYearLabel.text! + "_" + endYearLabel.text! + "_"
             
             experienceString += companyLabel.text! +  "_" + experienceDescription.text
-            dataController.overwriteExperience(previousText: originalText, experienceToChangeTo: experienceString)
+            //dataController.overwriteExperience(previousText: originalText, experienceToChangeTo: experienceString)
             reloadCounter += 1
             infoController.saveChangeText(text: String(reloadCounter))
             
@@ -113,13 +115,7 @@ class experienceCell:resumeCell {
     private var reloadCounter = 0
     override func deleteInformation() {
         
-        var experienceString =  "Professional Development" + "_" + positionlabel.text! + "_"
-        experienceString += startYearLabel.text! + "_" + endYearLabel.text! + "_"
-        
-        experienceString += companyLabel.text! +  "_" + experienceDescription.text
-        
-        dataController.overwriteExperience(previousText: experienceString, experienceToChangeTo: "")
-        
+        dataController.deleteExperience(name: positionlabel.text!)
         
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1

@@ -8,18 +8,27 @@
 
 import Foundation
 import Device
+import EasyTipView
 
 
-class firstLoginScreen:UIViewController,UITextFieldDelegate {
+class firstLoginScreen: UIViewController, UITextFieldDelegate,EasyTipViewDelegate {
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        //dont do anything. Check if entered text is still nil before incrementing tutorial progress
+    }
+    
     @IBOutlet weak var firstNameEntry: UITextField!
-    var dataController = dataManager()
-    var infoController = userInfo()
+    
     
     
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var icon: UIImageView!
     
     @IBOutlet weak var pleaseEnterNameLabel: UILabel!
+    
+    
+    private var tipView:EasyTipView!
+    private var dataController = newDataManager()
+    private var infoController = userInfo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +42,28 @@ class firstLoginScreen:UIViewController,UITextFieldDelegate {
         self.firstNameEntry.becomeFirstResponder()
        
         
+        initializeTipView()
         
         
     
 
+    }
+    
+    
+    func initializeTipView(){
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 20)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+        
+        /*
+         * Optionally you can make these preferences global for all future EasyTipViews
+         */
+        
+        EasyTipView.globalPreferences = preferences
+        tipView = EasyTipView(text: "Press enter when you are done typing", preferences: preferences)
+        tipView.show(forView: self.firstNameEntry, withinSuperview: self.view)
     }
     
     
@@ -47,11 +74,14 @@ class firstLoginScreen:UIViewController,UITextFieldDelegate {
     /// - Parameter textField:
     /// - Returns: true when enter is pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        tipView.dismiss()
         dataController.savefirstName(firstName: firstNameEntry.text!)
         
         
         textField.resignFirstResponder()
         //dismiss(animated: true, completion: nil)
+        infoController.incrementTutorialProgress()
+        
         performSegue(withIdentifier: "1to2", sender: self)
         
         
@@ -62,6 +92,7 @@ class firstLoginScreen:UIViewController,UITextFieldDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        tipView.dismiss()
         if segue.identifier == "1to2" {
             print("1to2")
   

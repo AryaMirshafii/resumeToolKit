@@ -9,17 +9,24 @@
 import Foundation
 import UIKit
 import Device
+import EasyTipView
 
 
 
-class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
+class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource,EasyTipViewDelegate {
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        //do something
+    }
     
+    
+    @IBOutlet weak var rightButton: UIButton!
     //OVerall View
-    
     @IBOutlet weak var swipeController: UIView!
     @IBOutlet weak var skillImage: UIImageView!
-    
     @IBOutlet weak var swipeControllerLabel: UILabel!
+    @IBOutlet weak var leftButton: UIButton!
+    
+    
     //SkillView
     
     @IBOutlet weak var skillView: UIView!
@@ -60,10 +67,12 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     
     
+    @IBOutlet weak var saveButton: UIButton!
     
-    let dataController = dataManager()
+    let dataController = newDataManager()
     var pickerData: [String] = [String]()
     var entryType: String!
+    private var tipView:EasyTipView!
     
     var infoController = userInfo()
     
@@ -73,8 +82,14 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     var reloadCounter = 0
     var previousSkill = " "
+    var preferences = EasyTipView.Preferences()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Progress is" + String(infoController.isTutorailComplete()))
+        if(!infoController.isTutorailComplete()){
+            initializeTipView()
+        }
         
         setUpGestures()
         
@@ -169,9 +184,85 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         coursePicker.layer.cornerRadius = 10
         
         extracurricularDescription.layer.cornerRadius = 10
-    
+        determineTutorial()
+        
         
     }
+    
+    
+    func determineTutorial(){
+        infoController.refresh()
+        if(infoController.isTutorailComplete()){
+            return
+        }
+        
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 20)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+        
+        
+        
+        EasyTipView.globalPreferences = preferences
+        
+        
+        
+        if(infoController.getProgress() == 2){
+            tipView = EasyTipView(text: "Select a skill by moving this up or down, or create your own", preferences: preferences)
+            tipView.show(forView: self.skillPicker, withinSuperview: self.skillView)
+        } else if(infoController.getProgress() == 3){
+            
+            tipView = EasyTipView(text: "Tap here to save when you are done", preferences: preferences)
+            tipView.show(forView: self.saveButton, withinSuperview: self.view)
+        }else if(infoController.getProgress() == 8){
+            
+            tipView = EasyTipView(text: "Tap here until you are in the \"Courses\" section", preferences: preferences)
+            
+            tipView.show(forView: self.rightButton, withinSuperview: self.view)
+            
+        }else if(infoController.getProgress() == 9){
+            tipView = EasyTipView(text: "Enter or pick a course and tap here when you are done", preferences: preferences)
+            
+            tipView.show(forView: self.saveButton, withinSuperview: self.view)
+        }
+    }
+    
+    private func determineDismissal(){
+        
+        if(infoController.getProgress() == 2) {
+            tipView.dismiss()
+            infoController.incrementTutorialProgress()
+            determineTutorial()
+        } else if(infoController.getProgress() == 3){
+            infoController.incrementTutorialProgress()
+            tipView.dismiss()
+        } else if(infoController.getProgress() == 8){
+            infoController.incrementTutorialProgress()
+            tipView.dismiss()
+        }else if(entryType == "Courses" && infoController.getProgress() == 9){
+            infoController.incrementTutorialProgress()
+            tipView.dismiss()
+        }
+    }
+    
+    
+    
+    func initializeTipView(){
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 20)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
+        
+        preferences.drawing.arrowWidth  = 15
+        
+        
+        EasyTipView.globalPreferences = preferences
+        
+    }
+    
+    
+    
     
     
     override var preferredStatusBarStyle:UIStatusBarStyle {
@@ -348,9 +439,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            
-            
-            dataController.saveSkills(theSkills: "Skill" + "_" + skillName.text! + "_" + skillDescription.text)
+            determineDismissal()
+            var newSkill = skill(name: skillName.text!, description: skillDescription.text, objectContext: dataController.getContext())
+            //dataController.saveSkills(theSkills: "Skill" + "_" + skillName.text! + "_" + skillDescription.text)
         } else if(entryType == "Experience"){
             
             
@@ -409,8 +500,13 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             experienceString += startYearEntry.text! + "_" + endYearEntry.text! + "_"
                 
             experienceString += organizationNameEntry.text! +   "_" + jobDescription.text
-            dataController.saveExperience(experience: experienceString)
+            
+            
+            
+            var anExperience = experience(yearStarted: startYearEntry.text!, yearEnded: endYearEntry.text!, companyName: organizationNameEntry.text!, companyDescription: jobDescription.text, name: jobName.text!, objectContext: dataController.getContext())
+            //dataController.saveExperience(experience: experienceString)
         } else if(entryType == "Courses"){
+            determineTutorial()
             //Makes sure user entered everything
             if(courseNameEntry.text == "" || courseDescription.text == "") {
                 var message = ""
@@ -441,9 +537,9 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            
-            
-            dataController.saveCourses(courses: "Courses" + "_" + courseNameEntry.text! + "_" + courseDescription.text)
+            determineDismissal()
+            var newCourse = course(name: courseNameEntry.text!, courseDescription: courseDescription.text, objectContext: dataController.getContext())
+            //dataController.saveCourses(courses: "Courses" + "_" + courseNameEntry.text! + "_" + courseDescription.text)
         } else if(entryType == "Extracurriculars"){
             
             
@@ -482,11 +578,13 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
             
             
-            
-            dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + extracurricularNameEntry.text! + "_" + extracurricularDescription.text + "_" + yearEntry.text!)
+            var newEC = extracurricular(name: extracurricularNameEntry.text!, ecDescription: extracurricularDescription.text, year: yearEntry.text!, objectContext: dataController.getContext())
+           // dataController.saveExtracurriculars(extracurricular: "Extracurriculars" + "_" + extracurricularNameEntry.text! + "_" + extracurricularDescription.text + "_" + yearEntry.text!)
         }
         infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
+        
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -544,22 +642,27 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     // Alters the UIPickers for courses and skills and changes their properties accordingly.
     // Configures coursePicker and SKillPicker when prsented
+    var alignCounter = 0;
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         if pickerView == skillPicker{
             if(entryType == "Skill"){
                 skillImage.isHidden = false
-                
+                alignCounter += 1
                 
                 
                 selectedItem = skillData[row]
                 skillName.text = selectedItem
                 self.skillImage.layer.cornerRadius = skillImage.frame.width/2
                 skillImage.clipsToBounds = true
-                setPicture(slectedItem: selectedItem)
                 setDescriptions(slectedItem: selectedItem)
+                
+                print("counter is " + String(alignCounter))
+                determineDismissal()
+                
             }
         } else if pickerView == coursePicker{
             if(entryType == "Courses"){
+                
                 self.skillImage.image = UIImage()
                 self.skillImage.isHidden = true
                 selectedItem = courseData[row]
@@ -577,169 +680,136 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     
     
+    
+    
     // Sets the textviews and fields for skills
     // For example, when the user selects active listening, this function updates the textview description
     // to reflect this selection
     // - Parameter slectedItem: the selected skill which is fed from the UIPICker
     func setDescriptions(slectedItem: String){
+        
+        
         if(selectedItem == "Active Learning"){
             skillDescription.text = "Understanding the implications of new information for both current and future problem solving and decision making."
             skillName.text = "Active Learning"
+            self.skillImage.image = #imageLiteral(resourceName: "chalkboard")
         } else if (selectedItem == "Active Listening"){
             skillDescription.text = "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times."
             skillName.text = "Active Listening"
+             self.skillImage.image = #imageLiteral(resourceName: "ear")
         } else if (selectedItem == "Critical Thinking"){
             skillDescription.text = "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions or approaches to problems."
             skillName.text = "Critical Thinking"
+            self.skillImage.image = #imageLiteral(resourceName: "brain")
         } else if (selectedItem == "Learning Strategies"){
             skillDescription.text = "Selecting and using training/instructional methods and procedures appropriate for the situation when learning or teaching new things."
             skillName.text = "Learning Strategies"
+            self.skillImage.image = #imageLiteral(resourceName: "strategy")
         } else if (selectedItem == "Mathematics"){
             skillDescription.text = "Using mathematics to solve problems."
             skillName.text = "Mathematics"
+            self.skillImage.image = #imageLiteral(resourceName: "math")
         } else if (selectedItem == "Monitoring"){
             skillDescription.text = "Monitoring/Assessing performance of yourself, other individuals, or organizations to make improvements or take corrective action."
             skillName.text = "Monitoring"
+            self.skillImage.image = #imageLiteral(resourceName: "monitoring")
         } else if (selectedItem == "Reading Comprehension"){
             skillDescription.text = "Understanding written sentences and paragraphs in work related documents."
             skillName.text = "Reading Comprehension"
+            self.skillImage.image = #imageLiteral(resourceName: "reading")
         } else if (selectedItem == "Science"){
             skillDescription.text = "Using scientific rules and methods to solve problems."
             skillName.text = "Science"
+            self.skillImage.image = #imageLiteral(resourceName: "science")
         } else if (selectedItem == "Speaking"){
             skillDescription.text =  "Talking to others to convey information effectively."
             skillName.text = "Speaking"
+            self.skillImage.image = #imageLiteral(resourceName: "speaking")
         } else if (selectedItem == "Writing"){
             skillDescription.text = "Communicating effectively in writing as appropriate for the needs of the audience."
             skillName.text = "Writing"
-        }
-        
-         else if (selectedItem == "Complex Problem Solving"){
+            self.skillImage.image = #imageLiteral(resourceName: "writing")
+        }else if (selectedItem == "Complex Problem Solving"){
             skillDescription.text = "Identifying complex problems and reviewing related information to develop and evaluate options and implement solutions."
             skillName.text = "Complex Problem Solving"
+            self.skillImage.image = #imageLiteral(resourceName: "problemsolving")
          } else if (selectedItem == "Time Management"){
             skillDescription.text = "Managing one's own time and the time of others. "
             skillName.text = "Time Management"
+            self.skillImage.image = #imageLiteral(resourceName: "timemanagment")
          } else if (selectedItem == "Coordination"){
             skillDescription.text = "Adjusting actions in relation to others' actions. "
             skillName.text = "Coordination"
+            self.skillImage.image = #imageLiteral(resourceName: "coordination")
          } else if (selectedItem == "Instructing"){
             skillDescription.text =  "Teaching others how to do something."
             skillName.text = "Instructing"
+            self.skillImage.image = #imageLiteral(resourceName: "instructing")
          } else if (selectedItem == "Negotiation"){
             skillDescription.text = " Bringing others together and trying to reconcile differences. "
             skillName.text = "Negotiation"
+            self.skillImage.image = #imageLiteral(resourceName: "negotiation")
          } else if (selectedItem == "Persuasion"){
             skillDescription.text = "Persuading others to change their minds or behavior. "
             skillName.text = "Persuasion"
+            self.skillImage.image = #imageLiteral(resourceName: "persuasion")
          } else if (selectedItem == "Service Orientation"){
             skillDescription.text = "Actively looking for ways to help people. "
             skillName.text = "Service Orientation"
+            self.skillImage.image = #imageLiteral(resourceName: "service")
          } else if (selectedItem == "Social Perceptiveness"){
             skillDescription.text = "Being aware of others' reactions and understanding why they react as they do. "
             skillName.text = "Social Perceptiveness"
+            self.skillImage.image = #imageLiteral(resourceName: "social")
          } else if (selectedItem == "Judgment and Decision Making"){
             skillDescription.text = "Considering the relative costs and benefits of potential actions to choose the most appropriate one. "
             skillName.text = "Judgment and Decision Making"
+            self.skillImage.image = #imageLiteral(resourceName: "judgement")
         } else if (selectedItem == "Equipment Maintenance"){
             skillDescription.text = "Performing routine maintenance on equipment and determining when and what kind of maintenance is needed. "
             skillName.text = "Equipment Maintenance"
+            self.skillImage.image = #imageLiteral(resourceName: "equipmentmaintenance")
         } else if (selectedItem == "Equipment Selection"){
             skillDescription.text = "Determining the kind of tools and equipment needed to do a job. "
             skillName.text = "Equipment Selection"
+            self.skillImage.image = #imageLiteral(resourceName: "equipmentselection")
         } else if (selectedItem == "Installation"){
             skillDescription.text = "Installing equipment, machines, wiring, or programs to meet specifications. "
             skillName.text = "Installation"
+            self.skillImage.image = #imageLiteral(resourceName: "installation")
         } else if (selectedItem == "Operation and Control"){
             skillDescription.text = "Controlling operations of equipment or systems. "
             skillName.text = "Operation and Control"
+            self.skillImage.image = #imageLiteral(resourceName: "operation")
         } else if (selectedItem == "Programming"){
             skillDescription.text = "Writing computer programs for various purposes. "
             skillName.text = "Programming"
+            self.skillImage.image = #imageLiteral(resourceName: "coding")
         } else if (selectedItem == "Quality Control Analysis"){
             skillDescription.text = "Conducting tests and inspections of products, services, or processes to evaluate quality or performance. "
             skillName.text = "Quality Control Analysis"
+            self.skillImage.image = #imageLiteral(resourceName: "qualitycontroll")
         } else if (selectedItem == "Repairing"){
             skillDescription.text = "Repairing machines or systems using the needed tools. "
             skillName.text = "Repairing"
+            self.skillImage.image = #imageLiteral(resourceName: "repair")
         } else if (selectedItem == "Technology Design"){
             skillDescription.text = "Generating or adapting equipment and technology to serve user needs. "
             skillName.text = "Technology Design"
+            self.skillImage.image = #imageLiteral(resourceName: "design")
         } else if (selectedItem == "Troubleshooting"){
             skillDescription.text = "Determining causes of operating errors and deciding what to do about it."
             skillName.text = "Troubleshooting"
+            self.skillImage.image = #imageLiteral(resourceName: "installation")
         }
         
-        let my = UIViewController()
+        
         
         
         
     }
     
     
-    // Sets the corresponding image for a skill.
-    //
-    // - Parameter slectedItem: the selected item being looked at
-    func setPicture(slectedItem: String){
-        if(selectedItem == "Active Learning"){
-            
-            self.skillImage.image = #imageLiteral(resourceName: "chalkboard")
-        } else if (selectedItem == "Active Listening"){
-            self.skillImage.image = #imageLiteral(resourceName: "ear")
-        } else if (selectedItem == "Critical Thinking"){
-            self.skillImage.image = #imageLiteral(resourceName: "brain")
-        } else if (selectedItem == "Learning Strategies"){
-            self.skillImage.image = #imageLiteral(resourceName: "strategy")
-        } else if (selectedItem == "Mathematics"){
-            self.skillImage.image = #imageLiteral(resourceName: "math")
-        } else if (selectedItem == "Monitoring"){
-            self.skillImage.image = #imageLiteral(resourceName: "monitoring")
-        } else if (selectedItem == "Reading Comprehension"){
-            self.skillImage.image = #imageLiteral(resourceName: "reading")
-        } else if (selectedItem == "Science"){
-            self.skillImage.image = #imageLiteral(resourceName: "science")
-        } else if (selectedItem == "Speaking"){
-            self.skillImage.image = #imageLiteral(resourceName: "speaking")
-        } else if (selectedItem == "Writing"){
-            self.skillImage.image = #imageLiteral(resourceName: "writing")
-        }else if (selectedItem == "Complex Problem Solving"){
-            self.skillImage.image = #imageLiteral(resourceName: "problemsolving")
-        } else if (selectedItem == "Time Management"){
-            self.skillImage.image = #imageLiteral(resourceName: "timemanagment")
-        } else if (selectedItem == "Coordination"){
-            self.skillImage.image = #imageLiteral(resourceName: "coordination")
-        } else if (selectedItem == "Instructing"){
-            self.skillImage.image = #imageLiteral(resourceName: "instructing")
-        } else if (selectedItem == "Negotiation"){
-            self.skillImage.image = #imageLiteral(resourceName: "negotiation")
-        } else if (selectedItem == "Persuasion"){
-            self.skillImage.image = #imageLiteral(resourceName: "persuasion")
-        } else if (selectedItem == "Service Orientation"){
-            self.skillImage.image = #imageLiteral(resourceName: "service")
-        } else if (selectedItem == "Social Perceptiveness"){
-            self.skillImage.image = #imageLiteral(resourceName: "social")
-        } else if (selectedItem == "Judgment and Decision Making"){
-            self.skillImage.image = #imageLiteral(resourceName: "judgement")
-        } else if (selectedItem == "Equipment Maintenance"){
-           self.skillImage.image = #imageLiteral(resourceName: "equipmentmaintenance")
-        } else if (selectedItem == "Equipment Selection"){
-            self.skillImage.image = #imageLiteral(resourceName: "equipmentselection")
-        } else if (selectedItem == "Installation"){
-            self.skillImage.image = #imageLiteral(resourceName: "installation")
-        } else if (selectedItem == "Operation and Control"){
-            self.skillImage.image = #imageLiteral(resourceName: "operation")
-        } else if (selectedItem == "Programming"){
-            self.skillImage.image = #imageLiteral(resourceName: "coding")
-        } else if (selectedItem == "Quality Control Analysis"){
-           self.skillImage.image = #imageLiteral(resourceName: "qualitycontroll")
-        } else if (selectedItem == "Repairing"){
-            self.skillImage.image = #imageLiteral(resourceName: "repair")
-        } else if (selectedItem == "Technology Design"){
-            self.skillImage.image = #imageLiteral(resourceName: "design")
-        } else if (selectedItem == "Troubleshooting"){
-            self.skillImage.image = #imageLiteral(resourceName: "installation")
-        }
-    }
     
     // Sets the description for the class that is selected
     //
@@ -831,6 +901,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     //  Allows for right swipe/ button to navigate  navigate between skills, extracurriculars, courses, and experience
     // GOES RIGHT ONLY
     @IBAction func rightTap(_ sender: UIButton){
+        determineDismissal()
+        
         indx += 1
         if (indx > (pickerData.count - 1)){
             indx = 0
@@ -897,10 +969,15 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
     
     
     // Determines which textviews and textfields or UIPIckers should be displayed based on the type of entry selected
+    
     func setAlignment(row: Int){
         entryType = pickerData[row]
         print("the entry type is" +  entryType)
         if(entryType == "Skill"){
+            
+            
+            
+            
             skillView.isHidden = false
             self.view.bringSubview(toFront: skillView)
             
@@ -912,7 +989,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
            
             
             setDescriptions(slectedItem: entryType)
-            setPicture(slectedItem: entryType)
+            
             
             
             
@@ -949,7 +1026,7 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             
         }else if(entryType == "Courses") {
             
-            
+            determineTutorial()
             skillImage.isHidden = true
             coursePicker.reloadAllComponents()
             skillImage.isHidden = true

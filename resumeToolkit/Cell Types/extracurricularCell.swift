@@ -55,7 +55,8 @@ class extracurricularCell:resumeCell {
         if text == "\n" {
             extracurricularDescription.isUserInteractionEnabled = false
             extracurricularDescription.resignFirstResponder()
-            dataController.overwriteSkill(previousText: originalText, textToChangeTo: "Extracurriculars" + "_" + extracurricularNameLabel.text! + "_" + extracurricularDescription.text + "_" + extracurricularYearLabel.text!)
+            dataController.overWriteExtracurricular(name: extracurricularNameLabel.text!, updatedDescription: extracurricularDescription.text, updatedYear: extracurricularYearLabel.text!)
+            
             reloadCounter += 1
             infoController.saveChangeText(text: String(reloadCounter))
             
@@ -98,8 +99,8 @@ class extracurricularCell:resumeCell {
     override func deleteInformation() {
         
         
+       dataController.deleteExtraCurricular(name: extracurricularNameLabel.text!)
         
-        dataController.overwriteExtracurriculars(previousText:  "Extracurriculars" + "_" + extracurricularNameLabel.text! + "_" + extracurricularDescription.text + "_" + extracurricularYearLabel.text!, extraCurricularToReplace: "")
     
         
         infoController.saveChangeText(text: String(reloadCounter))

@@ -7,23 +7,89 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
 
-class experience: resumeItem{
+
+@objc(experience)
+class experience: NSManagedObject{
     
-    var yearStarted: String
-    var yearEnded: String
-    var companyName: String
-    var description:String
+    @NSManaged    var yearStarted: String
+    @NSManaged   var yearEnded: String
+    @NSManaged   var companyName: String
+    @NSManaged   var companyDescription:String
+    @NSManaged   var name: String
+    private var context:NSManagedObjectContext!
 
     
     
     
-    init(name: String, entryType: String,yearStarted:String, yearEnded:String,companyName:String,description:String) {
+   
+    
+    convenience init(yearStarted: String, yearEnded: String, companyName: String, companyDescription:String,
+                     name: String, objectContext: NSManagedObjectContext!) {
+        
+        
+        
+        
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Experience", in: objectContext)!
+        self.init(entity: entity, insertInto: objectContext)
+        self.context = objectContext
         self.yearStarted = yearStarted
         self.yearEnded = yearEnded
         self.companyName = companyName
-        self.description = description
-        super.init(name: name, entryType: entryType)
+        self.companyDescription = companyDescription
+        self.name = name
+        
+        
+        save()
+        
+        
     }
+    
+    func editStartYear(newStartyear:String) {
+        self.yearStarted = newStartyear
+        save()
+    }
+    
+    
+    func editEndYear(newEndYear:String) {
+        self.yearEnded = newEndYear
+        save()
+    }
+    
+    func editCompanyName(newCompany:String) {
+        self.companyName = newCompany
+        save()
+    }
+    
+    func editDescription(newDescription:String) {
+        self.companyDescription = newDescription
+        save()
+    }
+    
+    func editName(newName:String) {
+        self.name = newName
+        save()
+    }
+    
+    func delete() {
+        
+        context.delete(self)
+        
+    }
+    
+   
+    
+    private func save(){
+        do {
+            try context.save()
+            
+        } catch {
+            fatalError("Failure to save experience: \(error)")
+        }
+    }
+
         
 }

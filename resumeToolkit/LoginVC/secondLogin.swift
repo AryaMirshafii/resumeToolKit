@@ -9,10 +9,14 @@
 import Foundation
 
 
+
 class secondLogin: UIViewController,UITextFieldDelegate {
+    
+    
     @IBOutlet weak var lastNameEntry: UITextField!
-    var dataController = dataManager()
-    var infoController = userInfo()
+    private var dataController = newDataManager()
+    private var infoController = userInfo()
+    
     
     
     @IBOutlet weak var pleaseEnterNameLabel: UILabel!
@@ -36,6 +40,9 @@ class secondLogin: UIViewController,UITextFieldDelegate {
     
     
     
+    
+    
+    
     ///  When enter/return is pressed in keyboard, entered data is saved and segue is preformed to the next sceen
     ///
     /// - Parameter textField:
@@ -46,6 +53,7 @@ class secondLogin: UIViewController,UITextFieldDelegate {
         
         textField.resignFirstResponder()
         //dismiss(animated: true, completion: nil)
+        
         performSegue(withIdentifier: "2to3", sender: self)
         
         

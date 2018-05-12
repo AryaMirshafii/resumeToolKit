@@ -11,12 +11,16 @@ import UIKit
 import WebKit
 import ASHorizontalScrollView
 import MessageUI
-import Device
+import EasyTipView
 
-class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewControllerDelegate,UIWebViewDelegate {
+class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewControllerDelegate,UIWebViewDelegate,EasyTipViewDelegate {
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        
+    }
+    
     private var pdfGenerate = testPDFGenerator()
-    private var userInfoController = userInfo()
-    private var dataController = dataManager()
+    private var infoController = userInfo()
+    private var dataController = newDataManager()
     private var previousFilePath = " "
     
     
@@ -29,6 +33,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     @IBOutlet weak private var webView: UIWebView!
     @IBOutlet weak private var resumeNameLabel: UILabel!
     @IBOutlet weak private var backgroundImage: UIImageView!
+    private var tipView:EasyTipView!
     
     @IBOutlet weak private var userSelect: ASHorizontalScrollView!
     override func viewDidLoad() {
@@ -103,50 +108,121 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
     
         
-        if(userInfoController.getResumeIndex() == "0"){
+        if(infoController.getResumeIndex() == "0"){
             resumeNameLabel.text = "Plain"
             userSelect.contentOffset.x = 0 * (userSelect.frame.size.width/3.8)
             
             
-        } else if(userInfoController.getResumeIndex() == "1"){
+        } else if(infoController.getResumeIndex() == "1"){
             resumeNameLabel.text = "Industrial"
             userSelect.contentOffset.x = 1 * (userSelect.frame.size.width/3.8)
             
-        } else if(userInfoController.getResumeIndex() == "2") {
+        } else if(infoController.getResumeIndex() == "2") {
             resumeNameLabel.text = "Modern Minimalist"
             userSelect.contentOffset.x = 2 * (userSelect.frame.size.width/3.8)
         }
-        else if(userInfoController.getResumeIndex() == "3") {
+        else if(infoController.getResumeIndex() == "3") {
             resumeNameLabel.text = "Vibrant Modern"
             userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.8)
         }
         
-        
+        determineTutorial()
         
         
         
         
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        print("Looking at pdf view")
+        
+    }
+    
+    
+    var preferences: EasyTipView.Preferences!
+    var tipArr = [EasyTipView]()
+    func determineTutorial(){
+        infoController.refresh()
+        if(infoController.isTutorailComplete()){
+            return
+        }
+        preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 20)!
+        preferences.drawing.foregroundColor = UIColor.white
+        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
+        
+        
+        /*
+         * Optionally you can make these preferences global for all future EasyTipViews
+         */
+        
+        EasyTipView.globalPreferences = preferences
+        
+        
+        if(infoController.getProgress() == 11){
+            if(tipView == nil || tipView.shouldShow(newText: "Congrats!!! You are now done with the tutorial! Tap me to dismiss")) {
+                print("Showing first tutorial")
+                let newTipView  = EasyTipView(text: "Select a resume style by moving or tapping the icons below", preferences: preferences)
+                tipView = newTipView
+                tipView.show(forView: self.userSelect, withinSuperview: self.view)
+                tipArr.append(newTipView)
+                infoController.disableTutorial()
+            }
+            
+            
+        }
+        
+        
+        
+    }
+    
+    func determineDismissal(){
+        
+        for atip in tipArr{
+           
+            atip.dismiss()
+            
+        }
+        
+        let newTipView  = EasyTipView(text: "Congrats!!! You are now done with the tutorial! Tap me to dismiss", preferences: preferences)
+        tipView = newTipView
+        tipView.show(forView: self.userSelect, withinSuperview: self.view)
+        tipArr.append(newTipView)
+        //infoController.disableTutorial()
+        
+    }
+    
+    
+    
+    
+    
+    
     func button1Tapped(){
+        determineDismissal()
         resumeNameLabel.text = "Plain"
-        userInfoController.saveResumeIndex(resumeIndexAt: "0")
+        infoController.saveResumeIndex(resumeIndexAt: "0")
         userSelect.contentOffset.x = 0 * (userSelect.frame.size.width/3.8)
     }
     func button2Tapped(){
+        determineDismissal()
         resumeNameLabel.text = "Industrial"
-        userInfoController.saveResumeIndex(resumeIndexAt: "1")
+        infoController.saveResumeIndex(resumeIndexAt: "1")
         userSelect.contentOffset.x = 1 * (userSelect.frame.size.width/3.8)
     }
     
     func button3Tapped(){
+        determineDismissal()
         resumeNameLabel.text = "Modern Minimalist"
-        userInfoController.saveResumeIndex(resumeIndexAt: "2")
+        infoController.saveResumeIndex(resumeIndexAt: "2")
         userSelect.contentOffset.x = 2 * (userSelect.frame.size.width/3.8)
     }
     func button4Tapped(){
+        determineDismissal()
         resumeNameLabel.text = "Vibrant Modern"
-        userInfoController.saveResumeIndex(resumeIndexAt: "3")
+        infoController.saveResumeIndex(resumeIndexAt: "3")
         userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.8)
     }
     
@@ -154,6 +230,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        //determineDismissal()
         perform(#selector(self.actionOnFinishedScrolling), with: nil, afterDelay: Double(velocity.x))
     }
     
@@ -163,8 +240,8 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     @objc private func actionOnFinishedScrolling() {
         print("scrolling is finished")
         let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/3.8)))))
-        print("THE INDEX IS" + resumeToPick + userInfoController.getResumeIndex())
-        userInfoController.saveResumeIndex(resumeIndexAt: resumeToPick)
+        print("THE INDEX IS" + resumeToPick + infoController.getResumeIndex())
+        infoController.saveResumeIndex(resumeIndexAt: resumeToPick)
         if(resumeToPick == "0"){
             resumeNameLabel.text = "Plain"
             
@@ -180,10 +257,6 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         }
         
         
-        if (Device.isPad()){
-            print("It's an iPad")
-            self.webView.frame = CGRect(x: 0, y: 0, width: 768, height: 785)
-        }
        
     }
     
@@ -202,13 +275,13 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         
         
-        let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
-        if(userInfoController.fetchData() == "main" && userInfoController.fetchChangeText() == "bbb" ){
+        let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: infoController.getResumeIndex())
+        if(infoController.fetchData() == "main" && infoController.fetchChangeText() == "bbb" ){
             print("in1")
             
             //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
             loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
-        }else if(userInfoController.fetchChangeText() != "bbb"){
+        }else if(infoController.fetchChangeText() != "bbb"){
             //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
             loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
             
@@ -286,6 +359,11 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
        
         print("the frame is " + String(describing: largeWebView.frame))
         
+        determineTutorial()
+        
+        
+       
+       
     }
     
     override func didReceiveMemoryWarning() {
@@ -347,13 +425,13 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         userDefaultsDidChange()
         self.isEmailing = true
         self.webView.reload()
-        dataController.loadData()
-        let firstname:String = dataController.user.last?.value(forKey: "firstName") as! String
+        //dataController.loadData()
+        let firstname:String = dataController.getUser().firstName
         
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
         // Configure the fields of the interface.
-        composeVC.setToRecipients([dataController.getEmailAdress()])
+        composeVC.setToRecipients([dataController.getUser().emailAddress])
         composeVC.setSubject("Your Resume")
         composeVC.setMessageBody("Hello " + firstname + "," + "\n  \n" + "Attached below is your resume. We wish you sucess with your future career endeavours. \n \nThank you for choosing Resume Writer!\n", isHTML: false)
         
