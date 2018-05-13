@@ -200,7 +200,8 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
         preferences.drawing.foregroundColor = UIColor.white
         preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
         preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
-        
+        preferences.drawing.arrowHeight = 30
+        preferences.drawing.arrowWidth = 30
         
         
         EasyTipView.globalPreferences = preferences
@@ -212,16 +213,16 @@ class editViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDat
             tipView.show(forView: self.skillPicker, withinSuperview: self.skillView)
         } else if(infoController.getProgress() == 3){
             
-            tipView = EasyTipView(text: "Tap here to save when you are done", preferences: preferences)
+            tipView = EasyTipView(text: "Tap \"Save\" to save when you are done", preferences: preferences)
             tipView.show(forView: self.saveButton, withinSuperview: self.view)
         }else if(infoController.getProgress() == 8){
             
-            tipView = EasyTipView(text: "Tap here until you are in the \"Courses\" section", preferences: preferences)
+            tipView = EasyTipView(text: "Tap the right arrow twice, or until you are in the \"Courses\" section", preferences: preferences)
             
             tipView.show(forView: self.rightButton, withinSuperview: self.view)
             
         }else if(infoController.getProgress() == 9){
-            tipView = EasyTipView(text: "Enter or pick a course and tap here when you are done", preferences: preferences)
+            tipView = EasyTipView(text: "Enter or pick a course and tap \"Save\" when you are done", preferences: preferences)
             
             tipView.show(forView: self.saveButton, withinSuperview: self.view)
         }

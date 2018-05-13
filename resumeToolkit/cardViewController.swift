@@ -141,11 +141,18 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
             }
             return
         }
+        
+        
+        for aTip in tipArr{
+            aTip.dismiss()
+        }
         preferences = EasyTipView.Preferences()
         preferences.drawing.font = UIFont(name: "Futura-Medium", size: 20)!
         preferences.drawing.foregroundColor = UIColor.white
         preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
         preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
+        preferences.drawing.arrowHeight = 30
+        preferences.drawing.arrowWidth = 30
         
         
         /*
@@ -163,9 +170,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
             tipArr.append(newTipView)
         } else if(infoController.getProgress() == 6){
             let textToShow = "Add an objective here"
-            if(!tipView.shouldShow(newText: textToShow)){
-                return
-            }
+            
             let newTipView = EasyTipView(text: textToShow, preferences: preferences)
             tipView = newTipView
             tipView.show(forView: self.objectiveEntry, withinSuperview: self.view)
@@ -188,7 +193,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
             infoController.disableTutorial()
         }
         
-    
+        
     
     }
     

@@ -153,7 +153,8 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         preferences.drawing.foregroundColor = UIColor.white
         preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
         preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
-        
+        preferences.drawing.arrowHeight = 30
+        preferences.drawing.arrowWidth = 30
         
         /*
          * Optionally you can make these preferences global for all future EasyTipViews
@@ -230,7 +231,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        //determineDismissal()
+        determineDismissal()
         perform(#selector(self.actionOnFinishedScrolling), with: nil, afterDelay: Double(velocity.x))
     }
     

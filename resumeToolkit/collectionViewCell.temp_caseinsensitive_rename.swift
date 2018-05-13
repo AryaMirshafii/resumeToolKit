@@ -73,7 +73,8 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
         preferences.drawing.foregroundColor = UIColor.white
         preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
         preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
-        
+        preferences.drawing.arrowHeight = 30
+        preferences.drawing.arrowWidth = 30
         /*
          * Optionally you can make these preferences global for all future EasyTipViews
          */
@@ -84,7 +85,7 @@ class CollectionViewCell: HFCardCollectionViewCell,UITableViewDelegate, UITableV
         if(self.resumeSection == "Skills" && infoController.getProgress() == 4){
             print("Showing swipe warning")
             
-            tipView = EasyTipView(text: "Tap tap here to see your skill card", preferences: preferences)
+            tipView = EasyTipView(text: "Tap here to see your skill card", preferences: preferences)
             tipView.show(forView: self.labelText!, withinSuperview: self)
         } else if(self.resumeSection == "Skills" && infoController.getProgress() == 5){
             print("Showing remove warning")
