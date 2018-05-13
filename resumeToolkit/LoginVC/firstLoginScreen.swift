@@ -65,7 +65,7 @@ class firstLoginScreen: UIViewController, UITextFieldDelegate,EasyTipViewDelegat
          */
         
         EasyTipView.globalPreferences = preferences
-        tipView = EasyTipView(text: "Press enter when you are done typing", preferences: preferences)
+        tipView = EasyTipView(text: "Press \"Return\" on your keyboard when you are done typing", preferences: preferences)
         tipView.show(forView: self.firstNameEntry, withinSuperview: self.view)
     }
     

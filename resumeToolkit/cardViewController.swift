@@ -120,6 +120,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+        determineTutorial()
         
     }
     
@@ -134,7 +135,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     var preferences: EasyTipView.Preferences!
     var tipArr = [EasyTipView]()
     func determineTutorial(){
-        infoController.refresh()
+        //infoController.refresh()
         if(infoController.isTutorailComplete()){
             if(tipView != nil){
                 tipView.dismiss()
@@ -166,6 +167,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
             print("Arya is here")
             let newTipView = EasyTipView(text: "Tap \"Add Item\" to add a skill to your resume", preferences: preferences)
             tipView = newTipView
+            
             tipView.show(forView: self.goEditButton, withinSuperview: self.view)
             tipArr.append(newTipView)
         } else if(infoController.getProgress() == 6){

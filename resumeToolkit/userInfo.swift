@@ -188,6 +188,11 @@ class userInfo {
         print("Tutorial has been restarted")
         let defaults = UserDefaults.standard
         defaults.set(1, forKey: "tutorialProgress")
+        do{
+            try context.save()
+        }catch{
+            
+        }
     }
     
     func disableTutorial(){

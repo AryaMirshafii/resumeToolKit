@@ -881,7 +881,7 @@
                                     <constraint firstAttribute="height" constant="32" id="tQr-k1-dQM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBoldLegacy" family="HK Grotesk" pointSize="23"/>
-                                <state key="normal" title="Disable Tutorial">
+                                <state key="normal" title="Tutorial Off">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
@@ -1089,10 +1089,10 @@
                                 <exclude reference="uhU-Pl-qbc"/>
                                 <exclude reference="Eck-yh-5C8"/>
                                 <exclude reference="h92-Ji-zRL"/>
-                                <exclude reference="auc-x4-jdh"/>
-                                <exclude reference="euD-fu-drp"/>
                                 <exclude reference="8co-KQ-qyn"/>
                                 <exclude reference="Ikt-pe-a1m"/>
+                                <exclude reference="auc-x4-jdh"/>
+                                <exclude reference="euD-fu-drp"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1131,9 +1131,9 @@
                                 <include reference="qbS-TB-YSc"/>
                                 <include reference="Eck-yh-5C8"/>
                                 <include reference="h92-Ji-zRL"/>
+                                <include reference="Ikt-pe-a1m"/>
                                 <include reference="auc-x4-jdh"/>
                                 <include reference="euD-fu-drp"/>
-                                <include reference="Ikt-pe-a1m"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
