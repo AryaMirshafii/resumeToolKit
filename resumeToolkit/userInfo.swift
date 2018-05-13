@@ -22,7 +22,7 @@ class userInfo {
         static let skills = "Skills"
         static let courses = "Courses"
         static let extracurriculars = "Extracurriculars"
-        static let tutorialProgress = "0"
+        static let tutorialProgress = 0
         
         
         
@@ -63,7 +63,7 @@ class userInfo {
         
     }
     
-    /**
+    
     func saveChangeText(text: String) {
         let defaults = UserDefaults.standard
         defaults.set(text, forKey: defaultsKeys.changeText)
@@ -81,6 +81,8 @@ class userInfo {
         }
         return "bbb"
     }
+    
+    /**
     // commented out since login screen does not work
     
     
@@ -149,28 +151,35 @@ class userInfo {
     }
     
     
-    func getProgress()  -> Double{
+    func getProgress()  -> Int{
         let defaults = UserDefaults.standard
-        if let stringOne = defaults.string(forKey: defaultsKeys.tutorialProgress) {
+        /**
+        if let stringOne = defaults.string(forKey: "tutorialProgress") {
             // Some String Value
             return Double(stringOne)!
         }
         print("returning 0")
-        return 79
+        if(self.fetchData() == "login"){
+            print("In Login Screen")
+            return 0
+        }
+        return 99
+        */
+        return defaults.integer(forKey: "tutorialProgress")
     }
     
     func incrementTutorialProgress() {
-        print("Incrementing progress")
         let defaults = UserDefaults.standard
-        let count =  getProgress() + 1
+        print("Incrementing progress")
+        let newcount = getProgress() + 1
+        print("the old count is " + String(defaultsKeys.tutorialProgress) + " the new is " + String(newcount))
+        defaults.set(newcount, forKey: "tutorialProgress")
+        print("The tutorial count is:" + String(defaultsKeys.tutorialProgress))
         do{
-           try context.save()
+            try context.save()
         }catch{
             
         }
-        
-        defaults.set(String(count), forKey: defaultsKeys.tutorialProgress)
-        print("The tutorial count is:" + String(count))
         
         
     }
@@ -178,13 +187,14 @@ class userInfo {
        
         print("Tutorial has been restarted")
         let defaults = UserDefaults.standard
-        defaults.set("1", forKey: defaultsKeys.tutorialProgress)
+        defaults.set(1, forKey: "tutorialProgress")
     }
     
     func disableTutorial(){
         print("Tutorial has been disabled")
         let defaults = UserDefaults.standard
-        defaults.set("99", forKey: defaultsKeys.tutorialProgress)
+        defaults.set(99, forKey: "tutorialProgress")
+        
         
         
         do{

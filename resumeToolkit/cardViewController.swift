@@ -266,7 +266,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
     @IBAction func saveObjective(_ sender: Any) {
         determineDismissal()
         dataController.saveObjective(objective: objectiveEntry.text)
-        //infoController.saveChangeText(text: String(reloadCounter))
+        infoController.saveChangeText(text: String(reloadCounter))
         reloadCounter += 1
         view.endEditing(true)
         var alert = UIAlertController(title: "Saved!",
@@ -296,7 +296,7 @@ class cardViewController : UICollectionViewController, HFCardCollectionViewLayou
         
         print("Going to edit")
         determineDismissal()
-
+        //infoController.incrementTutorialProgress()
         self.performSegue(withIdentifier: "goEdit", sender: nil)
     }
     
