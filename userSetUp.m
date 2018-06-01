@@ -15,7 +15,7 @@
 
 
 @implementation userSetUp
-//NSString *folderID;
+NSString *theFolder;
 @synthesize folderIdentification;
 
 -(id) initWithDriveService:(GTLRDriveService *)driveService withFilePath: (NSString *)aFilePath{
@@ -23,7 +23,7 @@
     if(self){
         self.driveService = driveService;
         self.aFilePath = aFilePath;
-       
+        self.theFolder = @"";
     }
     //[self initSetup];
     return self;
@@ -57,6 +57,8 @@
             //printf("the folder id is" + file.identifier )
         //[self uploadToFolder: file.identifier atFilePath: _aFilePath];
              folderID =  file.identifier;
+            theFolder = file.identifier;
+            
             
             NSLog(@" FOLDER File ID %@", file.identifier);
             
@@ -71,8 +73,8 @@
     
     
     }
-- (NSString *) returnID:(NSString *) folderId{
-    return folderId;
+- (NSString *) returnID{
+    return theFolder;
 }
 /**
  Uploads the pdf of the user's resume to his/her google drive folder.

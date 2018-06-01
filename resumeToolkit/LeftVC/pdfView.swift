@@ -170,7 +170,9 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
                 tipView = newTipView
                 tipView.show(forView: self.userSelect, withinSuperview: self.view)
                 tipArr.append(newTipView)
-                infoController.disableTutorial()
+                //infoController.incrementTutorialProgress()
+                //var timer = Timer.scheduledTimer(timeInterval: , target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+                //infoController.disableTutorial()
             }
             
             
@@ -187,12 +189,17 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
             atip.dismiss()
             
         }
-        
-        let newTipView  = EasyTipView(text: "Congrats!!! You are now done with the tutorial! Tap me to dismiss", preferences: preferences)
-        tipView = newTipView
-        tipView.show(forView: self.userSelect, withinSuperview: self.view)
-        tipArr.append(newTipView)
-        //infoController.disableTutorial()
+        if(preferences == nil){
+            return
+        }
+        if(infoController.getProgress() == 99){
+            let newTipView  = EasyTipView(text: "Congrats!!! You are now done with the tutorial! Tap me to dismiss", preferences: preferences)
+            tipView = newTipView
+            tipView.show(forView: self.userSelect, withinSuperview: self.view)
+            tipArr.append(newTipView)
+            infoController.incrementTutorialProgress()
+        }
+       
         
     }
     
@@ -231,7 +238,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        determineDismissal()
+        //determineDismissal()
         perform(#selector(self.actionOnFinishedScrolling), with: nil, afterDelay: Double(velocity.x))
     }
     

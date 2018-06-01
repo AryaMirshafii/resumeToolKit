@@ -223,8 +223,15 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             }
             
         }
-        driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
-        if(userInfoController.getFolderID() != "noFolder" && userInfoController.getFolderID() != nil){
+        //driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
+        print(" folder is " + userInfoController.getFolderID())
+        
+        if(userInfoController.getFolderID() == "noFolder" && !dataController.getUser().firstName.isEmpty && !dataController.getUser().lastName.isEmpty){
+            //driveFileManager.createFolder(dataController.getUser().firstName  + "_" + dataController.getUser().lastName)
+            print("new folder name is ")
+        }
+       
+        if(userInfoController.getFolderID() != "noFolder"){
             print("FOLDER ID OF" + String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output))
             
             print("EL es tu" + userInfoController.getFolderID())
@@ -243,7 +250,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        
+        print("uploading to folder")
         self.uploadFolder()
         
         
@@ -266,6 +273,9 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
         
         if(signedIn){
+            print("Uploading to folder " + userInfoController.getFolderID())
+            print("File path is " + String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())))
+            print("Resume index is " + userInfoController.getResumeIndex())
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
         
@@ -347,7 +357,10 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         }
         
         if(text != "No files found." && userInfoController.getFolderID() == "noFolder" &&  text != "" && !text.isEmpty){
+            print("Generating folder")
             userInfoController.saveFolderID(folderID: text)
+            
+           
             driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
         
@@ -399,11 +412,12 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
                
                 print(userInfoController.getFolderID())
                 driveFileManager.createFolder(userLastName! + "_" + userFirstName!)
-                
+                print("If i had a folder it would be " + userInfoController.getFolderID())
+                var timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.fetchFolder), userInfo: nil, repeats: false)
             }
             
  
-            fetchFolder()
+            //fetchFolder()
             userDefaultsDidChange()
             self.uploadFolder()
             
