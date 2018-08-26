@@ -44,7 +44,7 @@ class testPDFGenerator {
     /// - Parameter indexAt: the resume selected. I.E resume1, resume2...Ect
     /// - Returns: html string of resume, filepath to resume
     func createPDFFileAndReturnPath(indexAt:String) -> (html: String, output: String){
-        var htmlFile = ""
+        var htmlFile = "Nothing"
         if(indexAt == "0"){
             htmlFile = Bundle.main.path(forResource: "resume1", ofType: "html")!
             html = try! String(contentsOfFile: htmlFile, encoding: String.Encoding.utf8)

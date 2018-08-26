@@ -133,8 +133,10 @@ class userInfo {
         let defaults = UserDefaults.standard
         if let stringOne = defaults.string(forKey: defaultsKeys.resumeIndex) {
             // Some String Value
+            print("The current resume index according to coreData is: " + stringOne)
             return stringOne
         }
+        print("The current resume index according to coreData is:0")
         return "0"
     }
     

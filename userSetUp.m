@@ -99,7 +99,7 @@ NSString *theFolder;
     //metadata.sha
     
     GTLRUploadParameters *uploadParameters = [GTLRUploadParameters uploadParametersWithData:fileData
-                                                                                   MIMEType:@"image/pdff"];
+                                                                                   MIMEType:@"application/pdf"];
     uploadParameters.shouldUploadWithSingleRequest = TRUE;
     GTLRDriveQuery_FilesCreate *query = [GTLRDriveQuery_FilesCreate queryWithObject:metadata
                                                                    uploadParameters:uploadParameters];

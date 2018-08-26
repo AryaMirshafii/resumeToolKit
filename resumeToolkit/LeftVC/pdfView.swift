@@ -22,7 +22,9 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     private var infoController = userInfo()
     private var dataController = newDataManager()
     private var previousFilePath = " "
-    
+    private var isEmailing = false
+    private var resumeNumber = "0"
+    private var fileUploadTimer:Timer! = nil
     
     //getfilepath ==
     
@@ -107,7 +109,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         
     
-        
+        resumeNumber = infoController.getResumeIndex()
         if(infoController.getResumeIndex() == "0"){
             resumeNameLabel.text = "Plain"
             userSelect.contentOffset.x = 0 * (userSelect.frame.size.width/3.8)
@@ -128,7 +130,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         determineTutorial()
         
-        
+        fileUploadTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.twoMinuteSave), userInfo: nil, repeats: true)
         
         
     }
@@ -211,30 +213,100 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     func button1Tapped(){
         determineDismissal()
         resumeNameLabel.text = "Plain"
-        infoController.saveResumeIndex(resumeIndexAt: "0")
+        resumeNumber = "0"
+        
+        
+        let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: resumeNumber)
+        if(infoController.fetchData() == "main" && infoController.fetchChangeText() == "bbb" ){
+            print("in1")
+            
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
+        }else if(infoController.fetchChangeText() != "bbb"){
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
+            
+        }
         userSelect.contentOffset.x = 0 * (userSelect.frame.size.width/3.8)
+        
     }
     func button2Tapped(){
         determineDismissal()
         resumeNameLabel.text = "Industrial"
-        infoController.saveResumeIndex(resumeIndexAt: "1")
+        resumeNumber = "1"
+        
+        
+        let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: resumeNumber)
+        if(infoController.fetchData() == "main" && infoController.fetchChangeText() == "bbb" ){
+            print("in1")
+            
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
+        }else if(infoController.fetchChangeText() != "bbb"){
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
+            
+        }
+        
         userSelect.contentOffset.x = 1 * (userSelect.frame.size.width/3.8)
+        
     }
     
     func button3Tapped(){
         determineDismissal()
         resumeNameLabel.text = "Modern Minimalist"
-        infoController.saveResumeIndex(resumeIndexAt: "2")
+        resumeNumber = "2"
+        
+        let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: resumeNumber)
+        if(infoController.fetchData() == "main" && infoController.fetchChangeText() == "bbb" ){
+            print("in1")
+            
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
+        }else if(infoController.fetchChangeText() != "bbb"){
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
+            
+        }
+        
         userSelect.contentOffset.x = 2 * (userSelect.frame.size.width/3.8)
+        
     }
     func button4Tapped(){
         determineDismissal()
         resumeNameLabel.text = "Vibrant Modern"
-        infoController.saveResumeIndex(resumeIndexAt: "3")
+        resumeNumber = "3"
+        
+        let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: resumeNumber)
+        if(infoController.fetchData() == "main" && infoController.fetchChangeText() == "bbb" ){
+            print("in1")
+            
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
+        }else if(infoController.fetchChangeText() != "bbb"){
+            //let pdfResult = pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())
+            loadPDF(html: pdfResult.html, filePath: String(describing: pdfResult.output))
+            
+        }
+        
         userSelect.contentOffset.x = 3 * (userSelect.frame.size.width/3.8)
+        
     }
     
     
+    
+    /**
+    * Saves a copy of the pdf every two minutes
+    *
+    */
+    
+    @objc func twoMinuteSave(){
+        infoController.saveResumeIndex(resumeIndexAt: resumeNumber)
+        userDefaultsDidChange()
+        //self.webView.reload()
+       // self.largeWebView.reload()
+        
+    }
     
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -246,6 +318,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     
     /// Determines which resume style is selected from horizontal scroll view
     @objc private func actionOnFinishedScrolling() {
+        /**
         print("scrolling is finished")
         let resumeToPick = String(Int(abs(round(userSelect.contentOffset.x / (userSelect.frame.size.width/3.8)))))
         print("THE INDEX IS" + resumeToPick + infoController.getResumeIndex())
@@ -264,7 +337,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
             resumeNameLabel.text = "Vibrant Modern"
         }
         
-        
+        */
        
     }
     
@@ -354,14 +427,29 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         UIGraphicsEndPDFContext()
        
         
-       
+       /**
         let fileName = "pdffilename.pdf"
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0] as! NSString
         let outputURL = documentsDirectory.appending("/" + fileName)
-        pdfData.write(toFile: outputURL, atomically: true)
+        //pdfData.write(toFile: outputURL, atomically: true)
+        */
+        let fileManger = FileManager.default
+        let filePath = pdfResult.output
+        print("THe output URL will be is" +  filePath)
+        if fileManger.fileExists(atPath: filePath){
+            do{
+                try fileManger.removeItem(atPath: filePath)
+                print("Removed file")
+            }catch let error {
+                print("error occurred, here are the details:\n \(error)")
+            }
+        }
+        
+        
+        
         if(pdfData != NSData()){
-            
+            pdfData.write(toFile: pdfResult.output, atomically: true)
         }
        
        
@@ -383,7 +471,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         
         let url = NSURL(fileURLWithPath: filePath)
-        let urlRequest = NSURLRequest(url: url as URL)
+        _ = NSURLRequest(url: url as URL)
         
         
         
@@ -427,12 +515,13 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         self.isEmailing = false
         
     }
-    private var isEmailing = false
+    
     private func sendEmail() {
   
         userDefaultsDidChange()
         self.isEmailing = true
         self.webView.reload()
+        self.largeWebView.reload()
         //dataController.loadData()
         let firstname:String = dataController.getUser().firstName
         
@@ -448,7 +537,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         let fileName = "pdffilename.pdf"
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0] as! NSString
+        let documentsDirectory = paths[0] as NSString
         let outputURL = URL(fileURLWithPath: documentsDirectory.appending("/" + fileName))
         
         
@@ -456,7 +545,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
         
         
         
-        composeVC.addAttachmentData(pdfData as! Data, mimeType: "application/pdf", fileName: "resume.pdf")
+        composeVC.addAttachmentData(pdfData! as Data, mimeType: "application/pdf", fileName: "resume.pdf")
         // Present the view controller modally.
         if(pdfData != nil){
             self.present(composeVC, animated: true, completion: nil)

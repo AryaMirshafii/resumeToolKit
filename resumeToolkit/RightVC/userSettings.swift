@@ -64,6 +64,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
     let pdfGenerator = testPDFGenerator()
     var userFirstName:String?
     var userLastName:String?
+    var fileUploadTimer:Timer!
     
     
     private let scopes = ["https://www.googleapis.com/auth/drive.file"]
@@ -176,7 +177,13 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         
     
         
+        fileUploadTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.FiveMinuteUpdate), userInfo: nil, repeats: true)
+    }
     
+    @objc func FiveMinuteUpdate(){
+        if(signedIn){
+            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
+        }
     }
     
     
@@ -244,7 +251,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
                 print("FILE NOT AVAILABLE")
             }
             driveFileManager = userSetUp.init(driveService: service, withFilePath: "String!")
-            driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
+            //driveFileManager.upload(toFolder: userInfoController.getFolderID(), atFilePath: String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex()).output), withFileName: generateResumeName())
         }
         
     }
@@ -269,10 +276,11 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         dataController.saveSchool(schoolName: currentSchoolEntry.text!)
         
         
-        fetchFolder()
+        
         
         
         if(signedIn){
+            fetchFolder()
             print("Uploading to folder " + userInfoController.getFolderID())
             print("File path is " + String(describing: pdfGenerate.createPDFFileAndReturnPath(indexAt: userInfoController.getResumeIndex())))
             print("Resume index is " + userInfoController.getResumeIndex())
