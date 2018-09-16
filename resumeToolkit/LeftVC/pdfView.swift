@@ -25,6 +25,8 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     private var isEmailing = false
     private var resumeNumber = "0"
     private var fileUploadTimer:Timer! = nil
+    private var preferences: EasyTipView.Preferences!
+    private var tipArr = [EasyTipView]()
     
     //getfilepath ==
     
@@ -143,8 +145,7 @@ class pdfView: UIViewController,UIScrollViewDelegate,MFMailComposeViewController
     }
     
     
-    var preferences: EasyTipView.Preferences!
-    var tipArr = [EasyTipView]()
+    
     func determineTutorial(){
         infoController.refresh()
         if(infoController.isTutorailComplete()){

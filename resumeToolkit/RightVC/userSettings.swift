@@ -154,12 +154,7 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
         }
         userDefaultsDidChange()
         
-        if( userData.last?.value(forKeyPath: "firstName") != nil){
-            let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
-            welcomeLabel.text = "Welcome " +  nameString.firstUppercased + ","
-        } else {
-            welcomeLabel.text = "Welcome,"
-        }
+        
         
         signInButton.clipsToBounds = true
         
@@ -172,6 +167,16 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             emailEntry.text = aUser.emailAddress
             phoneEntry.text = aUser.phoneNumber
             currentSchoolEntry.text = aUser.schoolName
+            
+            if( !aUser.firstName.isEmpty){
+                //let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
+                let nameString:String = aUser.firstName
+                print("The user's first name is " + nameString)
+                welcomeLabel.text = "Welcome " +  nameString + ","
+            } else {
+                print("printing welcome")
+                welcomeLabel.text = "Welcome,"
+            }
         }
         
         
@@ -214,14 +219,19 @@ class userSettings: UIViewController,UITextFieldDelegate,GIDSignInDelegate, GIDS
             phoneEntry.text = aUser?.value(forKeyPath: "phoneNumber") as? String
             currentSchoolEntry.text = aUser?.value(forKeyPath: "schoolName") as? String
             */
-            firstNameEntry.text = dataController.getUser().firstName;
-            lastNameEntry.text = dataController.getUser().lastName;
-            emailEntry.text = dataController.getUser().emailAddress
-            phoneEntry.text = dataController.getUser().phoneNumber
-            currentSchoolEntry.text = "Georgia Institute of Technology"
+            
+             
+            if(firstNameEntry.text?.isEmpty)!{
+                firstNameEntry.text = dataController.getUser().firstName;
+                lastNameEntry.text = dataController.getUser().lastName;
+                emailEntry.text = dataController.getUser().emailAddress
+                phoneEntry.text = dataController.getUser().phoneNumber
+                currentSchoolEntry.text = "Georgia Institute of Technology"
+            }
             
             
-            if( userData.last?.value(forKeyPath: "firstName") != nil){
+            
+            if( !dataController.getUser().firstName.isEmpty){
                 //let nameString: String = (userData.last?.value(forKeyPath: "firstName") as? String)!
                 let nameString = dataController.getUser().firstName
                 welcomeLabel.text = "Welcome " +  nameString.firstUppercased + ","

@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="resumeStartscreen" translatesAutoresizingMaskIntoConstraints="NO" id="L5D-5a-Y19">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="716"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="factsheets" translatesAutoresizingMaskIntoConstraints="NO" id="gl2-al-BMo">
                                 <rect key="frame" x="93.5" y="269" width="188" height="188"/>
@@ -57,7 +57,9 @@
                             <constraint firstItem="gSi-Pr-Iig" firstAttribute="leading" secondItem="aA8-N4-z1s" secondAttribute="leading" constant="41" id="J3c-Df-9My"/>
                             <constraint firstItem="gSi-Pr-Iig" firstAttribute="top" secondItem="XEV-hH-gkv" secondAttribute="bottom" constant="131" id="Psk-7h-emc"/>
                             <constraint firstItem="L5D-5a-Y19" firstAttribute="bottom" secondItem="xkW-Xe-vWm" secondAttribute="top" id="TIk-pI-Ths"/>
-                            <constraint firstItem="L5D-5a-Y19" firstAttribute="bottom" secondItem="xkW-Xe-vWm" secondAttribute="top" id="Uz8-t3-p1l"/>
+                            <constraint firstItem="L5D-5a-Y19" firstAttribute="bottom" secondItem="xkW-Xe-vWm" secondAttribute="top" id="Uz8-t3-p1l">
+                                <variation key="heightClass=regular-widthClass=compact" constant="49"/>
+                            </constraint>
                             <constraint firstItem="L5D-5a-Y19" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="XRK-YS-5bA"/>
                             <constraint firstItem="gl2-al-BMo" firstAttribute="centerX" secondItem="aA8-N4-z1s" secondAttribute="centerX" id="gVi-iL-WVI"/>
                             <constraint firstItem="gSi-Pr-Iig" firstAttribute="centerX" secondItem="aA8-N4-z1s" secondAttribute="centerX" id="gWI-Mo-bXf"/>
@@ -97,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50.625" y="373.94366197183098"/>
+            <point key="canvasLocation" x="50.399999999999999" y="373.76311844077964"/>
         </scene>
     </scenes>
     <resources>
